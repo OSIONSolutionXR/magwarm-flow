@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 25 22% 16%;
+  --card: 0 0% 100%;
+  --card-foreground: 25 22% 16%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 25 22% 16%;
+  --primary: 17 75% 56%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 18 60% 92%;
+  --secondary-foreground: 17 75% 56%;
+  --muted: 18 30% 96%;
+  --muted-foreground: 25 10% 45%;
+  --accent: 18 85% 62%;
+  --accent-foreground: 0 0% 100%;
+  --border: 25 20% 90%;
+  --input: 25 20% 90%;
+  --ring: 17 75% 56%;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 210 25% 7%;
+  --foreground: 30 20% 95%;
+  --card: 210 20% 10%;
+  --card-foreground: 30 20% 95%;
+  --popover: 210 20% 10%;
+  --popover-foreground: 30 20% 95%;
+  --primary: 18 85% 65%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 20% 15%;
+  --secondary-foreground: 30 20% 95%;
+  --muted: 210 20% 15%;
+  --muted-foreground: 30 10% 60%;
+  --accent: 18 90% 70%;
+  --accent-foreground: 0 0% 100%;
+  --border: 210 20% 20%;
+  --input: 210 20% 20%;
+  --ring: 18 85% 65%;
+}
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar styling */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

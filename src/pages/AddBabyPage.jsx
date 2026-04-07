@@ -62,7 +62,7 @@ export default function AddBabyPage() {
                     Neues Baby anlegen
                   </h2>
                   <p className="text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mt-2">
-                    Gib den Namen und den errechneten Geburtstermin an
+                    Gib den Namen und das Geburtsdatum an
                   </p>
                 </div>
 
@@ -88,7 +88,7 @@ export default function AddBabyPage() {
 
                   <div>
                     <label className="block text-sm font-semibold text-[hsl(25,22%,16%)] dark:text-white mb-2">
-                      Errechneter Geburtstermin (ET)
+                      Geburtsdatum
                     </label>
                     <input
                       type="date"

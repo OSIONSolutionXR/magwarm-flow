@@ -440,6 +440,13 @@ export default function LeapsOverviewPage() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="space-y-6"
         >
+          {/* DISCLAIMER */}
+          <div className="p-4 bg-blue-50/50 dark:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/30 rounded-xl">
+            <p className="text-sm text-blue-800/80 dark:text-blue-300/80 leading-relaxed">
+              <strong>Über diese App:</strong> Die ersten 76 Wochen basieren auf der neuropsychologischen Forschung zu mentalen Entwicklungssprüngen. Die Phasen danach (Jahr 2-3) basieren auf allgemeiner Entwicklungspsychologie (Piaget, Erikson, Sprachentwicklung) und dienen als Orientierungshilfe – keine medizinische Diagnose.
+            </p>
+          </div>
+
           {/* PROMINENTER BUTTON: Alle Phasen */}
           <button 
             onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}

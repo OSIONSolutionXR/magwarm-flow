@@ -1,30 +1,83 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useState, useEffect, useMemo } from 'react';
-import { ArrowLeft, Navigation } from 'lucide-react';
+import { ArrowLeft, Navigation, Layers } from 'lucide-react';
 import { Card, CardContent } from '../components/Card';
 
 const LEAPS = [
   // Jahr 1: Die 10 klassischen Sprünge
-  { week: 5, weekEnd: 6, intensity: 'high', title: "Die ersten Sinneswellen", phase: "Jahr 1" },
-  { week: 8, weekEnd: 9, intensity: 'high', title: "Muster im Chaos", phase: "Jahr 1" },
-  { week: 12, weekEnd: 13, intensity: 'high', title: "Wenn Bewegung Sinn ergibt", phase: "Jahr 1" },
-  { week: 19, weekEnd: 20, intensity: 'high', title: "Aha! Das hat Folgen", phase: "Jahr 1" },
-  { week: 26, weekEnd: 27, intensity: 'high', title: "Die ersten Trennungen", phase: "Jahr 1" },
-  { week: 37, weekEnd: 38, intensity: 'high', title: "Kategorien und Ordnung", phase: "Jahr 1" },
-  { week: 46, weekEnd: 47, intensity: 'high', title: "Reihenfolgen verstehen", phase: "Jahr 1" },
-  { week: 55, weekEnd: 56, intensity: 'high', title: "Flexible Programme", phase: "Jahr 1" },
-  { week: 64, weekEnd: 65, intensity: 'high', title: "Regeln und Konsequenzen", phase: "Jahr 1" },
-  { week: 75, weekEnd: 76, intensity: 'high', title: "Verbundenheit spüren", phase: "Jahr 1" },
+  { 
+    week: 5, weekEnd: 6, intensity: 'high', title: "Die ersten Sinneswellen", phase: "Jahr 1",
+    description: "Die Sinne schalten auf Hochleistung. Alles wird plötzlich lauter, heller, intensiver. Dein Baby ist überfordert und sucht Nähe.",
+    details: "Die neuronalen Verbindungen im Gehirn explodieren. Dein Baby nimmt die Welt mit einer nie dagewesenen Intensität wahr. Das ist aufregend, aber auch erschreckend. Es braucht jetzt ganz besonders viel Körperkontakt und vertraute Umgebungen, um diese Sinnesflut zu verarbeiten."
+  },
+  { 
+    week: 8, weekEnd: 9, intensity: 'high', title: "Muster im Chaos", phase: "Jahr 1",
+    description: "Dein Baby entdeckt Wiederholungen und Regelmäßigkeiten. Es sucht deinen Blick und will deine Aufmerksamkeit.",
+    details: "Das Gehirn beginnt zu erkennen, dass bestimmte Dinge zusammengehören. Ein Lächeln bedeutet Zuwendung, ein bestimmter Geruch bedeutet Fütterung. Diese Mustererkennung hilft deinem Baby, die Welt vorherzusagen und sich sicher zu fühlen."
+  },
+  { 
+    week: 12, weekEnd: 13, intensity: 'high', title: "Wenn Bewegung Sinn ergibt", phase: "Jahr 1",
+    description: "Die Kontrolle über den eigenen Körper wächst. Der Kopf wird stabiler, Bewegungen flüssiger.",
+    details: "Die Muskulatur im Hals- und Schulterbereich hat an Kraft gewonnen. Dein Baby kann den Kopf zielgerichtet drehen und aktiv am Geschehen teilnehmen. Die Welt ist nun nicht mehr nur etwas, das passiert - sie kann aktiv erkundet werden."
+  },
+  { 
+    week: 19, weekEnd: 20, intensity: 'high', title: "Aha! Das hat Folgen", phase: "Jahr 1",
+    description: "Das revolutionäre Erwachen: Handeln führt zu Ergebnissen. Dein Baby wird zum kleinen Forscher.",
+    details: "Die ersten bewussten Verknüpfungen zwischen Handeln und Ergebnis entstehen. 'Wenn ich die Rassel schüttle, macht sie Geräusche.' Das ist der Beginn von Ursache-Wirkung-Denken und das Fundament für späteres Problemlösen."
+  },
+  { 
+    week: 26, weekEnd: 27, intensity: 'high', title: "Die ersten Trennungen", phase: "Jahr 1",
+    description: "Dein Baby erkennt: Du bist eine eigene Person. Distanz ist spürbar - und beängstigend.",
+    details: "Das erste echte Fremdeln beginnt. Dein Baby versteht, dass du existierst, auch wenn es dich nicht sieht. Das ist ein kognitiver Quantensprung, der Bindung und Verlust zugleich bedeutet. Geduld und verlässliche Rückkehr sind jetzt besonders wichtig."
+  },
+  { 
+    week: 37, weekEnd: 38, intensity: 'high', title: "Kategorien und Ordnung", phase: "Jahr 1",
+    description: "Die Welt wird sortiert und eingeordnet. Ein Hund ist ein Tier, aber nicht jedes Tier ist ein Hund.",
+    details: "Abstrakte Konzepte formen sich. Dein Baby versteht Ober- und Unterbegriffe. Das ist die Grundlage für Sprache, Mathematik und logisches Denken. Die Welt wird strukturierter und begreifbarer."
+  },
+  { 
+    week: 46, weekEnd: 47, intensity: 'high', title: "Reihenfolgen verstehen", phase: "Jahr 1",
+    description: "Abläufe werden verstanden und erwartet. Erst das, dann das - dein Baby wird zum Experten für Sequenzen.",
+    details: "Mentale Programme entstehen. Dein Baby versteht nicht nur einzelne Schritte, sondern deren Zusammenhang. Das ermöglicht echte Selbstständigkeit und Teilhabe am Familienleben."
+  },
+  { 
+    week: 55, weekEnd: 56, intensity: 'high', title: "Flexible Programme", phase: "Jahr 1",
+    description: "Es gibt verschiedene Wege zum Ziel. Erste Trotzreaktionen zeigen wachsende Autonomie.",
+    details: "Dein Baby versteht: Es kann variieren und hat trotzdem ein gemeinsames Ziel. Das ist abstraktes Denken. Gleichzeitig testet es Grenzen und behauptet sich - wichtige Schritte zur Selbstständigkeit."
+  },
+  { 
+    week: 64, weekEnd: 65, intensity: 'high', title: "Regeln und Konsequenzen", phase: "Jahr 1",
+    description: "Strategisches Handeln beginnt. Dein Baby testet Hypothesen über soziale Regeln.",
+    details: "Das Gehirn formt Regelwerke. 'Wenn ich weine, kommt Mama.' Das ist soziales Lernen durch Erfahrung. Konsequenzen werden erwartet - und es wird frustriert, wenn die Welt nicht vorhersagbar ist."
+  },
+  { 
+    week: 75, weekEnd: 76, intensity: 'high', title: "Verbundenheit spüren", phase: "Jahr 1",
+    description: "Echte Empathie entsteht. Dein Baby versteht: Andere haben Gefühle, genau wie ich.",
+    details: "Soziales Bewusstsein entwickelt sich. Dein Baby kann sich in andere hineinversetzen und reagiert auf deren Emotionen. Das ist der Beginn von zwischenmenschlicher Verbundenheit und Mitgefühl."
+  },
   // Jahr 2-3: Die 4 neuen Phasen
-  { week: 76, weekEnd: 90, intensity: 'medium', title: "Die Konsolidierung", phase: "Jahr 2", age: "18-21 Monate" },
-  { week: 91, weekEnd: 115, intensity: 'high', title: "Die Autonomie-Explosion", phase: "Jahr 2", age: "2 Jahre", subtitle: "Trotzphase" },
-  { week: 116, weekEnd: 140, intensity: 'medium', title: "Die Welt der Symbole", phase: "Jahr 2-3", age: "ca. 2,5 Jahre" },
-  { week: 141, weekEnd: 156, intensity: 'high', title: "Warum? & Magisches Denken", phase: "Jahr 3", age: "3 Jahre", subtitle: "Kindergarten-Ready" },
+  { 
+    week: 76, weekEnd: 90, intensity: 'medium', title: "Die Konsolidierung", phase: "Jahr 2", age: "18-21 Monate",
+    description: "Die bisherigen Fortschritte werden gefestigt. Ein ruhigeres Stadium vor dem nächsten großen Sprung.",
+    details: "Das Gehirn verarbeitet und festigt alles Erlernte. Der 22-Monats-Schub kann kurzzeitig anhängliches Verhalten bringen, aber das ist normal. Die Ich-Entdeckung im Spiegel markiert einen weiteren Meilenstein."
+  },
+  { 
+    week: 91, weekEnd: 115, intensity: 'high', title: "Die Autonomie-Explosion", phase: "Jahr 2", age: "2 Jahre", subtitle: "Trotzphase",
+    description: "Willkommen in der Trotzphase! Der Konflikt zwischen Wunsch und Fähigkeit führt zu Wutanfällen.",
+    details: "Das präfrontale Cortex entwickelt sich, aber die Impulskontrolle fehlt noch. Dein Kind WILL selbstständig sein, hat aber nicht die Fähigkeiten dazu. Das ist frustrierend - und deshalb braucht es jetzt besonders viel Geduld und echte Wahlmöglichkeiten."
+  },
+  { 
+    week: 116, weekEnd: 140, intensity: 'medium', title: "Die Welt der Symbole", phase: "Jahr 2-3", age: "ca. 2,5 Jahre",
+    description: "Fantasie erwacht. Ein Stock wird zum Zauberstab, eine Kiste zum Auto - die Vorstellungskraft explodiert.",
+    details: "Symbolisches Denken ermöglicht neues Spielen ohne Grenzen. Fantasie und Realität verschwimmen noch, was zu Ängsten führen kann. Gleichzeitig öffnet sich die Tür zu kreativem Denken und komplexerer Sprache."
+  },
+  { 
+    week: 141, weekEnd: 156, intensity: 'high', title: "Warum? & Magisches Denken", phase: "Jahr 3", age: "3 Jahre", subtitle: "Kindergarten-Ready",
+    description: "Die 'Warum-Phase' erreicht ihren Höhepunkt. Dein Kind wird zum kleinen Wissenschaftler.",
+    details: "Mit fast 1000 Wörtern erkundet dein Kind systematisch die Welt. Magisches Denken beherrscht noch alles - Gegenstände sind beseelt, Fantasie ist Realität. Aber auch das Verständnis für kausale Zusammenhänge wächst rapide."
+  },
 ];
-
-// Übergangsphasen (1 Woche vor Sprung)
-const TRANSITIONS = [4, 7, 11, 18, 25, 36, 45, 54, 63, 74, 90, 115, 140];
 
 function getCurrentWeek(dueDate) {
   const now = new Date();
@@ -34,17 +87,13 @@ function getCurrentWeek(dueDate) {
 }
 
 function getWeekColor(week) {
-  // Prüfe ob in Phase (alle 14 Phasen)
   const inPhase = LEAPS.some(l => week >= l.week && week <= l.weekEnd);
   if (inPhase) {
-    // Schwere der Phase bestimmen
     const phase = LEAPS.find(l => week >= l.week && week <= l.weekEnd);
     if (phase?.intensity === 'high') return 'intense';
     if (phase?.intensity === 'medium') return 'transition';
     return 'intense';
   }
-  
-  // Ruhephasen zwischen den Phasen
   return 'calm';
 }
 
@@ -71,9 +120,9 @@ export default function LeapsOverviewPage() {
   const currentStatus = getWeekColor(currentWeek);
   
   const statusText = {
-    calm: { text: 'Ruhige Phase', desc: 'Dein Baby ist entspannt und ausgeglichen.' },
+    calm: { text: 'Ruhige Phase', desc: 'Zeit zum Durchatmen und Festigen.' },
     transition: { text: 'Sanfte Veränderung', desc: 'Eine neue Phase zeichnet sich ab.' },
-    intense: { text: 'Intensive Phase', desc: 'Dein Baby verarbeitet viele neue Eindrücke.' }
+    intense: { text: 'Intensive Phase', desc: 'Viele neue Eindrücke werden verarbeitet.' }
   };
 
   const maxWeek = 156;
@@ -101,6 +150,23 @@ export default function LeapsOverviewPage() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="space-y-6"
         >
+          {/* PROMINENTER BUTTON: Alle Phasen */}
+          <Link 
+            to="/"
+            className="flex items-center justify-between p-5 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(17,75%,46%)] rounded-2xl text-white shadow-lg hover:shadow-xl transition-all"
+          >
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-white/20 rounded-xl">
+                <Layers className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="font-bold text-lg">Alle 14 Phasen</p>
+                <p className="text-white/80 text-sm">Vom Baby bis zum Kindergartenkind</p>
+              </div>
+            </div>
+            <span className="text-2xl">→</span>
+          </Link>
+
           {/* Aktueller Status */}
           <Card className={`border-2 ${
             currentStatus === 'intense' ? 'border-red-400/50 bg-red-500/5' :
@@ -133,7 +199,6 @@ export default function LeapsOverviewPage() {
           <div>
             <h3 className="text-lg font-bold text-[hsl(25,22%,16%)] dark:text-white mb-4">Wochenübersicht</h3>
             
-            {/* Scrollbare Timeline */}
             <div className="relative">
               <div className="overflow-x-auto pb-4 -mx-6 px-6 scrollbar-hide">
                 <div className="flex gap-1 min-w-max">
@@ -166,7 +231,6 @@ export default function LeapsOverviewPage() {
                 </div>
               </div>
               
-              {/* Aktuelle Position Anzeige */}
               {currentWeek > 0 && (
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[hsl(17,75%,56%)] to-transparent opacity-50"></div>
               )}
@@ -189,7 +253,7 @@ export default function LeapsOverviewPage() {
             </div>
           </div>
 
-          {/* Details zur ausgewählten Woche */}
+          {/* AUSFÜHRLICHE Details zur ausgewählten Woche */}
           {selectedWeek && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -198,45 +262,82 @@ export default function LeapsOverviewPage() {
             >
               <Card className="border border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)]">
                 <CardContent className="py-5">
-                  <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-bold text-[hsl(25,22%,16%)] dark:text-white">Woche {selectedWeek}</h4>
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <h4 className="font-bold text-[hsl(25,22%,16%)] dark:text-white text-lg">Woche {selectedWeek}</h4>
+                      {(() => {
+                        const leap = LEAPS.find(l => selectedWeek >= l.week && selectedWeek <= l.weekEnd);
+                        if (leap) {
+                          return (
+                            <p className="text-[hsl(17,75%,56%)] font-medium">
+                              {leap.phase} {leap.age ? `· ${leap.age}` : ''}
+                            </p>
+                          );
+                        }
+                        return null;
+                      })()}
+                    </div>
                     {selectedWeek === currentWeek && (
-                      <span className="px-2 py-1 bg-[hsl(17,75%,56%)]/10 text-[hsl(17,75%,56%)] text-xs font-medium rounded-full">
+                      <span className="px-3 py-1.5 bg-[hsl(17,75%,56%)] text-white text-sm font-semibold rounded-full">
                         Aktuell
                       </span>
                     )}
                   </div>
                   
-                  <div className={`
-                    p-4 rounded-xl
-                    ${getWeekColor(selectedWeek) === 'intense' ? 'bg-red-50 dark:bg-red-900/20' :
-                      getWeekColor(selectedWeek) === 'transition' ? 'bg-amber-50 dark:bg-amber-900/20' :
-                      'bg-green-50 dark:bg-green-900/20'}
-                  `}>
-                    <p className="text-[hsl(25,22%,16%)] dark:text-white font-medium">
-                      {statusText[getWeekColor(selectedWeek)].text}
-                    </p>
+                  {(() => {
+                    const leap = LEAPS.find(l => selectedWeek >= l.week && selectedWeek <= l.weekEnd);
+                    if (leap) {
+                      return (
+                        <div className="space-y-4">
+                          <div className={`p-4 rounded-xl ${
+                            getWeekColor(selectedWeek) === 'intense' ? 'bg-red-50 dark:bg-red-900/20' :
+                            getWeekColor(selectedWeek) === 'transition' ? 'bg-amber-50 dark:bg-amber-900/20' :
+                            'bg-green-50 dark:bg-green-900/20'
+                          }`}>
+                            <p className="text-[hsl(25,22%,16%)] dark:text-white font-bold text-lg mb-1">
+                              {leap.title}
+                            </p>
+                            <p className="text-[hsl(25,22%,16%)] dark:text-white font-medium">
+                              {leap.description}
+                            </p>
+                          </div>
+                          <p className="text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] leading-relaxed">
+                            {leap.details}
+                          </p>
+                          {leap.subtitle && (
+                            <span className="inline-block px-3 py-1 bg-[hsl(17,75%,56%)]/10 text-[hsl(17,75%,56%)] text-sm font-medium rounded-full">
+                              {leap.subtitle}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    }
                     
-                    {(() => {
-                      const leap = LEAPS.find(l => selectedWeek >= l.week && selectedWeek <= l.weekEnd);
-                      if (leap) {
-                        return (
-                          <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mt-1">
-                            {leap.title}
+                    // Keine Phase - Ruhezeit
+                    const nextLeap = LEAPS.find(l => l.week > selectedWeek);
+                    const prevLeap = [...LEAPS].reverse().find(l => l.weekEnd < selectedWeek);
+                    
+                    return (
+                      <div className={`p-4 rounded-xl bg-green-50 dark:bg-green-900/20`}>
+                        <p className="text-[hsl(25,22%,16%)] dark:text-white font-bold text-lg mb-1">
+                          Ruhige Phase
+                        </p>
+                        <p className="text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] leading-relaxed">
+                          Zeit zum Durchatmen zwischen den Entwicklungsschüben. Dein Kind verarbeitet und festigt das bisher Gelernte.
+                        </p>
+                        {prevLeap && (
+                          <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mt-3">
+                            Vorherige Phase: {prevLeap.title} (abgeschlossen)
                           </p>
-                        );
-                      }
-                      const nextLeap = LEAPS.find(l => l.week > selectedWeek);
-                      if (nextLeap) {
-                        return (
-                          <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mt-1">
-                            Nächste Entwicklungsphase: Woche {nextLeap.week}
+                        )}
+                        {nextLeap && (
+                          <p className="text-sm text-[hsl(17,75%,56%)] mt-1">
+                            Nächste Phase: {nextLeap.title} (ab Woche {nextLeap.week})
                           </p>
-                        );
-                      }
-                      return null;
-                    })()}
-                  </div>
+                        )}
+                      </div>
+                    );
+                  })()}
                 </CardContent>
               </Card>
             </motion.div>

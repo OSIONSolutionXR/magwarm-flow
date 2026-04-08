@@ -153,14 +153,14 @@ export default function HomePage() {
                   <p className="text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-4">
                     Noch keine Babys angelegt
                   </p>
-                  <PopButton
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(18,85%,62%)] text-white font-semibold rounded-full shadow-[0_16px_30px_-18px_rgba(233,110,75,0.8)] hover:brightness-[1.02] transition-all"
-                  >
-                    <Link to="/add">
+                  <Link to="/add">
+                    <PopButton
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(18,85%,62%)] text-white font-semibold rounded-full shadow-[0_16px_30px_-18px_rgba(233,110,75,0.8)] hover:brightness-[1.02] transition-all"
+                    >
                       <Plus className="h-5 w-5" />
                       Erstes Baby anlegen
-                    </Link>
-                  </PopButton>
+                    </PopButton>
+                  </Link>
                 </Card>
               </motion.div>
             ) : (
@@ -227,11 +227,13 @@ export default function HomePage() {
             
             {babies.length > 0 && (
               <motion.div variants={itemVariants}>
-                <PopCard className="block">
-                  <Link to="/add" className="block">
+                <Link to="/add" className="block">
+                  <PopButton
+                    className="w-full"
+                  >
                     <Card className="border-2 border-dashed border-[hsl(17,75%,56%)]/30 text-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,56%)]/5 transition-colors">
                       <CardContent className="flex items-center justify-center py-6">
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center justify-center gap-3">
                           <motion.div
                             animate={{ rotate: 0 }}
                             whileHover={{ rotate: 90 }}
@@ -243,8 +245,8 @@ export default function HomePage() {
                         </div>
                       </CardContent>
                     </Card>
-                  </Link>
-                </PopCard>
+                  </PopButton>
+                </Link>
               </motion.div>
             )}
           </motion.div>

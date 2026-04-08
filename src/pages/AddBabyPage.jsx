@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { ArrowLeft, Baby } from 'lucide-react';
 import { Card, CardContent } from '../components/Card';
+import { PopButton } from '../components/PopEffect';
 
 export default function AddBabyPage() {
   const navigate = useNavigate();
@@ -99,13 +100,17 @@ export default function AddBabyPage() {
                   </div>
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={!name.trim() || !dueDate}
-                  className="w-full py-4 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(18,85%,62%)] text-white font-bold text-lg rounded-full shadow-[0_16px_30px_-18px_rgba(233,110,75,0.8)] hover:brightness-[1.02] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                <PopButton
+                  className="w-full"
                 >
-                  Baby speichern
-                </button>
+                  <button
+                    type="submit"
+                    disabled={!name.trim() || !dueDate}
+                    className="w-full py-4 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(18,85%,62%)] text-white font-bold text-lg rounded-full shadow-[0_16px_30px_-18px_rgba(233,110,75,0.8)] hover:brightness-[1.02] disabled:opacity-50 disabled:cursor-not-allowed transition-all pointer-events-none"
+                  >
+                    Baby speichern
+                  </button>
+                </PopButton>
               </form>
             </CardContent>
           </Card>

@@ -106,7 +106,7 @@ export default function AddBabyPage() {
                   <button
                     type="submit"
                     disabled={!name.trim() || !dueDate}
-                    className="w-full py-5 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(18,85%,62%)] text-white font-bold text-xl rounded-2xl shadow-[0_16px_30px_-18px_rgba(233,110,75,0.8)] hover:brightness-[1.02] disabled:opacity-50 disabled:cursor-not-allowed transition-all pointer-events-none"
+                    className="w-full py-5 px-8 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(18,85%,62%)] text-white font-bold text-xl rounded-2xl shadow-[0_16px_30px_-18px_rgba(233,110,75,0.8)] hover:brightness-[1.02] disabled:opacity-50 disabled:cursor-not-allowed transition-all pointer-events-none"
                   >
                     Baby speichern
                   </button>

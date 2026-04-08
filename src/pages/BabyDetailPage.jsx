@@ -286,6 +286,17 @@ export default function BabyDetailPage() {
                         </p>
                       </div>
                     )}
+                    
+                    <Link 
+                      to="/leaps" 
+                      className="flex items-center justify-between p-4 bg-[hsl(17,75%,56%)]/10 hover:bg-[hsl(17,75%,56%)]/15 rounded-xl transition-colors border border-[hsl(17,75%,56%)]/20"
+                    >
+                      <div>
+                        <p className="font-semibold text-[hsl(17,75%,56%)]">Alle Sprünge ansehen</p>
+                        <p className="text-sm text-[hsl(17,75%,56%)]/70">Übersicht mit Ampel-Status</p>
+                      </div>
+                      <span className="text-2xl text-[hsl(17,75%,56%)]">→</span>
+                    </Link>
                   </div>
                 </div>
               )}

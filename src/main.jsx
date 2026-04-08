@@ -5,6 +5,7 @@ import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import AddBabyPage from './pages/AddBabyPage';
 import BabyDetailPage from './pages/BabyDetailPage';
+import LeapsOverviewPage from './pages/LeapsOverviewPage';
 import './index.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/add" element={<AddBabyPage />} />
         <Route path="/baby/:id" element={<BabyDetailPage />} />
+        <Route path="/leaps" element={<LeapsOverviewPage />} />
       </Routes>
     </div>
   );

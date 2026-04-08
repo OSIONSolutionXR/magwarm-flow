@@ -45,7 +45,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen pb-24">
-      <main className="container max-w-3xl mx-auto px-6 py-10">
+      <main className="container max-w-3xl mx-auto px-6 py-10 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}

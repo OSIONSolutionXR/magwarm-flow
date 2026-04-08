@@ -1,10 +1,8 @@
 import { useState, useRef, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Moon, Sun, Menu, X, Trash2 } from 'lucide-react';
-import { useTheme } from '../hooks/useTheme';
 
-export default function Header({ onResetData }) {
-  const { theme, toggleTheme } = useTheme();
+export default function Header({ onResetData, onToggleTheme, theme }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const menuRef = useRef(null);
@@ -32,20 +30,20 @@ export default function Header({ onResetData }) {
 
   const confirmReset = () => {
     localStorage.removeItem('flow-babies');
-    localStorage.removeItem('flow-theme');
+    localStorage.removeItem('theme');
     setShowResetConfirm(false);
     if (onResetData) onResetData();
     window.location.reload();
   };
 
   const handleThemeToggle = () => {
-    toggleTheme();
+    onToggleTheme();
     setMenuOpen(false);
   };
 
   return (
     <Fragment>
-      <header className="sticky top-0 z-50 w-full border-b border-white/45 dark:border-white/5 bg-white/72 dark:bg-[hsl(210,25%,7%)]/72 backdrop-blur-xl transition-all duration-300">
+      <header className="sticky top-0 z-50 w-full border-b border-white/45 dark:border-white/5 bg-white/70 dark:bg-[hsl(210,25%,7%)]/70 backdrop-blur-xl transition-all duration-300">
         <div className="container max-w-3xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity duration-300">
@@ -60,7 +58,7 @@ export default function Header({ onResetData }) {
 
             <div className="flex items-center gap-2">
               <button
-                onClick={toggleTheme}
+                onClick={onToggleTheme}
                 className="flex h-10 w-10 items-center justify-center rounded-xl text-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,56%)]/10 transition-colors"
                 aria-label={theme === 'light' ? 'Zu dunklem Modus wechseln' : 'Zu hellem Modus wechseln'}
               >
@@ -77,7 +75,7 @@ export default function Header({ onResetData }) {
                 </button>
                 
                 {menuOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-64 rounded-[1.2rem] bg-white dark:bg-[#0B0F14] shadow-[0_20px_50px_rgba(0,0,0,0.25)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-[#E5E5E5] dark:border-[#1C2530] overflow-hidden z-50">
+                  <div className="absolute right-0 top-full mt-2 w-64 rounded-[1.2rem] bg-white/90 dark:bg-[#0B0F14]/90 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.25)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-[#E5E5E5]/50 dark:border-[#1C2530]/50 overflow-hidden z-50">
                     <div className="py-2">
                       <button
                         onClick={handleThemeToggle}
@@ -114,7 +112,7 @@ export default function Header({ onResetData }) {
       {/* Reset Confirmation Modal */}
       {showResetConfirm && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white dark:bg-[#0B0F14] rounded-2xl p-6 max-w-sm w-full shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+          <div className="bg-white/90 dark:bg-[#0B0F14]/90 backdrop-blur-md rounded-2xl p-6 max-w-sm w-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/20 dark:border-white/10">
             <div className="text-center">
               <div className="mx-auto w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center mb-4">
                 <Trash2 className="h-6 w-6 text-red-500" />

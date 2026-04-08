@@ -24,7 +24,7 @@
   
   /* Background images */
   --bg-image: url('/bg-dark.png');
-  --bg-overlay: rgba(13, 17, 23, 0.85);
+  --bg-overlay: rgba(13, 17, 23, 0.65);
 }
 
 .light {
@@ -48,7 +48,7 @@
   
   /* Light mode background */
   --bg-image: url('/bg-light.png');
-  --bg-overlay: rgba(255, 255, 255, 0.70);
+  --bg-overlay: rgba(255, 255, 255, 0.55);
 }
 
 * {

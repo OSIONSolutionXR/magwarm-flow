@@ -286,6 +286,78 @@ const LEAPS = [
   },
 ];
 
+// REALISTISCHE PHASEN für Jahr 2-3 (mit Ruhephasen dazwischen)
+// Diese werden dynamisch zu LEAPS hinzugefügt
+const YEAR2_3_PHASES = [
+  // Ruhe nach dem letzten Sprung (Jahr 1)
+  { week: 77, weekEnd: 83, intensity: 'low', title: "Ruhe nach dem Sturm", phase: "Jahr 2", age: "17-19 Monate",
+    description: "Nach dem intensiven 1. Jahr ist Zeit zum Durchatmen.",
+    details: "Dein Baby gewöhnt sich an die neu erworbenen Fähigkeiten. Es wird selbstständiger beim Spielen und Entdecken." },
+  
+  // Mittlere Phase: Konsolidierung
+  { week: 84, weekEnd: 88, intensity: 'medium', title: "Konsolidierung", phase: "Jahr 2", age: "20-21 Monate",
+    description: "Die Fähigkeiten werden festigt und verfeinert.",
+    details: "Laufen wird sicherer, Worte werden häufiger. Dein Kind nutzt seine neuen Skills im Alltag." },
+  
+  // Erste intensive Phase: Trotz beginnt
+  { week: 89, weekEnd: 93, intensity: 'high', title: "Autonomie-Schub", phase: "Jahr 2", age: "21-22 Monate", subtitle: "Erste Trotzphase",
+    description: "'Nein!' wird zur Lieblingsantwort. Das Kind WILL, aber kann noch nicht alles.",
+    details: "Frust pur! Das Kind erkennt seine Selbstständigkeit, ist aber noch zu klein für vieles." },
+  
+  // Ruhe
+  { week: 94, weekEnd: 98, intensity: 'low', title: "Anpassung", phase: "Jahr 2", age: "22-23 Monate",
+    description: "Das Kind gewöhnt sich an seine Grenzen und Möglichkeiten.",
+    details: "Nach dem intensiven Trotz wird es wieder ruhiger. Das Kind akzeptiert Hilfe und Strukturen." },
+  
+  // Sprachexplosion
+  { week: 99, weekEnd: 103, intensity: 'medium', title: "Worte-Explosion", phase: "Jahr 2", age: "23-24 Monate",
+    description: "Plötzlich hat es Hunderte Wörter! Die Kommunikation explodiert.",
+    details: "Zwei-Wort-Sätze werden normal. Das Kind benennt alles, was es sieht." },
+  
+  // Ruhe vor dem großen Trotz
+  { week: 104, weekEnd: 109, intensity: 'low', title: "Vorbereitung", phase: "Jahr 2", age: "24-26 Monate",
+    description: "Ruhige Zeit vor dem nächsten großen Entwicklungsschub.",
+    details: "Das Kind festigt seine Sprache und Motorik. Es wird selbstständiger im Alltag." },
+  
+  // Große Trotzphase
+  { week: 110, weekEnd: 118, intensity: 'high', title: "Die große Trotzphase", phase: "Jahr 2", age: "26-28 Monate", subtitle: "Autonomie-Explosion",
+    description: "Das bekannte 'Nein!' wird jetzt professionell eingesetzt.",
+    details: "Alles dauert länger, alles ist ein Kampf. Doch dahinter steckt der Wille, selbstständig zu sein." },
+  
+  // Ruhe nach dem Trotz
+  { week: 119, weekEnd: 125, intensity: 'low', title: "Gewöhnung", phase: "Jahr 2-3", age: "28-30 Monate",
+    description: "Das Kind gewöhnt sich an die neue Selbstständigkeit.",
+    details: "Die Trotzanfälle werden weniger heftig. Das Kind akzeptiert Grenzen besser." },
+  
+  // Symbolisches Denken
+  { week: 126, weekEnd: 132, intensity: 'medium', title: "Symbole entdecken", phase: "Jahr 2-3", age: "30-32 Monate",
+    description: "Ein Stock wird zum Zauberstab! Fantasie erwacht.",
+    details: "Symbolisches Spielen beginnt. Das Kind gibt Figuren eine Rolle, erfindet Geschichten." },
+  
+  // Ruhe
+  { week: 133, weekEnd: 140, intensity: 'low', title: "Verarbeitung", phase: "Jahr 2-3", age: "32-34 Monate",
+    description: "Die neue Fantasie-Welt wird verarbeitet.",
+    details: "Rollenspiele werden ausgefeilter. Das Kind spielt länger allein und konzentrierter." },
+  
+  // Fantasie und Ängste
+  { week: 141, weekEnd: 147, intensity: 'medium', title: "Fantasie-Welt", phase: "Jahr 2-3", age: "34-36 Monate", subtitle: "Magisches Denken",
+    description: "Fantasie und Realität verschwimmen. Auch Ängste können entstehen.",
+    details: "Monster unter dem Bett? Die Fantasie hat eine Kehrseite. Doch auch die Freude am Spielen wächst." },
+  
+  // Ruhe vor Kindergarten
+  { week: 148, weekEnd: 154, intensity: 'low', title: "Reifung", phase: "Jahr 3", age: "36-37 Monate",
+    description: "Die letzte Ruhephase vor dem Kindergarten.",
+    details: "Das Kind wird immer selbstständiger. Vorbereitung auf die nächste große Veränderung." },
+  
+  // Abschluss
+  { week: 155, weekEnd: 156, intensity: 'medium', title: "Kindergarten-Ready", phase: "Jahr 3", age: "37-38 Monate",
+    description: "Bereit für den nächsten Schritt!",
+    details: "Mit fast 3 Jahren hat sich einiges getan. Die Welt der Symbole und das Magische Denken sind Teil des Alltags." },
+];
+
+// Kombinierte LEAPS (Jahr 1 + Jahr 2-3)
+const ALL_LEAPS = [...LEAPS, ...YEAR2_3_PHASES].sort((a, b) => a.week - b.week);
+
 function getCurrentWeek(dueDate) {
   const now = new Date();
   const due = new Date(dueDate);
@@ -294,11 +366,12 @@ function getCurrentWeek(dueDate) {
 }
 
 function getWeekColor(week) {
-  const inPhase = LEAPS.some(l => week >= l.week && week <= l.weekEnd);
+  const inPhase = ALL_LEAPS.some(l => week >= l.week && week <= l.weekEnd);
   if (inPhase) {
-    const phase = LEAPS.find(l => week >= l.week && week <= l.weekEnd);
+    const phase = ALL_LEAPS.find(l => week >= l.week && week <= l.weekEnd);
     if (phase?.intensity === 'high') return 'intense';
     if (phase?.intensity === 'medium') return 'transition';
+    if (phase?.intensity === 'low') return 'calm';
     return 'intense';
   }
   return 'calm';
@@ -330,7 +403,7 @@ export default function LeapsOverviewPage() {
   }, []);
 
   const currentLeap = useMemo(() => {
-    return LEAPS.find(l => currentWeek >= l.week && currentWeek <= l.weekEnd);
+    return ALL_LEAPS.find(l => currentWeek >= l.week && currentWeek <= l.weekEnd);
   }, [currentWeek]);
 
   const currentStatus = getWeekColor(currentWeek);
@@ -484,7 +557,7 @@ export default function LeapsOverviewPage() {
                 <CardContent className="py-5">
                   {(() => {
                     const weekDesc = getWeekDescription(selectedWeek);
-                    const leap = LEAPS.find(l => selectedWeek >= l.week && selectedWeek <= l.weekEnd);
+                    const leap = ALL_LEAPS.find(l => selectedWeek >= l.week && selectedWeek <= l.weekEnd);
                     const status = getWeekColor(selectedWeek);
                     
                     return (

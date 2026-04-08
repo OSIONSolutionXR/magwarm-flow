@@ -440,29 +440,31 @@ export default function LeapsOverviewPage() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="space-y-6"
         >
-          {/* DISCLAIMER */}
-          <div className="p-4 bg-blue-50/50 dark:bg-blue-900/20 border border-blue-200/50 dark:border-blue-800/30 rounded-xl">
-            <p className="text-sm text-blue-800/80 dark:text-blue-300/80 leading-relaxed">
-              <strong>Über diese App:</strong> Die ersten 76 Wochen basieren auf der neuropsychologischen Forschung zu mentalen Entwicklungssprüngen. Die Phasen danach (Jahr 2-3) basieren auf allgemeiner Entwicklungspsychologie (Piaget, Erikson, Sprachentwicklung) und dienen als Orientierungshilfe – keine medizinische Diagnose.
-            </p>
+          {/* PROMINENT: Alle Phasen - über der Timeline */}
+          <div className="mb-6">
+            <button 
+              onClick={() => {
+                const phasesSection = document.getElementById('alle-phasen');
+                phasesSection?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="w-full group relative overflow-hidden flex items-center justify-between p-5 bg-gradient-to-r from-[hsl(17,75%,56%)] via-[hsl(18,80%,60%)] to-[hsl(17,75%,46%)] rounded-2xl text-white shadow-[0_8px_32px_-8px_rgba(233,110,75,0.5)] hover:shadow-[0_12px_40px_-8px_rgba(233,110,75,0.6)] hover:scale-[1.02] transition-all duration-300"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+              <div className="flex items-center gap-4 relative">
+                <div className="p-3 bg-white/25 rounded-xl backdrop-blur-sm group-hover:bg-white/30 transition-colors">
+                  <Layers className="h-6 w-6" />
+                </div>
+                <div className="text-left">
+                  <p className="font-bold text-lg">Alle Phasen</p>
+                  <p className="text-white/90 text-sm">Vom Baby bis zum Kindergartenkind</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 text-white/80">
+                <span className="text-sm font-medium">Ansehen</span>
+                <span className="text-xl group-hover:translate-y-1 transition-transform">↓</span>
+              </div>
+            </button>
           </div>
-
-          {/* PROMINENTER BUTTON: Alle Phasen */}
-          <button 
-            onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
-            className="w-full flex items-center justify-between p-5 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(17,75%,46%)] rounded-2xl text-white shadow-lg hover:shadow-xl transition-all"
-          >
-            <div className="flex items-center gap-4">
-              <div className="p-3 bg-white/20 rounded-xl">
-                <Layers className="h-6 w-6" />
-              </div>
-              <div className="text-left">
-                <p className="font-bold text-lg">Alle 14 Phasen</p>
-                <p className="text-white/80 text-sm">Vom Baby bis zum Kindergartenkind</p>
-              </div>
-            </div>
-            <span className="text-2xl">↓</span>
-          </button>
 
           {/* Aktueller Status - MIT WOCHENSPEZIFISCHER BESCHREIBUNG */}
           <Card className={`border-2 ${
@@ -613,6 +615,51 @@ export default function LeapsOverviewPage() {
               </Card>
             </motion.div>
           )}
+
+          {/* ALLE PHASEN SECTION */}
+          <div id="alle-phasen" className="space-y-4 pt-4">
+            <h3 className="text-lg font-bold text-[hsl(25,22%,16%)] dark:text-white flex items-center gap-2">
+              <Layers className="h-5 w-5 text-[hsl(17,75%,56%)]" />
+              Alle Phasen im Überblick
+            </h3>
+            
+            <div className="grid gap-3">
+              {ALL_LEAPS.map((leap, index) => (
+                <div 
+                  key={index}
+                  className={`p-4 rounded-xl border transition-colors cursor-pointer hover:shadow-md ${
+                    leap.intensity === 'high' 
+                      ? 'bg-red-50/50 dark:bg-red-900/20 border-red-200/50 dark:border-red-800/30' :
+                    leap.intensity === 'medium'
+                      ? 'bg-amber-50/50 dark:bg-amber-900/20 border-amber-200/50 dark:border-amber-800/30' :
+                      'bg-green-50/50 dark:bg-green-900/20 border-green-200/50 dark:border-green-800/30'
+                  }`}
+                  onClick={() => setSelectedWeek(leap.week)}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-sm font-medium text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
+                          Woche {leap.week}–{leap.weekEnd}
+                        </span>
+                        <span className={`w-2 h-2 rounded-full ${
+                          leap.intensity === 'high' ? 'bg-red-500' :
+                          leap.intensity === 'medium' ? 'bg-amber-500' : 'bg-green-500'
+                        }`} />
+                      </div>
+                      <h4 className="font-bold text-[hsl(25,22%,16%)] dark:text-white truncate">
+                        {leap.title}
+                      </h4>
+                      {leap.subtitle && (
+                        <p className="text-sm text-[hsl(17,75%,56%)]">{leap.subtitle}</p>
+                      )}
+                    </div>
+                    <span className="text-lg text-[hsl(25,10%,40%)] dark:text-[hsl(30,10%,50%)] ml-2">→</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
           {/* Navigation zu aktueller Woche */}
           <button

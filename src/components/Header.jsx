@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { Moon, Sun, Menu, X, Trash2 } from 'lucide-react';
+import { Moon, Sun, Menu, X, Trash2, Info } from 'lucide-react';
 
-export default function Header({ onResetData, onToggleTheme, theme }) {
+export default function Header({ onResetData, onToggleTheme, theme, showDisclaimer }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -64,6 +65,14 @@ export default function Header({ onResetData, onToggleTheme, theme }) {
               >
                 {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
               </button>
+
+              <button
+                onClick={() => setShowInfo(true)}
+                className="flex h-10 w-10 items-center justify-center rounded-xl text-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,56%)]/10 transition-colors"
+                aria-label="Über diese App"
+              >
+                <Info className="h-5 w-5" />
+              </button>
               
               <div className="relative" ref={menuRef}>
                 <button
@@ -108,6 +117,41 @@ export default function Header({ onResetData, onToggleTheme, theme }) {
           </div>
         </div>
       </header>
+
+      {/* Info Modal */}
+      {showInfo && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="bg-white/95 dark:bg-[#0B0F14]/95 backdrop-blur-xl rounded-2xl p-6 max-w-md w-full shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/20 dark:border-white/10 max-h-[80vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-[hsl(25,22%,16%)] dark:text-white">
+                Über diese App
+              </h3>
+              <button 
+                onClick={() => setShowInfo(false)}
+                className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+              >
+                <X className="h-5 w-5 text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]" />
+              </button>
+            </div>
+            
+            <div className="space-y-4 text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] leading-relaxed">
+              <div>
+                <h4 className="font-semibold text-[hsl(25,22%,16%)] dark:text-white mb-1">Wissenschaftliche Grundlage</h4>
+                <p>Die ersten 76 Wochen basieren auf der neuropsychologischen Forschung zu mentalen Entwicklungssprüngen. Die Phasen danach (Jahr 2-3) basieren auf allgemeiner Entwicklungspsychologie (Piaget, Erikson, Sprachentwicklung).</p>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-[hsl(25,22%,16%)] dark:text-white mb-1">Hinweis</h4>
+                <p>Diese App dient als Orientierungshilfe – sie ersetzt keine medizinische Beratung. Jedes Kind entwickelt sich in seinem eigenen Tempo.</p>
+              </div>
+              
+              <div className="pt-2 border-t border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)]">
+                <p className="text-xs text-[hsl(25,10%,40%)] dark:text-[hsl(30,10%,50%)]">© MagWarm Flow – Verstehe dein Baby</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Reset Confirmation Modal */}
       {showResetConfirm && (

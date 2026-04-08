@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Baby, Plus, ChevronDown } from 'lucide-react';
+import { Baby, Plus } from 'lucide-react';
 import { Card, CardContent } from '../components/Card';
 
 const LEAPS = [
@@ -150,25 +150,6 @@ export default function HomePage() {
                   </Link>
                 </motion.div>
                 
-                {/* SCROLL HINWEIS */}
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
-                  className="flex flex-col items-center pt-8 pb-4"
-                >
-                  <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-2 text-center">
-                    Scrolle nach unten für mehr Infos
-                  </p>
-                  <motion.div
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                    className="cursor-pointer"
-                    onClick={() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })}
-                  >
-                    <ChevronDown className="h-8 w-8 text-[hsl(17,75%,56%)]" />
-                  </motion.div>
-                </motion.div>
               </>
             )}
           </div>

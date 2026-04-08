@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { ArrowLeft, Brain, Sprout, Lightbulb, Calendar, Cloud } from 'lucide-react';
 import { Card, CardContent } from '../components/Card';
+import { PopCard, PopButton } from '../components/PopEffect';
 
 const TEMPLATES = [
   // Jahr 1: Die 10 klassischen Sprünge
@@ -453,7 +454,7 @@ export default function BabyDetailPage() {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
             return (
-              <button
+              <PopButton
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex flex-col items-center justify-center py-2 px-3 min-w-[64px] transition-all duration-200 ${
@@ -478,7 +479,7 @@ export default function BabyDetailPage() {
                 }`}>
                   {tab.label}
                 </span>
-              </button>
+              </PopButton>
             );
           })}
         </div>

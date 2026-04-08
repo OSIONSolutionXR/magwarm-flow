@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Baby, Plus } from 'lucide-react';
 import { Card, CardContent } from '../components/Card';
+import { PopButton, PopCard } from '../components/PopEffect';
 
 const LEAPS = [
   { id: 1, week: 5, weekEnd: 6, title: "Die ersten Sinneswellen", phase: "Jahr 1" },
@@ -139,18 +140,14 @@ export default function HomePage() {
                   <p className="text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-4">
                     Noch keine Babys angelegt
                   </p>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <PopButton
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(18,85%,62%)] text-white font-semibold rounded-full shadow-[0_16px_30px_-18px_rgba(233,110,75,0.8)] hover:brightness-[1.02] transition-all"
                   >
-                    <Link
-                      to="/add"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(18,85%,62%)] text-white font-semibold rounded-full shadow-[0_16px_30px_-18px_rgba(233,110,75,0.8)] hover:brightness-[1.02] transition-all"
-                    >
+                    <Link to="/add">
                       <Plus className="h-5 w-5" />
                       Erstes Baby anlegen
                     </Link>
-                  </motion.div>
+                  </PopButton>
                 </Card>
               </motion.div>
             ) : (
@@ -164,58 +161,52 @@ export default function HomePage() {
                   <motion.div
                     key={baby.id}
                     variants={itemVariants}
-                    whileHover={{ scale: 1.02, y: -4 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   >
-                    <Link to={`/baby/${baby.id}`} className="block">
-                      <Card className="group overflow-hidden relative hover:shadow-[0_20px_50px_rgba(233,110,75,0.15)] transition-shadow duration-500">
-                        <motion.div
-                          className="absolute inset-0 bg-gradient-to-r from-[hsl(17,75%,56%)]/0 via-[hsl(17,75%,56%)]/10 to-[hsl(17,75%,56%)]/0"
-                          initial={{ x: "-200%", opacity: 0 }}
-                          whileHover={{ x: "200%", opacity: 1 }}
-                          transition={{ duration: 0.8, ease: "easeInOut" }}
-                        />
-                        <CardContent className="flex items-center gap-5 py-1 relative">
-                          <motion.div 
-                            className={`flex-shrink-0 flex h-[4.4rem] w-[4.4rem] items-center justify-center rounded-[1.2rem] shadow-[0_12px_24px_-18px_rgba(233,110,75,0.45)] transition-all duration-300 ${
-                              isStorm 
-                                ? 'bg-gradient-to-br from-amber-100 to-amber-200 text-amber-600' 
-                                : 'bg-gradient-to-br from-green-100 to-green-200 text-green-600'
-                            }`}
-                            whileHover={{ rotate: [0, -5, 5, 0], scale: 1.1 }}
-                            transition={{ duration: 0.5 }}
-                          >
-                            <motion.span 
-                              className="text-2xl"
-                              animate={isStorm ? {
-                                scale: [1, 1.2, 1],
-                                rotate: [0, -10, 10, 0]
-                              } : {}}
-                              transition={{ duration: 2, repeat: isStorm ? Infinity : 0 }}
+                    <PopCard className="block">
+                      <Link to={`/baby/${baby.id}`} className="block">
+                        <Card className="group overflow-hidden relative hover:shadow-[0_20px_50px_rgba(233,110,75,0.15)] transition-shadow duration-500">
+                          <motion.div
+                            className="absolute inset-0 bg-gradient-to-r from-[hsl(17,75%,56%)]/0 via-[hsl(17,75%,56%)]/10 to-[hsl(17,75%,56%)]/0"
+                            initial={{ x: "-200%", opacity: 0 }}
+                            whileHover={{ x: "200%", opacity: 1 }}
+                            transition={{ duration: 0.8, ease: "easeInOut" }}
+                          />
+                          <CardContent className="flex items-center gap-5 py-1 relative">
+                            <motion.div 
+                              className={`flex-shrink-0 flex h-[4.4rem] w-[4.4rem] items-center justify-center rounded-[1.2rem] shadow-[0_12px_24px_-18px_rgba(233,110,75,0.45)] transition-all duration-300 ${
+                                isStorm 
+                                  ? 'bg-gradient-to-br from-amber-100 to-amber-200 text-amber-600' 
+                                  : 'bg-gradient-to-br from-green-100 to-green-200 text-green-600'
+                              }`}
                             >
-                              {isStorm ? '🌩️' : '☀️'}
-                            </motion.span>
-                          </motion.div>
-                          <div className="flex-1 min-w-0 text-left">
-                            <h2 className="text-[1.45rem] sm:text-[1.6rem] font-bold text-[hsl(25,22%,16%)] dark:text-white mb-1 tracking-tight">
-                              {baby.name}
-                            </h2>
-                            <p className="text-[0.98rem] sm:text-base text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
-                              {isToddler 
-                                ? `${leap.phase} · ${leap.age || `Woche ${week}`}` 
-                                : `Woche ${week} · ${leap.title}`}
-                            </p>
-                          </div>
-                          <motion.span 
-                            className="text-2xl text-[hsl(17,75%,56%)]"
-                            whileHover={{ x: 8, scale: 1.2 }}
-                            transition={{ type: "spring", stiffness: 400 }}
-                          >
-                            →
-                          </motion.span>
-                        </CardContent>
-                      </Card>
-                    </Link>
+                              <motion.span 
+                                className="text-2xl"
+                                animate={isStorm ? {
+                                  scale: [1, 1.2, 1],
+                                  rotate: [0, -10, 10, 0]
+                                } : {}}
+                                transition={{ duration: 2, repeat: isStorm ? Infinity : 0 }}
+                              >
+                                {isStorm ? '🌩️' : '☀️'}
+                              </motion.span>
+                            </motion.div>
+                            <div className="flex-1 min-w-0 text-left">
+                              <h2 className="text-[1.45rem] sm:text-[1.6rem] font-bold text-[hsl(25,22%,16%)] dark:text-white mb-1 tracking-tight">
+                                {baby.name}
+                              </h2>
+                              <p className="text-[0.98rem] sm:text-base text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
+                                {isToddler 
+                                  ? `${leap.phase} · ${leap.age || `Woche ${week}`}` 
+                                  : `Woche ${week} · ${leap.title}`}
+                              </p>
+                            </div>
+                            <span className="text-2xl text-[hsl(17,75%,56%)]">
+                              →
+                            </span>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                    </PopCard>
                   </motion.div>
                 );
               })
@@ -223,10 +214,7 @@ export default function HomePage() {
             
             {babies.length > 0 && (
               <motion.div variants={itemVariants}>
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
+                <PopCard className="block">
                   <Link to="/add" className="block">
                     <Card className="border-2 border-dashed border-[hsl(17,75%,56%)]/30 text-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,56%)]/5 transition-colors">
                       <CardContent className="flex items-center justify-center py-6">
@@ -243,7 +231,7 @@ export default function HomePage() {
                       </CardContent>
                     </Card>
                   </Link>
-                </motion.div>
+                </PopCard>
               </motion.div>
             )}
           </motion.div>

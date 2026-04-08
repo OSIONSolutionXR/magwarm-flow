@@ -5,75 +5,193 @@ import { ArrowLeft, Brain, Sprout, Lightbulb, Calendar, Cloud } from 'lucide-rea
 import { Card, CardContent } from '../components/Card';
 
 const TEMPLATES = [
+  // Jahr 1: Die 10 klassischen Sprünge
   {
-    "week": 5, "weekEnd": 6, "title": "Welt der Sinne",
-    "stormPhase": { "description": "Dein Baby nimmt alles intensiver wahr.", "symptoms": ["Quengelig", "Anhänglich", "Schläft unruhiger"] },
-    "sunnyPhase": { "description": "Das intensive Wahrnehmen ermöglicht neue Erkenntnisse.", "abilities": ["Soziales Lächeln", "Intensiver Blick", "Tränen bei Bedürfnissen"] },
-    "why": "Im Gehirn entstehen neue neuronale Verbindungen. Die Sinnesorgane reifen.",
-    "actions": ["Biete viel Körperkontakt", "Reduziere äußere Reize", "Sprich ruhig und beruhigend"]
+    "week": 5, "weekEnd": 6, "title": "Die ersten Sinneswellen",
+    "stormPhase": { 
+      "description": "Dein Baby taucht in eine neue Realität ein. Plötzlich ist alles lauter, heller, intensiver. Die kleinen Sinne, die bisher sanft gearbeitet haben, schalten auf Hochleistung um. Dein Baby ist überfordert, quengelig und sucht unbedingt den Schutz deiner Nähe.", 
+      "symptoms": ["Alles ist plötzlich 'zu viel'", "Will nur an deiner Brust oder im Arm", "Schläft unruhig oder nur beim Tragen", "Reagiert schreckhaft auf Geräusche", "Weint mehr als gewöhnlich ohne erkennbaren Grund"] 
+    },
+    "sunnyPhase": { 
+      "description": "Nach dem Sturm kommt die Ruhe. Dein Baby hat gelernt, mit dieser neuen Intensität umzugehen und beginnt, bewusst zu lächeln, tief in deine Augen zu schauen und die Welt mit wachen Sinnen zu erkunden.", 
+      "abilities": ["Erstes bewusstes Sozial-Lächeln (nicht mehr Reflex)", "Fixiert dein Gesicht mit intensivem Blick", "Reagiert mit Tränen auf echte Bedürfnisse (nicht mehr reflexartig)", "Erkennt deine Stimme sofort und beruhigt sich", "Unterscheidet zwischen Tag und Nacht besser"] 
+    },
+    "why": "Im kleinen Köpfchen entstehen gerade Millionen neue neuronale Verbindungen. Die Sinnesorgane reifen sprunghaft - was vorher unscharf und gedämpft war, wird jetzt plötzlich scharf und intensiv erfahrbar. Das ist überwältigend für ein so kleines Wesen.",
+    "actions": ["Halte dein Baby ganz nah - Körperkontakt ist jetzt das Wichtigste", "Reduziere äußere Reize: weniger Besuche, leise Umgebung, gedämpftes Licht", "Sprich beruhigend, sing leise Lieder, halte die Stimme sanft", "Trage dein Baby viel, am besten in einem Tragetuch oder Tuch", "Verzichte auf neue Erfahrungen - vertraute Routinen geben Halt"]
   },
   {
-    "week": 8, "weekEnd": 9, "title": "Welt der Muster",
-    "stormPhase": { "description": "Das Baby erkennt plötzlich Muster in seiner Umgebung.", "symptoms": ["Sucht Augenkontakt", "Sensibel", "Will getragen"] },
-    "sunnyPhase": { "description": "Mustererkennung hilft dem Baby, seine Umgebung besser vorherzusagen.", "abilities": ["Erkennt wiederkehrende Formen", "Folgt Mustern", "Reagiert auf Rhythmen"] },
-    "why": "Das Gehirn beginnt, Muster zu erkennen und Erwartungen zu bilden.",
-    "actions": ["Etabliere klare Rituale", "Zeige dem Baby Muster", "Verwende singenden Tonfall"]
+    "week": 8, "weekEnd": 9, "title": "Muster im Chaos",
+    "stormPhase": { 
+      "description": "Dein Baby hat plötzlich ein Radar für Wiederholungen entdeckt. Es ist fasziniert, aber auch verwirrt. Warum passiert das immer wieder? Es sucht deinen Blick, will deine Aufmerksamkeit, ist gleichzeitig neugierig und überfordert.", 
+      "symptoms": ["Sucht intensiv Augenkontakt und reagiert empfindlich, wenn du wegschaust", "Wird bei Unterbrechungen der Routine unruhig", "Will ständig getragen werden, besonders in Bewegung", "Reagiert auf Rhythmen mit Weinen oder Faszination", "Irritiert, wenn bekannte Muster unterbrochen werden"] 
+    },
+    "sunnyPhase": { 
+      "description": "Dein Baby hat verstanden: Die Welt folgt Mustern! Es kann nun vorhersagen, was als Nächstes passiert, und fühlt sich dadurch sicherer. Das Gesicht leuchtet auf, wenn bekannte Abläufe beginnen.", 
+      "abilities": ["Erkennt bekannte Formen und wiederkehrende Elemente", "Folgt Mustern mit den Augen (Linien, Gesichter)", "Reagiert freudig auf bekannte Rhythmen (Schaukeln, Lieder)", "Zeigt Erwartungshaltung vor bekannten Abläufen", "Beruhigt sich bei vertrauten Geräuschen (Staubsauger, Auto)", "Lacht, wenn ein bekanntes Muster wiederkehrt"] 
+    },
+    "why": "Das Gehirn beginnt zu erkennen, dass bestimmte Dinge zusammengehören und sich wiederholen. Ein Lächeln von dir bedeutet Zuwendung. Ein bestimmter Ton bedeutet Fütterung. Diese Mustererkennung ist der Grundstein für das Verständnis von Ursache und Wirkung.",
+    "actions": ["Etabliere tägliche Rituale: Gleiche Abfolge beim Schlafenlegen, Baden, Füttern", "Zeige deinem Baby bewusst einfache Muster: Kreise zeichnen, Klopf-Rhythmen", "Singe oft dieselben Lieder mit demselben Tonfall", "Wiederhole bekannte Spiele (Kuckuck, Pat-a-cake) immer und immer wieder", "Gib deinem Baby Zeit, Muster selbst zu entdecken - unterbreche nicht zu schnell"]
   },
   {
-    "week": 12, "weekEnd": 13, "title": "Fließende Übergänge",
-    "stormPhase": { "description": "Das Baby erlebt Bewegungen jetzt anders.", "symptoms": ["Unruhig", "Bewegungsdrang", "Experimentiert"] },
-    "sunnyPhase": { "description": "Fließende Bewegungen ermöglichen neue Interaktionen.", "abilities": ["Kopf kontrolliert halten", "Stimmtraining", "Fließende Arme"] },
-    "why": "Die Muskulatur und deren Koordination verbessern sich.",
-    "actions": ["Mehr Bauchlage ermöglichen", "Auf Laute reagieren", "Köpfchen beim Tragen stützen"]
+    "week": 12, "weekEnd": 13, "title": "Wenn Bewegung Sinn ergibt",
+    "stormPhase": { 
+      "description": "Plötzlich will dein Baby die Kontrolle über seinen Körper. Die Arme und Beine bewegen sich bewusster, aber noch nicht gezielt genug. Es ist frustriert, weil der Kopf noch wackelt, und gleichzeitig voller Bewegungsdrang.", 
+      "symptoms": ["Unruhig, weil der Körper 'mit ihm spricht'", "Starker Bewegungsdrang, will gedreht, geschaukelt, bewegt werden", "Experimentiert mit Armen und Beinen", "Frustriert, weil Kopf noch nicht stabil genug", "Mehr Bewegung im Schlaf, unruhiges Schlafen"] 
+    },
+    "sunnyPhase": { 
+      "description": "Dein Baby hat die Kontrolle über seinen Kopf gewonnen! Die Bewegungen werden flüssiger, gezielter. Es kann nun aktiv an Gesprächen teilnehmen, indem es den Kopf dreht, und genießt die neue körperliche Freiheit.", 
+      "abilities": ["Kopf kontrolliert halten und zielgerichtet drehen", "Entdeckt die eigene Stimme intensiv (Stimmtraining, Quietschen)", "Arme bewegen sich flüssiger und gezielter", "Greift bewusst nach Gesichtern und Haaren", "Richtet sich in Bauchlage auf den Unterarmen auf", "Dreht sich von Rücken auf die Seite"] 
+    },
+    "why": "Die Muskulatur im Hals- und Schulterbereich hat an Kraft gewonnen. Die Koordination zwischen Kopf, Augen und Körper verbessert sich enorm. Dein Baby kann nun aktiv sein Umfeld erkunden, statt passiv zu liegen.",
+    "actions": ["Mehr Bauchlage ermöglichen - das stärkt Nacken und Rücken", "Reagiere auf die neuen Laute mit Nachahmen und Gesprächen", "Unterstütze den Kopf beim Tragen weiterhin, aber weniger als vorher", "Biete Greifmöglichkeiten: Haare, Ketten, weiche Spielzeuge", "Lass dein Baby viel auf dem Bauch spielen (Tummy Time)"]
   },
   {
-    "week": 19, "weekEnd": 20, "title": "Welt der Ereignisse",
-    "stormPhase": { "description": "Das Baby entdeckt die Beziehung zwischen Ursache und Wirkung.", "symptoms": ["Steckt alles in Mund", "Greift nach allem", "Wird frustriert"] },
-    "sunnyPhase": { "description": "Ursache-Wirkung öffnet dem Baby neue Welten.", "abilities": ["Gezieltes Greifen", "Drehversuche", "Mund als Werkzeug"] },
-    "why": "Das Gehirn verknüpft Handlungen mit Ergebnissen.",
-    "actions": ["Greifbares Spielzeug anbieten", "Mund-Exploration erlauben", "Erfolge feiern"]
+    "week": 19, "weekEnd": 20, "title": "Aha! Das hat Folgen",
+    "stormPhase": { 
+      "description": "Ein revolutionäres Erwachen: Dein Baby entdeckt, dass es etwas tun kann, und dann passiert etwas! Das ist gleichzeitig faszinierend und erschreckend. Es steckt alles in den Mund, greift nach allem, wird frustriert, wenn etwas nicht klappt.", 
+      "symptoms": ["Alles wird in den Mund gesteckt - Ausprobieren durch Lutschen", "Greift wild nach allem, was greifbar ist", "Wird frustriert, wenn etwas nicht sofort funktioniert", "Wirft Dinge absichtlich runter, um zu sehen, was passiert", "Experimentiert mit Geräuschen beim Schreien (laut/leiser)"] 
+    },
+    "sunnyPhase": { 
+      "description": "Dein Baby ist nun ein kleiner Forscher mit Methode. Es weiß: Wenn ich das mache, passiert das. Diese Erkenntnis öffnet eine neue Welt voller Möglichkeiten und Selbstwirksamkeit.", 
+      "abilities": ["Gezieltes Greifen mit Daumen und Zeigefinger (Pinzette)", "Versucht sich zu drehen und zu bewegen", "Mund wird zum Werkzeug: lutscht, kaut, schmatzt bewusst", "Schüttelt bewusst Spielzeug, um Geräusche zu machen", "Erkennt, dass bestimmte Handlungen bestimmte Reaktionen auslösen", "Interagiert aktiv mit Spielzeug (drückt, schiebt, zieht)"] 
+    },
+    "why": "Das Gehirn knüpft die ersten bewussten Verknüpfungen zwischen Handeln und Ergebnis. 'Ich schüttle die Rassel - es macht Geräusche.' Das ist der Beginn von Ursache-Wirkung-Denken und der Grundlage für späteres Problemlösen.",
+    "actions": ["Biete viel Greifbares an: weiche Bälle, Beißringe, Tücher", "Erlaube die Mund-Exploration - das ist normale Forschung", "Feiere kleine Erfolge: 'Schau, du hast die Rassel geschüttelt!'", "Lass dein Baby experimentieren - auch wenn es Dinge wirft", "Reagiere auf die Ursache-Wirkung-Spiele deines Babys"]
   },
   {
-    "week": 26, "weekEnd": 27, "title": "Welt der Beziehungen",
-    "stormPhase": { "description": "Das Baby erkennt nun die Distanz zu seinen Bezugspersonen.", "symptoms": ["Fremdelt", "Weint bei Trennung", "Braucht Nähe"] },
-    "sunnyPhase": { "description": "Bindungen ermöglichen soziales Lernen.", "abilities": ["Unterscheidet Bezugspersonen", "Erkennt räumliche Distanz", "Zeigt Präferenzen"] },
-    "why": "Das Gehirn kategorisiert Menschen und ihre Beziehung zum Baby.",
-    "actions": ["Rituell verabschieden", "Freudig begrüßen", "Fremdeln respektieren"]
+    "week": 26, "weekEnd": 27, "title": "Die ersten Trennungen",
+    "stormPhase": { 
+      "description": "Ein dramatisches Erwachen: Dein Baby merkt plötzlich, dass du eine eigene Person bist und nicht nur eine Verlängerung von ihm. Es kann nun Distanz zwischen euch wahrnehmen - und das ist beängstigend. Das erste echte Fremdeln beginnt.", 
+      "symptoms": ["Weint heftig, wenn du den Raum verlässt", "Fremdelt plötzlich vor anderen Personen", "Klammern sich an dich wie ein Äffchen", "Wird nachts unruhiger - sucht Bestätigung, dass du da bist", "Reagiert sensibel auf deine Stimmung", "Will nur von dir getröstet werden"] 
+    },
+    "sunnyPhase": { 
+      "description": "Dein Baby hat die Distanz überwunden und lernt, dass du zurückkommst. Es weiß nun: Auch wenn Mama kurz weg ist, existiert sie weiter. Das ist der Beginn von Objektpermanenz und sicherer Bindung.", 
+      "abilities": ["Unterscheidet klar zwischen Bezugspersonen und Fremden", "Erkennt räumliche Distanz und reagiert darauf", "Zeigt deutliche Präferenzen (will nur bei Mama/Papa sein)", "Beruhigt sich schneller, wenn du zurückkommst", "Entwickelt erste Strategien, Nähe zu halten", "Zeigt Freude bei Wiedersehen"] 
+    },
+    "why": "Das Gehirn kategorisiert nun bewusst: 'Das ist meine Bezugsperson' vs. 'Das ist ein Fremder'. Gleichzeitig versteht es, dass du existierst, auch wenn es dich nicht sieht. Das ist ein kognitiver Quantensprung.",
+    "actions": ["Verabschiede dich rituell, auch wenn es Weinen gibt - das gibt Sicherheit", "Komm zurück mit Freude, nicht mit Schuldgefühlen", "Respektiere das Fremdeln - zwinge dein Baby nicht zu Fremden", "Spiele Kuckuck: Versteck dich kurz und zeig dich wieder", "Bleibe in neuen Situationen nah - deine Nähe gibt Halt"]
   },
   {
-    "week": 37, "weekEnd": 38, "title": "Welt der Kategorien",
-    "stormPhase": { "description": "Das Baby teilt die Welt in Kategorien ein.", "symptoms": ["Sortiert Dinge", "Empfindlich", "Achte auf Details"] },
-    "sunnyPhase": { "description": "Kategorien ordnen die Komplexität.", "abilities": ["Einteilen", "Erste Wortversuche", "Robben/Krabbeln"] },
-    "why": "Das Gehirn bildet Konzepte. Ein Hund ist ein Tier, aber nicht jedes Tier ist ein Hund.",
-    "actions": ["Sortierspiele anbieten", "Kategorien benennen", "Platz zum Bewegen schaffen"]
+    "week": 37, "weekEnd": 38, "title": "Kategorien und Ordnung",
+    "stormPhase": { 
+      "description": "Dein Baby will die Welt sortieren, verstehen, einordnen. Es ist frustriert, wenn etwas nicht in seine Kategorien passt. Alles wird untersucht, verglichen, auseinandergenommen. Eine Phase intensiver Neugier und manchmal auch Verwirrung.", 
+      "symptoms": ["Sortiert alles, was greifbar ist", "Empfindlich, wenn Erwartungen nicht erfüllt werden", "Achte auf Details, die du übersehen würdest", "Frustriert, wenn etwas anders ist als erwartet", "Experimentiert mit Kategorien ('Hund' auf alle Tiere beziehen)", "Will Dinge vergleichen und anordnen"] 
+    },
+    "sunnyPhase": { 
+      "description": "Dein Baby hat ein mentales Ordnungssystem entwickelt! Es weiß: Ein Hund ist ein Tier, aber nicht jedes Tier ist ein Hund. Das erste Verständnis für Ober- und Unterbegriffe entsteht - die Welt wird strukturierter.", 
+      "abilities": ["Kann Dinge nach Kategorien einteilen (Tiere, Fahrzeuge)", "Erste echte Wortversuche mit Bedeutung", "Robbt oder krabbelt gezielt", "Versteht erste einfache Anweisungen", "Zeigt Interesse an Büchern mit Kategorien", "Kann ähnliche Dinge zusammenlegen"] 
+    },
+    "why": "Das Gehirn bildet abstrakte Konzepte. Es versteht, dass Dinge Eigenschaften haben, die sie zu einer Gruppe machen - auch wenn sie unterschiedlich aussehen. Ein Taxi und ein Feuerwehrauto sind beides Autos.",
+    "actions": ["Biete Sortierspiele an: Formen, Farben, Größen", "Benenne Kategorien bewusst: 'Schau, das ist auch ein Hund!'", "Schaffe Platz zum krabbeln und robben", "Lies Bilderbücher mit klaren Kategorien", "Spiele 'Was passt nicht?' - einfache Kategorisierungen"]
   },
   {
-    "week": 46, "weekEnd": 47, "title": "Welt der Reihenfolgen",
-    "stormPhase": { "description": "Das Baby versteht Abfolgen und will selbstständig handeln.", "symptoms": ["Will selbst", "Wird frustriert", "Experimentiert"] },
-    "sunnyPhase": { "description": "Reihenfolgen ermöglichen echte Teilhabe.", "abilities": ["Kann Türmchen bauen", "Hilft bei Abläufen", "Versteht Sequenzen"] },
-    "why": "Das Gehirn speichert Sequenzen. 'Erst Löffel nehmen, dann zum Mund führen, dann kauen'.",
-    "actions": ["Helfen lassen", "Rituale etablieren", "Bauklötze anbieten"]
+    "week": 46, "weekEnd": 47, "title": "Reihenfolgen verstehen",
+    "stormPhase": { 
+      "description": "Dein Baby versteht nun, dass Dinge in einer bestimmten Reihenfolge passieren müssen. Es will selbst machen, probiert aus, wird wütend, wenn es nicht klappt. Eine Phase des sturen Übens und Lernens durch Wiederholung.", 
+      "symptoms": ["Will unbedingt selbst machen - auch wenn es nicht klappt", "Wird frustriert, wenn die Reihenfolge unterbrochen wird", "Experimentiert mit Abfolgen", "Stur bei Ritualen - 'Erst das, dann das'", "Wiederhält Handlungen bis sie sitzen", "Testet Grenzen durch Beharrlichkeit"] 
+    },
+    "sunnyPhase": { 
+      "description": "Dein Baby ist nun ein kleiner Experte für Abläufe! Es weiß: Zuerst kommt der Löffel in die Hand, dann zum Mund, dann kauen. Diese Sequenzen ermöglichen echte Selbstständigkeit und Teilhabe.", 
+      "abilities": ["Kann einfache Türmchen bauen (3-4 Steine)", "Hilft bewusst bei Abläufen (zum Beispiel beim Anziehen)", "Versteht und nutzt einfache Sequenzen", "Kann Handlungen in Gedanken durchspielen", "Zeigt Erwartungshaltung bei bekannten Abläufen", "Erzählt durch Gesten kleine Geschichten"] 
+    },
+    "why": "Das Gehirn speichert Sequenzen als mentale Programme. Es versteht nicht nur einzelne Schritte, sondern deren Zusammenhang. Das ist die Grundlage für planvolles Handeln.",
+    "actions": ["Lass dein Baby helfen - auch wenn es länger dauert", "Etabliere klare Ritualabfolgen", "Biete Bauklötze und Stapelspiele an", "Spiele 'Was kommt als Nächstes?'-Rätsel", "Feier, wenn Sequenzen gelingen"] 
   },
   {
-    "week": 55, "weekEnd": 56, "title": "Welt der Programme",
-    "stormPhase": { "description": "Das Baby will selbstständig handeln und testet Grenzen.", "symptoms": ["Trotz", "Selbst entscheiden", "Testet Grenzen"] },
-    "sunnyPhase": { "description": "Flexible Programme ermöglichen echte Interaktion.", "abilities": ["Erste Schritte", "Hilft bei Aufgaben", "Nachahmen"] },
-    "why": "Das Gehirn versteht: Abläufe können variieren, haben aber ein gemeinsames Ziel.",
-    "actions": ["Helfen lassen", "Wahlmöglichkeiten geben", "Gemeinsam aufräumen"]
+    "week": 55, "weekEnd": 56, "title": "Flexible Programme",
+    "stormPhase": { 
+      "description": "Dein Baby testet Grenzen, will selbst entscheiden, zeigt ersten Trotz. Es versteht, dass es Optionen hat - und nutzt sie. Eine herausfordernde Phase der Selbstbehauptung und Grenzerprobung.", 
+      "symptoms": ["Sagt 'Nein' oder zeigt Ablehnung", "Will selbst entscheiden - bei allem", "Testet systematisch Grenzen aus", "Reagiert stark auf Regeln (positiv oder negativ)", "Will Wahlmöglichkeiten", "Wird wütend bei Zwang"] 
+    },
+    "sunnyPhase": { 
+      "description": "Dein Baby versteht nun echte Flexibilität! Es weiß: Es gibt verschiedene Wege zum Ziel. Es kann wählen, entscheiden, anpassen. Das ist der Beginn von echter Autonomie und Selbstwirksamkeit.", 
+      "abilities": ["Macht die ersten selbstständigen Schritte", "Hilft aktiv bei Aufgaben mit Verständnis", "Kann nachahmen und variieren", "Versteht einfache Regeln und ihre Ausnahmen", "Zeigt erste Planungshandlungen", "Kann sich zwischen Optionen entscheiden"] 
+    },
+    "why": "Das Gehirn versteht: Programme können variieren und haben trotzdem ein gemeinsames Ziel. 'Ich kann die Schuhe vor oder nach dem Mantel anziehen - beides führt zum Ziel.' Das ist abstraktes Denken.",
+    "actions": ["Biete echte Wahlmöglichkeiten an: 'Apfel oder Banane?'", "Lass dein Baby helfen - Autonomie stärken", "Gemeinsam aufräumen: Ein Ritual mit Flexibilität", "Respektiere Entscheidungen, wo möglich", "Erkläre Regeln einfach und konsequent"] 
   },
   {
-    "week": 64, "weekEnd": 65, "title": "Welt der Prinzipien",
-    "stormPhase": { "description": "Das Baby testet Regeln und wiederholt Verhaltensweisen.", "symptoms": ["Wiederholt", "Variatives Verhalten", "Reagiert auf Konsequenzen"] },
-    "sunnyPhase": { "description": "Prinzipien ermöglichen strategisches Handeln.", "abilities": ["Regeln verstehen", "Zwei-Wort-Sätze", "Konsequenzen erkennen"] },
-    "why": "Das Gehirn formt Regelwerke. 'Wenn ich weine, kommt Mama'.",
-    "actions": ["Konsequent sein", "Einfach erklären", "Positives verstärken"]
+    "week": 64, "weekEnd": 65, "title": "Regeln und Konsequenzen",
+    "stormPhase": { 
+      "description": "Dein Baby testet Regeln, wiederholt Verhaltensweisen, lernt durch Konsequenzen. Es ist ein kleiner Wissenschaftler, der Hypothesen über soziale Regeln aufstellt und testet. Eine Phase intensiver Beobachtung und Anpassung.", 
+      "symptoms": ["Wiederhält Verhaltensweisen systematisch", "Variatives Verhalten: Probiert verschiedene Varianten", "Reagiert stark auf Konsequenzen", "Testet, was passiert, wenn...", "Merkt sich Regeln und erwartet deren Einhaltung", "Frustriert bei unerwarteten Ausnahmen"] 
+    },
+    "sunnyPhase": { 
+      "description": "Dein Baby versteht nun strategisches Handeln! Es weiß: Wenn ich A tue, passiert B. Es kann Regeln anwenden, Konsequenzen vorhersagen und sein Verhalten danach ausrichten.", 
+      "abilities": ["Versteht und folgt einfachen Regeln", "Bildet erste Zwei-Wort-Sätze", "Erkennt Konsequenzen von Handlungen", "Kann Verhaltensalternativen abwägen", "Zeigt erstes schuldiges Bewusstsein", "Kann einfache Kompromisse eingehen"] 
+    },
+    "why": "Das Gehirn formt Regelwerke und testet sie. 'Wenn ich weine, kommt Mama' - aber auch: 'Wenn ich weine und Mama sagt Nein, kommt sie trotzdem nicht.' Das ist soziales Lernen durch Erfahrung.",
+    "actions": ["Sei konsequent - Regeln brauchen Beständigkeit", "Erkläre einfach: 'Wenn... dann...'", "Verstärke positives Verhalten bewusst", "Erlaube Fehler - daraus lernt man", "Zeige emotionale Konsequenzen: 'Schau, das hat sie traurig gemacht'"] 
   },
   {
-    "week": 75, "weekEnd": 76, "title": "Welt der Systeme",
-    "stormPhase": { "description": "Das Baby begreift sich als Teil von Systemen.", "symptoms": ["Sensibel", "Zeigt Gewissenhaftigkeit", "Reagiert auf Emotionen"] },
-    "sunnyPhase": { "description": "Systeme ermöglichen echte Empathie.", "abilities": ["Zeigt Empathie", "Ich-Bewusstsein", "Versteht Familiengefüge"] },
-    "why": "Das Gehirn sieht Zusammenhänge. 'Wenn Mama traurig ist, bin ich auch betroffen'.",
-    "actions": ["Gefühle benennen", "Familie erklären", "Rollenspiele ermöglichen"]
+    "week": 75, "weekEnd": 76, "title": "Verbundenheit spüren",
+    "stormPhase": { 
+      "description": "Dein Baby begreift sich als Teil eines größeren Ganzen. Es spürt die Stimmungen anderer, ist empfindsam für Beziehungsdynamiken, übernimmt Verantwortung. Eine Phase tiefer emotionaler Verwundbarkeit und wachsender Sozialkompetenz.", 
+      "symptoms": ["Reagiert stark auf die Emotionen anderer", "Zeigt Gewissenhaftigkeit und Perfektionismus", "Ist sensibel für Stimmungen in der Familie", "Nimmt Konflikte intensiv wahr", "Will alles 'richtig' machen", "Zeigt echte Sorge um andere"] 
+    },
+    "sunnyPhase": { 
+      "description": "Dein Baby entwickelt echte Empathie! Es versteht: Andere haben Gefühle, Bedürfnisse, Perspektiven. Es kann sich in andere hineinversetzen und ist ein fürsorgliches, soziales Wesen geworden.", 
+      "abilities": ["Zeigt echte Empathie und Mitgefühl", "Entwickelt ein klares Ich-Bewusstsein", "Versteht Familiengefüge und Beziehungen", "Kann sich in andere hineinversetzen", "Nimmt soziale Verantwortung wahr", "Kann kooperativ spielen und teilen"] 
+    },
+    "why": "Das Gehirn sieht Zusammenhänge zwischen Menschen. 'Wenn Mama traurig ist, bin ich auch betroffen.' Das ist der Beginn von sozialem Bewusstsein und echter zwischenmenschlicher Verbundenheit.",
+    "actions": ["Benenne Gefühle bewusst: 'Du siehst traurig aus'", "Erkläre Familienbeziehungen einfach", "Ermögliche Rollenspiele (Puppen, Figuren)", "Zeige eigene Gefühle authentisch", "Respektiere die wachsende Sensibilität"] 
+  },
+  // Jahr 2-3: Die 4 neuen Phasen
+  {
+    "week": 76, "weekEnd": 90, "title": "Die Konsolidierung",
+    "phase": "Jahr 2", "age": "18-21 Monate",
+    "stormPhase": { 
+      "description": "Die Frequenz der akuten Sprünge verlangsamt sich, aber ein neuer, heftiger Rückfall kann eintreten: Das Kind wird plötzlich wieder anhänglich, obwohl es gerade erst angefangen hat, selbstständig zu werden. Die Ich-Entdeckung im Spiegel markiert einen weiteren kognitiven Meilenstein.", 
+      "symptoms": ["Der '22-Monats-Schub': Erneutes anhängliches Verhalten", "Erkennt sich sicher im Spiegel (Ich-Entdeckung)", "Wortschatz wächst, aber noch holprig", "Erste Versuche, Emotionen zu benennen ('traurig', 'müde')", "Sichereres Rennen, aber noch stolperanfällig", "Hüpfen mit beiden Füßen wird versucht"] 
+    },
+    "sunnyPhase": { 
+      "description": "Dein Kind konsolidiert die bisherigen Fortschritte. Es wird selbstsicherer, spricht mehr, versteht sich selbst besser. Die Welt wird langsam berechenbarer - für euch beide.", 
+      "abilities": ["Wortschatz von ca. 50 Wörtern", "Erste Benennung von Emotionen", "Sichereres Rennen und Treppensteigen an der Hand", "Hüpfen mit beiden Füßen", "Sicheres Selbsterkennen im Spiegel", "Versteht einfache Bitten und Anweisungen"] 
+    },
+    "why": "Das Gehirn verarbeitet und festigt die bisherigen Sprünge. Die myelinisierten Nervenbahnen ermöglichen jetzt schnellere Informationsverarbeitung. Das Kind begreift: 'Ich bin ich' - ein revolutionäres Selbstverständnis.",
+    "actions": ["Geduld bei Rückschritten: Das ist normal und zeigt Verarbeitung", "Spiele Spiegel-Spiele: 'Wer ist das da?'", "Fördere Sprache durch Vorlesen und Nachsprechen", "Biete Bewegungsangebote: Hüpfen, balancieren, tanzen", "Respektiere das plötzliche Anhänglichkeit - es braucht Sicherheit"] 
+  },
+  {
+    "week": 91, "weekEnd": 115, "title": "Die Autonomie-Explosion",
+    "phase": "Jahr 2", "age": "2 Jahre", "subtitle": "Die Trotzphase",
+    "stormPhase": { 
+      "description": "Willkommen in der klassischen Trotzphase! Dein Kind will selbstständig sein, hat aber noch nicht die Fähigkeiten dazu. Dieser Konflikt zwischen Wunsch und Wirklichkeit führt zu heftigen Wutanfällen. Es ist frustrierend, herausfordernd, aber auch unglaublich wichtig für die Entwicklung.", 
+      "symptoms": ["Heftige Wutanfälle durch Konflikt Wunsch vs. Fähigkeit", "'Nein!' wird zum Lieblingswort", "Will alles alleine machen, auch wenn es nicht klappt", "Frustriert bei Scheitern", "Testet Grenzen konsequent", "Sturheit in Ritualen"] 
+    },
+    "sunnyPhase": { 
+      "description": "Die Sprachexplosion! Dein Kind lernt Wörter im Schnellverfahren, bildet erste Sätze und versteht die Welt plötzlich viel besser. Es kann sich mitteilen, Wünsche äußern, Geschichten erzählen.", 
+      "abilities": ["Sprachexplosion: Wortschatz steigt auf 200-300 Wörter", "Bildung von 3-Wort-Sätzen", "Sortieren nach Farben und Formen", "Bauen von Türmen aus 6-7 Klötzen", "Erstes echtes Rollenspiel", "Zeigt Präferenzen und Ablehnungen deutlich"] 
+    },
+    "why": "Das Gehirn erlebt eine massive Synapsenbildung in den Sprachzentren. Gleichzeitig entwickelt sich das präfrontale Cortex - die Steuerzentrale für Impulskontrolle und Planung. Das Kind WILL, aber kann noch nicht umsetzen.",
+    "actions": ["Biete Wahlmöglichkeiten an: 'Erst Zähne putzen, dann Pyjama?'", "Bleibe ruhig bei Wutanfällen - das Kind kann sich noch nicht regulieren", "Hilf bei Aufgaben, aber lass es selbst entscheiden", "Sprache födern: Vorlesen, singen, reden, reden, reden", "Feier kleine Autonomie-Erfolge: 'Du hast es alleine gemacht!'"] 
+  },
+  {
+    "week": 116, "weekEnd": 140, "title": "Die Welt der Symbole",
+    "phase": "Jahr 2-3", "age": "ca. 2,5 Jahre",
+    "stormPhase": { 
+      "description": "Fantasie und Realität verschwimmen. Ein Stock wird zum Zauberstab, eine Kiste zum Auto. Das Kind lebt in einer magischen Welt voller Möglichkeiten - aber auch voller Ängste. Die Trennung zwischen Realität und Vorstellung ist noch fließend.", 
+      "symptoms": ["Beginn des Symbolspiels - alles wird zu etwas anderem", "Ängste vor Monstern, dunklen Ecken, imaginären Wesen", "Unterscheidet noch nicht klar zwischen Fantasie und Realität", "Erste Versuche beim Trockenwerden", "Will einfache Kleidungsstücke alleine ausziehen", "Parallelspiel wandelt sich zu erstem Zusammenspiel"] 
+    },
+    "sunnyPhase": { 
+      "description": "Dein Kind entdeckt die Magie der Vorstellungskraft! Es kann jetzt spielen, ohne Gegenstände - nur mit der Kraft der Fantasie. Diese symbolische Denkfähigkeit ist der Grundstein für Kreativität, Sprache und abstraktes Denken.", 
+      "abilities": ["Kann Gegenstände symbolisch nutzen (Stock = Zauberstab)", "Erstes echtes Zusammenspiel mit anderen Kindern", "Trockenwerden funktioniert zunehmend", "Kann einfache Kleidungsstücke alleine an- und ausziehen", "Erzählt kleine Geschichten aus der Fantasie", "Versteht einfache Regeln in Spielen"] 
+    },
+    "why": "Das Gehirn entwickelt die Fähigkeit zur Repräsentation - Dinge können für andere Dinge stehen. Das ist die Voraussetzung für Sprache (Wörter stehen für Dinge), Mathematik und kreatives Denken.",
+    "actions": ["Nimm symbolisches Spiel ernst: 'Oh, das ist ein Zauberstab!'", "Beruhige bei Ängsten: 'Ich sehe auch keine Monster, ich beschütze dich'", "Fördere Trockenwerden ohne Druck", "Lass es beim Anziehen helfen - auch wenn es länger dauert", "Spiele mit: Baue Höhlen, reise zum Mond, sei ein Drache"] 
+  },
+  {
+    "week": 141, "weekEnd": 156, "title": "Warum? & Magisches Denken",
+    "phase": "Jahr 3", "age": "3 Jahre", "subtitle": "Der große 3-Jahres-Umbruch",
+    "stormPhase": { 
+      "description": "Der Übergang zum Kindergartenkind. Die 'Warum-Phase' erreicht ihren Höhepunkt - jedes Wort wird mit 'Warum?' beantwortet. Magisches Denken herrscht vor: Die Grenze zwischen Fantasie und Realität ist verschwommen. Das Kind glaubt an beseelte Gegenstände und hat intensive Ängste.", 
+      "symptoms": ["Ständiges Fragen 'Warum?' zur Erkundung von Zusammenhängen", "Magisches Denken: Glaube an beseelte Gegenstände", "Ängste vor Dunkelheit, Monstern, imaginären Bedrohungen", "Perfektionismus: Will alles 'richtig' machen", "Stimmungsschwankungen", "Kann zwischen Fantasie und Realität noch nicht trennen"] 
+    },
+    "sunnyPhase": { 
+      "description": "Dein Kind wird zum kleinen Wissenschaftler und Geschichtenerzähler! Mit einem Wortschatz von fast 1000 Wörtern kann es komplexe Zusammenhänge erklären, Fragen stellen und Antworten verstehen. Es ist bereit für den Kindergarten.", 
+      "abilities": ["Wortschatz von ca. 900-1000 Wörtern", "Kann Fahren von Dreirad oder Laufrad", "Sicheres Balancieren und Bewegen", "Versteht komplexe Anweisungen", "Kann kurze Geschichten nachspielen", "Erstes Verständnis von Zeit (gestern, morgen)"] 
+    },
+    "why": "Das Gehirn erreicht eine neue Reife. Die Sprachzentren sind stark vernetzt, die motorische Kontrolle erlaubt komplexe Bewegungsabläufe. Das Kind versteht nun kausale Zusammenhänge und will die Welt erklärt haben.",
+    "actions": ["Beantworte 'Warum?'-Fragen geduldig - das ist Lernen", "Respektiere magisches Denken: 'Der Teddy schläft auch gleich'", "Beruhige bei Ängsten, aber nimm sie ernst", "Fördere Motorik: Dreirad, Klettern, Balancieren", "Bereite auf Kindergarten vor: Besuche, Rituale besprechen"] 
   }
 ];
 
@@ -97,7 +215,7 @@ function getLeapForWeek(week) {
     if (week >= leap.week && week <= leap.weekEnd) {
       return { ...leap, isInLeap: true };
     }
-    if (week > leap.weekEnd && week < (TEMPLATES.find(l => l.week > leap.week)?.week || 100)) {
+    if (week > leap.weekEnd && week < (TEMPLATES.find(l => l.week > leap.week)?.week || 200)) {
       return { ...leap, isInLeap: false };
     }
   }
@@ -130,6 +248,7 @@ export default function BabyDetailPage() {
   const leap = getLeapForWeek(week);
   const isStorm = leap.isInLeap;
   const phaseData = isStorm ? leap.stormPhase : leap.sunnyPhase;
+  const isToddler = week >= 76;
 
   return (
     <div className="min-h-screen">
@@ -154,22 +273,24 @@ export default function BabyDetailPage() {
           className="space-y-6"
         >
           <div className="text-center py-4">
-            <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">Woche {week}</p>
+            <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
+              {isToddler ? `${leap.phase} · ${leap.age}` : `Woche ${week}`}
+            </p>
             <h2 className="text-[1.8rem] sm:text-[2.2rem] font-extrabold text-[hsl(25,22%,16%)] dark:text-white mt-1 leading-[1.1]">
               {leap.title}
             </h2>
+            {leap.subtitle && (
+              <p className="text-[hsl(17,75%,56%)] font-medium mt-1">{leap.subtitle}</p>
+            )}
             <div className={`inline-flex items-center gap-2 mt-3 px-4 py-2 rounded-full text-sm font-medium ${
               isStorm 
                 ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300' 
                 : 'bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-300'
-            }`}
-            >
+            }`}>
               <span className="text-lg">{isStorm ? '🌩️' : '☀️'}</span>
               {isStorm ? 'Stürmische Phase' : 'Sonnige Phase'}
             </div>
           </div>
-
-
 
           <Card>
             <CardContent>
@@ -267,22 +388,24 @@ export default function BabyDetailPage() {
                   <div className="space-y-3 pl-[3.75rem]">
                     {leap.week > 5 && (
                       <div className="p-4 bg-gray-50 dark:bg-[hsl(210,20%,10%)]/50 rounded-xl">
-                        <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-1">Vergangene Sprünge</p>
-                        <p className="font-medium text-[hsl(25,22%,16%)] dark:text-white">Vorherige Sprünge abgeschlossen ✓</p>
+                        <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-1">Vergangene Phasen</p>
+                        <p className="font-medium text-[hsl(25,22%,16%)] dark:text-white">Vorherige Entwicklungsschritte abgeschlossen ✓</p>
                       </div>
                     )}
                     
                     <div className="p-5 bg-rose-50 dark:bg-rose-900/20 rounded-xl border-2 border-[hsl(17,75%,56%)]/20">
-                      <p className="text-sm text-[hsl(17,75%,56%)] font-medium mb-1">Aktueller Sprung</p>
+                      <p className="text-sm text-[hsl(17,75%,56%)] font-medium mb-1">Aktuelle Phase</p>
                       <p className="font-bold text-[1.25rem] text-[hsl(25,22%,16%)] dark:text-white">{leap.title}</p>
-                      <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">Woche {leap.week}–{leap.weekEnd}</p>
+                      <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
+                        {isToddler ? `${leap.phase} · ${leap.age}` : `Woche ${leap.week}–${leap.weekEnd}`}
+                      </p>
                     </div>
                     
-                    {leap.week < 75 && (
+                    {leap.week < 156 && (
                       <div className="p-4 bg-gray-50 dark:bg-[hsl(210,20%,10%)]/50 rounded-xl">
-                        <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-1">Nächste Sprünge</p>
+                        <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-1">Nächste Phase</p>
                         <p className="font-medium text-[hsl(25,22%,16%)] dark:text-white">
-                          Nächster Sprung in {leap.weekEnd - week + 1} Wochen
+                          {leap.weekEnd >= 156 ? 'Bereit für den Kindergarten!' : `Nächste Phase in ${leap.weekEnd - week + 1} Wochen`}
                         </p>
                       </div>
                     )}
@@ -292,8 +415,8 @@ export default function BabyDetailPage() {
                       className="flex items-center justify-between p-4 bg-[hsl(17,75%,56%)]/10 hover:bg-[hsl(17,75%,56%)]/15 rounded-xl transition-colors border border-[hsl(17,75%,56%)]/20"
                     >
                       <div>
-                        <p className="font-semibold text-[hsl(17,75%,56%)]">Alle Sprünge ansehen</p>
-                        <p className="text-sm text-[hsl(17,75%,56%)]/70">Übersicht mit Ampel-Status</p>
+                        <p className="font-semibold text-[hsl(17,75%,56%)]">Alle Phasen ansehen</p>
+                        <p className="text-sm text-[hsl(17,75%,56%)]/70">Übersicht bis zum 3. Lebensjahr</p>
                       </div>
                       <span className="text-2xl text-[hsl(17,75%,56%)]">→</span>
                     </Link>

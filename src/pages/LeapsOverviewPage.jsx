@@ -5,20 +5,26 @@ import { ArrowLeft, Navigation } from 'lucide-react';
 import { Card, CardContent } from '../components/Card';
 
 const LEAPS = [
-  { week: 5, weekEnd: 6, intensity: 'high', title: "Welt der Sinne" },
-  { week: 8, weekEnd: 9, intensity: 'high', title: "Welt der Muster" },
-  { week: 12, weekEnd: 13, intensity: 'high', title: "Fließende Übergänge" },
-  { week: 19, weekEnd: 20, intensity: 'high', title: "Welt der Ereignisse" },
-  { week: 26, weekEnd: 27, intensity: 'high', title: "Welt der Beziehungen" },
-  { week: 37, weekEnd: 38, intensity: 'high', title: "Welt der Kategorien" },
-  { week: 46, weekEnd: 47, intensity: 'high', title: "Welt der Reihenfolgen" },
-  { week: 55, weekEnd: 56, intensity: 'high', title: "Welt der Programme" },
-  { week: 64, weekEnd: 65, intensity: 'high', title: "Welt der Prinzipien" },
-  { week: 75, weekEnd: 76, intensity: 'high', title: "Welt der Systeme" },
+  // Jahr 1: Die 10 klassischen Sprünge
+  { week: 5, weekEnd: 6, intensity: 'high', title: "Die ersten Sinneswellen", phase: "Jahr 1" },
+  { week: 8, weekEnd: 9, intensity: 'high', title: "Muster im Chaos", phase: "Jahr 1" },
+  { week: 12, weekEnd: 13, intensity: 'high', title: "Wenn Bewegung Sinn ergibt", phase: "Jahr 1" },
+  { week: 19, weekEnd: 20, intensity: 'high', title: "Aha! Das hat Folgen", phase: "Jahr 1" },
+  { week: 26, weekEnd: 27, intensity: 'high', title: "Die ersten Trennungen", phase: "Jahr 1" },
+  { week: 37, weekEnd: 38, intensity: 'high', title: "Kategorien und Ordnung", phase: "Jahr 1" },
+  { week: 46, weekEnd: 47, intensity: 'high', title: "Reihenfolgen verstehen", phase: "Jahr 1" },
+  { week: 55, weekEnd: 56, intensity: 'high', title: "Flexible Programme", phase: "Jahr 1" },
+  { week: 64, weekEnd: 65, intensity: 'high', title: "Regeln und Konsequenzen", phase: "Jahr 1" },
+  { week: 75, weekEnd: 76, intensity: 'high', title: "Verbundenheit spüren", phase: "Jahr 1" },
+  // Jahr 2-3: Die 4 neuen Phasen
+  { week: 76, weekEnd: 90, intensity: 'medium', title: "Die Konsolidierung", phase: "Jahr 2", age: "18-21 Monate" },
+  { week: 91, weekEnd: 115, intensity: 'high', title: "Die Autonomie-Explosion", phase: "Jahr 2", age: "2 Jahre", subtitle: "Trotzphase" },
+  { week: 116, weekEnd: 140, intensity: 'medium', title: "Die Welt der Symbole", phase: "Jahr 2-3", age: "ca. 2,5 Jahre" },
+  { week: 141, weekEnd: 156, intensity: 'high', title: "Warum? & Magisches Denken", phase: "Jahr 3", age: "3 Jahre", subtitle: "Kindergarten-Ready" },
 ];
 
 // Übergangsphasen (1 Woche vor Sprung)
-const TRANSITIONS = [4, 7, 11, 18, 25, 36, 45, 54, 63, 74];
+const TRANSITIONS = [4, 7, 11, 18, 25, 36, 45, 54, 63, 74, 90, 115, 140];
 
 function getCurrentWeek(dueDate) {
   const now = new Date();

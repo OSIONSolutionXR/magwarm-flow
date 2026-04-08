@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { ArrowLeft, Brain, Sprout, Lightbulb, Calendar } from 'lucide-react';
+import { ArrowLeft, Brain, Sprout, Lightbulb, Calendar, Cloud } from 'lucide-react';
 import { Card, CardContent } from '../components/Card';
 
 const TEMPLATES = [
@@ -78,11 +78,11 @@ const TEMPLATES = [
 ];
 
 const TABS = [
-  { id: 1, label: 'Zustand', icon: '🌤️' },
-  { id: 2, label: 'Warum', icon: '🧠' },
-  { id: 3, label: 'Lernt', icon: '🌱' },
-  { id: 4, label: 'Tun', icon: '💡' },
-  { id: 5, label: 'Zeit', icon: '📅' },
+  { id: 1, label: 'Zustand', icon: Cloud, color: 'text-sky-500' },
+  { id: 2, label: 'Warum', icon: Brain, color: 'text-violet-500' },
+  { id: 3, label: 'Lernt', icon: Sprout, color: 'text-green-500' },
+  { id: 4, label: 'Tun', icon: Lightbulb, color: 'text-amber-500' },
+  { id: 5, label: 'Zeit', icon: Calendar, color: 'text-rose-500' },
 ];
 
 function getCurrentWeek(dueDate) {
@@ -146,7 +146,7 @@ export default function BabyDetailPage() {
         </div>
       </header>
 
-      <main className="container max-w-3xl mx-auto px-6 py-6">
+      <main className="container max-w-3xl mx-auto px-6 py-6 pb-24">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -169,22 +169,7 @@ export default function BabyDetailPage() {
             </div>
           </div>
 
-          <div className="flex space-x-2 overflow-x-auto pb-2 scrollbar-hide">
-            {TABS.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${
-                  activeTab === tab.id 
-                    ? 'bg-[hsl(17,75%,56%)] text-white shadow-[0_16px_30px_-18px_rgba(233,110,75,0.8)]' 
-                    : 'bg-white/60 dark:bg-[hsl(210,20%,10%)]/60 text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]'
-                }`}
-              >
-                <span className="mr-1.5">{tab.icon}</span>
-                {tab.label}
-              </button>
-            ))}
-          </div>
+
 
           <Card>
             <CardContent>
@@ -308,6 +293,44 @@ export default function BabyDetailPage() {
           </Card>
         </motion.div>
       </main>
+
+      {/* App-like Bottom Navigation */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-[hsl(210,25%,8%)]/95 backdrop-blur-xl border-t border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)] pb-[env(safe-area-inset-bottom,0px)]">
+        <div className="flex items-center justify-around max-w-3xl mx-auto px-2">
+          {TABS.map((tab) => {
+            const Icon = tab.icon;
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex flex-col items-center justify-center py-2 px-3 min-w-[64px] transition-all duration-200 ${
+                  isActive ? 'scale-105' : 'opacity-70 hover:opacity-100'
+                }`}
+              >
+                <div className={`p-2 rounded-xl transition-all duration-200 ${
+                  isActive 
+                    ? 'bg-[hsl(17,75%,56%)]/10 shadow-[0_4px_12px_-4px_rgba(233,110,75,0.4)]' 
+                    : ''
+                }`}>
+                  <Icon 
+                    className={`h-5 w-5 sm:h-6 sm:w-6 transition-colors duration-200 ${
+                      isActive ? 'text-[hsl(17,75%,56%)]' : 'text-[hsl(25,10%,50%)] dark:text-[hsl(30,10%,55%)]'
+                    }`} 
+                  />
+                </div>
+                <span className={`text-[10px] sm:text-xs font-semibold mt-1 transition-colors duration-200 ${
+                  isActive 
+                    ? 'text-[hsl(17,75%,56%)]' 
+                    : 'text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,55%)]'
+                }`}>
+                  {tab.label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </nav>
     </div>
   );
 }

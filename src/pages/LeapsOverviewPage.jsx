@@ -133,7 +133,7 @@ export default function LeapsOverviewPage() {
       <header className="sticky top-0 z-50 w-full border-b border-white/45 dark:border-white/5 bg-white/72 dark:bg-[hsl(210,25%,7%)]/72 backdrop-blur-xl">
         <div className="container max-w-3xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link to={`/baby/${babyName.toLowerCase()}`} className="flex items-center gap-2 text-[hsl(17,75%,56%)] hover:opacity-80 transition-opacity">
+            <Link to="/" className="flex items-center gap-2 text-[hsl(17,75%,56%)] hover:opacity-80 transition-opacity">
               <ArrowLeft className="h-5 w-5" />
               <span className="font-medium">Zurück</span>
             </Link>
@@ -151,21 +151,21 @@ export default function LeapsOverviewPage() {
           className="space-y-6"
         >
           {/* PROMINENTER BUTTON: Alle Phasen */}
-          <Link 
-            to="/"
-            className="flex items-center justify-between p-5 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(17,75%,46%)] rounded-2xl text-white shadow-lg hover:shadow-xl transition-all"
+          <button 
+            onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+            className="w-full flex items-center justify-between p-5 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(17,75%,46%)] rounded-2xl text-white shadow-lg hover:shadow-xl transition-all"
           >
             <div className="flex items-center gap-4">
               <div className="p-3 bg-white/20 rounded-xl">
                 <Layers className="h-6 w-6" />
               </div>
-              <div>
+              <div className="text-left">
                 <p className="font-bold text-lg">Alle 14 Phasen</p>
                 <p className="text-white/80 text-sm">Vom Baby bis zum Kindergartenkind</p>
               </div>
             </div>
-            <span className="text-2xl">→</span>
-          </Link>
+            <span className="text-2xl">↓</span>
+          </button>
 
           {/* Aktueller Status */}
           <Card className={`border-2 ${

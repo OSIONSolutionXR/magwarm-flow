@@ -33,7 +33,7 @@ function App() {
   };
 
   return (
-    <div className={`min-h-screen ${theme}`} key={resetKey}>
+    <div className={`min-h-screen ${theme} bg-transparent`} key={resetKey}>
       <Header onResetData={handleReset} onToggleTheme={toggleTheme} theme={theme} />
       <Routes>
         <Route path="/" element={<HomePage />} />

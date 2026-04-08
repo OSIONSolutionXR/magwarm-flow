@@ -59,23 +59,30 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  @apply text-foreground;
-  margin: 0;
-  padding: 0;
+/* Performance-optimierter Hintergrund - separate Ebene statt background-attachment: fixed */
+#root {
+  position: relative;
   min-height: 100vh;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  
-  /* Background setup */
+}
+
+#root::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-image: var(--bg-image);
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   background-repeat: no-repeat;
+  z-index: -2;
+  /* Hardware-Beschleunigung für smooth scrolling */
+  transform: translateZ(0);
+  will-change: transform;
 }
 
-/* Overlay for readability */
-body::before {
+#root::after {
   content: '';
   position: fixed;
   top: 0;
@@ -85,6 +92,17 @@ body::before {
   background: var(--bg-overlay);
   z-index: -1;
   pointer-events: none;
+  transform: translateZ(0);
+}
+
+body {
+  @apply text-foreground;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Kein background-attachment: fixed mehr - das verursacht das Ruckeln */
+  background: transparent;
 }
 
 /* Scrollbar styling */
@@ -95,4 +113,20 @@ body::before {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Performance-Optimierungen für Animationen */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  #root::before,
+  #root::after {
+    position: absolute;
+  }
 }

@@ -73,7 +73,7 @@ export default function LeapsOverviewPage() {
     intense: { text: 'Intensive Phase', desc: 'Dein Baby verarbeitet viele neue Eindrücke.' }
   };
 
-  const maxWeek = 80;
+  const maxWeek = 156;
   const weeks = Array.from({ length: maxWeek }, (_, i) => i + 1);
 
   return (

@@ -34,14 +34,17 @@ function getCurrentWeek(dueDate) {
 }
 
 function getWeekColor(week) {
-  // Prüfe ob in Sprung
-  const inLeap = LEAPS.some(l => week >= l.week && week <= l.weekEnd);
-  if (inLeap) return 'intense';
+  // Prüfe ob in Phase (alle 14 Phasen)
+  const inPhase = LEAPS.some(l => week >= l.week && week <= l.weekEnd);
+  if (inPhase) {
+    // Schwere der Phase bestimmen
+    const phase = LEAPS.find(l => week >= l.week && week <= l.weekEnd);
+    if (phase?.intensity === 'high') return 'intense';
+    if (phase?.intensity === 'medium') return 'transition';
+    return 'intense';
+  }
   
-  // Prüfe ob Übergangsphase
-  const inTransition = TRANSITIONS.includes(week);
-  if (inTransition) return 'transition';
-  
+  // Ruhephasen zwischen den Phasen
   return 'calm';
 }
 

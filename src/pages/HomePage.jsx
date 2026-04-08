@@ -33,13 +33,11 @@ function getLeapForWeek(week) {
     if (week >= leap.week && week <= leap.weekEnd) {
       return { ...leap, isInLeap: true };
     }
-    // Wenn nach diesem Sprung aber vor dem nächsten
     const nextLeap = LEAPS[LEAPS.indexOf(leap) + 1];
     if (week > leap.weekEnd && (!nextLeap || week < nextLeap.week)) {
       return { ...leap, isInLeap: false };
     }
   }
-  // Nach dem letzten Sprung
   return { ...LEAPS[LEAPS.length - 1], isInLeap: week <= LEAPS[LEAPS.length - 1].weekEnd };
 }
 
@@ -53,43 +51,108 @@ export default function HomePage() {
     }
   }, []);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen pb-24">
       <main className="container max-w-3xl mx-auto px-6 py-10 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
           className="space-y-6"
         >
-          <div className="flex flex-col items-center text-center gap-4 pt-2 pb-1">
-            <div className="flex h-[4.8rem] w-[4.8rem] items-center justify-center rounded-[1.8rem] bg-gradient-to-br from-[hsl(17,75%,56%)] to-[hsl(18,85%,62%)] text-white shadow-[0_16px_30px_-18px_rgba(233,110,75,0.8)]">
+          <motion.div 
+            className="flex flex-col items-center text-center gap-4 pt-2 pb-1"
+            variants={itemVariants}
+          >
+            <motion.div 
+              className="flex h-[4.8rem] w-[4.8rem] items-center justify-center rounded-[1.8rem] bg-gradient-to-br from-[hsl(17,75%,56%)] to-[hsl(18,85%,62%)] text-white shadow-[0_16px_30px_-18px_rgba(233,110,75,0.8)]"
+              animate={{ 
+                y: [0, -8, 0],
+                rotate: [0, 2, -2, 0]
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              whileHover={{ 
+                scale: 1.1,
+                rotate: 5,
+                transition: { type: "spring", stiffness: 300 }
+              }}
+            >
               <Baby className="h-9 w-9" strokeWidth={2.1} />
-            </div>
+            </motion.div>
+            
             <div className="space-y-3 max-w-2xl">
-              <h1 className="text-[hsl(25,22%,16%)] dark:text-white text-[1.8rem] sm:text-[2.2rem] font-extrabold leading-[1.1] tracking-tight">
+              <motion.h1 
+                className="text-[hsl(25,22%,16%)] dark:text-white text-[1.8rem] sm:text-[2.2rem] font-extrabold leading-[1.1] tracking-tight"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+              >
                 MagWarm Flow
-              </h1>
-              <p className="text-[1.2rem] sm:text-[1.4rem] text-[hsl(17,75%,56%)] dark:text-[hsl(18,85%,65%)] font-semibold">
+              </motion.h1>
+              <motion.p 
+                className="text-[1.2rem] sm:text-[1.4rem] text-[hsl(17,75%,56%)] dark:text-[hsl(18,85%,65%)] font-semibold"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+              >
                 Verstehe, was dein Baby gerade braucht
-              </p>
+              </motion.p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="space-y-4 pt-4">
+          <motion.div 
+            className="space-y-4 pt-4"
+            variants={containerVariants}
+          >
             {babies.length === 0 ? (
-              <Card className="p-8 text-center">
-                <p className="text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-4">
-                  Noch keine Babys angelegt
-                </p>
-                <Link
-                  to="/add"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(18,85%,62%)] text-white font-semibold rounded-full shadow-[0_16px_30px_-18px_rgba(233,110,75,0.8)] hover:brightness-[1.02] transition-all"
-                >
-                  <Plus className="h-5 w-5" />
-                  Erstes Baby anlegen
-                </Link>
-              </Card>
+              <motion.div variants={itemVariants}>
+                <Card className="p-8 text-center">
+                  <p className="text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-4">
+                    Noch keine Babys angelegt
+                  </p>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Link
+                      to="/add"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[hsl(17,75%,56%)] to-[hsl(18,85%,62%)] text-white font-semibold rounded-full shadow-[0_16px_30px_-18px_rgba(233,110,75,0.8)] hover:brightness-[1.02] transition-all"
+                    >
+                      <Plus className="h-5 w-5" />
+                      Erstes Baby anlegen
+                    </Link>
+                  </motion.div>
+                </Card>
+              </motion.div>
             ) : (
               babies.map((baby, index) => {
                 const week = getCurrentWeek(baby.dueDate);
@@ -100,29 +163,56 @@ export default function HomePage() {
                 return (
                   <motion.div
                     key={baby.id}
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.38, delay: 0.1 + index * 0.06 }}
+                    variants={itemVariants}
+                    whileHover={{ scale: 1.02, y: -4 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   >
                     <Link to={`/baby/${baby.id}`} className="block">
-                      <Card className="group hover:shadow-[0_20px_50px_rgba(0,0,0,0.12),0_6px_16px_rgba(0,0,0,0.08)] transition-shadow">
-                        <CardContent className="flex items-center gap-5 py-1">
-                          <div className={`flex-shrink-0 flex h-[4.4rem] w-[4.4rem] items-center justify-center rounded-[1.2rem] shadow-[0_12px_24px_-18px_rgba(233,110,75,0.45)] transition-all duration-300 group-hover:scale-[1.03] group-hover:shadow-[0_18px_32px_-18px_rgba(233,110,75,0.5)] ${
-                            isStorm 
-                              ? 'bg-gradient-to-br from-amber-100 to-amber-200 text-amber-600' 
-                              : 'bg-gradient-to-br from-green-100 to-green-200 text-green-600'
-                          }`}>
-                            <span className="text-2xl">{isStorm ? '🌩️' : '☀️'}</span>
-                          </div>
+                      <Card className="group overflow-hidden relative hover:shadow-[0_20px_50px_rgba(233,110,75,0.15)] transition-shadow duration-500">
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-[hsl(17,75%,56%)]/0 via-[hsl(17,75%,56%)]/10 to-[hsl(17,75%,56%)]/0"
+                          initial={{ x: "-200%", opacity: 0 }}
+                          whileHover={{ x: "200%", opacity: 1 }}
+                          transition={{ duration: 0.8, ease: "easeInOut" }}
+                        />
+                        <CardContent className="flex items-center gap-5 py-1 relative">
+                          <motion.div 
+                            className={`flex-shrink-0 flex h-[4.4rem] w-[4.4rem] items-center justify-center rounded-[1.2rem] shadow-[0_12px_24px_-18px_rgba(233,110,75,0.45)] transition-all duration-300 ${
+                              isStorm 
+                                ? 'bg-gradient-to-br from-amber-100 to-amber-200 text-amber-600' 
+                                : 'bg-gradient-to-br from-green-100 to-green-200 text-green-600'
+                            }`}
+                            whileHover={{ rotate: [0, -5, 5, 0], scale: 1.1 }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            <motion.span 
+                              className="text-2xl"
+                              animate={isStorm ? {
+                                scale: [1, 1.2, 1],
+                                rotate: [0, -10, 10, 0]
+                              } : {}}
+                              transition={{ duration: 2, repeat: isStorm ? Infinity : 0 }}
+                            >
+                              {isStorm ? '🌩️' : '☀️'}
+                            </motion.span>
+                          </motion.div>
                           <div className="flex-1 min-w-0 text-left">
-                            <h2 className="text-[1.45rem] sm:text-[1.6rem] font-bold text-[hsl(25,22%,16%)] dark:text-white mb-1 tracking-tight">{baby.name}</h2>
+                            <h2 className="text-[1.45rem] sm:text-[1.6rem] font-bold text-[hsl(25,22%,16%)] dark:text-white mb-1 tracking-tight">
+                              {baby.name}
+                            </h2>
                             <p className="text-[0.98rem] sm:text-base text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
                               {isToddler 
                                 ? `${leap.phase} · ${leap.age || `Woche ${week}`}` 
                                 : `Woche ${week} · ${leap.title}`}
                             </p>
                           </div>
-                          <span className="text-2xl text-[hsl(17,75%,56%)]">→</span>
+                          <motion.span 
+                            className="text-2xl text-[hsl(17,75%,56%)]"
+                            whileHover={{ x: 8, scale: 1.2 }}
+                            transition={{ type: "spring", stiffness: 400 }}
+                          >
+                            →
+                          </motion.span>
                         </CardContent>
                       </Card>
                     </Link>
@@ -132,27 +222,31 @@ export default function HomePage() {
             )}
             
             {babies.length > 0 && (
-              <>
+              <motion.div variants={itemVariants}>
                 <motion.div
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.38, delay: 0.1 + babies.length * 0.06 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <Link to="/add" className="block">
                     <Card className="border-2 border-dashed border-[hsl(17,75%,56%)]/30 text-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,56%)]/5 transition-colors">
                       <CardContent className="flex items-center justify-center py-6">
                         <div className="flex items-center gap-3">
-                          <Plus className="h-6 w-6" />
+                          <motion.div
+                            animate={{ rotate: 0 }}
+                            whileHover={{ rotate: 90 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <Plus className="h-6 w-6" />
+                          </motion.div>
                           <span className="font-semibold">Weiteres Baby hinzufügen</span>
                         </div>
                       </CardContent>
                     </Card>
                   </Link>
                 </motion.div>
-                
-              </>
+              </motion.div>
             )}
-          </div>
+          </motion.div>
         </motion.div>
       </main>
     </div>

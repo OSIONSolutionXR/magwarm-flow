@@ -30,6 +30,19 @@ function getCurrentWeek(dueDate) {
 }
 
 function getLeapForWeek(week) {
+  // Spezialfall: Neugeborenes (Woche 0-4)
+  if (week < 5) {
+    return {
+      id: 0,
+      week: 0,
+      weekEnd: 4,
+      title: "Neugeborenen-Phase",
+      isInLeap: false,
+      phase: "Neugeborenes",
+      age: "0-4 Wochen",
+    };
+  }
+
   for (const leap of LEAPS) {
     if (week >= leap.week && week <= leap.weekEnd) {
       return { ...leap, isInLeap: true };

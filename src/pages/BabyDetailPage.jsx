@@ -212,6 +212,20 @@ function getCurrentWeek(dueDate) {
 }
 
 function getLeapForWeek(week) {
+  // Spezialfall: Neugeborenes (Woche 0-4)
+  if (week < 5) {
+    return {
+      week: 0,
+      weekEnd: 4,
+      title: "Neugeborenen-Phase",
+      isInLeap: false,
+      phase: "Neugeborenes",
+      age: "0-4 Wochen",
+      description: "Die ersten Wochen des Lebens. Dein Baby passt sich an die Welt außerhalb des Mutterleibs an.",
+      details: "Schlafen, Füttern, Bindung aufbauen - das sind die Prioritäten in den ersten Wochen."
+    };
+  }
+  
   for (const leap of TEMPLATES) {
     if (week >= leap.week && week <= leap.weekEnd) {
       return { ...leap, isInLeap: true };

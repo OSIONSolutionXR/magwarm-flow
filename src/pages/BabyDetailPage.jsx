@@ -389,16 +389,7 @@ export default function BabyDetailPage() {
                     <h3 className="text-[1.35rem] font-bold text-[hsl(25,22%,16%)] dark:text-white">Zeitlinie</h3>
                   </div>
                   <div className="space-y-3 pl-[3.75rem]">
-                    {leap.week > 5 && (
-                      <div className="p-4 bg-gray-50 dark:bg-[hsl(210,20%,10%)]/50 rounded-xl">
-                        <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-1">Vergangene Phasen</p>
-                        <p className="font-medium text-[hsl(25,22%,16%)] dark:text-white">Vorherige Entwicklungsschritte abgeschlossen ✓</p>
-                      </div>
-                    )}
-                    
                     <div className="p-5 bg-rose-50 dark:bg-rose-900/20 rounded-xl border-2 border-[hsl(17,75%,56%)]/20">
-                      <p className="text-sm text-[hsl(17,75%,56%)] font-medium mb-1">Aktuelle Phase</p>
-                      <p className="font-bold text-[1.25rem] text-[hsl(25,22%,16%)] dark:text-white">{leap.title}</p>
                       <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
                         {isToddler ? `${leap.phase} · ${leap.age}` : `Woche ${leap.week}–${leap.weekEnd}`}
                       </p>

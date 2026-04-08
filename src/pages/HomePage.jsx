@@ -1,20 +1,24 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Baby, Plus } from 'lucide-react';
+import { Baby, Plus, ChevronDown } from 'lucide-react';
 import { Card, CardContent } from '../components/Card';
 
 const LEAPS = [
-  { id: 1, week: 5, title: "Welt der Sinne" },
-  { id: 2, week: 8, title: "Welt der Muster" },
-  { id: 3, week: 12, title: "Fließende Übergänge" },
-  { id: 4, week: 19, title: "Welt der Ereignisse" },
-  { id: 5, week: 26, title: "Welt der Beziehungen" },
-  { id: 6, week: 37, title: "Welt der Kategorien" },
-  { id: 7, week: 46, title: "Welt der Reihenfolgen" },
-  { id: 8, week: 55, title: "Welt der Programme" },
-  { id: 9, week: 64, title: "Welt der Prinzipien" },
-  { id: 10, week: 75, title: "Welt der Systeme" },
+  { id: 1, week: 5, weekEnd: 6, title: "Die ersten Sinneswellen", phase: "Jahr 1" },
+  { id: 2, week: 8, weekEnd: 9, title: "Muster im Chaos", phase: "Jahr 1" },
+  { id: 3, week: 12, weekEnd: 13, title: "Wenn Bewegung Sinn ergibt", phase: "Jahr 1" },
+  { id: 4, week: 19, weekEnd: 20, title: "Aha! Das hat Folgen", phase: "Jahr 1" },
+  { id: 5, week: 26, weekEnd: 27, title: "Die ersten Trennungen", phase: "Jahr 1" },
+  { id: 6, week: 37, weekEnd: 38, title: "Kategorien und Ordnung", phase: "Jahr 1" },
+  { id: 7, week: 46, weekEnd: 47, title: "Reihenfolgen verstehen", phase: "Jahr 1" },
+  { id: 8, week: 55, weekEnd: 56, title: "Flexible Programme", phase: "Jahr 1" },
+  { id: 9, week: 64, weekEnd: 65, title: "Regeln und Konsequenzen", phase: "Jahr 1" },
+  { id: 10, week: 75, weekEnd: 76, title: "Verbundenheit spüren", phase: "Jahr 1" },
+  { id: 11, week: 76, weekEnd: 90, title: "Die Konsolidierung", phase: "Jahr 2", age: "18-21 Monate", intensity: 'medium' },
+  { id: 12, week: 91, weekEnd: 115, title: "Die Autonomie-Explosion", phase: "Jahr 2", age: "2 Jahre", subtitle: "Trotzphase", intensity: 'high' },
+  { id: 13, week: 116, weekEnd: 140, title: "Die Welt der Symbole", phase: "Jahr 2-3", age: "ca. 2,5 Jahre", intensity: 'medium' },
+  { id: 14, week: 141, weekEnd: 156, title: "Warum? & Magisches Denken", phase: "Jahr 3", age: "3 Jahre", subtitle: "Kindergarten-Ready", intensity: 'high' },
 ];
 
 function getCurrentWeek(dueDate) {
@@ -26,11 +30,17 @@ function getCurrentWeek(dueDate) {
 
 function getLeapForWeek(week) {
   for (const leap of LEAPS) {
-    if (week >= leap.week && week < (LEAPS[LEAPS.indexOf(leap) + 1]?.week || 100)) {
-      return { ...leap, isInLeap: week <= leap.week + 1 };
+    if (week >= leap.week && week <= leap.weekEnd) {
+      return { ...leap, isInLeap: true };
+    }
+    // Wenn nach diesem Sprung aber vor dem nächsten
+    const nextLeap = LEAPS[LEAPS.indexOf(leap) + 1];
+    if (week > leap.weekEnd && (!nextLeap || week < nextLeap.week)) {
+      return { ...leap, isInLeap: false };
     }
   }
-  return LEAPS[LEAPS.length - 1];
+  // Nach dem letzten Sprung
+  return { ...LEAPS[LEAPS.length - 1], isInLeap: week <= LEAPS[LEAPS.length - 1].weekEnd };
 }
 
 export default function HomePage() {
@@ -85,6 +95,7 @@ export default function HomePage() {
                 const week = getCurrentWeek(baby.dueDate);
                 const leap = getLeapForWeek(week);
                 const isStorm = leap.isInLeap;
+                const isToddler = week >= 76;
                 
                 return (
                   <motion.div
@@ -96,7 +107,7 @@ export default function HomePage() {
                     <Link to={`/baby/${baby.id}`} className="block">
                       <Card className="group hover:shadow-[0_20px_50px_rgba(0,0,0,0.12),0_6px_16px_rgba(0,0,0,0.08)] transition-shadow">
                         <CardContent className="flex items-center gap-5 py-1">
-                          <div className={`flex h-[4.4rem] w-[4.4rem] items-center justify-center rounded-[1.2rem] shadow-[0_12px_24px_-18px_rgba(233,110,75,0.45)] transition-all duration-300 group-hover:scale-[1.03] group-hover:shadow-[0_18px_32px_-18px_rgba(233,110,75,0.5)] ${
+                          <div className={`flex-shrink-0 flex h-[4.4rem] w-[4.4rem] items-center justify-center rounded-[1.2rem] shadow-[0_12px_24px_-18px_rgba(233,110,75,0.45)] transition-all duration-300 group-hover:scale-[1.03] group-hover:shadow-[0_18px_32px_-18px_rgba(233,110,75,0.5)] ${
                             isStorm 
                               ? 'bg-gradient-to-br from-amber-100 to-amber-200 text-amber-600' 
                               : 'bg-gradient-to-br from-green-100 to-green-200 text-green-600'
@@ -106,7 +117,9 @@ export default function HomePage() {
                           <div className="flex-1 min-w-0 text-left">
                             <h2 className="text-[1.45rem] sm:text-[1.6rem] font-bold text-[hsl(25,22%,16%)] dark:text-white mb-1 tracking-tight">{baby.name}</h2>
                             <p className="text-[0.98rem] sm:text-base text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
-                              Woche {week} · {leap.title}
+                              {isToddler 
+                                ? `${leap.phase} · ${leap.age || `Woche ${week}`}` 
+                                : `Woche ${week} · ${leap.title}`}
                             </p>
                           </div>
                           <span className="text-2xl text-[hsl(17,75%,56%)]">→</span>
@@ -119,22 +132,44 @@ export default function HomePage() {
             )}
             
             {babies.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.38, delay: 0.1 + babies.length * 0.06 }}
-              >
-                <Link to="/add" className="block">
-                  <Card className="border-2 border-dashed border-[hsl(17,75%,56%)]/30 text-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,56%)]/5 transition-colors">
-                    <CardContent className="flex items-center justify-center py-6">
-                      <div className="flex items-center gap-3">
-                        <Plus className="h-6 w-6" />
-                        <span className="font-semibold">Weiteres Baby hinzufügen</span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </motion.div>
+              <>
+                <motion.div
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.38, delay: 0.1 + babies.length * 0.06 }}
+                >
+                  <Link to="/add" className="block">
+                    <Card className="border-2 border-dashed border-[hsl(17,75%,56%)]/30 text-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,56%)]/5 transition-colors">
+                      <CardContent className="flex items-center justify-center py-6">
+                        <div className="flex items-center gap-3">
+                          <Plus className="h-6 w-6" />
+                          <span className="font-semibold">Weiteres Baby hinzufügen</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </motion.div>
+                
+                {/* SCROLL HINWEIS */}
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                  className="flex flex-col items-center pt-8 pb-4"
+                >
+                  <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-2 text-center">
+                    Scrolle nach unten für mehr Infos
+                  </p>
+                  <motion.div
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                    className="cursor-pointer"
+                    onClick={() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })}
+                  >
+                    <ChevronDown className="h-8 w-8 text-[hsl(17,75%,56%)]" />
+                  </motion.div>
+                </motion.div>
+              </>
             )}
           </div>
         </motion.div>

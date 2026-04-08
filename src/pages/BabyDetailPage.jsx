@@ -215,11 +215,14 @@ function getLeapForWeek(week) {
     if (week >= leap.week && week <= leap.weekEnd) {
       return { ...leap, isInLeap: true };
     }
-    if (week > leap.weekEnd && week < (TEMPLATES.find(l => l.week > leap.week)?.week || 200)) {
+    // Wenn nach diesem Sprung aber vor dem nächsten
+    const nextLeap = TEMPLATES[TEMPLATES.indexOf(leap) + 1];
+    if (week > leap.weekEnd && (!nextLeap || week < nextLeap.week)) {
       return { ...leap, isInLeap: false };
     }
   }
-  return TEMPLATES[TEMPLATES.length - 1];
+  // Nach dem letzten Sprung
+  return { ...TEMPLATES[TEMPLATES.length - 1], isInLeap: week <= TEMPLATES[TEMPLATES.length - 1].weekEnd };
 }
 
 export default function BabyDetailPage() {
@@ -414,9 +417,12 @@ export default function BabyDetailPage() {
                       to="/leaps" 
                       className="flex items-center justify-between p-4 bg-[hsl(17,75%,56%)]/10 hover:bg-[hsl(17,75%,56%)]/15 rounded-xl transition-colors border border-[hsl(17,75%,56%)]/20"
                     >
-                      <div>
-                        <p className="font-semibold text-[hsl(17,75%,56%)]">Alle Phasen ansehen</p>
-                        <p className="text-sm text-[hsl(17,75%,56%)]/70">Übersicht bis zum 3. Lebensjahr</p>
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">📊</span>
+                        <div>
+                          <p className="font-semibold text-[hsl(17,75%,56%)]">Alle Phasen ansehen</p>
+                          <p className="text-sm text-[hsl(17,75%,56%)]/70">Übersicht bis zum 3. Lebensjahr</p>
+                        </div>
                       </div>
                       <span className="text-2xl text-[hsl(17,75%,56%)]">→</span>
                     </Link>

@@ -382,6 +382,41 @@ export default function BabyDetailPage() {
 
               {activeTab === 5 && (
                 <div className="space-y-4">
+                  {/* ALLE PHASEN BUTTON - DIREKT ÜBER ZEITLINIE */}
+                  <Link to="/leaps">
+                    <motion.div 
+                      className="relative overflow-hidden p-5 bg-gradient-to-br from-[hsl(17,75%,56%)] to-[hsl(18,85%,58%)] rounded-2xl text-white shadow-[0_8px_30px_-10px_rgba(233,110,75,0.5)] cursor-pointer group"
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                        initial={{ x: "-100%" }}
+                        whileHover={{ x: "100%" }}
+                        transition={{ duration: 0.6 }}
+                      />
+                      
+                      <div className="relative flex items-center justify-between">
+                        <div className="flex items-center gap-4">
+                          <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
+                            <span className="text-2xl">📊</span>
+                          </div>
+                          <div>
+                            <p className="font-bold text-lg">Alle Phasen</p>
+                            <p className="text-white/80 text-sm">Woche 1-156 im Überblick</p>
+                          </div>
+                        </div>
+                        <motion.span 
+                          className="text-2xl"
+                          animate={{ x: [0, 5, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                        >
+                          →
+                        </motion.span>
+                      </div>
+                    </motion.div>
+                  </Link>
+
                   <div className="flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 text-blue-500">
                       <Calendar className="h-6 w-6" />
@@ -403,20 +438,6 @@ export default function BabyDetailPage() {
                         </p>
                       </div>
                     )}
-                    
-                    <Link 
-                      to="/leaps" 
-                      className="flex items-center justify-between p-4 bg-[hsl(17,75%,56%)]/10 hover:bg-[hsl(17,75%,56%)]/15 rounded-xl transition-colors border border-[hsl(17,75%,56%)]/20"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">📊</span>
-                        <div>
-                          <p className="font-semibold text-[hsl(17,75%,56%)]">Alle Phasen ansehen</p>
-                          <p className="text-sm text-[hsl(17,75%,56%)]/70">Übersicht bis zum 3. Lebensjahr</p>
-                        </div>
-                      </div>
-                      <span className="text-2xl text-[hsl(17,75%,56%)]">→</span>
-                    </Link>
                   </div>
                 </div>
               )}

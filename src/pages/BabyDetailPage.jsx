@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { ArrowLeft, Brain, Sprout, Lightbulb, Calendar, Cloud } from 'lucide-react';
+import { ArrowLeft, Brain, Sprout, Lightbulb, Calendar, Cloud, ChevronDown, Heart, Phone, AlertTriangle } from 'lucide-react';
 import { Card, CardContent } from '../components/Card';
 import { PopCard, PopButton } from '../components/PopEffect';
 import { TEMPLATES } from './BabyDetailPage_TEMPLATES.js';
@@ -74,6 +74,121 @@ function getLeapForWeek(week) {
   }
   // Nach dem letzten Sprung
   return { ...TEMPLATES[TEMPLATES.length - 1], isInLeap: week <= TEMPLATES[TEMPLATES.length - 1].weekEnd };
+}
+
+// Sicherheitshinweis Komponente - klappbar und ohne Gender
+function SafetyNotice() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
+
+  return (
+    <div className="mt-6 rounded-2xl border border-rose-200 dark:border-rose-800/50 overflow-hidden">
+      {/* Hauptteil - immer sichtbar */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full p-4 bg-gradient-to-r from-rose-50 to-orange-50 dark:from-rose-900/20 dark:to-orange-900/20 flex items-center justify-between hover:bg-rose-100/50 dark:hover:bg-rose-900/30 transition-colors"
+      >
+        <div className="flex items-center gap-3">
+          <div className="flex-shrink-0 w-10 h-10 bg-rose-100 dark:bg-rose-800/50 rounded-full flex items-center justify-center">
+            <Heart className="h-5 w-5 text-rose-500" />
+          </div>
+          <div className="text-left">
+            <h4 className="font-bold text-rose-700 dark:text-rose-300 text-[1.05rem]">
+              Du fühlst dich überfordert?
+            </h4>
+            <p className="text-sm text-rose-600/70 dark:text-rose-400/70">
+              Tippe hier für Unterstützung und Hilfe
+            </p>
+          </div>
+        </div>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <ChevronDown className="h-5 w-5 text-rose-500" />
+        </motion.div>
+      </button>
+
+      {/* Aufklappbarer Inhalt */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="bg-gradient-to-br from-rose-50/50 to-orange-50/50 dark:from-rose-900/10 dark:to-orange-900/10"
+          >
+            <div className="p-4 pt-2 space-y-4">
+              <p className="text-sm text-rose-700 dark:text-rose-300 leading-relaxed">
+                Das ist völlig normal. Jeder braucht mal eine Pause. Wenn das Weinen zu viel wird, leg das Baby sicher in sein Bettchen und hol dir Unterstützung – von Partner, Familie, Freunden oder professioneller Hilfe.
+              </p>
+
+              {/* Schüttel-Warnung als separater Abschnitt */}
+              <div className="pt-3 border-t border-rose-200/50 dark:border-rose-800/30">
+                <button
+                  onClick={() => setShowWarning(!showWarning)}
+                  className="w-full flex items-center justify-between p-3 bg-rose-100/50 dark:bg-rose-900/30 rounded-xl hover:bg-rose-100 dark:hover:bg-rose-900/40 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <AlertTriangle className="h-5 w-5 text-rose-500" />
+                    <span className="text-sm font-medium text-rose-700 dark:text-rose-300">
+                      Wichtiger Sicherheitshinweis
+                    </span>
+                  </div>
+                  <motion.div
+                    animate={{ rotate: showWarning ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronDown className="h-4 w-4 text-rose-500" />
+                  </motion.div>
+                </button>
+
+                <AnimatePresence>
+                  {showWarning && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="mt-2 p-3 bg-rose-100/30 dark:bg-rose-900/20 rounded-xl"
+                    >
+                      <p className="text-sm text-rose-700 dark:text-rose-300 font-medium mb-1">
+                        Ein Baby niemals schütteln
+                      </p>
+                      <p className="text-xs text-rose-600/80 dark:text-rose-400/80">
+                        Selbst kurzes Schütteln kann schwerwiegende gesundheitliche Schäden verursachen. Bei extremem Stress: Baby sicher ablegen, Raum verlassen, tief durchatmen und Hilfe holen.
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Hilfsangebote */}
+              <div className="flex flex-wrap gap-2 pt-2">
+                <a
+                  href="tel:08001110111"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-white/10 rounded-full text-xs text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-colors"
+                >
+                  <Phone className="h-3 w-3" />
+                  Telefonseelsorge: 0800 111 0 111
+                </a>
+                <a
+                  href="https://familien-helfer.de"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-white/10 rounded-full text-xs text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-colors"
+                >
+                  <span>👨‍⚕️</span>
+                  familien-helfer.de
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
 
 export default function BabyDetailPage() {
@@ -189,47 +304,8 @@ export default function BabyDetailPage() {
                     </div>
                   )}
                   
-                  {/* Sicherheitshinweis bei Storm-Phasen */}
-                  {isStorm && (
-                    <div className="mt-6 p-5 bg-gradient-to-br from-rose-50 to-orange-50 dark:from-rose-900/20 dark:to-orange-900/20 rounded-2xl border border-rose-200 dark:border-rose-800/50">
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-10 h-10 bg-rose-100 dark:bg-rose-800/50 rounded-full flex items-center justify-center text-2xl">
-                          💝
-                        </div>
-                        <div className="space-y-3">
-                          <div>
-                            <h4 className="font-bold text-rose-700 dark:text-rose-300 text-[1.05rem]">
-                              Du fühlst dich überfordert?
-                            </h4>
-                            <p className="text-sm text-rose-600/80 dark:text-rose-400/80 mt-1 leading-relaxed">
-                              Das ist völlig normal. Jede*r braucht mal eine Pause. Wenn das Weinen zu viel wird, leg das Baby sicher in sein Bettchen und hol dir Unterstützung – von Partner*in, Familie, Freund*innen oder professioneller Hilfe.
-                            </p>
-                          </div>
-                          
-                          <div className="pt-3 border-t border-rose-200/50 dark:border-rose-800/30">
-                            <div className="flex items-start gap-2">
-                              <span className="text-rose-500 text-lg">⚠️</span>
-                              <p className="text-sm text-rose-700 dark:text-rose-300 font-medium">
-                                Wichtiger Hinweis: Ein Baby niemals schütteln
-                              </p>
-                            </div>
-                            <p className="text-xs text-rose-600/70 dark:text-rose-400/70 mt-1 pl-6">
-                              Selbst kurzes Schütteln kann schwerwiegende gesundheitliche Schäden verursachen. Bei extremem Stress: Baby sicher ablegen, Raum verlassen, tief durchatmen und Hilfe holen.
-                            </p>
-                          </div>
-                          
-                          <div className="flex flex-wrap gap-2 pt-2">
-                            <span className="px-3 py-1.5 bg-white/70 dark:bg-white/10 rounded-full text-xs text-rose-600 dark:text-rose-400">
-                              📞 Telefonseelsorge: 0800 111 0 111
-                            </span>
-                            <span className="px-3 py-1.5 bg-white/70 dark:bg-white/10 rounded-full text-xs text-rose-600 dark:text-rose-400">
-                              👨‍⚕️ Beratungsstellen: familien-helfer.de
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  {/* Sicherheitshinweis bei Storm-Phasen - Klappbar */}
+                  {isStorm && <SafetyNotice />}
                 </div>
               )}
 

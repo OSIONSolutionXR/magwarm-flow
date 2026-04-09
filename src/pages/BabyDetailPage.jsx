@@ -248,6 +248,9 @@ export default function BabyDetailPage() {
     }
   };
 
+  // Alias für getExactAge (für Abwärtskompatibilität)
+  const getAgeLabel = getExactAge;
+
   return (
     <div className="min-h-screen">
       <header className="sticky top-0 z-50 w-full border-b border-white/45 dark:border-white/5 bg-white/72 dark:bg-[hsl(210,25%,7%)]/72 backdrop-blur-xl">

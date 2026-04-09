@@ -272,6 +272,11 @@ export default function BabyDetailPage() {
             <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
               {isToddler ? getExactAge() : `Woche ${week}`}
             </p>
+            {isToddler && (
+              <p className="text-xs text-[hsl(25,10%,55%)] dark:text-[hsl(30,10%,50%)] mt-1">
+                Alter abgeleitet vom errechneten Geburtstermin
+              </p>
+            )}
             <h2 className="text-[1.8rem] sm:text-[2.2rem] font-extrabold text-[hsl(25,22%,16%)] dark:text-white mt-1 leading-[1.1]">
               {leap.title}
             </h2>

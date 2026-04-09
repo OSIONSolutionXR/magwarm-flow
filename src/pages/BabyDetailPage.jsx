@@ -327,9 +327,6 @@ export default function BabyDetailPage() {
                     </div>
                   )}
                   
-                  {/* Sicherheitshinweis bei Storm-Phasen - Klappbar */}
-                  {isStorm && <SafetyNotice />}
-                  
                   {/* Notizen Bereich */}
                   <div className="pt-6 border-t border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)]">
                     <NotesSection baby={baby} currentWeek={week} />
@@ -337,6 +334,9 @@ export default function BabyDetailPage() {
                   
                   {/* Community Bereich */}
                   <CommunitySection currentWeek={week} />
+                  
+                  {/* Sicherheitshinweis bei Storm-Phasen - Klappbar - GANZ UNTEN */}
+                  {isStorm && <SafetyNotice />}
                 </div>
               )}
 

@@ -341,5 +341,183 @@ export const TEMPLATES = [
       "Erfolge feiern und bestätigen",
       "💙 Du begleitest wunderbar die Entwicklung"
     ]
+  },
+  
+  // === WOCHEN 16-18: RUHEPHASE VOR "FOLGEN" ===
+  {
+    "week": 16, "weekEnd": 18, "title": "Die Bewegungskonsolidierung",
+    "subtitle": "Woche 16-18: Meister des Körpers", "phase": "Ruhephase", "age": "16-18 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby perfektioniert seine Bewegungen. Es ist oft frustriert, wenn etwas noch nicht klappt, aber die Fortschritte sind enorm. Die Ungeduld wächst - das Baby will mehr, als es kann.",
+      "symptoms": [
+        "Wird wütend, wenn Greifen misslingt",
+        "Versucht aufzusitzen, aber körperlich noch nicht bereit",
+        "Rollt unruhig hin und her",
+        "Braucht viel Schlaf zur Verarbeitung"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Was für ein Fortschritt! Dein Baby greift sicher, rollt zielsicher und bereitet sich auf das Sitzen vor. Die Körperbeherrschung wächst mit jedem Tag.",
+      "abilities": [
+        "Greift mit beiden Händen gezielt",
+        "Rollt zuverlässig in beide Richtungen",
+        "Dreht sich im Kreis auf dem Bauch",
+        "Stützt sich auf gestreckten Armen"
+      ]
+    },
+    "why": "Die Grobmotorik wird präziser. Das Kleinhirn koordiniert Bewegungen besser. Die Muskeln werden kräftiger für kommende Meilensteine wie Sitzen und Krabbeln.",
+    "actions": [
+      "💚 Die Frustration ist Zeichen von Entwicklungsdrang",
+      "🌟 Bereite dich vor: Ursache-Wirkung kommt nächste Woche!",
+      "Viel Zeit auf dem Bauch ermöglichen",
+      "Spielzeug in Reichweite legen, aber nicht in die Hand",
+      "Bei Greifversuchen geduldig sein",
+      "Bewegungsangebote variieren (Boden, Krabbeldecke)",
+      "💙 Dein Baby ist stolz auf jeden Fortschritt"
+    ]
+  },
+  
+  // === WOCHEN 19-20: VIERTER SPRUNG ===
+  {
+    "week": 19, "weekEnd": 20, "title": "Aha! Das hat Folgen",
+    "subtitle": "Woche 19-20: Ursache und Wirkung", "phase": "4. Sprung", "age": "19-20 Wochen",
+    "stormPhase": {
+      "description": "Ein revolutionäres Erwachen: Dein Baby merkt plötzlich, dass seine Handlungen Konsequenzen haben! Es experimentiert wild - wirft, schüttelt, schlägt. Jede Aktion wird zum Testobjekt. Das kann anstrengend sein, denn das Baby will die Welt verstehen.",
+      "symptoms": [
+        "Wirft absichtlich Dinge zu Boden",
+        "Schüttelt alles, was greifbar ist",
+        "Klopft auf Oberflächen",
+        "Zieht an Haaren, Ohren, Brillen",
+        "Experimentiert mit Geräuschen beim Schreien",
+        "Testet Grenzen aus"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Ein kleiner Wissenschaftler ist geboren! Dein Baby versteht nun: 'Wenn ich das mache, passiert das.' Dieses Wissen gibt Selbstvertrauen und öffnet eine neue Welt voller Möglichkeiten.",
+      "abilities": [
+        "Versteht gezielt Ursache-Wirkung",
+        "Greift mit Pinzettengriff (Daumen-Zeigefinger)",
+        "Lässt bewusst fallen, um zu beobachten",
+        "Wiederholt erfolgreiche Aktionen",
+        "Zeigt Neugier auf neue Objekte"
+      ]
+    },
+    "why": "Das präfrontale Cortex entwickelt sich rasant. Das Gehirn knüpft bewusst Verknüpfungen zwischen Handeln und Ergebnis. Das ist die Geburt des intentionalen Handelns.",
+    "actions": [
+      "💚 Das Herumwerfen ist Forschung, nicht Trotz",
+      "🌟 Bald versteht dein Baby echte Konsequenzen",
+      "Beim Aufräumen geduldig bleiben",
+      "Verschiedene Materialien zum Entdecken anbieten",
+      "Spiele mit Verstecken (Kuckuck) spielen",
+      "Einflussmöglichkeiten geben (Lichtschalter)",
+      "💙 Du ermöglichst wissenschaftliche Entdeckungen"
+    ]
+  },
+  
+  // === WOCHEN 21-25: VIERTE RUHEPHASE ===
+  {
+    "week": 21, "weekEnd": 25, "title": "Das Experimentieren",
+    "subtitle": "Woche 21-25: Kleiner Forscher", "phase": "Ruhephase", "age": "21-25 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby übt intensiv Ursache-Wirkung. Es ist fasziniert, aber auch frustriert, wenn etwas nicht klappt. Die Neugier ist unermüdlich - und manchmal anstrengend für die Eltern.",
+      "symptoms": [
+        "Wiederholt dasselbe Spiel endlos",
+        "Wird sauer, wenn Experiment unterbrochen wird",
+        "Testet alle Grenzen aus",
+        "Möchte alles selbst machen"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Die Erkenntnisse der vorherigen Wochen verfestigen sich. Dein Baby wird sicherer im Handeln, versteht mehr Zusammenhänge und fühlt sich als aktiver Gestalter seiner Umwelt.",
+      "abilities": [
+        "Beherrscht Pinzettengriff sicher",
+        "Versteht einfache Ketten von Ereignissen",
+        "Zeigt gezielte Neugier",
+        "Kann kurz allein spielen",
+        "Kommuniziert durch Handlungen"
+      ]
+    },
+    "why": "Die neuen neuronalen Verbindungen werden durch Wiederholung stabilisiert. Das Gehirn speichert erfolgreiche Strategien und wendet sie auf neue Situationen an.",
+    "actions": [
+      "💚 Die Wiederholung ist wichtig für das Lernen",
+      "🌟 Bereite dich vor: Das Fremdeln kommt bald!",
+      "Spiele wiederholen, auch wenn es langweilig wirkt",
+      "Neue Materialien zum Entdecken anbieten",
+      "Beim Experimentieren zuschauen und erklären",
+      "Sichere Umgebung zum Ausprobieren schaffen",
+      "💙 Deine Geduld zahlt sich in Entwicklung aus"
+    ]
+  },
+  
+  // === WOCHEN 26-27: FÜNFTER SPRUNG ===
+  {
+    "week": 26, "weekEnd": 27, "title": "Die ersten Trennungen",
+    "subtitle": "Woche 26-27: Mama bleibt", "phase": "5. Sprung", "age": "26-27 Wochen",
+    "stormPhase": {
+      "description": "Ein emotionaler Tsunami: Dein Baby erkennt plötzlich, dass du eine eigene Person bist und fortgehen kannst! Angst vor Trennung überflutet es. Fremde werden abgelehnt, die Bezugsperson umklammert. Das ist hart, aber gesund - es zeigt eine sichere Bindung.",
+      "symptoms": [
+        "Weint, wenn du den Raum verlässt",
+        "Fremdelt vor anderen Personen",
+        "Klammern sich an dich",
+        "Wird nachts unruhiger",
+        "Will nur von dir getröstet werden",
+        "Reagiert auf deine Stimmung sofort"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Das Vertrauen wächst wieder: Dein Baby lernt, dass du zurückkommst. Es entwickelt erste Strategien, mit kurzen Trennungen umzugehen und fühlt sich in deiner Nähe sicher.",
+      "abilities": [
+        "Versteht, dass du existierst, wenn nicht sichtbar",
+        "Beruhigt sich schneller nach deiner Rückkehr",
+        "Zeigt Freude beim Wiedersehen",
+        "Kann sich kurz mit anderen beschäftigen",
+        "Signalisiert Bedürfnisse deutlicher"
+      ]
+    },
+    "why": "Objektpermanenz und Bindungssicherheit entwickeln sich. Das Gehirn versteht nun, dass Menschen weiterexistieren, auch wenn man sie nicht sieht. Das ist ein kognitiver Quantensprung.",
+    "actions": [
+      "💚 Das Anklammern ist ein Kompliment - sichere Bindung!",
+      "🌟 Es wird wieder entspannter, versprochen",
+      "Rituell verabschieden und freudig zurückkommen",
+      "Versteckspiele spielen (Objektpermanenz stärken)",
+      "Fremde nicht aufdrängen, Zeit geben",
+      "Eigene Gefühle regulieren - Baby spiegelt",
+      "💙 Deine beständige Präsenz ist das größte Geschenk"
+    ]
+  },
+  
+  // === WOCHEN 28-30: FÜNFTE RUHEPHASE ===
+  {
+    "week": 28, "weekEnd": 30, "title": "Die Bindungsfestigung",
+    "subtitle": "Woche 28-30: Sicheres Zuhause", "phase": "Ruhephase", "age": "28-30 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby verarbeitet die intensive Trennungsangst. Es braucht immer noch viel Nähe, ist aber etwas entspannter geworden. Die Welt wird langsam wieder vertrauter.",
+      "symptoms": [
+        "Noch vorsichtig mit Fremden",
+        "Prüft oft, ob du noch da bist",
+        "Möchte vertraute Umgebung",
+        "Braucht Rituale zur Sicherheit"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Erleichterung für alle: Das schlimmste Fremdeln lässt nach. Dein Baby gewinnt langsam Selbstvertrauen zurück, erkundet wieder und fühlt sich in vertrauter Umgebung wohler.",
+      "abilities": [
+        "Akzeptiert kurze Trennungen besser",
+        "Spielt wieder ausdauernder",
+        "Zeigt Interesse an anderen, wenn du nah bist",
+        "Kommuniziert Bedürfnisse klarer",
+        "Entwickelt erste 'Lieblingspersonen' außerhalb der Familie"
+      ]
+    },
+    "why": "Die Erfahrung 'Mama kommt zurück' verfestigt sich. Das limbische System reguliert sich. Das Baby baut ein inneres Modell von Sicherheit auf.",
+    "actions": [
+      "💚 Die schwere Phase ist vorbei - die Bindung stark",
+      "🌟 Jetzt kommt der nächste Sprung: Kategorien!",
+      "Weiterhin verlässlich sein",
+      "Langsam neue Erfahrungen zulassen",
+      "Spielgruppen vorsichtig testen",
+      "Rituale beibehalten",
+      "💙 Eure Beziehung ist jetzt stabiler als zuvor"
+    ]
   }
 ];

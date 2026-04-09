@@ -1,0 +1,182 @@
+[
+  {
+    "id": "1",
+    "phaseWeek": 5,
+    "author": "Sarah, Mutter von Leo (6 Monate)",
+    "title": "Die erste Sinnesflut war überwältigend",
+    "content": "Als Leo 5 Wochen alt war, war plötzlich nichts mehr wie vorher. Er schrie, sobald die Kaffeemaschine anging. Er wollte nur an meiner Brust oder im Tragetuch schlafen. Ich war am Ende, habe geweint, weil ich dachte, ich mache alles falsch. Meine Schwiegermutter sagte: 'Das ist nur eine Phase.' Ich wollte sie anschreien. Aber dann hat meine beste Freundin mir ihr Tragetuch geliehen und gesagt: 'Sarah, du trägst ihn durch den Sturm. Das ist alles, was zählt.' Sie hatte recht. Nach 10 Tagen war es vorbei. Jetzt lächelt Leo mich an, als hätten wir nie geweint.",
+    "tags": ["Schlaf", "Überforderung", "Tragetuch", "Sinnesflut"],
+    "likes": 124
+  },
+  {
+    "id": "2",
+    "phaseWeek": 5,
+    "author": "Tom, Vater von Juna (4 Monate)",
+    "title": "Ich dachte, mein Baby hasst mich",
+    "content": "Juna wollte nur Mama. Wenn ich sie nahm, schrie sie. Es hat mich zerrissen. Ich habe nachts im Bad geweint, weil ich dachte, ich bin ein schlechter Vater. Mein Tipp? Beharrlich bleiben. Ich habe jeden Tag 10 Minuten Skin-to-Skin gemacht, egal wie sehr sie protestiert hat. Nach zwei Wochen hat sie meine Stimme erkannt und ist ruhig geworden. Jetzt sind wir unzertrennlich. Gebt euch Zeit, Papas. Der Bond kommt.",
+    "tags": ["Vater-Sein", "Bindung", "Geduld", "Skin-to-Skin"],
+    "likes": 89
+  },
+  {
+    "id": "3",
+    "phaseWeek": 5,
+    "author": "Lisa, Mutter von Finn (8 Monate)",
+    "title": "Das weiße Rauschen hat uns gerettet",
+    "content": "Finn hat in Woche 5 plötzlich jede Nacht um 2 Uhr geschrien. Nichts half. Dann habe ich von weißem Rauschen gehört. Ich habe eine App runtergeladen mit 'Haartrockner-Geräusch'. Das war der Wendepunkt. Er schläft seitdem mit dem Rauschen ein. Manchmal lache ich darüber, dass mein Baby einen Fön braucht zum Schlafen. Aber hey, was zählt, ist, dass wir alle schlafen. Probiert es aus, wenn alles andere scheitert.",
+    "tags": ["Schlaf", "Weißes Rauschen", "Hacks", "Nacht"],
+    "likes": 156
+  },
+  {
+    "id": "4",
+    "phaseWeek": 8,
+    "author": "Marie, Mutter von Emma (10 Monate)",
+    "title": "Warum willst du das gleiche Buch 100 Mal?",
+    "content": "Emma wollte mit 8 Wochen plötzlich immer das gleiche Buch: 'Der Regenbogenfisch'. Ich konnte die Texte im Schlaf aufsagen. Es hat mich wahnsinnig gemacht. Aber dann habe ich gelernt: Das ist ihr Sicherheitsanker. Die Wiederholung beruhigt sie. Also habe ich mir Kopfhörer reingesteckt und Hörbücher gehört, während ich ihr das Buch zum 47. Mal vorgelesen habe. Seitdem geht es mir besser damit.",
+    "tags": ["Rituale", "Wiederholung", "Bücher", "Geduld"],
+    "likes": 112
+  },
+  {
+    "id": "5",
+    "phaseWeek": 8,
+    "author": "David, Vater von Noah (5 Monate)",
+    "title": "Die Routine-Rache",
+    "content": "Wir haben in Woche 8 begonnen, eine strikte Routine einzuführen. Baden, Buch, Bett. Jeden Abend um 19 Uhr. Meine Mutter sagte, wir wären zu streng. Aber Noah brauchte das. Er hat nach drei Tagen verstanden: Nach dem Bad kommt Schlafenszeit. Er hat aufgehört, zu kämpfen. Manchmal ist Stabilität das beste Geschenk, das wir geben können – auch wenn es langweilig aussieht von außen.",
+    "tags": ["Routine", "Schlaf", "Einschlafritual", "Stabilität"],
+    "likes": 78
+  },
+  {
+    "id": "6",
+    "phaseWeek": 12,
+    "author": "Jasmin, Mutter von Mia (7 Monate)",
+    "title": "Als sie begann, ihre Hände zu sehen",
+    "content": "Mit 12 Wochen hat Mia plötzlich ihre Hände entdeckt. Sie hat sie angestarrt wie ein UFO. Und dann hat sie versucht, sie zu greifen – und ist immer wieder daran gescheitert. Sie wurde so wütend! Ich habe gelacht und geweint zugleich. Es ist unglaublich, wie sehr diese kleinen Wesen wollen und wie frustrierend es sein muss, wenn der Körper noch nicht mitmacht. Jetzt greift sie alles. Ich vermisse die Zeit, wo sie stillgehalten hat.",
+    "tags": ["Motorik", "Entwicklung", "Frustration", "Hände"],
+    "likes": 145
+  },
+  {
+    "id": "7",
+    "phaseWeek": 12,
+    "author": "Felix, Vater von Lina (9 Monate)",
+    "title": "Das erste Lachen hat alles verändert",
+    "content": "Lina war ein schwieriges Baby. Viel Schlafmangel, viel Weinen. Aber mit 12 Wochen hat sie zum ersten Mal richtig gelacht – als ich mit einer Socke eine Stimme gemacht habe. Dieses Lachen... es hat alle schlaflosen Nächte wettgemacht. Ich habe das Video hundertmal gesehen, wenn es mir schlecht ging. Das ist das Schöne: Diese Momente kommen. Haltet durch.",
+    "tags": ["Lachen", "Emotionen", "Durchhalten", "Momente"],
+    "likes": 203
+  },
+  {
+    "id": "8",
+    "phaseWeek": 15,
+    "author": "Anna, Mutter von Ben (11 Monate)",
+    "title": "Fremdeln im Aldi-Parkplatz",
+    "content": "Mit 15 Wochen hat Ben plötzlich jeden Fremden angebrüllt. Im Aldi, im Café, bei Oma. Es war peinlich. Ich dachte, er wäre asozial. Aber es war nur Fremdeln. Mein Tipp: Nicht entschuldigen. Nicht erklären. Einfach akzeptieren. 'Ja, du kennst die Person noch nicht. Das ist okay.' Die Phase war nach 6 Wochen vorbei. Jetzt ist er der geselligste Junge auf dem Spielplatz.",
+    "tags": ["Fremdeln", "Sozial", "Peinlich", "Entwicklung"],
+    "likes": 167
+  },
+  {
+    "id": "9",
+    "phaseWeek": 15,
+    "author": "Markus, Vater von Clara (6 Monate)",
+    "title": "Meine Frau hat geweint, weil Clara sie nicht mehr wollte",
+    "content": "Clara hat mit 15 Wochen plötzlich nur noch mich gewollt. Mama war abgeschrieben. Meine Frau hat sich so schlecht gefühlt, hat gedacht, sie sei eine schlechte Mutter. Das war hart zu sehen. Aber wir haben es durchgesprochen, haben gelernt, dass das normal ist und vorbeigeht. Nach drei Wochen hat sie wieder zu Mama gewollt. Jetzt können wir darüber lachen. Aber damals war es echt.",
+    "tags": ["Bindung", "Mutter-Sein", "Vater-Sein", "Rollen"],
+    "likes": 134
+  },
+  {
+    "id": "10",
+    "phaseWeek": 19,
+    "author": "Sophie, Mutter von Jonas (13 Monate)",
+    "title": "Das erste 'Mama' hat mich überrollt",
+    "content": "Mit 19 Wochen hat Jonas 'Mama' gesagt. Nicht irgendwie – gezielt, als ich ihn abgeholt habe. Ich bin zusammengebrochen und habe geweint. Dieses Gefühl... unbeschreiblich. Aber gleichzeitig war es die Woche, wo er nachts alle 2 Stunden wach wurde. Ich war ein Zombie, aber ein glücklicher Zombie. Manchmal sind die schönsten Momente in den härtesten Phasen versteckt.",
+    "tags": ["Erste Worte", "Schlaf", "Glück", "Erschöpfung"],
+    "likes": 189
+  },
+  {
+    "id": "11",
+    "phaseWeek": 19,
+    "author": "Christian, Vater von Leo (8 Monate)",
+    "title": "Ich habe meinen Job fast gekündigt",
+    "content": "In Woche 19 war Leo so anstrengend, dass ich überlegt habe, meinen Job zu kündigen, um Vollzeit-Vater zu werden. Meine Frau war am Ende, ich war am Ende. Aber wir haben uns Unterstützung geholt: eine Tagesmutter für 2x die Woche. Das hat uns gerettet. Es ist okay, Hilfe anzunehmen. Ihr müsst nicht alles allein schaffen. Das hat mir diese Phase beigebracht.",
+    "tags": ["Hilfe annehmen", "Überforderung", "Tagesmutter", "Unterstützung"],
+    "likes": 98
+  },
+  {
+    "id": "12",
+    "phaseWeek": 23,
+    "author": "Nina, Mutter von Paul (15 Monate)",
+    "title": "Krabbeltag 1: Die Katze war nicht begeistert",
+    "content": "Mit 23 Wochen ist Paul plötzlich losgekrabbelt. Richtig, mit Bauch am Boden. Die Katze war schockiert. Ich war schockiert. Auf einmal musste ich alles neu baby-sichern. Er war überall gleichzeitig. Es war anstrengend, aber auch so stolz machend. Mein Tipp: Baby-gates kaufen, bevor es losgeht. Wir haben einen Tag zu spät gekauft und er hat schon die Steckdose gefunden.",
+    "tags": ["Krabbeln", "Mobilität", "Baby-sicher", "Katze"],
+    "likes": 156
+  },
+  {
+    "id": "13",
+    "phaseWeek": 23,
+    "author": "Lukas, Vater von Emma (10 Monate)",
+    "title": "Sie hat mich versteckt gesucht",
+    "content": "Emma hat mit 23 Wochen 'Kuckuck' verstanden. Ich bin hinter die Couch, sie hat mich gesucht, mich gefunden, gelacht. Wir haben das 50 Mal gemacht. Meine Knie haben wehgetan, aber ihr Lachen... unbezahlbar. Das ist der Moment, wo ich wusste: Sie versteht, dass ich existiere, auch wenn sie mich nicht sieht. Kleines Objektpermanenz-Wunder.",
+    "tags": ["Spielen", "Objektpermanenz", "Lachen", "Entwicklung"],
+    "likes": 142
+  },
+  {
+    "id": "14",
+    "phaseWeek": 26,
+    "author": "Elena, Mutter von Max (18 Monate)",
+    "title": "Die Nacht, in der er durchschlief – und ich nicht",
+    "content": "Max hat mit 26 Wochen das erste Mal durchgeschlafen. Ich habe alle 2 Stunden trotzdem wach gelegen und nach ihm geschaut. Mein Körper wusste nicht, wie er schlafen sollte. Am nächsten Tag war ich müder als sonst. Ironisch, oder? Aber nach einer Woche hat sich mein Körper daran gewöhnt. Jetzt schlafe ich wieder 7 Stunden durch. Geduld, Mamas. Es kommt.",
+    "tags": ["Durchschlafen", "Schlaf", "Erholung", "Geduld"],
+    "likes": 231
+  },
+  {
+    "id": "15",
+    "phaseWeek": 26,
+    "author": "Tobias, Vater von Mia (12 Monate)",
+    "title": "Sie hat mich gemobbt mit 'Nein'",
+    "content": "Mia hat 'Nein' entdeckt und es für alles benutzt. Essen? Nein. Schlafen? Nein. Windel wechseln? Nein-nein-nein! Es war so frustrierend. Aber dann habe ich gemerkt: Sie testet Grenzen. Also habe ich ihr Wahlmöglichkeiten gegeben: 'Willst du die blaue oder die rote Gabel?' Das hat geholfen. Trotzphasen sind Kommunikationsphasen. Denkt dran.",
+    "tags": ["Nein", "Trotz", "Grenzen", "Kommunikation"],
+    "likes": 178
+  },
+  {
+    "id": "16",
+    "phaseWeek": 33,
+    "author": "Katharina, Mutter von Felix (20 Monate)",
+    "title": "Er steht! Und fällt. Und steht wieder.",
+    "content": "Mit 33 Wochen hat Felix sich hochgezogen und stand. 3 Sekunden. Dann ist er gefallen. Aber er hat gelacht und es wieder probiert. Ich habe geweint, als er das erste Mal 10 Sekunden stand. Diese Entschlossenheit... wir können so viel von Babys lernen. Sie geben nicht auf. Ich versuche, das mir abzugucken für mein eigenes Leben.",
+    "tags": ["Stehen", "Motivation", "Sturz", "Lernen"],
+    "likes": 145
+  },
+  {
+    "id": "17",
+    "phaseWeek": 33,
+    "author": "Patrick, Vater von Sophie (14 Monate)",
+    "title": "Sie zeigt auf alles und fragt 'Da?'",
+    "content": "Sophie zeigt jetzt auf alles und fragt 'Da?' 100 Mal am Tag. Manchmal weiß ich nicht mal, worauf sie zeigt. Aber ich antworte jedes Mal. Das ist ihr Lernen. Sie will Namen wissen. Es ist ermüdend, aber wichtig. Mein Tipp: Auch wenn es das 47. 'Da?' ist, antwortet freundlich. Ihr baut gerade ein Vokabular auf.",
+    "tags": ["Sprache", "Zeigen", "Fragen", "Lernen"],
+    "likes": 122
+  },
+  {
+    "id": "18",
+    "phaseWeek": 37,
+    "author": "Laura, Mutter von Lukas (22 Monate)",
+    "title": "Das erste Geburtstags-Kuchen-Face",
+    "content": "Lukas wurde 1 und hat seinen ersten Kuchen gesehen. Er hat ihn nicht gegessen. Er hat ihn ins Gesicht geschmiert. Und dann geweint, weil er klebrig war. Es war chaotisch und wunderschön. Diese Milestones... man denkt, sie werden wie im Film. Aber sie werden besser. Weil sie echt sind. Genießt jeden Moment, auch die klebrigen.",
+    "tags": ["Geburtstag", "Erstes Jahr", "Chaos", "Milestones"],
+    "likes": 198
+  },
+  {
+    "id": "19",
+    "phaseWeek": 37,
+    "author": "Stefan, Vater von Anna (16 Monate)",
+    "title": "Sie sagt 'Bitte' und 'Danke' – manchmal",
+    "content": "Anna hat 'Bitte' und 'Danke' gelernt. Sie sagt es nicht immer. Aber wenn sie es sagt, schmilze ich dahin. Diese Höflichkeit in so einem kleinen Wesen... unglaublich. Wir haben viel vorgelesen und vorbildlich gesprochen. Kinder sind Spiegel. Das merke ich jetzt besonders.",
+    "tags": ["Höflichkeit", "Sprache", "Lernen", "Vorbild"],
+    "likes": 89
+  },
+  {
+    "id": "20",
+    "phaseWeek": 46,
+    "author": "Julia, Mutter von Ben (24 Monate)",
+    "title": "Er rennt. Ich renne. Wir alle rennen.",
+    "content": "Mit 46 Wochen läuft Ben. Nicht mehr taumeln – richtig laufen. Er rennt weg, rennt zurück, rennt in die falsche Richtung. Ich bin den ganzen Tag am Rennen. Meine Schrittzahl ist verdreifacht. Es ist anstrengend, aber auch befreiend. Er ist nicht mehr so abhängig von mir. Er erkundet die Welt selbst. Und ich darf dabei zusehen.",
+    "tags": ["Laufen", "Mobilität", "Erkunden", "Freiheit"],
+    "likes": 167
+  }
+]

@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { CloudRain, Sun, Brain, Lightbulb, Activity, Heart, Sparkles, Navigation } from 'lucide-react';
 import { Card, CardContent } from './Card';
 import { TEMPLATES } from '../pages/BabyDetailPage_TEMPLATES';
@@ -114,6 +114,15 @@ export default function TimelineSection({ currentWeek }) {
   const [selectedWeek, setSelectedWeek] = useState(currentWeek);
   const [activeTab, setActiveTab] = useState('state');
   const maxWeek = 156;
+  
+  // Timeline automatisch auf currentWeek positionieren beim ersten Rendern
+  useEffect(() => {
+    // Scrolle zur aktuellen Woche
+    const currentWeekElement = document.getElementById(`week-${currentWeek}`);
+    if (currentWeekElement) {
+      currentWeekElement.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  }, [currentWeek]);
   
   const weeks = useMemo(() => Array.from({ length: maxWeek }, (_, i) => i + 1), []);
   const selectedWeekData = useMemo(() => generateWeekData(selectedWeek), [selectedWeek]);
@@ -291,6 +300,7 @@ export default function TimelineSection({ currentWeek }) {
               return (
                 <motion.button
                   key={week}
+                  id={`week-${week}`}
                   onClick={() => {
                     setSelectedWeek(week);
                     setActiveTab('state');
@@ -312,19 +322,7 @@ export default function TimelineSection({ currentWeek }) {
         </div>
       </div>
 
-      {/* Zurück zur aktuellen Woche Button */}
-      {selectedWeek !== currentWeek && (
-        <button
-          onClick={() => {
-            setSelectedWeek(currentWeek);
-            setActiveTab('state');
-          }}
-          className="w-full flex items-center justify-center gap-2 py-3 bg-orange-50 dark:bg-orange-900/20 hover:bg-orange-100 dark:hover:bg-orange-900/30 rounded-xl border border-orange-200 dark:border-orange-800 text-orange-600 dark:text-orange-400 font-medium transition-colors"
-        >
-          <Navigation className="h-4 w-4" />
-          Zur aktuellen Woche ({currentWeek})
-        </button>
-      )}
+
 
       {/* Detaillierte 4-Tab-Ansicht */}
       <AnimatePresence mode="wait">

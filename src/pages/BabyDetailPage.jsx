@@ -305,11 +305,6 @@ export default function BabyDetailPage() {
                 <div className="space-y-6">
                   <TimelineSection currentWeek={week} />
                   
-                  {/* Notizen Bereich */}
-                  <div className="pt-6 border-t border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)]">
-                    <NotesSection baby={baby} currentWeek={week} />
-                  </div>
-                  
                   {/* Sicherheitshinweis bei Storm-Phasen - Klappbar - GANZ UNTEN */}
                   {isStorm && <SafetyNotice />}
                 </div>
@@ -371,6 +366,7 @@ export default function BabyDetailPage() {
 
               {activeTab === 4 && (
                 <div className="space-y-6">
+                  <NotesSection baby={baby} currentWeek={week} />
                   <CommunitySection currentWeek={week} />
                 </div>
               )}

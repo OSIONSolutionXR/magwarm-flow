@@ -841,5 +841,46 @@ export const TEMPLATES = [
       "Geduld bei Unverständlichkeit",
       "💙 Du bist der wichtigste Sprachlehrer"
     ]
+  },
+
+  // === WOCHEN 91-115: DIE AUTONOMIE-EXPLOSION (GROSSER SPRUNG) ===
+  {
+    "week": 91, "weekEnd": 115, "title": "Die Autonomie-Explosion",
+    "subtitle": "Woche 91-115: 2 Jahre / Die Trotzphase", "phase": "Großer Sprung", "age": "91-115 Wochen (~2 Jahre)",
+    "stormPhase": {
+      "description": "Der berühmte Trotz beginnt! Dein Kind erkennt sich als eigenständiges Individuum und will selbst entscheiden. 'Nein!' ist das Lieblingswort. Es ist frustrierend, aufregend und anstrengend - für alle. Aber das ist gesunde Entwicklung!",
+      "symptoms": [
+        "Sagt ständig 'Nein!' und 'Selbst!'",
+        "Wird wütend bei Ablehnung",
+        "Will alles alleine machen",
+        "Hat Stimmungsschwankungen",
+        "Testet Grenzen extrem aus",
+        "Hat Wutausbrüche ohne erkennbaren Grund",
+        "Will Entscheidungen selbst treffen",
+        "Reagiert empfindlich auf Korrekturen"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Ein kleiner Selbstständiger entsteht! Dein Kind kann jetzt viel alleine, hat eigene Vorlieben und entwickelt eine starke Persönlichkeit. Die Sprachexplosion ermöglicht echte Konversationen.",
+      "abilities": [
+        "Wortschatz explodiert (200-300 Wörter)",
+        "Bildet erste 3-Wort-Sätze",
+        "Kann viele Dinge selbstständig",
+        "Zeigt deutliche Vorlieben",
+        "Entwickelt eigenen Willen",
+        "Kann einfache Wünsche äußern",
+        "Zeigt Stolz bei Erfolgen"
+      ]
+    },
+    "why": "Das präfrontale Cortex entwickelt Selbstbewusstsein. Das Kind erkennt: 'Ich bin ich!' Die neuronale Vernetzung für Sprache und Selbstwahrnehmung explodiert. Das ist die Geburt der Autonomie.",
+    "actions": [
+      "💚 Das Trotzen ist kein Trotz - es ist Entwicklung!",
+      "🌟 Du wirst bald echte Gespräche führen",
+      "Wahlmöglichkeiten innerhalb von Grenzen",
+      "Bei Wutanfällen ruhig bleiben",
+      "Selbstständigkeit unterstützen",
+      "Kompromisse suchen statt zu befehlen",
+      "💙 Du erziehst einen selbstständigen Menschen"
+    ]
   }
 ];

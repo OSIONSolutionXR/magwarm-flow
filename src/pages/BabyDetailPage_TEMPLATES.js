@@ -1,4 +1,39 @@
 export const TEMPLATES = [
+  // Phase 0: Die ersten Wochen (Geburt bis Woche 4) - Ruhephase vor erstem Sprung
+  {
+    "week": 1, "weekEnd": 4, "title": "Die ersten Wochen",
+    "subtitle": "Ankunft in der Welt", "phase": "Neugeborenes", "age": "0-4 Wochen",
+    "stormPhase": {
+      "description": "Die ersten Wochen sind eine Zeit der intensiven Anpassung. Dein Baby lernt zu essen, zu schlafen und sich an das Leben außerhalb des Mutterleibs zu gewöhnen. Die Welt ist neu, laut und überwältigend.",
+      "symptoms": [
+        "Unregelmäßiger Schlaf-Wach-Rhythmus",
+        "Häufiges Wachen zum Füttern",
+        "Empfindlich auf Umweltreize",
+        "Braucht viel Körperkontakt und Nähe"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "In den ruhigen Momenten zeigt dein Baby erste Fortschritte. Es beginnt, die Welt zu erkennen und sich an sie zu gewöhnen. Die ersten sozialen Interaktionen entstehen.",
+      "abilities": [
+        "Reagiert auf deine Stimme",
+        "Saugt an der Brust oder dem Fläschchen",
+        "Schläft nach dem Füttern ein",
+        "Zeigt erste Reflexe (Greifreflex, Suchreflex)",
+        "Beruhigt sich bei deiner Nähe"
+      ]
+    },
+    "why": "Die ersten Wochen sind geprägt von intensiver neurologischer Entwicklung. Millionen von Synapsen werden gebildet, während das Gehirn lernt, die Reize aus der neuen Umgebung zu verarbeiten.",
+    "actions": [
+      "💚 Diese ersten Wochen sind intensiv, aber sie legen das Fundament für alles Kommende.",
+      "🌟 Bald wirst du die ersten bewussten Lächeln sehen - ein unbezahlbares Geschenk.",
+      "Halte dein Baby viel an deinem Körper",
+      "Füttere nach Bedarf, nicht nach Uhrzeit",
+      "Schaffe eine ruhige Umgebung",
+      "Vertraue deinem Instinkt",
+      "💙 Du bist genau die richtige Elternperson für dein Baby"
+    ]
+  },
+  // Phase 1: Die ersten Sinneswellen (Woche 5-6)
   {
     "week": 5, "weekEnd": 6, "title": "Die ersten Sinneswellen",
     "stormPhase": { 
@@ -42,6 +77,38 @@ export const TEMPLATES = [
       "💙 Du bist genau die richtige Mutter/der richtige Vater für dein Kind - vertraue darauf"
     ]
   },
+  // Ruhephase: Woche 7 (zwischen Sinneswellen und Mustern)
+  {
+    "week": 7, "weekEnd": 7, "title": "Ruhe nach der Sinnesflut",
+    "subtitle": "Verarbeitung & Festigung", "phase": "Ruhephase", "age": "7 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby verarbeitet die intensive Sinnesflut. Es ist ruhiger, braucht aber immer noch viel Nähe und vertraute Rituale.",
+      "symptoms": [
+        "Müde von der intensiven Phase",
+        "Sucht Sicherheit in vertrauten Abläufen",
+        "Braucht viel Schlaf zur Verarbeitung"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Dein Baby zeigt erste Fortschritte! Es fixiert besser, reagiert auf Stimmen und beginnt, die Welt zu verstehen.",
+      "abilities": [
+        "Fixiert Gesichter intensiver",
+        "Reagiert auf vertraute Stimmen",
+        "Zeigt erstes bewusstes Lächeln",
+        "Hält den Kopf kurz selbst"
+      ]
+    },
+    "why": "Das Gehirn verarbeitet die neuen Sinneserfahrungen und festigt die neuronalen Verbindungen. Die Myelinisierung beginnt.",
+    "actions": [
+      "💚 Genieße die ruhigere Zeit mit deinem Baby",
+      "🌟 Die Sinnesflut ist vorbei - jetzt kommt die Sonne",
+      "Viel Hautkontakt pflegen",
+      "Vertraute Rituale beibehalten",
+      "Auf die nächste Phase vorbereiten",
+      "💙 Du machst das großartig"
+    ]
+  },
+  // Phase 2: Muster im Chaos (Woche 8-9)
   {
     "week": 8, "weekEnd": 9, "title": "Muster im Chaos",
     "stormPhase": { 
@@ -85,6 +152,38 @@ export const TEMPLATES = [
       "💙 Vertraue auf dich - dein Baby spürt, dass du dich um es kümmerst"
     ]
   },
+  // Ruhephase: Woche 10-11 (zwischen Mustern und Bewegung)
+  {
+    "week": 10, "weekEnd": 11, "title": "Ruhe nach dem Muster-Wahn",
+    "subtitle": "Sicherheit & Vorhersage", "phase": "Ruhephase", "age": "10-11 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby verarbeitet das neue Verständnis für Muster. Es ist ausgeglichener und freut sich über bekannte Abläufe.",
+      "symptoms": [
+        "Möchte vertraute Spiele wiederholen",
+        "Sucht Sicherheit in Rituale",
+        "Reagiert sensibel auf Veränderungen"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Dein Baby hat die Muster verinnerlicht! Es freut sich über Wiederholungen und zeigt echte Erwartungshaltung.",
+      "abilities": [
+        "Erkennt vertraute Muster",
+        "Freut sich über Wiederholungen",
+        "Zeigt Erwartung vor dem Höhepunkt",
+        "Beruhigt sich bei vertrauten Ritualen"
+      ]
+    },
+    "why": "Das Gehirn festigt die Mustererkennung und baut auf dieser Grundlage weiter. Das Verständnis für Sequenzen wächst.",
+    "actions": [
+      "💚 Genieße die ausgeglichene Zeit",
+      "🌟 Bald kommt die nächste Entdeckung",
+      "Bekannte Spiele wiederholen",
+      "Rituale etablieren",
+      "Auf die Bewegungsphase vorbereiten",
+      "💙 Du bist ein toller Begleiter"
+    ]
+  },
+  // Phase 3: Wenn Bewegung Sinn ergibt (Woche 12-13)
   {
     "week": 12, "weekEnd": 13, "title": "Wenn Bewegung Sinn ergibt",
     "stormPhase": { 
@@ -171,6 +270,38 @@ export const TEMPLATES = [
       "💙 Du ermöglichst deinem Baby, die Welt zu verstehen - das ist wertvoll und wichtig"
     ]
   },
+  // Ruhephase: Woche 14-18 (zwischen Bewegung und Folgen)
+  {
+    "week": 14, "weekEnd": 18, "title": "Ruhe nach dem Bewegungswahn",
+    "subtitle": "Festigung & Kontrolle", "phase": "Ruhephase", "age": "14-18 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby verarbeitet die neuen Bewegungsfähigkeiten. Es ist stolz auf seine Fortschritte, braucht aber auch viel Ruhe.",
+      "symptoms": [
+        "Möchte neue Bewegungen üben",
+        "Frustriert wenn es nicht klappt",
+        "Braucht viel Schlaf zur Verarbeitung"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Dein Baby beherrscht seinen Kopf! Es rollt, greift zielgerichtet und entdeckt die Welt aktiv.",
+      "abilities": [
+        "Hält Kopf stabil",
+        "Rollt von Bauch auf Rücken",
+        "Greift gezielt nach Objekten",
+        "Entdeckt die eigenen Hände"
+      ]
+    },
+    "why": "Die motorischen Fähigkeiten werden gefestigt. Das Gehirn speichert die neuen Bewegungsmuster ein.",
+    "actions": [
+      "💚 Genieße die Fortschritte",
+      "🌟 Bald folgt Ursache-Wirkung",
+      "Viel Bauchlage ermöglichen",
+      "Greifspiele anbieten",
+      "Neue Bewegungen feiern",
+      "💙 Du begleitest wunderbar"
+    ]
+  },
+  // Phase 5: Die ersten Trennungen (Woche 26-27) - aber ich brauche noch Woche 19-25!
   {
     "week": 26, "weekEnd": 27, "title": "Die ersten Trennungen",
     "stormPhase": { 
@@ -214,8 +345,40 @@ export const TEMPLATES = [
       "💙 Deine Nähe ist das größte Geschenk für dein Baby - es vertraut dir bedingungslos"
     ]
   },
+  // Ruhephase: Woche 21-25 (zwischen Folgen und Trennungen)
   {
-    "week": 37, "weekEnd": 38, "title": "Kategorien und Ordnung",
+    "week": 21, "weekEnd": 25, "title": "Ruhe vor dem Fremdeln",
+    "subtitle": "Entdeckung & Experimentieren", "phase": "Ruhephase", "age": "21-25 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby experimentiert intensiv mit Ursache und Wirkung. Es wirft, schüttelt, beobachtet und lernt.",
+      "symptoms": [
+        "Wirft absichtlich Dinge zu Boden",
+        "Will immer wieder dasselbe Spiel",
+        "Testet Grenzen aus"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Dein Baby hat verstanden: Es kann die Welt beeinflussen! Das Selbstvertrauen wächst mit jedem Experiment.",
+      "abilities": [
+        "Versteht Ursache-Wirkung",
+        "Greift mit Pinzette",
+        "Rollt beidseitig",
+        "Entdeckt eigene Stimme"
+      ]
+    },
+    "why": "Das präfrontale Cortex entwickelt sich. Das Baby lernt, dass Handlungen Konsequenzen haben.",
+    "actions": [
+      "💚 Genieße die Experimentierfreude",
+      "🌟 Bald kommt das Fremdeln",
+      "Geduld beim Aufräumen",
+      "Spiele mit versteckten Gegenständen",
+      "Grenzen freundlich setzen",
+      "💙 Du bist ein toller Guide"
+    ]
+  },
+  // Phase 6: Die ersten Trennungen (Woche 26-27)
+  {
+    "week": 26, "weekEnd": 27, "title": "Die ersten Trennungen",
     "stormPhase": { 
       "description": "Dein Baby will die Welt sortieren, verstehen, einordnen. Es ist frustriert, wenn etwas nicht in seine Kategorien passt. Alles wird untersucht, verglichen, auseinandergenommen. Eine Phase intensiver Neugier und manchmal auch Verwirrung, wenn die Realität nicht den Erwartungen entspricht. Der Perfektionismus wächst.", 
       "symptoms": [

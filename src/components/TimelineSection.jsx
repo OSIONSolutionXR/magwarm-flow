@@ -29,21 +29,59 @@ const TABS = [
 ];
 
 function getWeekColor(week) {
+  // Explizite Ruhephasen
+  const calmPhases = [
+    { week: 76, weekEnd: 90 } // Die Konsolidierung
+  ];
+  
+  for (const calm of calmPhases) {
+    if (week >= calm.week && week <= calm.weekEnd) return 'calm';
+  }
+  
+  // Sprungphasen
   for (const leap of LEAPS_TIMELINE) {
     if (week >= leap.week && week <= leap.weekEnd) return 'intense';
   }
+  
+  // Übergangswochen (vor Sprüngen)
   const preLeapWeeks = [4, 7, 11, 18, 25, 36, 45, 54, 63, 74, 90, 115];
   if (preLeapWeeks.includes(week)) return 'transition';
+  
   return 'calm';
 }
 
 // Generiere detaillierte Inhalte für jede Woche
 function generateWeekData(week) {
-  // Prüfe erst, ob diese Woche ein ECHTER Sprung ist (muss in LEAPS_TIMELINE sein)
+  // Diese Wochen sind explizit Ruhephasen (keine Sprünge trotz Template)
+  const calmPhases = [
+    { week: 76, weekEnd: 90, title: "Die Konsolidierung", subtitle: "Welt der Worte" }
+  ];
+  
+  const calmPhase = calmPhases.find(c => week >= c.week && week <= c.weekEnd);
+  
+  // Prüfe erst, ob diese Woche ein ECHTER Sprung ist (in LEAPS_TIMELINE)
   const leap = LEAPS_TIMELINE.find(l => week >= l.week && week <= l.weekEnd);
   const template = TEMPLATES.find(t => week >= t.week && week <= t.weekEnd);
   
-  // Nur echte Sprünge behandeln (die in LEAPS_TIMELINE definiert sind)
+  // Wenn es eine explizite Ruhephase ist, behandle sie als calm
+  if (calmPhase) {
+    return {
+      week,
+      type: 'calm',
+      title: calmPhase.title,
+      subtitle: calmPhase.subtitle,
+      phase: 'Ruhige Entwicklung',
+      state: 'calm',
+      stateLabel: 'Ruhige Phase',
+      stateDescription: template?.sunnyPhase?.description || `Nach dem intensiven Sprung ist Zeit zur Verarbeitung. Das Gehirn konsolidiert das Gelernte.`,
+      symptoms: [], // Keine Storm-Symptome in Ruhephase
+      abilities: template?.sunnyPhase?.abilities || [],
+      why: template?.why || "Das Gehirn konsolidiert und festigt neue Verbindungen.",
+      actions: template?.actions || []
+    };
+  }
+  
+  // Echte Sprünge (in LEAPS_TIMELINE)
   if (leap && template) {
     const isFirstWeek = week === leap.week;
     const isLastWeek = week === leap.weekEnd;
@@ -64,7 +102,7 @@ function generateWeekData(week) {
     };
   }
   
-  // Ruhephase (auch wenn Template existiert, aber nicht in LEAPS_TIMELINE)
+  // Standard Ruhephase (zwischen Sprüngen)
   let prevLeap = null;
   let nextLeap = null;
   for (const l of LEAPS_TIMELINE) {
@@ -75,36 +113,19 @@ function generateWeekData(week) {
   const prevTitle = prevLeap?.title || 'Geburt';
   const nextTitle = nextLeap?.title || 'Kindergarten';
   
-  // Verwende Template-Daten falls vorhanden (für Titel), sonst generische
-  const title = template?.title || `Ruhephase nach "${prevTitle}"`;
-  const subtitle = template?.subtitle || `Vorbereitung auf "${nextTitle}"`;
-  
   return {
     week,
     type: 'calm',
-    title: title,
-    subtitle: subtitle,
+    title: `Ruhephase nach "${prevTitle}"`,
+    subtitle: `Vorbereitung auf "${nextTitle}"`,
     phase: 'Ruhige Entwicklung',
     state: 'calm',
     stateLabel: 'Ruhige Phase',
-    stateDescription: template?.sunnyPhase?.description || `Nach dem intensiven ${prevTitle} ist Zeit zur Verarbeitung. Dein Baby festigt das Gelernte und bereitet sich auf ${nextTitle} vor.`,
-    symptoms: template?.stormPhase?.symptoms || [
-      "Kann nach dem vorherigen Sprung müde sein",
-      "Zeigt stolz neue Fähigkeiten",
-      "Sucht vertraute Rituale",
-      "Ist ausgeglichener und zufriedener"
-    ],
-    abilities: template?.sunnyPhase?.abilities || [
-      "Festigt neu erworbene Fähigkeiten",
-      "Wird sicherer im Alltag",
-      "Entwickelt zunehmendes Selbstvertrauen"
-    ],
-    why: template?.why || "Das Gehirn konsolidiert und festigt neue Verbindungen. Myelinisierung schützt die Nervenbahnen.",
-    actions: template?.actions || [
-      "💚 Diese ruhige Phase ist wichtig - das Gehirn verarbeitet",
-      "🌟 Genieße die ausgeglichene Zeit mit deinem Baby",
-      "Neue Fähigkeiten feiern und üben"
-    ]
+    stateDescription: `Nach dem intensiven ${prevTitle} ist Zeit zur Verarbeitung. Dein Baby festigt das Gelernte und bereitet sich auf ${nextTitle} vor.`,
+    symptoms: [],
+    abilities: [],
+    why: "Das Gehirn konsolidiert und festigt neue Verbindungen.",
+    actions: ["Genieße die ruhige Zeit", "Neue Fähigkeiten üben"]
   };
 }
 

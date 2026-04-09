@@ -65,9 +65,29 @@ function getLeapForWeek(week) {
     };
   }
   
+  // Explizite Ruhephasen (keine Storm/Sunny, immer calm)
+  const calmPhases = [
+    { week: 76, weekEnd: 90, title: "Die Konsolidierung", phase: "Jahr 2", age: "18-21 Monate", isInLeap: false }
+  ];
+  
+  for (const calm of calmPhases) {
+    if (week >= calm.week && week <= calm.weekEnd) {
+      const template = TEMPLATES.find(t => week >= t.week && week <= t.weekEnd);
+      return {
+        ...calm,
+        stormPhase: { description: "", symptoms: [] },
+        sunnyPhase: template?.sunnyPhase || { description: "", abilities: [] },
+        why: template?.why || "",
+        actions: template?.actions || []
+      };
+    }
+  }
+  
   for (const leap of TEMPLATES) {
     if (week >= leap.week && week <= leap.weekEnd) {
-      return { ...leap, isInLeap: true };
+      // Prüfe ob es ein echter Sprung ist (in LEAPS_TIMELINE)
+      const isRealLeap = [5, 8, 12, 19, 26, 37, 46, 55, 64, 75, 91, 116, 141].includes(leap.week);
+      return { ...leap, isInLeap: isRealLeap };
     }
     // Wenn nach diesem Sprung aber vor dem nächsten
     const nextLeap = TEMPLATES[TEMPLATES.indexOf(leap) + 1];

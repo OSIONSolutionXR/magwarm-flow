@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useMemo } from 'react';
-import { CloudRain, Sun, Brain, Lightbulb, Activity, Heart, Sparkles } from 'lucide-react';
+import { CloudRain, Sun, Brain, Lightbulb, Activity, Heart, Sparkles, Navigation } from 'lucide-react';
 import { Card, CardContent } from './Card';
 import { TEMPLATES } from '../pages/BabyDetailPage_TEMPLATES';
 
@@ -311,6 +311,20 @@ export default function TimelineSection({ currentWeek }) {
           </div>
         </div>
       </div>
+
+      {/* Zurück zur aktuellen Woche Button */}
+      {selectedWeek !== currentWeek && (
+        <button
+          onClick={() => {
+            setSelectedWeek(currentWeek);
+            setActiveTab('state');
+          }}
+          className="w-full flex items-center justify-center gap-2 py-3 bg-orange-50 dark:bg-orange-900/20 hover:bg-orange-100 dark:hover:bg-orange-900/30 rounded-xl border border-orange-200 dark:border-orange-800 text-orange-600 dark:text-orange-400 font-medium transition-colors"
+        >
+          <Navigation className="h-4 w-4" />
+          Zur aktuellen Woche ({currentWeek})
+        </button>
+      )}
 
       {/* Detaillierte 4-Tab-Ansicht */}
       <AnimatePresence mode="wait">

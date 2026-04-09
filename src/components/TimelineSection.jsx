@@ -34,24 +34,23 @@ const TABS = [
 ];
 
 function getWeekColor(week) {
-  // Explizite Ruhephasen (grün)
-  for (const calm of CALM_PHASES) {
-    if (week >= calm.week && week <= calm.weekEnd) return 'calm';
+  // Finde das TEMPLATE für diese Woche
+  const template = TEMPLATES.find(t => week >= t.week && week <= t.weekEnd);
+  
+  if (template) {
+    // Ruhephasen sind grün
+    if (template.phase === 'Ruhephase') return 'calm';
+    
+    // Sprünge: Erste Woche = Transition, letzte = Sunny, dazwischen = Storm
+    const isFirstWeek = week === template.week;
+    const isLastWeek = week === template.weekEnd;
+    
+    if (isLastWeek) return 'sunny';
+    if (isFirstWeek) return 'transition';
+    return 'intense';
   }
   
-  // Sprungphasen - Unterscheidung zwischen Storm (rot) und Sunny (amber)
-  for (const leap of LEAPS_TIMELINE) {
-    if (week >= leap.week && week <= leap.weekEnd) {
-      // Letzte Woche eines Sprungs = Sunny Phase (grün)
-      if (week === leap.weekEnd) return 'sunny';
-      // Erste Woche = Übergang (gelb)
-      if (week === leap.week) return 'transition';
-      // Dazwischen = Intensivphase (rot)
-      return 'intense';
-    }
-  }
-  
-  // Übergangswochen (vor Sprüngen)
+  // Fallback: Vor Sprüngen = Transition
   const preLeapWeeks = [4, 7, 11, 18, 25, 36, 45, 54, 63, 74, 90, 115];
   if (preLeapWeeks.includes(week)) return 'transition';
   
@@ -60,76 +59,64 @@ function getWeekColor(week) {
 
 // Generiere detaillierte Inhalte für jede Woche
 function generateWeekData(week) {
-  // Prüfe erst explizite Ruhephasen
-  const calmPhase = CALM_PHASES.find(c => week >= c.week && week <= c.weekEnd);
   const template = TEMPLATES.find(t => week >= t.week && week <= t.weekEnd);
   
-  // Wenn es eine explizite Ruhephase ist
-  if (calmPhase) {
+  if (!template) {
+    // Fallback für Wochen ohne Template
     return {
       week,
       type: 'calm',
-      title: calmPhase.title,
-      subtitle: calmPhase.subtitle,
+      title: `Woche ${week}`,
+      subtitle: 'Entwicklungsphase',
       phase: 'Ruhige Entwicklung',
       state: 'calm',
       stateLabel: 'Ruhige Phase',
-      stateDescription: template?.sunnyPhase?.description || `Nach dem intensiven Sprung ist Zeit zur Verarbeitung. Das Gehirn konsolidiert das Gelernte.`,
+      stateDescription: 'Dein Baby entwickelt sich weiter. Jede Woche bringt neue Fortschritte.',
       symptoms: [],
-      abilities: template?.sunnyPhase?.abilities || [],
-      why: template?.why || "Das Gehirn konsolidiert und festigt neue Verbindungen.",
-      actions: template?.actions || []
+      abilities: [],
+      why: 'Das Gehirn verarbeitet neue Erfahrungen und festigt gelernte Fähigkeiten.',
+      actions: ['Genieße die Zeit mit deinem Baby', 'Beobachte die kleinen Fortschritte']
     };
   }
   
-  // Prüfe, ob diese Woche ein Sprung ist
-  const leap = LEAPS_TIMELINE.find(l => week >= l.week && week <= l.weekEnd);
+  // Bestimme Zustand basierend auf Template
+  const isRuhephase = template.phase === 'Ruhephase';
+  const isFirstWeek = week === template.week;
+  const isLastWeek = week === template.weekEnd;
   
-  // Echte Sprünge (in LEAPS_TIMELINE)
-  if (leap && template) {
-    const isFirstWeek = week === leap.week;
-    const isLastWeek = week === leap.weekEnd;
-    
+  if (isRuhephase) {
     return {
       week,
-      type: 'leap',
+      type: 'calm',
       title: template.title,
-      subtitle: isLastWeek ? 'Sunny Phase' : isFirstWeek ? 'Sprung beginnt' : 'Intensivphase',
-      phase: isLastWeek ? 'Sunny Phase' : 'Storm Phase',
-      state: isLastWeek ? 'sunny' : 'storm',
-      stateLabel: isLastWeek ? 'Sunny Phase' : isFirstWeek ? 'Sprung beginnt' : 'Intensivphase',
-      stateDescription: isLastWeek ? template.sunnyPhase.description : template.stormPhase.description,
-      symptoms: isLastWeek ? [] : template.stormPhase.symptoms,
-      abilities: isLastWeek ? template.sunnyPhase.abilities : [],
+      subtitle: template.subtitle,
+      phase: template.phase,
+      state: 'calm',
+      stateLabel: 'Ruhige Phase',
+      stateDescription: template.sunnyPhase?.description || template.stormPhase?.description || 'Zeit zur Verarbeitung.',
+      symptoms: template.stormPhase?.symptoms || [],
+      abilities: template.sunnyPhase?.abilities || [],
       why: template.why,
       actions: template.actions
     };
   }
   
-  // Standard Ruhephase (zwischen Sprüngen)
-  let prevLeap = null;
-  let nextLeap = null;
-  for (const l of LEAPS_TIMELINE) {
-    if (l.weekEnd < week) prevLeap = l;
-    if (l.week > week && !nextLeap) nextLeap = l;
-  }
-  
-  const prevTitle = prevLeap?.title || 'Geburt';
-  const nextTitle = nextLeap?.title || 'Kindergarten';
+  // Sprungphase
+  const isStorm = !isLastWeek;
   
   return {
     week,
-    type: 'calm',
-    title: `Ruhephase nach "${prevTitle}"`,
-    subtitle: `Vorbereitung auf "${nextTitle}"`,
-    phase: 'Ruhige Entwicklung',
-    state: 'calm',
-    stateLabel: 'Ruhige Phase',
-    stateDescription: `Nach dem intensiven ${prevTitle} ist Zeit zur Verarbeitung. Dein Baby festigt das Gelernte und bereitet sich auf ${nextTitle} vor.`,
-    symptoms: [],
-    abilities: [],
-    why: "Das Gehirn konsolidiert und festigt neue Verbindungen.",
-    actions: ["Genieße die ruhige Zeit", "Neue Fähigkeiten üben"]
+    type: 'leap',
+    title: template.title,
+    subtitle: isLastWeek ? 'Sunny Phase' : isFirstWeek ? 'Sprung beginnt' : 'Intensivphase',
+    phase: isLastWeek ? 'Sunny Phase' : 'Storm Phase',
+    state: isLastWeek ? 'sunny' : 'storm',
+    stateLabel: isLastWeek ? 'Sunny Phase' : isFirstWeek ? 'Sprung beginnt' : 'Intensivphase',
+    stateDescription: isLastWeek ? template.sunnyPhase?.description : template.stormPhase?.description,
+    symptoms: isLastWeek ? [] : template.stormPhase?.symptoms || [],
+    abilities: isLastWeek ? template.sunnyPhase?.abilities || [] : [],
+    why: template.why,
+    actions: template.actions
   };
 }
 

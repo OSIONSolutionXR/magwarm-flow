@@ -67,7 +67,7 @@ function getLeapForWeek(week) {
   
   // Explizite Ruhephasen (keine Storm/Sunny, immer calm)
   const calmPhases = [
-    { week: 76, weekEnd: 90, title: "Die Konsolidierung", phase: "Jahr 2", age: "18-21 Monate", isInLeap: false }
+    { week: 77, weekEnd: 90, title: "Die Konsolidierung", phase: "Jahr 2", age: "18-21 Monate", isInLeap: false }
   ];
   
   for (const calm of calmPhases) {

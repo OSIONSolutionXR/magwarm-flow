@@ -17,8 +17,13 @@ const LEAPS_TIMELINE = [
   { week: 64, weekEnd: 65, title: "Regeln und Konsequenzen", intensity: 'high' },
   { week: 75, weekEnd: 76, title: "Verbundenheit spüren", intensity: 'high' },
   { week: 91, weekEnd: 115, title: "Die Autonomie-Explosion", intensity: 'high' },
-  { week: 116, weekEnd: 140, title: "Die Welt der Symbole", intensity: 'medium' },
+  { week: 116, weekEnd: 140, title: "Die Welt der Symbole", intensity: 'high' },
   { week: 141, weekEnd: 156, title: "Warum? & Magisches Denken", intensity: 'high' },
+];
+
+// Explizite Ruhephasen
+const CALM_PHASES = [
+  { week: 77, weekEnd: 90, title: "Die Konsolidierung", subtitle: "18-21 Monate / Welt der Worte" }
 ];
 
 const TABS = [
@@ -29,19 +34,15 @@ const TABS = [
 ];
 
 function getWeekColor(week) {
-  // Explizite Ruhephasen
-  const calmPhases = [
-    { week: 76, weekEnd: 90 } // Die Konsolidierung
-  ];
-  
-  for (const calm of calmPhases) {
+  // Explizite Ruhephasen (grün)
+  for (const calm of CALM_PHASES) {
     if (week >= calm.week && week <= calm.weekEnd) return 'calm';
   }
   
   // Sprungphasen - Unterscheidung zwischen Storm (rot) und Sunny (amber)
   for (const leap of LEAPS_TIMELINE) {
     if (week >= leap.week && week <= leap.weekEnd) {
-      // Letzte Woche eines Sprungs = Sunny Phase (amber)
+      // Letzte Woche eines Sprungs = Sunny Phase (grün)
       if (week === leap.weekEnd) return 'sunny';
       // Erste Woche = Übergang (gelb)
       if (week === leap.week) return 'transition';
@@ -59,18 +60,11 @@ function getWeekColor(week) {
 
 // Generiere detaillierte Inhalte für jede Woche
 function generateWeekData(week) {
-  // Diese Wochen sind explizit Ruhephasen (keine Sprünge trotz Template)
-  const calmPhases = [
-    { week: 76, weekEnd: 90, title: "Die Konsolidierung", subtitle: "Welt der Worte" }
-  ];
-  
-  const calmPhase = calmPhases.find(c => week >= c.week && week <= c.weekEnd);
-  
-  // Prüfe erst, ob diese Woche ein ECHTER Sprung ist (in LEAPS_TIMELINE)
-  const leap = LEAPS_TIMELINE.find(l => week >= l.week && week <= l.weekEnd);
+  // Prüfe erst explizite Ruhephasen
+  const calmPhase = CALM_PHASES.find(c => week >= c.week && week <= c.weekEnd);
   const template = TEMPLATES.find(t => week >= t.week && week <= t.weekEnd);
   
-  // Wenn es eine explizite Ruhephase ist, behandle sie als calm
+  // Wenn es eine explizite Ruhephase ist
   if (calmPhase) {
     return {
       week,
@@ -81,12 +75,15 @@ function generateWeekData(week) {
       state: 'calm',
       stateLabel: 'Ruhige Phase',
       stateDescription: template?.sunnyPhase?.description || `Nach dem intensiven Sprung ist Zeit zur Verarbeitung. Das Gehirn konsolidiert das Gelernte.`,
-      symptoms: [], // Keine Storm-Symptome in Ruhephase
+      symptoms: [],
       abilities: template?.sunnyPhase?.abilities || [],
       why: template?.why || "Das Gehirn konsolidiert und festigt neue Verbindungen.",
       actions: template?.actions || []
     };
   }
+  
+  // Prüfe, ob diese Woche ein Sprung ist
+  const leap = LEAPS_TIMELINE.find(l => week >= l.week && week <= l.weekEnd);
   
   // Echte Sprünge (in LEAPS_TIMELINE)
   if (leap && template) {

@@ -7,6 +7,7 @@ import { PopCard, PopButton } from '../components/PopEffect';
 import { TEMPLATES } from './BabyDetailPage_TEMPLATES.js';
 import NotesSection from '../components/NotesSection';
 import CommunitySection from '../components/CommunitySection';
+import TimelineSection from '../components/TimelineSection';
 
 const TABS = [
   { id: 1, label: 'Zustand', icon: Cloud, color: 'text-sky-500' },
@@ -395,64 +396,7 @@ export default function BabyDetailPage() {
               )}
 
               {activeTab === 5 && (
-                <div className="space-y-6">
-                  <Link to="/leaps" className="block">
-                    <div className="p-5 bg-gradient-to-br from-[hsl(17,75%,56%)] to-[hsl(18,85%,58%)] rounded-2xl text-white shadow-lg">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                          <div className="p-3 bg-white/20 rounded-xl">
-                            <span className="text-2xl">📊</span>
-                          </div>
-                          <div>
-                            <p className="font-bold text-lg">Alle Phasen</p>
-                            <p className="text-white/80 text-sm">Woche 1-156 im Überblick</p>
-                          </div>
-                        </div>
-                        <span className="text-2xl">→</span>
-                      </div>
-                    </div>
-                  </Link>
-
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
-                      <Calendar className="h-6 w-6" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">Zeitlinie</h3>
-                  </div>
-                  
-                  <div className="space-y-3 pl-[3.75rem]">
-                    <div className="p-5 bg-rose-50 dark:bg-rose-900/20 rounded-xl border-2 border-rose-200 dark:border-rose-800">
-                      <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Aktuelle Phase</p>
-                      <p className="font-bold text-gray-900 dark:text-white text-lg">
-                        {leap.title || 'Unbekannte Phase'}
-                      </p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                        {isToddler 
-                          ? (getAgeLabel ? getAgeLabel() : getExactAge()) 
-                          : `Woche ${leap.week || 0}–${leap.weekEnd || 0}`
-                        }
-                      </p>
-                    </div>
-                    
-                    <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
-                      <p className="text-sm text-blue-600 dark:text-blue-400 mb-1">Aktuelle Woche</p>
-                      <p className="font-bold text-blue-900 dark:text-blue-200 text-2xl">
-                        Woche {week}
-                      </p>
-                    </div>
-                    
-                    {leap.weekEnd && leap.weekEnd < 156 && (
-                      <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
-                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Nächste Phase</p>
-                        <p className="font-medium text-gray-900 dark:text-white">
-                          {TEMPLATES.find(l => l.week > week) 
-                            ? `${TEMPLATES.find(l => l.week > week).title} (in ${TEMPLATES.find(l => l.week > week).week - week} Wochen)` 
-                            : 'Bereit für den Kindergarten!'}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </div>
+                <TimelineSection currentWeek={week} />
               )}
             </CardContent>
           </Card>

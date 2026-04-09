@@ -2,8 +2,17 @@ export const TEMPLATES = [
   {
     "week": 5, "weekEnd": 6, "title": "Die ersten Sinneswellen",
     "stormPhase": { 
-      "description": "Dein Baby taucht in eine neue Realität ein. Plötzlich ist alles lauter, heller, intensiver. Die kleinen Sinne, die bisher sanft gearbeitet haben, schalten auf Hochleistung um. Dein Baby ist überfordert, quengelig und sucht unbedingt den Schutz deiner Nähe.", 
-      "symptoms": ["Alles ist plötzlich 'zu viel'", "Will nur an deiner Brust oder im Arm", "Schläft unruhig oder nur beim Tragen", "Reagiert schreckhaft auf Geräusche", "Weint mehr als gewöhnlich ohne erkennbaren Grund"] 
+      "description": "Dein Baby taucht in eine neue Realität ein. Plötzlich ist alles lauter, heller, intensiver. Die kleinen Sinne, die bisher sanft gearbeitet haben, schalten auf Hochleistung um. Dein Baby ist überfordert, quengelig und sucht unbedingt den Schutz deiner Nähe. Die Welt, die es bisher friedlich erlebt hat, wird plötzlich zu einem stürmischen Ozean aus Eindrücken, dem es noch nicht gewachsen ist.", 
+      "symptoms": [
+        "Alles ist plötzlich 'zu viel' - normalerweise angenehme Reize werden überwältigend",
+        "Will nur an deiner Brust oder im Arm - die Nähe gibt Orientierung in der Sinnesflut", 
+        "Schlafprobleme: Schläft unruhig, nur beim Tragen ein oder wacht häufiger auf",
+        "Essverhalten ändert sich: Trinkt unruhiger, manchmal in kurzen Abständen (Clustern)",
+        "Nächtliches Aufwachen: Wacht trotz vorheriger Routine häufiger auf und sucht Trost",
+        "Vermehrtes Weinen/Quengeln: Weint plötzlich mehr ohne erkennbaren Grund",
+        "Reagiert schreckhaft auf Geräusche, die bisher kein Problem waren",
+        "Zittert oder verkrampft sich bei plötzlichen Bewegungen"
+      ] 
     },
     "sunnyPhase": { 
       "description": "Nach dem Sturm kommt die Ruhe. Dein Baby hat gelernt, mit dieser neuen Intensität umzugehen und beginnt, bewusst zu lächeln, tief in deine Augen zu schauen und die Welt mit wachen Sinnen zu erkunden.", 
@@ -15,8 +24,17 @@ export const TEMPLATES = [
   {
     "week": 8, "weekEnd": 9, "title": "Muster im Chaos",
     "stormPhase": { 
-      "description": "Dein Baby hat plötzlich ein Radar für Wiederholungen entdeckt. Es ist fasziniert, aber auch verwirrt. Warum passiert das immer wieder? Es sucht deinen Blick, will deine Aufmerksamkeit, ist gleichzeitig neugierig und überfordert.", 
-      "symptoms": ["Sucht intensiv Augenkontakt und reagiert empfindlich, wenn du wegschaust", "Wird bei Unterbrechungen der Routine unruhig", "Will ständig getragen werden, besonders in Bewegung", "Reagiert auf Rhythmen mit Weinen oder Faszination", "Irritiert, wenn bekannte Muster unterbrochen werden"] 
+      "description": "Dein Baby hat plötzlich ein Radar für Wiederholungen entdeckt. Es ist fasziniert, aber auch verwirrt. Warum passiert das immer wieder? Es sucht deinen Blick, will deine Aufmerksamkeit, ist gleichzeitig neugierig und überfordert. Muster, die du als selbstverständlich empfindest, werden für dein Baby zu einem rätselhaften Puzzle, das es verzweifelt entschlüsseln will.", 
+      "symptoms": [
+        "Sucht intensiv Augenkontakt und reagiert empfindlich, wenn du wegschaust - 'Warum ist sie weg?'",
+        "Wird bei Unterbrechungen der Routine unruhig - muss das Muster vollendet werden",
+        "Will ständig getragen werden, besonders in Bewegung - der Rhythmus gibt Sicherheit",
+        "Schlafprobleme: Braucht jetzt oft die gleiche Einschlafroutine, sonst wird es quengelig",
+        "Essverhalten: Will plötzlich immer zur gleichen Zeit trinken oder weigert sich bei Abweichungen",
+        "Vermehrtes Weinen/Quengeln: Wird traurig, wenn erwartete Muster ausbleiben",
+        "Reagiert auf Rhythmen mit Weinen oder Faszination - kann nicht ignorieren",
+        "Irritiert, wenn bekannte Muster unterbrochen werden - etwa wenn du das Lied nicht zu Ende singst"
+      ] 
     },
     "sunnyPhase": { 
       "description": "Dein Baby hat verstanden: Die Welt folgt Mustern! Es kann nun vorhersagen, was als Nächstes passiert, und fühlt sich dadurch sicherer. Das Gesicht leuchtet auf, wenn bekannte Abläufe beginnen.", 
@@ -28,8 +46,17 @@ export const TEMPLATES = [
   {
     "week": 12, "weekEnd": 13, "title": "Wenn Bewegung Sinn ergibt",
     "stormPhase": { 
-      "description": "Plötzlich will dein Baby die Kontrolle über seinen Körper. Die Arme und Beine bewegen sich bewusster, aber noch nicht gezielt genug. Es ist frustriert, weil der Kopf noch wackelt, und gleichzeitig voller Bewegungsdrang.", 
-      "symptoms": ["Unruhig, weil der Körper 'mit ihm spricht'", "Starker Bewegungsdrang, will gedreht, geschaukelt, bewegt werden", "Experimentiert mit Armen und Beinen", "Frustriert, weil Kopf noch nicht stabil genug", "Mehr Bewegung im Schlaf, unruhiges Schlafen"] 
+      "description": "Plötzlich will dein Baby die Kontrolle über seinen Körper. Die Arme und Beine bewegen sich bewusster, aber noch nicht gezielt genug. Es ist frustriert, weil der Kopf noch wackelt, und gleichzeitig voller Bewegungsdrang. Dein Baby spürt plötzlich: 'Ich kann etwas tun!' - aber der Körper macht noch nicht alles mit, was es sich vorstellt.", 
+      "symptoms": [
+        "Unruhig, weil der Körper 'mit ihm spricht' - Bewegungsdrang ohne Ziel",
+        "Starker Bewegungsdrang: Will gedreht, geschaukelt, bewegt werden - ständig",
+        "Experimentiert wild mit Armen und Beinen - oft im Schlaf",
+        "Schlafprobleme: Mehr Bewegung im Schlaf, unruhiges Schlafen, häufigeres Aufwachen",
+        "Essverhalten: Trinkt unruhiger, wird schneller abgelenkt, will oft die Position wechseln",
+        "Frustriert, weil Kopf noch nicht stabil genug für das, was es will",
+        "Vermehrtes Weinen/Quengeln: Wut über den noch unkooperativen Körper",
+        "Dreht den Kopf oft hin und her - sucht Orientierung"
+      ] 
     },
     "sunnyPhase": { 
       "description": "Dein Baby hat die Kontrolle über seinen Kopf gewonnen! Die Bewegungen werden flüssiger, gezielter. Es kann nun aktiv an Gesprächen teilnehmen, indem es den Kopf dreht, und genießt die neue körperliche Freiheit.", 
@@ -41,8 +68,17 @@ export const TEMPLATES = [
   {
     "week": 19, "weekEnd": 20, "title": "Aha! Das hat Folgen",
     "stormPhase": { 
-      "description": "Ein revolutionäres Erwachen: Dein Baby entdeckt, dass es etwas tun kann, und dann passiert etwas! Das ist gleichzeitig faszinierend und erschreckend. Es steckt alles in den Mund, greift nach allem, wird frustriert, wenn etwas nicht klappt.", 
-      "symptoms": ["Alles wird in den Mund gesteckt - Ausprobieren durch Lutschen", "Greift wild nach allem, was greifbar ist", "Wird frustriert, wenn etwas nicht sofort funktioniert", "Wirft Dinge absichtlich runter, um zu sehen, was passiert", "Experimentiert mit Geräuschen beim Schreien (laut/leiser)"] 
+      "description": "Ein revolutionäres Erwachen: Dein Baby entdeckt, dass es etwas tun kann, und dann passiert etwas! Das ist gleichzeitig faszinierend und erschreckend. Es steckt alles in den Mund, greift nach allem, wird frustriert, wenn etwas nicht klappt. Die Welt ist plötzlich ein riesiges Experimentierfeld, das es systematisch erforschen muss.", 
+      "symptoms": [
+        "Alles wird in den Mund gesteckt - Ausprobieren durch Lutschen, Kauen, Schmecken",
+        "Greift wild nach allem, was greifbar ist - Haare, Ketten, Gläser, alles ist interessant",
+        "Wird frustriert, wenn etwas nicht sofort funktioniert - etwa wenn ein Spielzeug nicht 'klickt'",
+        "Wirft Dinge absichtlich runter, um zu sehen, was passiert - wieder und wieder",
+        "Schlafprobleme: Wacht auf, weil es neue Bewegungen ausprobieren will",
+        "Essverhalten: Clustern - trinkt häufiger in kurzen Abständen, will dabei oft die Position wechseln",
+        "Vermehrtes Weinen/Quengeln: Wut, wenn experimentelle Handlungen unterbrochen werden",
+        "Experimentiert mit Geräuschen beim Schreien - testet laut/leiser"
+      ] 
     },
     "sunnyPhase": { 
       "description": "Dein Baby ist nun ein kleiner Forscher mit Methode. Es weiß: Wenn ich das mache, passiert das. Diese Erkenntnis öffnet eine neue Welt voller Möglichkeiten und Selbstwirksamkeit.", 

@@ -209,7 +209,7 @@ export default function HomePage() {
                               </h2>
                               <p className="text-[0.98rem] sm:text-base text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
                                 {isToddler 
-                                  ? `${leap.phase} · ${leap.age || `Woche ${week}`}` 
+                                  ? `${leap.age || `Woche ${week}`}` 
                                   : `Woche ${week} · ${leap.title}`}
                               </p>
                             </div>

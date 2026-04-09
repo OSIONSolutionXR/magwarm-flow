@@ -804,5 +804,42 @@ export const TEMPLATES = [
       "Bei Konflikten vermitteln und erklären",
       "💙 Du baust das Fundament für soziale Kompetenz"
     ]
+  },
+
+  // === WOCHEN 76-90: DIE GROSSE RUHEPHASE (KONSOLIDIERUNG) ===
+  {
+    "week": 76, "weekEnd": 90, "title": "Die Konsolidierung",
+    "subtitle": "Woche 76-90: 18-21 Monate / Welt der Worte", "phase": "Ruhephase", "age": "76-90 Wochen (~18-21 Monate)",
+    "stormPhase": {
+      "description": "Ein ruhiger, wichtiger Abschnitt: Dein Kind festigt alles Gelernte. Es gibt wenige akute Sprünge, aber die Entwicklung schreitet stetig voran. Die Sprachexplosion beginnt, und mit ihr kommen neue Herausforderungen.",
+      "symptoms": [
+        "Sprachentwicklung macht Sprünge - Verständnisprobleme",
+        "Will komplexere Sätze bilden, kann aber noch nicht",
+        "Frustriert bei Kommunikationsproblemen",
+        "Emotionale Ausbrüche durch Sprachbarrieren",
+        "Testet Grenzen mit neuen Worten"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Die Welt der Worte öffnet sich! Dein Kind spricht erste Wörter, versteht immer mehr und entwickelt eine echte Kommunikationsfreude. Die Verbundenheit wächst durch das gemeinsame Sprechen.",
+      "abilities": [
+        "Wortschatz wächst auf ~50 Wörter",
+        "Versteht einfache Anweisungen",
+        "Benennt Objekte und Personen",
+        "Zeigt Interesse an Büchern und Geschichten",
+        "Kann erste Bedürfnisse äußern",
+        "Entwickelt Lieblingswörter"
+      ]
+    },
+    "why": "Die Sprachzentren (Brocas und Wernickes Areal) entwickeln sich intensiv. Das Gehirn baut die neuronalen Netzwerke für Sprache auf. Gleichzeitig konsolidieren sich alle vorherigen Entwicklungsschritte.",
+    "actions": [
+      "💚 Jede Phase ist wichtig - auch die 'ruhigen'",
+      "🌟 Bereite dich vor: Die Autonomie-Explosion kommt mit 91!",
+      "Viel sprechen und Worte wiederholen",
+      "Bilderbücher gemeinsam anschauen",
+      "Auf Kommunikationsversuche eingehen",
+      "Geduld bei Unverständlichkeit",
+      "💙 Du bist der wichtigste Sprachlehrer"
+    ]
   }
 ];

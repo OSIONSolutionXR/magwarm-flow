@@ -767,5 +767,42 @@ export const TEMPLATES = [
       "Bei Überforderung Struktur geben",
       "💙 Du begleistst den Weg zur Selbstständigkeit"
     ]
+  },
+
+  // === WOCHEN 61-75: ACHTE RUHEPHASE (KURZ VOR GROSSEM SPRUNG) ===
+  {
+    "week": 61, "weekEnd": 75, "title": "Die Verbundenheit festigen",
+    "subtitle": "Woche 61-75: Wir-Gefühl", "phase": "Ruhephase", "age": "61-75 Wochen (~14-17 Monate)",
+    "stormPhase": {
+      "description": "Ein ruhiger Abschnitt vor dem Sturm: Dein Kind festigt seine emotionale Bindung und bereitet sich auf die große Autonomie-Explosion vor. Es zeigt mehr Wir-Gefühl, versteht sich als Teil der Familie und entwickelt erste soziale Regeln.",
+      "symptoms": [
+        "Sucht ständig Bestätigung durch Blicke",
+        "Möchte gemeinsame Aktivitäten",
+        "Reagiert empfindlich auf familiäre Spannungen",
+        "Entwickelt erste 'Scham' (bei Fehlern)",
+        "Möchte gefallen und positiv auffallen"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Ein kleines Wir-Mensch entsteht! Dein Kind versteht sich als Teil einer Gruppe, zeigt Mitgefühl, teilt begeistert und entwickelt ein echtes Wir-Gefühl. Die emotionale Intelligenz blüht.",
+      "abilities": [
+        "Zeigt echtes Mitgefühl bei traurigen Personen",
+        "Teilt spontan (wenn auch unregelmäßig)",
+        "Versteht einfache soziale Regeln",
+        "Kann kooperativ spielen",
+        "Zeigt Stolz über gemeinsame Erfolge",
+        "Entwickelt erste Freundschaften"
+      ]
+    },
+    "why": "Das limbische System und das soziale Gehirn (Temporallappen) entwickeln sich intensiv. Das Kind baut ein inneres Modell von Beziehungen auf und versteht emotionale Zustände anderer (Theory of Mind beginnt).",
+    "actions": [
+      "💚 Das Wir-Gefühl ist Grundlage für Empathie",
+      "🌟 Bereite dich vor: Die Autonomie-Explosion kommt!",
+      "Gemeinsame Aktivitäten fördern",
+      "Emotionen benennen und besprechen",
+      "Kooperationsspiele anbieten",
+      "Bei Konflikten vermitteln und erklären",
+      "💙 Du baust das Fundament für soziale Kompetenz"
+    ]
   }
 ];

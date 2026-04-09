@@ -219,18 +219,31 @@ export default function BabyDetailPage() {
   const phaseData = isStorm ? leap.stormPhase : leap.sunnyPhase;
   const isToddler = week >= 76;
 
-  // Bestimme das Alters-Label
-  const getAgeLabel = () => {
-    if (week < 5) return '0-4 Wochen';
-    if (week < 52) return `Woche ${week}`;
-    if (week < 104) {
-      const months = Math.floor(week / 4.33);
-      return `${months} Monate`;
+  // Bestimme das Alters-Label - GENAU berechnet vom dueDate
+  const getExactAge = () => {
+    const birthDate = new Date(baby.dueDate);
+    const now = new Date();
+    
+    let years = now.getFullYear() - birthDate.getFullYear();
+    let months = now.getMonth() - birthDate.getMonth();
+    
+    if (months < 0 || (months === 0 && now.getDate() < birthDate.getDate())) {
+      years--;
+      months += 12;
     }
-    const years = Math.floor(week / 52);
-    const remainingMonths = Math.floor((week % 52) / 4.33);
-    if (remainingMonths === 0) return `${years} Jahr${years > 1 ? 'e' : ''}`;
-    return `${years} Jahr${years > 1 ? 'e' : ''}, ${remainingMonths} Monate`;
+    
+    // Auch Tage berücksichtigen für präzise Monatsberechnung
+    if (now.getDate() < birthDate.getDate()) {
+      months--;
+    }
+    
+    if (years === 0) {
+      return `${months} Monate`;
+    } else if (months === 0) {
+      return `${years} Jahr${years > 1 ? 'e' : ''}`;
+    } else {
+      return `${years} Jahr${years > 1 ? 'e' : ''}, ${months} Monate`;
+    }
   };
 
   return (
@@ -257,7 +270,7 @@ export default function BabyDetailPage() {
         >
           <div className="text-center py-4">
             <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
-              {isToddler ? getAgeLabel() : `Woche ${week}`}
+              {isToddler ? getExactAge() : `Woche ${week}`}
             </p>
             <h2 className="text-[1.8rem] sm:text-[2.2rem] font-extrabold text-[hsl(25,22%,16%)] dark:text-white mt-1 leading-[1.1]">
               {leap.title}

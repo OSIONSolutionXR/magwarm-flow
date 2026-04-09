@@ -882,5 +882,46 @@ export const TEMPLATES = [
       "Kompromisse suchen statt zu befehlen",
       "💙 Du erziehst einen selbstständigen Menschen"
     ]
+  },
+
+  // === WOCHEN 116-140: DIE WELT DER SYMBOLE (GROSSER SPRUNG) ===
+  {
+    "week": 116, "weekEnd": 140, "title": "Die Welt der Symbole",
+    "subtitle": "Woche 116-140: 2,5 Jahre / Symbolisches Spiel", "phase": "Großer Sprung", "age": "116-140 Wochen (~2,5 Jahre)",
+    "stormPhase": {
+      "description": "Die Fantasie explodiert! Dein Kind lebt in einer Welt voller Symbole, Vorstellungen und Magie. Es kann real und imaginiert unterscheiden - aber die Grenzen sind fließend. Das ist kreative, aber auch verwirrende Zeit.",
+      "symptoms": [
+        "Lebt in Fantasiewelten",
+        "Unterscheidet oft nicht Realität/Vorstellung",
+        "Hat imaginäre Freunde",
+        "Fürchtet sich vor 'Monstern' unter dem Bett",
+        "Will Geschichten immer und immer wieder",
+        "Reagiert intensiv auf fiktive Charaktere",
+        "Erfindet eigene Regeln und Welten",
+        "Kann realitätsfern wirken"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Ein kleiner Geschichtenerzähler und Symbolversteher entsteht! Dein Kind kann jetzt vortäuschen, Rollen spielen, Geschichten erfinden und die Welt durch Symbole verstehen. Das Trockenwerden ist oft erreicht.",
+      "abilities": [
+        "Symbolisches Spiel (Bananen als Telefon)",
+        "Rollenspiele (Mama/Papa spielen)",
+        "Eigene Geschichten erfinden",
+        "Versteht, dass Bilder etwas repräsentieren",
+        "Kann vorgaukeln und fantasieren",
+        "Erklärt Dinge mit eigenen Worten",
+        "Zeigt Empathie für fiktive Figuren"
+      ]
+    },
+    "why": "Das präfrontale Cortex entwickelt symbolisches Denken. Das Gehirn kann nun abstrakte Repräsentationen verstehen. Das ist die Grundlage für Sprache, Kunst, Mathematik und alles Kulturelle. Ein kognitiver Quantensprung!",
+    "actions": [
+      "💚 Die Fantasie ist ein Zeichen von Intelligenz",
+      "🌟 Bald kommt die 'Warum?'-Phase!",
+      "Viel fantasievoll spielen",
+      "Geschichten erzählen und erfinden",
+      "Rollenspiele ermöglichen",
+      "Bei Ängsten unterscheiden: echt vs. erfunden",
+      "💙 Du öffnest die Tür zur Kreativität"
+    ]
   }
 ];

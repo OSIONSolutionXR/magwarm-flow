@@ -29,13 +29,17 @@ export const TEMPLATES = [
     },
     "why": "Im kleinen Köpfchen entstehen gerade Millionen neue neuronale Verbindungen. Die Sinnesorgane reifen sprunghaft - was vorher unscharf und gedämpft war, wird jetzt plötzlich scharf und intensiv erfahrbar. Die Netzhaut wird empfindlicher für Kontraste, das Gehör nimmt feinere Frequenzunterschiede wahr. Das ist überwältigend für ein so kleines Wesen, das vor wenigen Wochen noch im dunklen, gedämpften Mutterleib war.",
     "actions": [
+      "💚 Zuerst: Diese Phase ist intensiv, aber sie geht vorbei. Du machst das gut.",
+      "🌟 Erinner dich: Es kommen wieder ruhigere Zeiten. Jede Phase ist vorübergehend.",
       "Halte dein Baby ganz nah - Körperkontakt ist jetzt das Wichtigste, Tragetuch oder Baby-Trage sind ideal", 
       "Reduziere äußere Reize: weniger Besuche, leise Umgebung, gedämpftes Licht, keine laute Musik", 
       "Sprich beruhigend, sing leise Lieder, halte die Stimme sanft - deine Stimme ist der beste Trost", 
       "Trage dein Baby viel, am besten in einem Tragetuch oder Tuch - Nahgebundenheit gibt Sicherheit", 
       "Verzichte auf neue Erfahrungen - vertraute Routinen geben Halt in der überwältigenden Welt",
+      "🌈 Nicht alle Symptome müssen bei deinem Baby auftreten - jedes Kind ist anders",
       "Achte auf deine eigenen Grenzen - ein gestresstes Baby spürt deine Anspannung",
-      "Biete Haut an Haut Kontakt an - das reguliert Herzschlag und Atmung deines Babys"
+      "Biete Haut an Haut Kontakt an - das reguliert Herzschlag und Atmung deines Babys",
+      "💙 Du bist genau die richtige Mutter/der richtige Vater für dein Kind - vertraue darauf"
     ]
   },
   {
@@ -68,13 +72,17 @@ export const TEMPLATES = [
     },
     "why": "Das Gehirn beginnt zu erkennen, dass bestimmte Dinge zusammengehören und sich wiederholen. Diese Mustererkennung ist der Grundstein für das Verständnis von Ursache und Wirkung. Das Baby lernt: Wenn Mama lächelt, bedeutet das Zuwendung. Wenn der gleiche Ton ertönt, kommt das Essen. Das ist ein fundamentaler kognitiver Sprung.",
     "actions": [
+      "💚 Atme durch: Diese Phase fordert Geduld, aber sie ist wichtig für die Entwicklung.",
+      "🌟 Die nächste sonnige Phase kommt bestimmt - sieh es als Investition in das Vertrauen deines Babys.",
       "Etabliere tägliche Rituale: Gleiche Abfolge beim Schlafenlegen, Baden, Füttern - Reihung gibt Sicherheit", 
       "Zeige deinem Baby bewusst einfache Muster: Kreise zeichnen, Klopf-Rhythmen, Licht an-aus", 
       "Singe oft dieselben Lieder mit demselben Tonfall - Kinderlieder mit Wiederholungen sind ideal", 
       "Wiederhole bekannte Spiele (Kuckuck, Pat-a-cake) immer und immer wieder - dein Baby liebt die Vorhersehbarkeit", 
       "Gib deinem Baby Zeit, Muster selbst zu entdecken - unterbreche nicht zu schnell",
+      "🌈 Es ist okay, wenn mal eine Routine nicht klappt - niemand ist perfekt, auch nicht du",
       "Nutze die Kraft der Wiederholung beim Einschlafen - immer die gleiche Abfolge",
-      "Freue dich mit deinem Baby über erkannte Muster - deine Bestätigung stärkt das Lernen"
+      "Freue dich mit deinem Baby über erkannte Muster - deine Bestätigung stärkt das Lernen",
+      "💙 Vertraue auf dich - dein Baby spürt, dass du dich um es kümmerst"
     ]
   },
   {
@@ -107,13 +115,17 @@ export const TEMPLATES = [
     },
     "why": "Die Muskulatur im Hals- und Schulterbereich hat an Kraft gewonnen. Die propriozeptive Wahrnehmung - das Körpergefühl - entwickelt sich. Die Koordination zwischen Kopf, Augen und Körper verbessert sich enorm. Dein Baby kann nun aktiv sein Umfeld erkunden, statt passiv zu liegen. Das ist der Beginn der motorischen Selbstständigkeit.",
     "actions": [
+      "💚 Diese unruhige Phase zeigt: Dein Baby entwickelt sich genau wie es soll. Das ist ein gutes Zeichen!",
+      "🌟 Bald hast du ein Baby, das seinen Kopf stolz hochhält - der Moment kommt schneller als du denkst.",
       "Mehr Bauchlage ermöglichen - das stärkt Nacken und Rücken und ist wichtig für die Entwicklung", 
       "Reagiere auf die neuen Laute mit Nachahmen und Gesprächen - dein Baby 'plaudert' jetzt mit dir", 
       "Unterstütze den Kopf beim Tragen weiterhin, aber weniger als vorher - gibt dem Baby Sicherheit", 
       "Biete Greifmöglichkeiten: Haare, Ketten, weiche Spielzeuge - alles ist faszinierend", 
       "Lass dein Baby viel auf dem Bauch spielen (Tummy Time) - mindestens 30 Minuten verteilt über den Tag",
+      "🌈 Nicht jedes Baby hat das gleiche Tempo - manche brauchen mehr Zeit, und das ist völlig okay",
       "Spiegel dich mit deinem Baby - es erkennt sich jetzt und ist fasziniert",
-      "Unterstütze die ersten Rollversuche - aber nicht zwingen, jedes Baby hat sein eigenes Tempo"
+      "Unterstütze die ersten Rollversuche - aber nicht zwingen, jedes Baby hat sein eigenes Tempo",
+      "💙 Du begleitest dein Baby perfekt durch diese Entwicklungsschritte"
     ]
   },
   {
@@ -146,13 +158,17 @@ export const TEMPLATES = [
     },
     "why": "Das Gehirn knüpft die ersten bewussten Verknüpfungen zwischen Handeln und Ergebnis im präfrontalen Cortex. 'Ich schüttle die Rassel - es macht Geräusche.' Das ist der Beginn von Ursache-Wirkung-Denken und der Grundlage für späteres Problemlösen. Das Baby erlebt sich als handelndes Wesen, nicht mehr als passiver Beobachter.",
     "actions": [
+      "💚 Diese Experimentierfreude zeigt: Dein Baby ist neugierig und intelligent. Das sind wunderbare Eigenschaften!",
+      "🌟 Bald wird dein Baby verstehen, was Konsequenzen bedeuten - das ist ein riesiger Entwicklungsschritt.",
       "Biete viel Greifbares an: weiche Bälle, Beißringe, Tücher - verschiedene Texturen sind ideal", 
       "Erlaube die Mund-Exploration - das ist normale Forschung, aber achte auf Kleinteile", 
       "Feiere kleine Erfolge: 'Schau, du hast die Rassel geschüttelt!' - deine Bestätigung ist wichtig", 
       "Lass dein Baby experimentieren - auch wenn es Dinge wirft, es lernt Physik", 
       "Reagiere auf die Ursache-Wirkung-Spiele deines Babys - zeige weitere Möglichkeiten",
+      "🌈 Es ist völlig normal, dass manche Experimente nerven - du bist kein schlechter Elternteil, wenn du mal genervt bist",
       "Spiele Kuckuck und Versteckspiele - das stärkt das Verständnis von Objektpermanenz",
-      "Gib deinem Baby Zeit zum Selbstentdecken - nicht immer unterhalten, Beobachten ermöglichen"
+      "Gib deinem Baby Zeit zum Selbstentdecken - nicht immer unterhalten, Beobachten ermöglichen",
+      "💙 Du ermöglichst deinem Baby, die Welt zu verstehen - das ist wertvoll und wichtig"
     ]
   },
   {
@@ -185,13 +201,17 @@ export const TEMPLATES = [
     },
     "why": "Das Gehirn kategorisiert nun bewusst: 'Das ist meine Bezugsperson' vs. 'Das ist ein Fremder'. Gleichzeitig entwickelt sich das Konzept der Objektpermanenz - das Verständnis, dass Dinge und Personen weiterexistieren, auch wenn sie nicht sichtbar sind. Das ist ein kognitiver Quantensprung und die Grundlage für sichere Bindung.",
     "actions": [
+      "💚 Dieses starke Anklammern zeigt eine gesunde Bindung zu dir - das ist ein Kompliment, auch wenn es anstrengend ist!",
+      "🌟 Es wird wieder entspannter. Das Fremdeln ist eine Phase, keine permanente Eigenschaft.",
       "Verabschiede dich rituell, auch wenn es Weinen gibt - das gibt Sicherheit und Vertrauen", 
       "Komm zurück mit Freude, nicht mit Schuldgefühlen - deine Zuversicht überträgt sich", 
       "Respektiere das Fremdeln - zwinge dein Baby nicht zu Fremden, es ist ein Schutzmechanismus", 
       "Spiele Kuckuck: Versteck dich kurz und zeig dich wieder - stärkt das Vertrauen in deine Rückkehr", 
       "Bleibe in neuen Situationen nah - deine Nähe gibt Halt, erst dann erkunden",
+      "🌈 Es ist okay, wenn du manchmal frustriert bist über das ständige Anklammern - das ist normal",
       "Beteilige dich nicht am Gekuscheltwerde von Fremden - du schützt damit dein Baby",
-      "Gewöhne langsam an neue Betreuungspersonen - vorher gemeinsam Zeit verbringen"
+      "Gewöhne langsam an neue Betreuungspersonen - vorher gemeinsam Zeit verbringen",
+      "💙 Deine Nähe ist das größte Geschenk für dein Baby - es vertraut dir bedingungslos"
     ]
   },
   {
@@ -224,13 +244,17 @@ export const TEMPLATES = [
     },
     "why": "Das Gehirn bildet abstrakte Konzepte und Kategorien. Es versteht, dass Dinge Eigenschaften haben, die sie zu einer Gruppe machen - auch wenn sie unterschiedlich aussehen. Ein Taxi und ein Feuerwehrauto sind beides Autos. Diese Kategorisierung ist fundamental für Sprache und Denken. Die Welt wird dadurch strukturierter und begreifbarer.",
     "actions": [
+      "💚 Diese Sortierwut zeigt: Dein Baby wird zum kleinen Logiker - ein wunderbares Zeichen der Intelligenz!",
+      "�st Die Ordnung wird bald weniger wichtig - genieße, wie dein Baby die Welt begreift.",
       "Biete Sortierspiele an: Formen, Farben, Größen - Steckboxen, Sortierbecher sind ideal", 
       "Benenne Kategorien bewusst: 'Schau, das ist auch ein Hund! Ein kleiner Hund.'", 
       "Schaffe Platz zum krabbeln und robben - sicheres Umfeld zum Entdecken", 
       "Lies Bilderbücher mit klaren Kategorien - Tiere, Fahrzeuge, Alltagsgegenstände", 
       "Spiele 'Was passt nicht?' - einfache Kategorisierungen, die das Denken anregen",
+      "🌈 Das Chaos in deiner Wohnung ist temporär - die Entwicklung deines Babys ist es wert",
       "Ordne Spielzeug mit deinem Baby zusammen - 'Alle Autos hierher, alle Tiere dorthin'",
-      "Erkläre Unterschiede: 'Das ist groß, das ist klein' - erste Vergleiche"
+      "Erkläre Unterschiede: 'Das ist groß, das ist klein' - erste Vergleiche",
+      "💙 Du hilfst deinem Baby, die Welt zu verstehen - das ist wertvolle Bildungsarbeit"
     ]
   },
   {
@@ -263,13 +287,17 @@ export const TEMPLATES = [
     },
     "why": "Das Gehirn speichert Sequenzen als mentale Programme und Skripte. Es versteht nicht nur einzelne Schritte, sondern deren Zusammenhang und Reihenfolge. Das ist die Grundlage für planvolles Handeln, Selbstständigkeit und das Verständnis von Zeit. Das Baby wird vom chaotischen Tun zum zielgerichteten Handeln.",
     "actions": [
+      "💚 Diese Sturheit zeigt Entschlossenheit - dein Baby will lernen und das ist bewundernswert!",
+      "🌟 Bald kann dein Kind selbstständig essen und sich anziehen - der Fortschritt ist enorm.",
       "Lass dein Baby helfen - auch wenn es länger dauert, die Selbstständigkeit ist wichtiger", 
       "Etabliere klare Ritualabfolgen - gleiche Reihenfolge beim Anziehen, Essen, Schlafengehen", 
       "Biete Bauklötze und Stapelspiele an - verschiedene Größen und Formen zum Ausprobieren", 
       "Spiele 'Was kommt als Nächstes?'-Rätsel - die Erwartungshaltung stärkt das Lernen", 
       "Feier, wenn Sequenzen gelingen - 'Schau, du hast es geschafft!'",
+      "🌈 Es ist okay, wenn du manchmal ungeduldig wirst - das ist normal bei der 100. Wiederholung",
       "Nimm Zeit für die selbst gewählte Reihenfolge - auch wenn sie ungewöhnlich ist",
-      "Erkläre was du tust: 'Zuerst ziehen wir den Pullover an, dann die Hose'"
+      "Erkläre was du tust: 'Zuerst ziehen wir den Pullover an, dann die Hose'",
+      "💙 Du föderst die Unabhängigkeit deines Babys - das ist langfristig wertvoll"
     ]
   },
   {
@@ -302,13 +330,17 @@ export const TEMPLATES = [
     },
     "why": "Das Gehirn versteht: Programme können variieren und haben trotzdem ein gemeinsames Ziel. 'Ich kann die Schuhe vor oder nach dem Mantel anziehen - beides führt zum Ziel.' Das ist abstraktes Denken und Flexibilität. Das Kind erkennt sich als handelndes Subjekt mit eigenen Vorlieben und Entscheidungsspielraum.",
     "actions": [
+      "💚 Das viele 'Nein' bedeutet 'Ich bin' - dein Baby entwickelt eine eigene Identität. Das ist wichtig!",
+      "🌟 Diese Phase wird vorbeigehen. Bald hast du ein selbstbewusstes Kind, das Entscheidungen treffen kann.",
       "Biete echte Wahlmöglichkeiten an: 'Apfel oder Banane?' - limitiere auf 2-3 Optionen", 
       "Lass dein Baby helfen - Autonomie stärken, auch wenn es länger dauert", 
       "Gemeinsam aufräumen: Ein Ritual mit Flexibilität - zeige verschiedene Wege", 
       "Respektiere Entscheidungen, wo möglich - auch kleine Kinder haben Vorlieben", 
       "Erkläre Regeln einfach und konsequent - liebevoll, aber klar",
+      "🌈 Manche Tage sind einfach nur anstrengend - das ist okay, es ist eine Phase",
       "Vermeide Machtkämpfe durch rechtzeitige Wahlmöglichkeiten - vor dem Konflikt",
-      "Lobe Selbstständigkeit: 'Schön, dass du das allein gemacht hast!'"
+      "Lobe Selbstständigkeit: 'Schön, dass du das allein gemacht hast!'",
+      "💙 Du hilfst deinem Baby, ein selbstständiger Mensch zu werden - das ist deine wichtigste Aufgabe"
     ]
   },
   {
@@ -341,13 +373,17 @@ export const TEMPLATES = [
     },
     "why": "Das Gehirn formt Regelwerke und testet sie systematisch. 'Wenn ich weine, kommt Mama' - aber auch: 'Wenn ich weine und Mama sagt Nein, kommt sie trotzdem nicht.' Das ist soziales Lernen durch Erfahrung und Feedback. Das präfrontale Cortex entwickelt sich und ermöglicht erstes strategisches Denken.",
     "actions": [
+      "💚 Dieses Testen ist wichtig - dein Baby lernt soziale Regeln zu verstehen. Sei geduldig!",
+      "🌟 Bald wird dein Kind verstehen, warum Regeln wichtig sind - nicht nur 'weil ich es sage'.",
       "Sei konsequent - Regeln brauchen Beständigkeit, Ausnahmen verwirren", 
       "Erkläre einfach: 'Wenn... dann...' - logische Zusammenhänge verständlich machen", 
       "Verstärke positives Verhalten bewusst - 'Schön, wie du das gemacht hast!'", 
       "Erlaube Fehler - daraus lernt man, Fehler sind Experimente", 
       "Zeige emotionale Konsequenzen: 'Schau, das hat sie traurig gemacht'",
+      "🌈 Es ist normal, dass Grenzertestungen nerven - du bist kein schlechter Elternteil, wenn du mal streng bist",
       "Bleibe ruhig bei Grenzertestungen - deine Ruhe gibt Orientierung",
-      "Lobe Selbstkontrolle: 'Toll, wie du gewartet hast!'"
+      "Lobe Selbstkontrolle: 'Toll, wie du gewartet hast!'",
+      "💙 Du baust die Grundlage für ein verantwortungsvolles Kind - das ist langfristig wertvoll"
     ]
   },
   {
@@ -380,16 +416,19 @@ export const TEMPLATES = [
     },
     "why": "Das Gehirn sieht Zusammenhänge zwischen Menschen und versteht soziale Beziehungen. 'Wenn Mama traurig ist, bin ich auch betroffen.' Das ist der Beginn von sozialem Bewusstsein und echter zwischenmenschlicher Verbundenheit. Spiegelneuronen ermöglichen das Nachempfinden fremder Gefühle.",
     "actions": [
+      "💚 Diese Empathie ist ein Geschenk - dein Baby entwickelt Herz und soziales Bewusstsein.",
+      "🌟 Du ziehst ein fürsorgliches, mitfühlendes Kind groß - das ist eine wunderbare Eigenschaft.",
       "Benenne Gefühle bewusst: 'Du siehst traurig aus, was ist passiert?'", 
       "Erkläre Familienbeziehungen einfach - 'Das ist Oma, Papas Mama'", 
       "Ermögliche Rollenspiele (Puppen, Figuren) - soziales Verhalten üben", 
       "Zeige eigene Gefühle authentisch - aber ruhig und erklärend", 
       "Respektiere die wachsende Sensibilität - kein Sarkasmus, keine unklaren Botschaften",
+      "🌈 Es ist okay, wenn dein Kind manchmal 'zu viel' fühlt - das ist Empathie, keine Schwäche",
       "Lobe Hilfsbereitschaft: 'Toll, wie du deiner Schwester geholfen hast!'",
-      "Schaffe harmonische Familienmomente - gemeinsame Rituale stärken das Wir-Gefühl"
+      "Schaffe harmonische Familienmomente - gemeinsame Rituale stärken das Wir-Gefühl",
+      "💙 Du ziehst ein Kind mit Herz groß - das ist das Wertvollste, was du geben kannst"
     ]
   },
-  // AB HIER: NEUE PHASEN FÜR DAS 2. UND 3. JAHR
   {
     "week": 76, "weekEnd": 90, "title": "Die Konsolidierung",
     "subtitle": "Welt der Worte", "phase": "Jahr 2", "age": "18-21 Monate",
@@ -421,13 +460,17 @@ export const TEMPLATES = [
     },
     "why": "Die Sprachzentren im Gehirn (Broca- und Wernicke-Areal) wachsen explosionsartig. Millionen neue Synapsen werden gebildet. Das Verständnis läuft dem Sprechen voraus - was zu einer typischen Frustrationsphase führt, bis das Sprechen nachzieht. Diese Phase ist der Sprung vom Baby zum sprechenden Kind.",
     "actions": [
+      "💚 Die Kommunikationsfrustration ist hart, aber temporär - bald spricht dein Kind mit dir!",
+      "🌟 Bald hast du echte Gespräche mit deinem Kind - die Geduld lohnt sich jetzt schon.",
       "Viel lesen und vorlesen - Sprache baden, Bilder benennen",
       "Auf Augenhöhe sprechen, deutlich artikulieren - deine Stimme ist das Vorbild",
       "Wiederholen, was dein Kind sagt und ergänzen - 'Ja, das ist ein großer roter Hund!'",
       "Geduld haben bei Wutanfällen aus Sprachfrustration - es kann sich nicht mitteilen",
       "Nicht korrigieren, sondern vormachen - 'Hund' statt 'Nein, das ist ein Hund'",
+      "🌈 Es ist okay, wenn du manchmal nicht verstehst - dein Kind ist auch frustriert",
       "Gespräche führen, auch wenn es nur Einwortsätze sind - respektiere jeden Versuch",
-      "Lieder mit Gebärden singen - 'Itsy Bitsy Spider', 'Kopf, Schulter, Knie und Fuß'"
+      "Lieder mit Gebärden singen - 'Itsy Bitsy Spider', 'Kopf, Schulter, Knie und Fuß'",
+      "💙 Du begleitest den Sprung vom Baby zum sprechenden Kind - das ist magisch"
     ]
   },
   {
@@ -461,13 +504,17 @@ export const TEMPLATES = [
     },
     "why": "Das Präfrontalcortex entwickelt sich rasant. Das Selbstbewusstsein erwacht. Gleichzeitig ist die emotionale Regulation noch nicht entwickelt - daher die extremen Ausschläge. Diese Phase ist essentiell für die Persönlichkeitsentwicklung und die Ausbildung einer gesunden Autonomie. 'Nein' bedeutet 'Ich bin'.",
     "actions": [
+      "💚 Das 'Nein' bedeutet 'Ich bin' - dein Kind entwickelt seine Identität. Das ist wichtig und normal!",
+      "🌟 Diese Phase ist intensiv, aber sie wird vorbeigehen. Bald hast du ein selbstbewusstes Kind.",
       "Biete echte Wahlen an - limitiere Optionen auf 2-3: 'Apfel oder Banane?'",
       "Gib Zeit für Selbstständigkeit - auch wenn es länger dauert, Geduld ist wichtig",
       "Wutanfälle nicht persönlich nehmen - begleiten, nicht bestrafen, bleibe ruhig",
       "Klare, konsequente Grenzen setzen - liebevoll, aber fest und vorhersehbar",
       "Selbst Zeitouts nehmen wenn nötig - du bist kein Roboter, Pausen sind okay",
+      "🌈 Es ist okay, wenn manche Tage anstrengend sind - das ist die Trotzphase, keine Fehler von dir",
       "Lobe Selbstständigkeit: 'Schön, dass du das allein gemacht hast!'",
-      "Vermeide Machtkämpfe durch Wahlmöglichkeiten - vor dem Konflikt lenken"
+      "Vermeide Machtkämpfe durch Wahlmöglichkeiten - vor dem Konflikt lenken",
+      "💙 Du begleitest dein Kind durch einen wichtigen Entwicklungsschritt - das ist wertvoll"
     ]
   },
   {
@@ -501,13 +548,17 @@ export const TEMPLATES = [
     },
     "why": "Die Fähigkeit zu symbolischem Denken ist ein Meilenstein der menschlichen Entwicklung. Sie ermöglicht Sprache, Kunst, Kultur und abstraktes Denken. Gleichzeitig ist das Unterscheiden zwischen echt und erfunden noch nicht vollständig entwickelt - daher die Ängste. Das Kind lebt in zwei Welten gleichzeitig.",
     "actions": [
+      "💚 Die Fantasie ist ein Geschenk - dein Kind entwickelt Kreativität und abstraktes Denken.",
+      "🌟 Bald unterscheidet dein Kind zwischen Fantasie und Realität - die Ängste werden weniger.",
       "Fantasiespiele ermutigen und mitspielen - 'Oh, ein Telefon! Für wen ist das?'",
       "Ängste ernst nehmen und benennen - 'Das ist ein Schatten vom Baum draußen'",
       "Nicht 'Das gibt es nicht' sagen - für das Kind ist es real, zeige Alternativen",
       "Geschichten erfinden zusammen - 'Und was passiert dann?'",
       "Rituale für die Nacht etablieren - gegen die Angst, Schutzmonster, Glücksbringer",
+      "🌈 Es ist okay, wenn die Fantasie manchmal überhand nimmt - das ist Entwicklung",
       "Lobe Kreativität: 'Was für eine tolle Idee, aus dem Stock ein Zauberstab zu machen!'",
-      "Biete Material für Fantasy-Spiele an - Decken, Kartons, Verkleidungskiste"
+      "Biete Material für Fantasy-Spiele an - Decken, Kartons, Verkleidungskiste",
+      "💙 Du begleitest den Beginn kreativen Denkens - das ist faszinierend und wertvoll"
     ]
   },
   {
@@ -541,13 +592,17 @@ export const TEMPLATES = [
     },
     "why": "Das Gehirn ist auf 85% seiner Endgröße angelangt. Die Grundlagen für logisches Denken, Empathie, Sprache und soziale Kompetenz sind gelegt. Das Kind ist bereit für die nächste große Etappe: die Schule und das Leben in größeren Gruppen. Die 'Warum'-Phase zeigt das erwachende Verständnis für komplexe Zusammenhänge.",
     "actions": [
+      "💚 Die endlosen Warum-Fragen zeigen ein erwachendes Verständnis für die Welt - das ist wunderbar!",
+      "🌟 Dein Kind ist bereit für den nächsten Schritt - Kindergarten, neue Freunde, neue Abenteuer.",
       "Warum-Fragen ernst nehmen - auch wenn es mühsam wird, Geduld haben",
       "Gemeinsam nach Antworten suchen - Bücher, Internet, Experimente, Entdecken",
       "Rituale respektieren - sie geben Sicherheit in einer komplexen Welt",
       "Kindergarten-Besuche planen - langsame Eingewöhnung, Besuche vorher",
       "Die Entwicklung feiern - 'Schau, wie viel du schon kannst!'",
+      "🌈 Es ist okay, wenn du manchmal keine Antwort hast - gemeinsam Suchen ist auch wertvoll",
       "Bei komplexen Fragen: 'Was denkst du?' - die eigenen Gedanken ernst nehmen",
-      "Lobe soziales Verhalten: 'Toll, wie du geteilt hast!'"
+      "Lobe soziales Verhalten: 'Toll, wie du geteilt hast!'",
+      "💙 Du hast drei wunderbare Jahre begleitet - das ist eine Leistung, auf die du stolz sein kannst"
     ]
   }
 ];

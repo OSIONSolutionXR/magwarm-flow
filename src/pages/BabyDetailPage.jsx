@@ -5,6 +5,7 @@ import { ArrowLeft, Brain, Sprout, Lightbulb, Calendar, Cloud, ChevronDown, Hear
 import { Card, CardContent } from '../components/Card';
 import { PopCard, PopButton } from '../components/PopEffect';
 import { TEMPLATES } from './BabyDetailPage_TEMPLATES.js';
+import NotesSection from '../components/NotesSection';
 
 const TABS = [
   { id: 1, label: 'Zustand', icon: Cloud, color: 'text-sky-500' },
@@ -324,6 +325,11 @@ export default function BabyDetailPage() {
                   
                   {/* Sicherheitshinweis bei Storm-Phasen - Klappbar */}
                   {isStorm && <SafetyNotice />}
+                  
+                  {/* Notizen Bereich */}
+                  <div className="pt-6 border-t border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)]">
+                    <NotesSection baby={baby} currentWeek={week} />
+                  </div>
                 </div>
               )}
 

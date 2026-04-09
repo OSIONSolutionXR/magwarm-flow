@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { ArrowLeft, Brain, Sprout, Lightbulb, Calendar, Cloud, ChevronDown, Heart, Phone, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Brain, Sprout, Lightbulb, Users, Cloud, ChevronDown, Heart, Phone, AlertTriangle } from 'lucide-react';
 import { Card, CardContent } from '../components/Card';
 import { PopCard, PopButton } from '../components/PopEffect';
 import { TEMPLATES } from './BabyDetailPage_TEMPLATES.js';
@@ -10,11 +10,11 @@ import CommunitySection from '../components/CommunitySection';
 import TimelineSection from '../components/TimelineSection';
 
 const TABS = [
-  { id: 1, label: 'Zustand', icon: Cloud, color: 'text-sky-500' },
-  { id: 2, label: 'Warum', icon: Brain, color: 'text-violet-500' },
-  { id: 3, label: 'Lernt', icon: Sprout, color: 'text-green-500' },
-  { id: 4, label: 'Tun', icon: Lightbulb, color: 'text-amber-500' },
-  { id: 5, label: 'Zeit', icon: Calendar, color: 'text-rose-500' },
+  { id: 0, label: 'Zustand', icon: Cloud, color: 'text-sky-500' },
+  { id: 1, label: 'Warum', icon: Brain, color: 'text-violet-500' },
+  { id: 2, label: 'Lernt', icon: Sprout, color: 'text-green-500' },
+  { id: 3, label: 'Tun', icon: Lightbulb, color: 'text-amber-500' },
+  { id: 4, label: 'Erfahrungen', icon: Users, color: 'text-rose-500' },
 ];
 
 function getCurrentWeek(dueDate) {
@@ -196,7 +196,7 @@ function SafetyNotice() {
 
 export default function BabyDetailPage() {
   const { id } = useParams();
-  const [activeTab, setActiveTab] = useState(1);
+  const [activeTab, setActiveTab] = useState(0);
   const [baby, setBaby] = useState(null);
 
   useEffect(() => {
@@ -301,47 +301,21 @@ export default function BabyDetailPage() {
 
           <Card>
             <CardContent>
-              {activeTab === 1 && (
+              {activeTab === 0 && (
                 <div className="space-y-6">
-                  <div className="flex items-start gap-5">
-                    <div className="flex-shrink-0 text-5xl">{isStorm ? '🌩️' : '☀️'}</div>
-                    <div>
-                      <h3 className="text-[1.35rem] font-bold text-[hsl(25,22%,16%)] dark:text-white mb-2">
-                        {isStorm ? 'Stürmische Phase' : 'Sonnige Phase'}
-                      </h3>
-                      <p className="text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] leading-relaxed">
-                        {phaseData.description}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  {isStorm && (
-                    <div className="pt-4 border-t border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)]">
-                      <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-3 font-medium">Typische Anzeichen:</p>
-                      <div className="flex flex-wrap gap-2">
-                        {leap.stormPhase.symptoms.map((s, i) => (
-                          <span key={i} className="px-3 py-1.5 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm">
-                            {s}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  <TimelineSection currentWeek={week} />
                   
                   {/* Notizen Bereich */}
                   <div className="pt-6 border-t border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)]">
                     <NotesSection baby={baby} currentWeek={week} />
                   </div>
                   
-                  {/* Community Bereich */}
-                  <CommunitySection currentWeek={week} />
-                  
                   {/* Sicherheitshinweis bei Storm-Phasen - Klappbar - GANZ UNTEN */}
                   {isStorm && <SafetyNotice />}
                 </div>
               )}
 
-              {activeTab === 2 && (
+              {activeTab === 1 && (
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#FFE8DC] to-[#FFD2BE] text-[hsl(17,75%,56%)]">
@@ -355,7 +329,7 @@ export default function BabyDetailPage() {
                 </div>
               )}
 
-              {activeTab === 3 && (
+              {activeTab === 2 && (
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-100 to-green-200 text-green-600">
@@ -374,7 +348,7 @@ export default function BabyDetailPage() {
                 </div>
               )}
 
-              {activeTab === 4 && (
+              {activeTab === 3 && (
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-rose-100 to-rose-200 text-rose-500">
@@ -395,8 +369,10 @@ export default function BabyDetailPage() {
                 </div>
               )}
 
-              {activeTab === 5 && (
-                <TimelineSection currentWeek={week} />
+              {activeTab === 4 && (
+                <div className="space-y-6">
+                  <CommunitySection currentWeek={week} />
+                </div>
               )}
             </CardContent>
           </Card>

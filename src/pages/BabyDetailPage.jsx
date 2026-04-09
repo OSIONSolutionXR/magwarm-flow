@@ -395,24 +395,12 @@ export default function BabyDetailPage() {
               )}
 
               {activeTab === 5 && (
-                <div className="space-y-4">
-                  {/* ALLE PHASEN BUTTON - DIREKT ÜBER ZEITLINIE */}
+                <div className="space-y-6">
                   <Link to="/leaps" className="block">
-                    <motion.div 
-                      className="relative overflow-hidden p-5 bg-gradient-to-br from-[hsl(17,75%,56%)] to-[hsl(18,85%,58%)] rounded-2xl text-white shadow-[0_8px_30px_-10px_rgba(233,110,75,0.5)] cursor-pointer group"
-                      whileHover={{ scale: 1.02, y: -2 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                        initial={{ x: "-100%" }}
-                        whileHover={{ x: "100%" }}
-                        transition={{ duration: 0.6 }}
-                      />
-                      
-                      <div className="relative flex items-center justify-between">
+                    <div className="p-5 bg-gradient-to-br from-[hsl(17,75%,56%)] to-[hsl(18,85%,58%)] rounded-2xl text-white shadow-lg">
+                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
-                          <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
+                          <div className="p-3 bg-white/20 rounded-xl">
                             <span className="text-2xl">📊</span>
                           </div>
                           <div>
@@ -420,31 +408,29 @@ export default function BabyDetailPage() {
                             <p className="text-white/80 text-sm">Woche 1-156 im Überblick</p>
                           </div>
                         </div>
-                        <motion.span 
-                          className="text-2xl"
-                          animate={{ x: [0, 5, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                        >
-                          →
-                        </motion.span>
+                        <span className="text-2xl">→</span>
                       </div>
-                    </motion.div>
+                    </div>
                   </Link>
 
                   <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 text-blue-500">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
                       <Calendar className="h-6 w-6" />
                     </div>
-                    <h3 className="text-[1.35rem] font-bold text-[hsl(25,22%,16%)] dark:text-white">Zeitlinie</h3>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">Zeitlinie</h3>
                   </div>
+                  
                   <div className="space-y-3 pl-[3.75rem]">
-                    <div className="p-5 bg-rose-50 dark:bg-rose-900/20 rounded-xl border-2 border-[hsl(17,75%,56%)]/20">
-                      <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-1">Aktuelle Phase</p>
-                      <p className="font-bold text-[hsl(25,22%,16%)] dark:text-white text-lg">
-                        {leap.title}
+                    <div className="p-5 bg-rose-50 dark:bg-rose-900/20 rounded-xl border-2 border-rose-200 dark:border-rose-800">
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Aktuelle Phase</p>
+                      <p className="font-bold text-gray-900 dark:text-white text-lg">
+                        {leap.title || 'Unbekannte Phase'}
                       </p>
-                      <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mt-1">
-                        {isToddler ? getAgeLabel() : `Woche ${leap.week}–${leap.weekEnd}`}
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        {isToddler 
+                          ? (getAgeLabel ? getAgeLabel() : getExactAge()) 
+                          : `Woche ${leap.week || 0}–${leap.weekEnd || 0}`
+                        }
                       </p>
                     </div>
                     
@@ -455,14 +441,13 @@ export default function BabyDetailPage() {
                       </p>
                     </div>
                     
-                    {leap.weekEnd < 156 && (
-                      <div className="p-4 bg-gray-50 dark:bg-[hsl(210,20%,10%)]/50 rounded-xl">
-                        <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-1">Nächste Phase</p>
-                        <p className="font-medium text-[hsl(25,22%,16%)] dark:text-white">
-                          {(() => {
-                            const nextLeap = TEMPLATES.find(l => l.week > week);
-                            return nextLeap ? `${nextLeap.title} (in ${nextLeap.week - week} Wochen)` : 'Bereit für den Kindergarten!';
-                          })()}
+                    {leap.weekEnd && leap.weekEnd < 156 && (
+                      <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Nächste Phase</p>
+                        <p className="font-medium text-gray-900 dark:text-white">
+                          {TEMPLATES.find(l => l.week > week) 
+                            ? `${TEMPLATES.find(l => l.week > week).title} (in ${TEMPLATES.find(l => l.week > week).week - week} Wochen)` 
+                            : 'Bereit für den Kindergarten!'}
                         </p>
                       </div>
                     )}

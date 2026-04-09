@@ -394,7 +394,7 @@ export default function BabyDetailPage() {
               {activeTab === 5 && (
                 <div className="space-y-4">
                   {/* ALLE PHASEN BUTTON - DIREKT ÜBER ZEITLINIE */}
-                  <Link to="/leaps">
+                  <Link to="/leaps" className="block">
                     <motion.div 
                       className="relative overflow-hidden p-5 bg-gradient-to-br from-[hsl(17,75%,56%)] to-[hsl(18,85%,58%)] rounded-2xl text-white shadow-[0_8px_30px_-10px_rgba(233,110,75,0.5)] cursor-pointer group"
                       whileHover={{ scale: 1.02, y: -2 }}
@@ -436,16 +436,30 @@ export default function BabyDetailPage() {
                   </div>
                   <div className="space-y-3 pl-[3.75rem]">
                     <div className="p-5 bg-rose-50 dark:bg-rose-900/20 rounded-xl border-2 border-[hsl(17,75%,56%)]/20">
-                      <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
+                      <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-1">Aktuelle Phase</p>
+                      <p className="font-bold text-[hsl(25,22%,16%)] dark:text-white text-lg">
+                        {leap.title}
+                      </p>
+                      <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mt-1">
                         {isToddler ? getAgeLabel() : `Woche ${leap.week}–${leap.weekEnd}`}
                       </p>
                     </div>
                     
-                    {leap.week < 156 && (
+                    <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+                      <p className="text-sm text-blue-600 dark:text-blue-400 mb-1">Aktuelle Woche</p>
+                      <p className="font-bold text-blue-900 dark:text-blue-200 text-2xl">
+                        Woche {week}
+                      </p>
+                    </div>
+                    
+                    {leap.weekEnd < 156 && (
                       <div className="p-4 bg-gray-50 dark:bg-[hsl(210,20%,10%)]/50 rounded-xl">
                         <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-1">Nächste Phase</p>
                         <p className="font-medium text-[hsl(25,22%,16%)] dark:text-white">
-                          {leap.weekEnd >= 156 ? 'Bereit für den Kindergarten!' : `Nächste Phase in ${leap.weekEnd - week + 1} Wochen`}
+                          {(() => {
+                            const nextLeap = TEMPLATES.find(l => l.week > week);
+                            return nextLeap ? `${nextLeap.title} (in ${nextLeap.week - week} Wochen)` : 'Bereit für den Kindergarten!';
+                          })()}
                         </p>
                       </div>
                     )}

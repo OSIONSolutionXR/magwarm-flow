@@ -38,9 +38,16 @@ function getWeekColor(week) {
     if (week >= calm.week && week <= calm.weekEnd) return 'calm';
   }
   
-  // Sprungphasen
+  // Sprungphasen - Unterscheidung zwischen Storm (rot) und Sunny (amber)
   for (const leap of LEAPS_TIMELINE) {
-    if (week >= leap.week && week <= leap.weekEnd) return 'intense';
+    if (week >= leap.week && week <= leap.weekEnd) {
+      // Letzte Woche eines Sprungs = Sunny Phase (amber)
+      if (week === leap.weekEnd) return 'sunny';
+      // Erste Woche = Übergang (gelb)
+      if (week === leap.week) return 'transition';
+      // Dazwischen = Intensivphase (rot)
+      return 'intense';
+    }
   }
   
   // Übergangswochen (vor Sprüngen)
@@ -327,7 +334,10 @@ export default function TimelineSection({ currentWeek }) {
                   whileTap={{ scale: 0.9 }}
                   className={`
                     w-6 h-9 rounded flex flex-col items-center justify-center text-[8px] font-medium transition-all
-                    ${color === 'intense' ? 'bg-red-400' : color === 'transition' ? 'bg-amber-300' : 'bg-green-400'}
+                    ${color === 'intense' ? 'bg-red-400' : 
+                      color === 'transition' ? 'bg-amber-300' : 
+                      color === 'sunny' ? 'bg-green-500' : 
+                      'bg-green-400'}
                     ${isCurrent ? 'ring-2 ring-orange-500 scale-110 z-10' : ''}
                     ${isSelected ? 'ring-2 ring-white' : ''}
                   `}

@@ -519,5 +519,111 @@ export const TEMPLATES = [
       "Rituale beibehalten",
       "💙 Eure Beziehung ist jetzt stabiler als zuvor"
     ]
+  },
+  
+  // === WOCHEN 31-36: RUHEPHASE VOR KATEGORIEN ===
+  {
+    "week": 31, "weekEnd": 36, "title": "Die Kommunikationsblüte",
+    "subtitle": "Woche 31-36: Sprechen lernen", "phase": "Ruhephase", "age": "31-36 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby ist kommunikativ wie nie! Es brabbelt, zeigt, deutet - aber die Welt versteht noch nicht alles. Das kann frustrierend sein, wenn Bedürfnisse nicht sofort erkannt werden.",
+      "symptoms": [
+        "Wird ungeduldig, wenn nicht verstanden",
+        "Zeigt intensiv auf Objekte",
+        "Protestiert laut bei Ablehnung",
+        "Möchte Entscheidungen selbst treffen"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Die Kommunikation blüht! Dein Baby versteht viele Worte, reagiert auf Anweisungen und entwickelt erste eigene Laute als 'Worte'. Die Interaktion wird zunehmend komplexer.",
+      "abilities": [
+        "Versteht einfache Anweisungen",
+        "Zeigt auf gewünschte Objekte",
+        "Imitiert Laute und Geräusche",
+        "Nimmt Kommunikationsrituale an",
+        "Unterscheidet Zwischenrufe"
+      ]
+    },
+    "why": "Broca- und Wernicke-Areale entwickeln sich. Das Baby verknüpft Laute mit Bedeutungen. Die Kommunikation wird bewusster und zielgerichteter.",
+    "actions": [
+      "💚 Das Zeigen und Deuten ist Kommunikation",
+      "🌟 Bald ordnet es die Welt in Kategorien ein",
+      "Viel sprechen und benennen",
+      "Auf Zeichen und Laute reagieren",
+      "Einfache Bilderbücher anschauen",
+      "Kommunikationsrituale etablieren",
+      "💙 Du bist der wichtigste Gesprächspartner"
+    ]
+  },
+  
+  // === WOCHEN 37-38: SECHSTER SPRUNG ===
+  {
+    "week": 37, "weekEnd": 38, "title": "Kategorien und Ordnung",
+    "subtitle": "Woche 37-38: Die Welt sortieren", "phase": "6. Sprung", "age": "37-38 Wochen",
+    "stormPhase": {
+      "description": "Chaos in kleinem Kopf: Dein Baby erkennt plötzlich, dass Dinge unterschieden werden können! Es sortiert obsessiv, stapelt, ordnet. Was dazugehört, muss zusammen sein - sonst gibt es Protest!",
+      "symptoms": [
+        "Sortiert alles nach Farbe/Form/Größe",
+        "Wird wütend, wenn Ordnung gestört",
+        "Steckt alles in Behälter",
+        "Möchte Dinge gruppieren",
+        "Protestiert gegen 'Fehlereinordnung'"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Ein kleiner Organisator entsteht! Dein Baby versteht Kategorien und kann die Welt strukturieren. Das gibt Sicherheit und öffnet die Tür für komplexeres Denken.",
+      "abilities": [
+        "Ordnet Objekte nach Eigenschaften",
+        "Versteht Gruppen und Kategorien",
+        "Kann Unterschiede benennen",
+        "Sortiert spielerisch",
+        "Erkennt Muster in der Umgebung"
+      ]
+    },
+    "why": "Das präfrontale Cortex entwickelt Kategorisierungsfähigkeiten. Das Gehirn erstellt mentale 'Schubladen' für die Welt. Das ist Grundlage für abstraktes Denken.",
+    "actions": [
+      "💚 Das Sortierzwang ist Entwicklung, nicht Trotz",
+      "🌟 Bald kommt das Verstehen von Reihenfolgen",
+      "Sortierspiele anbieten",
+      "Kategorien beim Aufräumen benennen",
+      "Unterschiede spielerisch erkunden",
+      "Geduld bei 'falscher' Einordnung",
+      "💙 Du hilfst beim Weltverstehen"
+    ]
+  },
+  
+  // === WOCHEN 39-45: SIEBTE RUHEPHASE ===
+  {
+    "week": 39, "weekEnd": 45, "title": "Die Kategorisierung",
+    "subtitle": "Woche 39-45: Alles an seinen Platz", "phase": "Ruhephase", "age": "39-45 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby übt fleißig das Sortieren. Es ist manchmal frustriert, wenn etwas nicht passt, aber die Fortschritte sind enorm. Die Welt wird strukturierter verstanden.",
+      "symptoms": [
+        "Experimentiert mit verschiedenen Gruppierungen",
+        "Wird sauer, wenn Kategorien vermischt",
+        "Testet Grenzen des Sortierens",
+        "Möchte selbst entscheiden, wo was hingehört"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Das Sortieren wird selbstverständlich! Dein Baby ordnet automatisch ein, versteht Zusammengehörigkeit und nutzt Kategorien für das tägliche Leben. Die Welt ist jetzt übersichtlicher.",
+      "abilities": [
+        "Sortiert zuverlässig nach verschiedenen Kriterien",
+        "Versteht Über- und Unterordnungen",
+        "Kann Dinge mehreren Kategorien zuordnen",
+        "Nutzt Kategorien beim Spielen",
+        "Erkennt Ähnlichkeiten und Unterschiede"
+      ]
+    },
+    "why": "Die kategorischen Schemata werden verfeinert. Das Gehirn kann nun flexibler denken und versteht, dass ein Objekt mehreren Kategorien angehören kann.",
+    "actions": [
+      "💚 Das ständige Sortieren zeigt Intelligenz",
+      "🌟 Bereite dich vor: Reihenfolgen kommen!",
+      "Sortierspiele variieren",
+      "Beim Aufräumen kategorisieren",
+      "Unterschiede und Gemeinsamkeiten betonen",
+      "Flexible Kategorien zeigen",
+      "💙 Du förderst logisches Denken"
+    ]
   }
 ];

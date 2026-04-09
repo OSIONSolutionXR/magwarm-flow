@@ -338,6 +338,48 @@ export default function BabyDetailPage() {
                       </div>
                     </div>
                   )}
+                  
+                  {/* Sicherheitshinweis bei Storm-Phasen */}
+                  {isStorm && (
+                    <div className="mt-6 p-5 bg-gradient-to-br from-rose-50 to-orange-50 dark:from-rose-900/20 dark:to-orange-900/20 rounded-2xl border border-rose-200 dark:border-rose-800/50">
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 w-10 h-10 bg-rose-100 dark:bg-rose-800/50 rounded-full flex items-center justify-center text-2xl">
+                          💝
+                        </div>
+                        <div className="space-y-3">
+                          <div>
+                            <h4 className="font-bold text-rose-700 dark:text-rose-300 text-[1.05rem]">
+                              Du fühlst dich überfordert?
+                            </h4>
+                            <p className="text-sm text-rose-600/80 dark:text-rose-400/80 mt-1 leading-relaxed">
+                              Das ist völlig normal. Jede*r braucht mal eine Pause. Wenn das Weinen zu viel wird, leg das Baby sicher in sein Bettchen und hol dir Unterstützung – von Partner*in, Familie, Freund*innen oder professioneller Hilfe.
+                            </p>
+                          </div>
+                          
+                          <div className="pt-3 border-t border-rose-200/50 dark:border-rose-800/30">
+                            <div className="flex items-start gap-2">
+                              <span className="text-rose-500 text-lg">⚠️</span>
+                              <p className="text-sm text-rose-700 dark:text-rose-300 font-medium">
+                                Wichtiger Hinweis: Ein Baby niemals schütteln
+                              </p>
+                            </div>
+                            <p className="text-xs text-rose-600/70 dark:text-rose-400/70 mt-1 pl-6">
+                              Selbst kurzes Schütteln kann schwerwiegende gesundheitliche Schäden verursachen. Bei extremem Stress: Baby sicher ablegen, Raum verlassen, tief durchatmen und Hilfe holen.
+                            </p>
+                          </div>
+                          
+                          <div className="flex flex-wrap gap-2 pt-2">
+                            <span className="px-3 py-1.5 bg-white/70 dark:bg-white/10 rounded-full text-xs text-rose-600 dark:text-rose-400">
+                              📞 Telefonseelsorge: 0800 111 0 111
+                            </span>
+                            <span className="px-3 py-1.5 bg-white/70 dark:bg-white/10 rounded-full text-xs text-rose-600 dark:text-rose-400">
+                              👨‍⚕️ Beratungsstellen: familien-helfer.de
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
 

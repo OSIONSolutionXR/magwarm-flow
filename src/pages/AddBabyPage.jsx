@@ -63,7 +63,7 @@ export default function AddBabyPage() {
                     Neues Baby anlegen
                   </h2>
                   <p className="text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mt-2">
-                    Gib den Namen und das Geburtsdatum an
+                    Gib den Namen und den errechneten Geburtstermin an
                   </p>
                 </div>
 
@@ -89,7 +89,7 @@ export default function AddBabyPage() {
 
                   <div>
                     <label className="block text-sm font-semibold text-[hsl(25,22%,16%)] dark:text-white mb-2">
-                      Geburtsdatum
+                      Errechneter Geburtstermin
                     </label>
                     <input
                       type="date"
@@ -97,6 +97,9 @@ export default function AddBabyPage() {
                       onChange={(e) => setDueDate(e.target.value)}
                       className="w-full px-4 py-3.5 rounded-xl border border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)] bg-white dark:bg-[hsl(210,25%,7%)] text-[hsl(25,22%,16%)] dark:text-white focus:outline-none focus:ring-2 focus:ring-[hsl(17,75%,56%)]/50"
                     />
+                    <p className="text-xs text-[hsl(25,10%,55%)] dark:text-[hsl(30,10%,50%)] mt-2">
+                      Dieses Datum ist entscheidend für die Berechnung der Entwicklungsphasen. Ein zu früh oder zu spät geborenes Baby entwickelt sich trotzdem nach diesem ursprünglichen Termin.
+                    </p>
                   </div>
                 </div>
 

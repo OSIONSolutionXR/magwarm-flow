@@ -1,362 +1,234 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useMemo } from 'react';
-import { ArrowLeft, Navigation, Layers } from 'lucide-react';
+import { ArrowLeft, Navigation, Brain, Lightbulb, Activity, Heart, ChevronRight, Sparkles } from 'lucide-react';
 import { Card, CardContent } from '../components/Card';
+import { TEMPLATES } from './BabyDetailPage_TEMPLATES';
 
-// Wochenspezifische Beschreibungen für jede Phase
-const WEEK_DESCRIPTIONS = {
-  // Ruhephasen vor den Sprüngen
-  1: { title: "Ankommen", desc: "Die ersten Tage zu Hause. Ein neues Leben beginnt.", details: "Eure Familie findet zueinander. Trinken, Schlafen, Wickeln - das Leben dreht sich um die Grundbedürfnisse. Genießt diese ruhige Zeit vor dem ersten Sprung." },
-  2: { title: "Rhythmus finden", desc: "Langsam entwickelt sich ein Tagesablauf.", details: "Erste Muster erkennbar: Schlaf-Wach-Phasen, Fütterungsintervalle. Noch weit entfernt von einer Routine, aber erste Anzeichen sind da." },
-  3: { title: "Wachsen", desc: "Dein Baby nimmt zu und wird kräftiger.", details: "Die ersten 500g sind erreicht. Dein Baby wird aktiver, die Augen bleiben länger offen. Es beginnt, die Welt zu beobachten." },
-  4: { title: "Vor dem Sturm", desc: "Eine ruhige Phase vor dem ersten großen Sprung.", details: "Alles scheint stabil. Doch unter der Oberfläche passiert viel. Das Gehirn bereitet sich auf die Sinnesexplosion vor." },
-  
-  // Sprung 1: Woche 5-6
-  5: { title: "Sinnesexplosion beginnt", desc: "Plötzlich ist alles lauter, heller, intensiver.", details: "Die ersten Tage des Sprungs. Dein Baby ist überfordert von der neuen Intensität. Nähe und Geborgenheit sind jetzt besonders wichtig." },
-  6: { title: "Gewöhnung", desc: "Das Baby beginnt, sich an die neue Intensität zu gewöhnen.", details: "Langsam kommt die Orientierung zurück. Dein Baby erkennt bekannte Stimmen und Gerüche. Die erste Sonnenphase ist nah." },
-  
-  // Ruhe 7
-  7: { title: "Erholung", desc: "Zeit, die neuen Eindrücke zu verarbeiten.", details: "Nach dem intensiven Sprung ist Ruhe angesagt. Dein Baby lächelt bewusst und fixiert Gesichter. Ein neuer Normalzustand entsteht." },
-  
-  // Sprung 2: Woche 8-9
-  8: { title: "Muster entdecken", desc: "Erste Ahnung: Es gibt Regelmäßigkeiten!", details: "Dein Baby bemerkt, dass bestimmte Dinge sich wiederholen. Es sucht deinen Blick, will deine Aufmerksamkeit. Verwirrung und Faszination zugleich." },
-  9: { title: "Vorhersagen", desc: "Das Baby erwartet, was als Nächstes kommt.", details: "Wenn du anfängst zu singen, beruhigt es sich. Es kennt den Ablauf. Diese Vorhersehbarkeit gibt Sicherheit - aber Unterbrechungen frustrieren." },
-  
-  // Ruhe 10-11
-  10: { title: "Sicherheit", desc: "Die Welt wird berechenbarer.", details: "Vertraute Rituale wirken jetzt wahre Wunder. Dein Baby fühlt sich sicher und zeigt es mit entspanntem Verhalten." },
-  11: { title: "Vorbereitung", desc: "Die Muskulatur stärkt sich.", details: "Unter der Oberfläche: Nacken und Schultern werden kräftiger. Dein Baby übt im Verborgenen, den Kopf zu heben." },
-  
-  // Sprung 3: Woche 12-13
-  12: { title: "Kopf kontrollieren", desc: "Der Kopf wird endlich stabil.", details: "Was für ein Fortschritt! Der Kopf bleibt dort, wo er soll. Dein Baby kann aktiv am Geschehen teilnehmen, ohne die Energie für das Halten zu verschwenden." },
-  13: { title: "Bewegungsfreiheit", desc: "Der Blick folgt dem Interesse.", details: "Nicht nur der Kopf, auch die Augen werden zielgerichteter. Dein Baby entdeckt, dass es die Welt aktiv erkunden kann." },
-  
-  // Ruhe 14-18
-  14: { title: "Spielzeit", desc: "Mehr Zeit zum Interagieren.", details: "Mit dem stabilen Kopf öffnet sich eine neue Welt des Spielens. Dein Baby bleibt länger wach und ist aufmerksamer." },
-  15: { title: "Kommunikation", desc: "Erste Laute werden gezielt eingesetzt.", details: "Quietschen, Grunzen, Lachen - dein Baby experimentiert mit seiner Stimme und beobachtet deine Reaktion." },
-  16: { title: "Greifen", desc: "Die Hände entdecken die Welt.", details: "Noch unkoordiniert, aber mit wachsendem Interesse. Alles greifbare wird erfasst, geschüttelt, in den Mund gesteckt." },
-  17: { title: "Beobachten", desc: "Intensive Beobachtungsphase.", details: "Dein Baby schaut dir zu, lernt durch Anschauen. Es speichert Informationen für die kommende Entwicklung." },
-  18: { title: "Vor dem Aha", desc: "Etwas Großes bahnt sich an.", details: "Die Hände werden zielgerichteter. Dein Baby bemerkt: Wenn es etwas tut, passiert etwas. Der nächste Sprung naht." },
-  
-  // Sprung 4: Woche 19-20
-  19: { title: "Ursache erkannt", desc: "'Ich schüttle - es klingelt!'", details: "Die ersten bewussten Verknüpfungen! Dein Baby ist stolz und frustriert zugleich. Es will experimentieren, aber manches klappt noch nicht." },
-  20: { title: "Wirkung verstanden", desc: "Gezieltes Handeln wird möglich.", details: "Die Pinzette greift funktioniert. Dein Baby kann gezielt greifen und manipulieren. Ein neues Maß an Selbstwirksamkeit." },
-  
-  // Ruhe 21-25
-  21: { title: "Üben", desc: "Wiederholung festigt das Können.", details: "Immer wieder wird die Rassel geschüttelt, der Ball geworfen. Üben macht den Meister - auch beim Greifen." },
-  22: { title: "Neugier", desc: "Die Welt ist voller Entdeckungen.", details: "Jeder Gegenstand wird untersucht. Was passiert, wenn ich das mache? Die Forscherfreude ist grenzenlos." },
-  23: { title: "Sozial", desc: "Erste bewusste Interaktionen.", details: "Dein Baby sucht nicht nur Gegenstände, sondern auch dich. Es will teilen, gemeinsam erleben." },
-  24: { title: "Mobil", desc: "Rollphase beginnt.", details: "Vom Rücken auf die Seite, fast auf den Bauch. Dein Baby wird mobiler, die Welt öffnet sich weiter." },
-  25: { title: "Unabhängigkeit", desc: "Etwas Abstand ist gewollt.", details: "Erste Anzeichen: Dein Baby spielt kurze Zeit allein. Doch der Blick sucht dich ständig. Die Bindung wird bewusster." },
-  
-  // Sprung 5: Woche 26-27
-  26: { title: "Fremdeln", desc: "Du bist eine eigene Person!", details: "Schockierend für beide: Du kannst weggehen! Das erste echte Fremdeln beginnt. Die Welt ist plötzlich weniger sicher ohne dich." },
-  27: { title: "Bindung stärken", desc: "Verlässliche Rückkehr gibt Sicherheit.", details: "Wenn du zurückkommst und freudig begrüßt wirst, lernt dein Baby: Mama/Papa geht, aber kommt immer wieder." },
-  
-  // Ruhe 28-36
-  28: { title: "Neue Normalität", desc: "Fremdeln wird akzeptiert.", details: "Langsam akzeptiert dein Baby, dass andere Menschen da sind. Doch die Präferenz für dich bleibt stark ausgeprägt." },
-  29: { title: "Krabbeltrieb", desc: "Die Bewegungsdrang wächst.", details: "Bauchlage ist jetzt beliebt. Dein Baby stemmt sich hoch, will vorwärts kommen. Die ersten krabbelversuche." },
-  30: { title: "Sitzen", desc: "Sitzend die Welt erkunden.", details: "Mit Unterstützung kann dein Baby jetzt sitzen. Ein neuer Blickwinkel auf die Welt - und neue Erreichweiten." },
-  31: { title: "Kommunikation", desc: "Babbeln wird zielgerichteter.", details: "Laute haben Bedeutung. Dein Baby 'redet' mit dir, erwartet Antworten. Ein Dialog entsteht." },
-  32: { title: "Motorik", desc: "Feinmotorik entwickelt sich.", details: "Greifen wird präziser. Kleine Gegenstände zwischen Daumen und Zeigefinger - die Pinzette wird geübt." },
-  33: { title: "Entdecken", desc: "Alles muss untersucht werden.", details: "Die Welt ist voller Geheimnisse. Jede Schublade, jede Kiste birgt Überraschungen. Baby-proofing wird wichtig!" },
-  34: { title: "Soziales Lernen", desc: "Spiegel werden interessant.", details: "Erste Erkennung im Spiegel? Dein Baby ist fasziniert von dem 'anderen Baby' und beginnt, sich selbst zu beobachten." },
-  35: { title: "Stimmen", desc: "Die eigene Stimme wird entdeckt.", details: "Laute, Quietschen, Schreien - dein Baby testet seine Stimme und ihre Wirkung auf dich." },
-  36: { title: "Vor dem Ordnen", desc: "Ähnliches wird gruppiert.", details: "Unbewusst beginnt das Gehirn, Ähnliches zusammenzufassen. Das Fundament für Kategorien wird gelegt." },
-  
-  // Sprung 6: Woche 37-38
-  37: { title: "Kategorien bilden", desc: "Ein Hund ist ein Tier!", details: "Revolutionär: Dein Baby begreift Oberbegriffe. Ein Hund ist ein Tier, aber nicht jedes Tier ist ein Hund. Abstraktes Denken beginnt." },
-  38: { title: "Unterscheiden", desc: "Verschiedenes wird erkannt.", details: "Klein/groß, rund/eckig - dein Baby sortiert die Welt. Das ist die Grundlage für Sprache und Mathematik." },
-  
-  // Ruhe 39-45
-  39: { title: "Sortieren", desc: "Spiele mit Kategorien.", details: "Formenspiele werden interessant. Was passt wohin? Dein Baby übt das Einordnen in verschiedene Kategorien." },
-  40: { title: "Worte", desc: "Erste Wortversuche.", details: "'Mama', 'Papa' - vielleicht mit Bedeutung? Die ersten bewussten Worte formen sich." },
-  41: { title: "Krabbelt", desc: "Fortbewegung wird selbstständig.", details: "Dein Baby kommt voran, errecht Ziele. Die Welt wird größer, die Unabhängigkeit wächst." },
-  42: { title: "Stehen", desc: "Hochkommen wird möglich.", details: "Am Möbel hochziehen, stehen, stolz sein. Die ersten Schritte werden vorbereitet - in die Vertikale!" },
-  43: { title: "Kommunizieren", desc: "Gesten verstärken die Botschaft.", details: "Zeigen, winken, nicken - Gesten unterstützen die Kommunikation. Dein Baby wird verständlicher." },
-  44: { title: "Entdecken", desc: "Neugier kennt keine Grenzen.", details: "Jeder Raum, jede Ecke will erkundet werden. Baby-proofing ist jetzt essenziell!" },
-  45: { title: "Vor den Reihen", desc: "Erste Sequenzen werden erkannt.", details: "'Erst das, dann das' - dein Baby bemerkt Abläufe und erwartet sie. Die Vorbereitung auf den nächsten Sprung." },
-  
-  // Sprung 7: Woche 46-47
-  46: { title: "Reihenfolge verstehen", desc: "Abläufe werden erwartet.", details: "Erst Windel, dann Schlafanzug, dann Buch. Dein Baby versteht die Reihenfolge und protestiert, wenn sie unterbrochen wird." },
-  47: { title: "Selbstständigkeit", desc: "Mithelfen wird möglich.", details: "Dein Baby kann jetzt helfen: Arm beim Anziehen hochheben, Windel wegbringen. Teilhabe am Familienleben." },
-  
-  // Ruhe 48-54
-  48: { title: "Rituale", desc: "Feste Abläufe geben Sicherheit.", details: "Eingespielte Rituale wirken beruhigend. Dein Baby weiß, was kommt, und fühlt sich sicher." },
-  49: { title: "Laufen", desc: "Erste Schritte am Hand.", details: "Mit deiner Hand laufen lernen. Die Balance ist noch wackelig, aber der Wille da." },
-  50: { title: "Worte", desc: "Wortschatz wächst.", details: "10, 20, vielleicht 30 Wörter mit Bedeutung. Die Sprachexplosion naht." },
-  51: { title: "Sozial", desc: "Miteinander spielen wird interessant.", details: "Neben anderen Kindern spielen, beobachten, nachahmen. Die soziale Welt wird komplexer." },
-  52: { title: "Feiertage", desc: "Besondere Tage werden erlebt.", details: "Erste Weihnachten, Geburtstag - besondere Tage prägen sich ein. Erinnerungen werden möglich." },
-  53: { title: "Neues Jahr", desc: "Das zweite Lebensjahr beginnt.", details: "Von Baby zu Kleinkind. Die Unabhängigkeit wächst, die Persönlichkeit entwickelt sich." },
-  54: { title: "Vor den Programmen", desc: "Flexibilität wird verstanden.", details: "Dein Baby bemerkt: Es gibt verschiedene Wege zum Ziel. Die Grundlage für das flexible Denken." },
-  
-  // Sprung 8: Woche 55-56
-  55: { title: "Optionen erkennen", desc: "Es gibt verschiedene Wege!", details: "'Ich kann über die Treppe oder die Rampe.' Dein Baby versteht Variationen. Gleichzeitig testet es Grenzen aus - erste Trotzreaktionen!" },
-  56: { title: "Entscheiden", desc: "Wahlen werden gefordert.", details: "'Ich will das!' Dein Baby hat Präferenzen und zeigt sie. Autonomie und Grenzen treffen aufeinander." },
-  
-  // Ruhe 57-63
-  57: { title: "Grenzen", desc: "Regeln werden getestet.", details: "Was darf ich, was nicht? Dein Baby erkundet systematisch die Grenzen. Konsequenz ist wichtig." },
-  58: { title: "Sprache", desc: "Zwei-Wort-Sätze entstehen.", details: "'Mama komm', 'Ball weg' - erste Mini-Sätze verbinden Wörter zu Bedeutung." },
-  59: { title: "Laufen", desc: "Selbstständiges Laufen.", details: "Ohne Hand, wackelig, aber selbstständig. Die Welt wird riesig!" },
-  60: { title: "Trotz", desc: "'Nein!' wird zum Lieblingswort.", details: "Selbstbehauptung ist wichtig. Dein Kind muss Grenzen testen, um sie zu verstehen." },
-  61: { title: "Nachahmen", desc: "Alles wird kopiert.", details: "Telefonieren, Staubsaugen, Kochen - dein Kind ahmt alles nach. Soziales Lernen durch Beobachtung." },
-  62: { title: "Gedächtnis", desc: "Erinnerungen werden länger.", details: "Was gestern passiert ist, wird erinnert. Das episodische Gedächtnis entwickelt sich." },
-  63: { title: "Vor den Regeln", desc: "Wenn-Dann wird verstanden.", details: "Dein Kind versteht Konsequenzen. Die Vorbereitung auf das verantwortungsbewusste Handeln." },
-  
-  // Sprung 9: Woche 64-65
-  64: { title: "Regeln verstehen", desc: "Wenn ich das tue, passiert das.", details: "Strategisches Denken! Dein Kind testet Hypothesen über soziale Regeln. Es lernt durch Erfahrung, was funktioniert." },
-  65: { title: "Konsequenzen", desc: "Handeln wird zielgerichteter.", details: "Dein Kind kann vorhersehen, was passiert, und danach handeln. Das ist echtes Problemlösen." },
-  
-  // Ruhe 66-74
-  66: { title: "Anpassen", desc: "Verhalten wird flexibler.", details: "Je nach Situation wird anders gehandelt. Das soziale Verständnis wächst." },
-  67: { title: "Sprache", desc: "Sätze werden länger.", details: "Drei, vier Wörter verbunden. Die Grammatik entwickelt sich - auch wenn sie noch holprig ist." },
-  68: { title: "Freunde", desc: "Andere Kinder werden interessant.", details: "Zusammen spielen, teilen (manchmal), Streit (oft). Die soziale Welt wird komplexer." },
-  69: { title: "Gefühle", desc: "Emotionen werden benannt.", details: "'Traurig', 'böse', 'glücklich' - erste Gefühlsworte werden verstanden und benutzt." },
-  70: { title: "Fantasie", desc: "Spielen wird kreativer.", details: "Eine Schüssel wird zu einem Hut, ein Stock zum Telefon. Die Fantasie erwacht." },
-  71: { title: "Unabhängigkeit", desc: "'Allein!' wird wichtig.", details: "'Ich allein!' Das Bedürfnis nach Selbstständigkeit wächst. Hilfe wird manchmal abgelehnt." },
-  72: { title: "Rituale", desc: "Feste Abläufe sind wichtig.", details: "Gleiche Abfolgen geben Sicherheit. Änderungen werden als bedrohend empfunden." },
-  73: { title: "Vorbereiten", desc: "Etwas Großes kommt.", details: "Das Gehirn bereitet sich auf den letzten großen Sprung des ersten Jahres vor. Tiefe Veränderungen stehen bevor." },
-  74: { title: "Vor dem Sprung", desc: "Die Ruhe vor dem Sturm.", details: "Dein Kind ist fokussiert, nachdenklich. Unter der Oberfläche passiert enorm viel." },
-  
-  // Sprung 10: Woche 75-76
-  75: { title: "Empathie erwacht", desc: "Andere haben Gefühle!", details: "Dein Kind bemerkt, wenn jemand traurig ist. Es versucht zu trösten. Das ist der Beginn echter Empathie." },
-  76: { title: "Verbundenheit", desc: "Wir gehören zusammen.", details: "Familie wird als Einheit verstanden. Andere haben Bedürfnisse, die beachtet werden müssen." },
-  
-  // Jahr 2: Woche 77-90 (Konsolidierung)
-  77: { title: "Verarbeitung", desc: "Das Gelernte wird gefestigt.", details: "Nach dem intensiven Jahr 1 ist Zeit zur Konsolidierung. Das Gehirn verarbeitet und speichert alles Erlernte." },
-  78: { title: "Sprache", desc: "Wortschatz wächst stetig.", details: "50, 100, vielleicht 200 Wörter. Jeden Tag kommen neue dazu. Die Kommunikation wird flüssiger." },
-  79: { title: "Laufen", desc: "Sicher auf zwei Beinen.", details: "Rennen, springen, balancieren. Die Fortbewegung ist jetzt selbstverständlich." },
-  80: { title: "Trocken", desc: "Trockenwerden beginnt.", details: "Erste Anzeichen der Blasenkontrolle. Das Trockenwerden ist ein langsamler Prozess." },
-  81: { title: "Sozial", desc: "Spielen mit anderen wird wichtiger.", details: "Neben- und langsam miteinander spielen. Die ersten echten Freundschaften entstehen." },
-  82: { title: "Nachahmen", desc: "Alles wird kopiert.", details: "Erwachsenen-Verhalten wird detailgetreu nachgespielt. Das ist wichtiges soziales Lernen." },
-  83: { title: "Nein", desc: "Grenzen testen.", details: "'Nein!' wird systematisch eingesetzt. Es geht nicht um Widersetzlichkeit, sondern um Selbstbehauptung." },
-  84: { title: "Rituale", desc: "Feste Abläufe helfen.", details: "Klarer Tagesablauf gibt Orientierung. Veränderungen werden als schwierig empfunden." },
-  85: { title: "Worte", desc: "Zweiwortsätze werden zur Norm.", details: "'Mama Komm', 'Ball weg' - die Sätze werden länger und komplexer." },
-  86: { title: "Ich", desc: "Das Selbstbewusstsein wächst.", details: "'Meins!' Das Eigentumsbewusstsein entwickelt sich. Teilen fällt noch schwer." },
-  87: { title: "Bewegung", desc: "Klettern wird interessant.", details: "Hoch hinaus! Treppen, Möbel, Klettergerüste - alles wird erklommen." },
-  88: { title: "Fantasie", desc: "Symbolisches Spiel beginnt.", details: "Eine Schachtel wird zum Auto, ein Stock zum Flugzeug. Die Fantasiewelt öffnet sich." },
-  89: { title: "22-Monats-Schub", desc: "Kurzer Rückfall.", details: "Plötzlich wieder anhänglich? Das ist normal. Ein letzter Entwicklungsschub vor dem zweiten Geburtstag." },
-  90: { title: "Vorbereitung", desc: "Die Trotzphase naht.", details: "Das Bedürfnis nach Selbstständigkeit wächst. Der Konflikt zwischen Wollen und Können bahnt sich an." },
-  
-  // Jahr 2: Woche 91-115 (Autonomie-Explosion / Trotzphase)
-  91: { title: "Trotz beginnt", desc: "'Nein!' wird zur Waffe.", details: "Willkommen in der Trotzphase! Dein Kind WILL selbstständig sein, aber kann es noch nicht. Frust pur." },
-  92: { title: "Wutanfälle", desc: "Emotionen sind überwältigend.", details: "Schreien, Treten, Weinen - die Emotionen sind zu groß für das kleine Körperchen. Hilf beim Regulieren." },
-  93: { title: "Selbstständigkeit", desc: "'Ich allein!'", details: "Jede Hilfe wird abgelehnt, jede Unterstützung verweigert. Selbstständigkeit um jeden Preis." },
-  94: { title: "Wahlmöglichkeiten", desc: "Entscheiden lernen.", details: "'Apfel oder Banane?' Wahlmöglichkeiten geben das Gefühl von Kontrolle. Das hilft beim Trotz." },
-  95: { title: "Sprache", desc: "Wortschatz explodiert.", details: "200, 300 Wörter. Drei-Wort-Sätze. Die Kommunikation wird zunehmend erwachsener." },
-  96: { title: "Konsolidieren", desc: "Die erste Welle lässt nach.", details: "Es gibt ruhigere Tage. Das Kind gewöhnt sich an die neue Selbstständigkeit." },
-  97: { title: "Grenzen", desc: "Konsequenz ist wichtig.", details: "Klare, liebevolle Grenzen helfen. Dein Kind braucht Orientierung in seinem Trotz." },
-  98: { title: "Rituale", desc: "Festigkeit gibt Halt.", details: "Gleiche Abläufe sind jetzt besonders wichtig. Sie geben Sicherheit in unsicherer Zeit." },
-  99: { title: "Motorik", desc: "Feinmotorik wird präziser.", details: "Ziehen, Knöpfe, Malen - die Hände werden geschickter. Konzentration wächst." },
-  100: { title: "Sozial", desc: "Freunde werden wichtiger.", details: "Andere Kinder sind jetzt faszinierend. Spielen wird komplexer, Konflikte häufiger." },
-  101: { title: "Worte", desc: "Grammatik wird interessant.", details: "'Ich habe gegangen' - Fehler zeigen: Das Gehirn lernt Regeln!" },
-  102: { title: "Fragen", desc: "'Was ist das?'", details: "Die ersten Fragen kommen. Das Wissenshunger erwacht. Geduld beim Beantworten ist gefragt." },
-  103: { title: "Fantasie", desc: "Spiel wird kreativer.", details: "Rollenspiele beginnen. Puppen werden gefüttert, Teddy wird ins Bett gebracht." },
-  104: { title: "Gefühle", desc: "Emotionen werden komplexer.", details: "Scham, Stolz, Eifersucht - komplexe Gefühle entstehen. Benennen hilft beim Verarbeiten." },
-  105: { title: "Gedächtnis", desc: "Erinnerungen werden konkreter.", details: "Was gestern, vorgestern passiert ist, wird erzählt. Das Gedächtnis wird erzählfähig." },
-  106: { title: "Unabhängigkeit", desc: "Alleine spielen wird möglich.", details: "Längere Phasen der Selbstbeschäftigung. Das Kind spielt zunehmend eigenständig." },
-  107: { title: "Sprache", desc: "Ganze Sätze entstehen.", details: "'Ich will jetzt nach draußen!' Vier-, Fünf-Wort-Sätze sind normal." },
-  108: { title: "Rituale", desc: "Festigkeit ist wichtig.", details: "Gleiche Abfolgen geben Sicherheit. Veränderungen werden bewusst wahrgenommen." },
-  109: { title: "Motorik", desc: "Balancieren wird interessant.", details: "Bänke, Mauern, Streifen - alles wird balanciert. Das Gleichgewichtsgefühl entwickelt sich." },
-  110: { title: "Kreativität", desc: "Malen wird spannend.", details: "Erste bewusste Zeichnungen entstehen. Noch abstrakt, aber mit Intention." },
-  111: { title: "Sozial", desc: "Teilen wird gelernt.", details: "'Meins' ist immer noch stark, aber Teilen wird langsam möglich." },
-  112: { title: "Worte", desc: "Konversation wird flüssig.", details: "Gespräche mit Erwachsenen sind jetzt möglich. Worte werden zur Waffe und zum Trost." },
-  113: { title: "Grenzen", desc: "Regeln werden verstanden.", details: "'Weil so!' reicht nicht mehr. Erklärungen werden verlangt - und verstanden." },
-  114: { title: "Vorbereitung", desc: "Die Symbole warten.", details: "Das symbolische Denken entwickelt sich weiter. Die nächste große Phase steht bevor." },
-  115: { title: "Übergang", desc: "Die Trotzphase lässt nach.", details: "Langsam wird es ruhiger. Das Kind hat gelernt, mit seinen Emotionen umzugehen." },
-  
-  // Jahr 2-3: Woche 116-140 (Welt der Symbole)
-  116: { title: "Symbole", desc: "Ein Stock ist ein Zauberstab!", details: "Die Welt der Symbole öffnet sich. Fantasie und Realität verschwimmen. Magisches Denken beginnt." },
-  117: { title: "Fantasie", desc: "Rollenspiele explodieren.", details: "Arzt, Feuerwehrmann, Mama - Rollen werden gespielt. Die Fantasiewelt wird detailreicher." },
-  118: { title: "Angst", desc: "Monster unter dem Bett?", details: "Fantasie hat eine Kehrseite: Ängste. Monster, Geister, Dunkelheit - alles wird plötzlich bedrohlich." },
-  119: { title: "Trocken", desc: "Trockenwerden schreitet voran.", details: "Tagsüber klappt es oft. Nächtliche Unfälle sind normal. Geduld ist gefragt." },
-  120: { title: "Sprache", desc: "Geschichten werden erzählt.", details: "'Und dann... und dann...' Erste Geschichten entstehen. Fantasie mischt sich mit Erlebtem." },
-  121: { title: "Zusammenspiel", desc: "Mit anderen spielen wird möglich.", details: "Neben- wird zu miteinander spielen. Gemeinsame Ziele, gemeinsame Pläne." },
-  122: { title: "Gefühle", desc: "Empathie wächst.", details: "'Er ist traurig.' Andere Gefühle werden erkannt und beachtet. Das ist echte soziale Intelligenz." },
-  123: { title: "Worte", desc: "Warum-Fragen werden häufiger.", details: "'Warum?' - immer öfter. Das Verständnis für Zusammenhänge wächst." },
-  124: { title: "Motorik", desc: "Fahren wird interessant.", details: "Dreirad, Laufrad, Tretauto - Fortbewegung wird abwechslungsreicher." },
-  125: { title: "Kreativität", desc: "Basteln macht Spaß.", details: "Schneiden, Kleben, Kleben - erste Bastelwerke entstehen. Kreativität wird sichtbar." },
-  126: { title: "Sozial", desc: "Freundschaften werden tiefer.", details: '"Mein Freund" - erste echte Freundschaften entstehen. Gemeinsame Interessen werden wichtig.' },
-  127: { title: "Rituale", desc: "Festigkeit gibt Sicherheit.", details: "Gleiche Abläufe sind jetzt besonders wichtig. Sie geben Halt in der fantasievollen Welt." },
-  128: { title: "Sprache", desc: "Erzählen wird detailreicher.", details: "'Und dann ist der Hund weggelaufen...' Geschichten haben Anfang, Mitte, Ende." },
-  129: { title: "Fragen", desc: "Wissenshunger wächst.", details: "'Wie funktioniert das?' Technisches Interesse erwacht. Erklärungen werden verlangt." },
-  130: { title: "Motorik", desc: "Sport wird möglich.", details: "Ball werfen und fangen, springen, balancieren - Bewegung wird zielgerichteter." },
-  131: { title: "Gefühle", desc: "Eifersucht wird bewusst.", details: '"Er ist mein Freund!" Eifersucht und Besitzdenken sind normal. Soziales Lernen in Aktion.' },
-  132: { title: "Fantasie", desc: "Imaginäre Freunde entstehen.", details: '"Max war auch da." Imaginäre Freunde sind normal und helfen beim Verarbeiten.' },
-  133: { title: "Unabhängigkeit", desc: "Alleine sein wird möglich.", details: "Längere Phasen der Selbstbeschäftigung. Das Kind spielt zunehmend eigenständig." },
-  134: { title: "Sprache", desc: "Ganze Absätze werden gesprochen.", details: "Flüssige Erzählungen mit Details. Die Kommunikation ist jetzt fast erwachsen." },
-  135: { title: "Gedächtnis", desc: "Erinnerungen werden konkret.", details: "Was vor Wochen passiert ist, wird genau beschrieben. Das Langzeitgedächtnis funktioniert." },
-  136: { title: "Sozial", desc: "Gruppen werden interessant.", details: "Mehrere Kinder zusammen spielen. Soziale Dynamiken werden komplexer." },
-  137: { title: "Worte", desc: "Witze werden verstanden.", details: "'Haha, das war lustig!' Humor wird bewusst. Wortspiele und einfache Witze funktionieren." },
-  138: { title: "Vorbereitung", desc: "Die Warum-Phase naht.", details: "Fragen werden häufiger, das Interesse an Zusammenhängen wächst. Ein großer Sprung steht bevor." },
-  139: { title: "Konsolidieren", desc: "Die Symbole werden vertraut.", details: "Fantasie und Realität sind jetzt vertraute Partner. Das Kind beherrscht den Umgang mit beiden." },
-  140: { title: "Übergang", desc: "Ein neues Kapitel beginnt.", details: "Die nächste Phase steht vor der Tür. Das 'Warum' wird zum zentralen Thema." },
-  
-  // Jahr 3: Woche 141-156 (Warum-Phase & Magisches Denken)
-  141: { title: "Warum beginnt", desc: "'Warum?' wird zur Waffe.", details: "Die 'Warum-Phase' erreicht ihren Höhepunkt. Jedes Wort wird mit 'Warum?' beantwortet. Wissenssucht oder Machtprobe? Beides!" },
-  142: { title: "Erklären", desc: "Antworten werden verlangt.", details: "'Weil so!' reicht nicht mehr. Logische Erklärungen werden erwartet - und verstanden." },
-  143: { title: "Magisches Denken", desc: "Gedanken beeinflussen die Welt?", details: "'Wenn ich stark dran denke...' Magisches Denken: Gedanken haben Macht über die Realität." },
-  144: { title: "Realität", desc: "Grenzen werden getestet.", details: "Was ist Fantasie, was ist Realität? Die Unterscheidung wird geübt - ist aber noch schwierig." },
-  145: { title: "Worte", desc: "Wortschatz explodiert.", details: "800, 900, fast 1000 Wörter. Erwachsene Gespräche sind jetzt möglich." },
-  146: { title: "Geschichten", desc: "Erzählen wird detailreich.", details: "'Letzte Woche im Urlaub...' Vergangenes wird erzählt, Zukünftiges geplant." },
-  147: { title: "Fragen", desc: "Wissen wird systematisch aufgebaut.", details: "Nicht mehr nur 'Warum?', sondern 'Wie?' und 'Weshalb?' Das Verständnis wird differenzierter." },
-  148: { title: "Gedächtnis", desc: "Erinnerungen werden erzählfähig.", details: "Was vor Monaten passiert ist, wird genau beschrieben. Das episodische Gedächtnis ist voll funktionsfähig." },
-  149: { title: "Sozial", desc: "Freundschaften werden wichtiger.", details: '"Mein bester Freund" - erste echte, stabile Freundschaften entstehen. Soziale Kompetenz wächst.' },
-  150: { title: "Empathie", desc: "Andere werden verstanden.", details: "'Er ist traurig, weil...' Empathie wird differenzierter. Soziale Zusammenhänge werden verstanden." },
-  151: { title: "Motorik", desc: "Sport wird möglich.", details: "Fahrrad, Schaukeln, Klettern - Bewegung wird zunehmend erwachsen." },
-  152: { title: "Kreativität", desc: "Malen wird intentioniert.", details: "'Das ist ein Haus!' Erste bewusste Zeichnungen entstehen. Kreativität wird zielgerichtet eingesetzt." },
-  153: { title: "Unabhängigkeit", desc: "Selbstständigkeit wächst.", details: "Anziehen, essen, spielen - viele Dinge werden allein gemacht." },
-  154: { title: "Vorbereitung", desc: "Kindergarten steht bevor.", details: "Die Vorbereitung auf den Kindergarten beginnt. Neue Herausforderungen warten." },
-  155: { title: "Abschied", desc: "Babyzeit endet.", details: "Die ersten drei Jahre neigen sich dem Ende zu. Ein neues Kapitel beginnt: Kindergartenkind!" },
-  156: { title: "Kindergarten-Ready", desc: "Bereit für den nächsten Schritt!", details: "Mit fast 1000 Wörtern, sozialer Kompetenz und Selbstständigkeit ist dein Kind bereit für neue Abenteuer." },
-};
-
-const LEAPS = [
-  // Jahr 1: Die 10 klassischen Sprünge
-  { 
-    week: 5, weekEnd: 6, intensity: 'high', title: "Die ersten Sinneswellen", phase: "Jahr 1",
-    description: "Die Sinne schalten auf Hochleistung. Alles wird plötzlich lauter, heller, intensiver.",
-    details: "Die neuronalen Verbindungen im Gehirn explodieren. Dein Baby nimmt die Welt mit einer nie dagewesenen Intensität wahr."
-  },
-  { 
-    week: 8, weekEnd: 9, intensity: 'high', title: "Muster im Chaos", phase: "Jahr 1",
-    description: "Dein Baby entdeckt Wiederholungen und Regelmäßigkeiten. Es sucht deinen Blick und will deine Aufmerksamkeit.",
-    details: "Das Gehirn beginnt zu erkennen, dass bestimmte Dinge zusammengehören. Ein Lächeln bedeutet Zuwendung, ein bestimmter Geruch bedeutet Fütterung."
-  },
-  { 
-    week: 12, weekEnd: 13, intensity: 'high', title: "Wenn Bewegung Sinn ergibt", phase: "Jahr 1",
-    description: "Die Kontrolle über den eigenen Körper wächst. Der Kopf wird stabiler, Bewegungen flüssiger.",
-    details: "Die Muskulatur im Hals- und Schulterbereich hat an Kraft gewonnen. Dein Baby kann den Kopf zielgerichtet drehen und aktiv am Geschehen teilnehmen."
-  },
-  { 
-    week: 19, weekEnd: 20, intensity: 'high', title: "Aha! Das hat Folgen", phase: "Jahr 1",
-    description: "Das revolutionäre Erwachen: Handeln führt zu Ergebnissen. Dein Baby wird zum kleinen Forscher.",
-    details: "Die ersten bewussten Verknüpfungen zwischen Handeln und Ergebnis entstehen. 'Wenn ich die Rassel schüttle, macht sie Geräusche.'"
-  },
-  { 
-    week: 26, weekEnd: 27, intensity: 'high', title: "Die ersten Trennungen", phase: "Jahr 1",
-    description: "Dein Baby erkennt: Du bist eine eigene Person. Distanz ist spürbar - und beängstigend.",
-    details: "Das erste echte Fremdeln beginnt. Dein Baby versteht, dass du existierst, auch wenn es dich nicht sieht."
-  },
-  { 
-    week: 37, weekEnd: 38, intensity: 'high', title: "Kategorien und Ordnung", phase: "Jahr 1",
-    description: "Die Welt wird sortiert und eingeordnet. Ein Hund ist ein Tier, aber nicht jedes Tier ist ein Hund.",
-    details: "Abstrakte Konzepte formen sich. Dein Baby versteht Ober- und Unterbegriffe. Das ist die Grundlage für Sprache und logisches Denken."
-  },
-  { 
-    week: 46, weekEnd: 47, intensity: 'high', title: "Reihenfolgen verstehen", phase: "Jahr 1",
-    description: "Abläufe werden verstanden und erwartet. Erst das, dann das - dein Baby wird zum Experten für Sequenzen.",
-    details: "Mentale Programme entstehen. Dein Baby versteht nicht nur einzelne Schritte, sondern deren Zusammenhang."
-  },
-  { 
-    week: 55, weekEnd: 56, intensity: 'high', title: "Flexible Programme", phase: "Jahr 1",
-    description: "Es gibt verschiedene Wege zum Ziel. Erste Trotzreaktionen zeigen wachsende Autonomie.",
-    details: "Dein Baby versteht: Es kann variieren und hat trotzdem ein gemeinsames Ziel. Gleichzeitig testet es Grenzen."
-  },
-  { 
-    week: 64, weekEnd: 65, intensity: 'high', title: "Regeln und Konsequenzen", phase: "Jahr 1",
-    description: "Strategisches Handeln beginnt. Dein Baby testet Hypothesen über soziale Regeln.",
-    details: "Das Gehirn formt Regelwerke. Konsequenzen werden erwartet - und es wird frustriert, wenn die Welt nicht vorhersagbar ist."
-  },
-  { 
-    week: 75, weekEnd: 76, intensity: 'high', title: "Verbundenheit spüren", phase: "Jahr 1",
-    description: "Echte Empathie entsteht. Dein Baby versteht: Andere haben Gefühle, genau wie ich.",
-    details: "Soziales Bewusstsein entwickelt sich. Dein Baby kann sich in andere hineinversetzen und reagiert auf deren Emotionen."
-  },
-  // Jahr 2-3: Die 4 neuen Phasen
-  { 
-    week: 76, weekEnd: 90, intensity: 'medium', title: "Die Konsolidierung", phase: "Jahr 2", age: "18-21 Monate",
-    description: "Die bisherigen Fortschritte werden gefestigt. Ein ruhigeres Stadium vor dem nächsten großen Sprung.",
-    details: "Das Gehirn verarbeitet und festigt alles Erlernte. Der 22-Monats-Schub kann kurzzeitig anhängliches Verhalten bringen."
-  },
-  { 
-    week: 91, weekEnd: 115, intensity: 'high', title: "Die Autonomie-Explosion", phase: "Jahr 2", age: "2 Jahre", subtitle: "Trotzphase",
-    description: "Willkommen in der Trotzphase! Der Konflikt zwischen Wunsch und Fähigkeit führt zu Wutanfällen.",
-    details: "Das präfrontale Cortex entwickelt sich, aber die Impulskontrolle fehlt noch. Dein Kind WILL selbstständig sein."
-  },
-  { 
-    week: 116, weekEnd: 140, intensity: 'medium', title: "Die Welt der Symbole", phase: "Jahr 2-3", age: "ca. 2,5 Jahre",
-    description: "Fantasie erwacht. Ein Stock wird zum Zauberstab, eine Kiste zum Auto - die Vorstellungskraft explodiert.",
-    details: "Symbolisches Denken ermöglicht neues Spielen ohne Grenzen. Fantasie und Realität verschwimmen noch."
-  },
-  { 
-    week: 141, weekEnd: 156, intensity: 'high', title: "Warum? & Magisches Denken", phase: "Jahr 3", age: "3 Jahre", subtitle: "Kindergarten-Ready",
-    description: "Die 'Warum-Phase' erreicht ihren Höhepunkt. Dein Kind wird zum kleinen Wissenschaftler.",
-    details: "Mit fast 1000 Wörtern erkundet dein Kind systematisch die Welt. Magisches Denken beherrscht noch alles."
-  },
+// Hauptphasen (Sprünge) mit ihren Wochenbereichen
+const LEAP_PHASES = [
+  { week: 5, weekEnd: 6, title: "Die ersten Sinneswellen", intensity: 'high', phase: "Jahr 1" },
+  { week: 8, weekEnd: 9, title: "Muster im Chaos", intensity: 'high', phase: "Jahr 1" },
+  { week: 12, weekEnd: 13, title: "Wenn Bewegung Sinn ergibt", intensity: 'high', phase: "Jahr 1" },
+  { week: 19, weekEnd: 20, title: "Aha! Das hat Folgen", intensity: 'high', phase: "Jahr 1" },
+  { week: 26, weekEnd: 27, title: "Die ersten Trennungen", intensity: 'high', phase: "Jahr 1" },
+  { week: 37, weekEnd: 38, title: "Kategorien und Ordnung", intensity: 'high', phase: "Jahr 1" },
+  { week: 46, weekEnd: 47, title: "Reihenfolgen verstehen", intensity: 'high', phase: "Jahr 1" },
+  { week: 55, weekEnd: 56, title: "Flexible Programme", intensity: 'high', phase: "Jahr 1" },
+  { week: 64, weekEnd: 65, title: "Regeln und Konsequenzen", intensity: 'high', phase: "Jahr 1" },
+  { week: 75, weekEnd: 76, title: "Verbundenheit spüren", intensity: 'high', phase: "Jahr 1" },
+  { week: 76, weekEnd: 90, title: "Die Konsolidierung", intensity: 'medium', phase: "Jahr 2", subtitle: "Welt der Worte" },
+  { week: 91, weekEnd: 115, title: "Die Autonomie-Explosion", intensity: 'high', phase: "Jahr 2", subtitle: "Trotzphase" },
+  { week: 116, weekEnd: 140, title: "Die Welt der Symbole", intensity: 'medium', phase: "Jahr 2-3", subtitle: "Fantasie erwacht" },
+  { week: 141, weekEnd: 156, title: "Warum? & Magisches Denken", intensity: 'high', phase: "Jahr 3", subtitle: "Kindergarten-Ready" },
 ];
 
-// REALISTISCHE PHASEN für Jahr 2-3 (mit Ruhephasen dazwischen)
-// Diese werden dynamisch zu LEAPS hinzugefügt
-const YEAR2_3_PHASES = [
-  // Ruhe nach dem letzten Sprung (Jahr 1)
-  { week: 77, weekEnd: 83, intensity: 'low', title: "Ruhe nach dem Sturm", phase: "Jahr 2", age: "17-19 Monate",
-    description: "Nach dem intensiven 1. Jahr ist Zeit zum Durchatmen.",
-    details: "Dein Baby gewöhnt sich an die neu erworbenen Fähigkeiten. Es wird selbstständiger beim Spielen und Entdecken." },
+// Ruhephasen-Interpolation für Wochen zwischen den Hauptphasen
+// Erzeugt sinnvolle Zwischeninhalte zwischen den Hauptphasen
+function generateCalmPhaseContent(week) {
+  // Finde die umgebenden Hauptphasen
+  let prevPhase = null;
+  let nextPhase = null;
   
-  // Mittlere Phase: Konsolidierung
-  { week: 84, weekEnd: 88, intensity: 'medium', title: "Konsolidierung", phase: "Jahr 2", age: "20-21 Monate",
-    description: "Die Fähigkeiten werden festigt und verfeinert.",
-    details: "Laufen wird sicherer, Worte werden häufiger. Dein Kind nutzt seine neuen Skills im Alltag." },
+  for (const phase of LEAP_PHASES) {
+    if (phase.weekEnd < week) prevPhase = phase;
+    if (phase.week > week && !nextPhase) nextPhase = phase;
+  }
   
-  // Erste intensive Phase: Trotz beginnt
-  { week: 89, weekEnd: 93, intensity: 'high', title: "Autonomie-Schub", phase: "Jahr 2", age: "21-22 Monate", subtitle: "Erste Trotzphase",
-    description: "'Nein!' wird zur Lieblingsantwort. Das Kind WILL, aber kann noch nicht alles.",
-    details: "Frust pur! Das Kind erkennt seine Selbstständigkeit, ist aber noch zu klein für vieles." },
+  // Wenn keine vorherige Phase (Wochen 1-4)
+  if (!prevPhase && week <= 4) {
+    return {
+      type: 'calm',
+      title: "Eingewöhnungsphase",
+      stormPhase: {
+        description: "Die ersten Wochen sind geprägt von Ankommen und Finden. Dein Baby passt sich an das Leben außerhalb des Mutterleibs an.",
+        symptoms: [
+          "Unruhiger Schlaf - Tag-Nacht-Rhythmus noch nicht etabliert",
+          "Häufiges Trinken - kleine Portionen, oft",
+          "Viel Schlaf - bis zu 18 Stunden pro Tag",
+          "Reflexe dominieren - noch wenig bewusste Steuerung",
+          "Sucht ständige Nähe - Körperkontakt ist essentiell",
+          "Reagiert auf plötzliche Geräusche - Moro-Reflex",
+          "Mögliche Koliken - Unruhe nach dem Essen",
+          "Viel Weinen - die einzige Kommunikationsmöglichkeit"
+        ]
+      },
+      sunnyPhase: {
+        description: "Langsam entwickelt sich ein erstes Gefühl von Sicherheit. Dein Baby beginnt, sich an deine Stimme und deinen Geruch zu gewöhnen.",
+        abilities: [
+          "Erkennt die Stimme der Mutter - beruhigt sich beim Hören",
+          "Reagiert auf Berührung - entspannt sich bei Hautkontakt",
+          "Erste Lächel-Reflexe - noch nicht bewusst, aber herzerwärmend",
+          "Kann kurze Zeit wach sein - Augen halten offen",
+          "Sucht die Brust oder Flasche - Nahrungs-Such-Reflex",
+          "Reagiert auf Licht und Bewegung - erste visuelle Wahrnehmung",
+          "Kann den Kopf kurz heben - bei Bauchlage",
+          "Erste Bindungsmomente entstehen - Vertrauen wächst"
+        ]
+      },
+      why: "Das Neugeborene passt sich an die neue Umgebung an. Im Mutterleib war es warm, dunkel und gedämpft. Jetzt muss es lernen, mit Licht, Geräuschen und der Schwerkraft umzugehen. Das limbische System entwickelt sich und die ersten Bindungsstrukturen entstehen.",
+      actions: [
+        "💚 Genieße diese intensive Zeit - sie vergeht schneller als du denkst.",
+        "🌟 Du lernst euch gegenseitig kennen - das braucht Zeit.",
+        "Viel Hautkontakt halten - Känguruhen stärkt die Bindung",
+        "Auf Babys Zeichen achten - füttere bei Hunger, nicht nach Uhrzeit",
+        "Ruhige Umgebung schaffen - wenig Reize, gedämpftes Licht",
+        "Bei Bedarf Hilfe annehmen - du musst nicht alles allein schaffen",
+        "Schlafen, wenn das Baby schläft - deine Erholung ist wichtig",
+        "Sanfte Musik oder Sprechen - deine Stimme beruhigt"
+      ]
+    };
+  }
   
-  // Ruhe
-  { week: 94, weekEnd: 98, intensity: 'low', title: "Anpassung", phase: "Jahr 2", age: "22-23 Monate",
-    description: "Das Kind gewöhnt sich an seine Grenzen und Möglichkeiten.",
-    details: "Nach dem intensiven Trotz wird es wieder ruhiger. Das Kind akzeptiert Hilfe und Strukturen." },
+  // Wenn nach der letzten Phase (sollte nicht vorkommen, da max 156)
+  if (!nextPhase) {
+    return {
+      type: 'calm',
+      title: "Vorbereitung auf neue Herausforderungen",
+      stormPhase: {
+        description: "Dein Kind konsolidiert alle bisherigen Fähigkeiten und bereitet sich auf das Leben als Kindergartenkind vor.",
+        symptoms: [
+          "Möchte oft spielen und lernen - Ruhephasen werden kürzer",
+          "Stellt viele Fragen - Wissensdurst ist unstillbar",
+          "Entwickelt eigene Vorlieben - wird wählerischer",
+          "Manchmal ängstlich - Fantasie und Realität verschwimmen",
+          "Braucht klare Strukturen - Verlässlichkeit ist wichtig",
+          "Kann frustriert werden - wenn es etwas nicht gleich kann",
+          "Soziale Konflikte entstehen - mit Geschwistern oder Freunden",
+          "Schlafrituale wichtig - Vorbereitung auf den Tag"
+        ]
+      },
+      sunnyPhase: {
+        description: "Ein selbstbewusstes, neugieriges Kind entwickelt sich. Bereit für den nächsten großen Schritt ins Leben.",
+        abilities: [
+          "Spricht in kompletten Sätzen - komplexe Gedanken ausdrücken",
+          "Kann sich gut allein beschäftigen - konzentriert sich länger",
+          "Zeigt echtes Interesse an anderen Kindern - Freundschaften entstehen",
+          "Versteht Regeln und kann sie befolgen - soziale Kompetenz",
+          "Hat eigene Vorlieben und Meinungen - Persönlichkeit zeigt sich",
+          "Kann Geschichten erzählen und verstehen - abstraktes Denken",
+          "Selbstständig bei Alltagsaufgaben - anziehen, essen, spielen",
+          "Entwickelt Humor und Kreativität - eigene Ideen umsetzen"
+        ]
+      },
+      why: "Das Gehirn ist zu fast 90% seiner Endgröße entwickelt. Die Grundlagen für alle weiteren Lernprozesse sind gelegt. Das Kind hat eine stabile Persönlichkeit entwickelt und ist bereit für neue soziale Herausforderungen wie den Kindergarten.",
+      actions: [
+        "💚 Du hast drei wunderbare Jahre begleitet - das ist eine Leistung!",
+        "🌟 Dein Kind ist bereit für den nächsten Schritt - Kindergarten, neue Abenteuer.",
+        "Kindergarten-Besuche planen - langsame Eingewöhnung ermöglichen",
+        "Soziale Kompetenz stärken - Spieldates, Gruppenaktivitäten",
+        "Selbstständigkeit fördern - allein anziehen, essen, spielen",
+        "Gespräche führen - Fragen ermutigen, Gedanken ernst nehmen",
+        "Rituale beibehalten - Sicherheit in Veränderungszeiten",
+        "Die Entwicklung feiern - 'Schau, wie viel du schon kannst!'"
+      ]
+    };
+  }
   
-  // Sprachexplosion
-  { week: 99, weekEnd: 103, intensity: 'medium', title: "Worte-Explosion", phase: "Jahr 2", age: "23-24 Monate",
-    description: "Plötzlich hat es Hunderte Wörter! Die Kommunikation explodiert.",
-    details: "Zwei-Wort-Sätze werden normal. Das Kind benennt alles, was es sieht." },
+  // Interpoliere zwischen den Phasen
+  const progress = (week - prevPhase.weekEnd) / (nextPhase.week - prevPhase.weekEnd);
+  const phaseProgress = Math.round(progress * 100);
   
-  // Ruhe vor dem großen Trotz
-  { week: 104, weekEnd: 109, intensity: 'low', title: "Vorbereitung", phase: "Jahr 2", age: "24-26 Monate",
-    description: "Ruhige Zeit vor dem nächsten großen Entwicklungsschub.",
-    details: "Das Kind festigt seine Sprache und Motorik. Es wird selbstständiger im Alltag." },
-  
-  // Große Trotzphase
-  { week: 110, weekEnd: 118, intensity: 'high', title: "Die große Trotzphase", phase: "Jahr 2", age: "26-28 Monate", subtitle: "Autonomie-Explosion",
-    description: "Das bekannte 'Nein!' wird jetzt professionell eingesetzt.",
-    details: "Alles dauert länger, alles ist ein Kampf. Doch dahinter steckt der Wille, selbstständig zu sein." },
-  
-  // Ruhe nach dem Trotz
-  { week: 119, weekEnd: 125, intensity: 'low', title: "Gewöhnung", phase: "Jahr 2-3", age: "28-30 Monate",
-    description: "Das Kind gewöhnt sich an die neue Selbstständigkeit.",
-    details: "Die Trotzanfälle werden weniger heftig. Das Kind akzeptiert Grenzen besser." },
-  
-  // Symbolisches Denken
-  { week: 126, weekEnd: 132, intensity: 'medium', title: "Symbole entdecken", phase: "Jahr 2-3", age: "30-32 Monate",
-    description: "Ein Stock wird zum Zauberstab! Fantasie erwacht.",
-    details: "Symbolisches Spielen beginnt. Das Kind gibt Figuren eine Rolle, erfindet Geschichten." },
-  
-  // Ruhe
-  { week: 133, weekEnd: 140, intensity: 'low', title: "Verarbeitung", phase: "Jahr 2-3", age: "32-34 Monate",
-    description: "Die neue Fantasie-Welt wird verarbeitet.",
-    details: "Rollenspiele werden ausgefeilter. Das Kind spielt länger allein und konzentrierter." },
-  
-  // Fantasie und Ängste
-  { week: 141, weekEnd: 147, intensity: 'medium', title: "Fantasie-Welt", phase: "Jahr 2-3", age: "34-36 Monate", subtitle: "Magisches Denken",
-    description: "Fantasie und Realität verschwimmen. Auch Ängste können entstehen.",
-    details: "Monster unter dem Bett? Die Fantasie hat eine Kehrseite. Doch auch die Freude am Spielen wächst." },
-  
-  // Ruhe vor Kindergarten
-  { week: 148, weekEnd: 154, intensity: 'low', title: "Reifung", phase: "Jahr 3", age: "36-37 Monate",
-    description: "Die letzte Ruhephase vor dem Kindergarten.",
-    details: "Das Kind wird immer selbstständiger. Vorbereitung auf die nächste große Veränderung." },
-  
-  // Abschluss
-  { week: 155, weekEnd: 156, intensity: 'medium', title: "Kindergarten-Ready", phase: "Jahr 3", age: "37-38 Monate",
-    description: "Bereit für den nächsten Schritt!",
-    details: "Mit fast 3 Jahren hat sich einiges getan. Die Welt der Symbole und das Magische Denken sind Teil des Alltags." },
-];
+  // Generiere Interpolationsinhalte basierend auf den umliegenden Phasen
+  return {
+    type: 'calm',
+    title: `Erholungsphase zwischen "${prevPhase.title}" und "${nextPhase.title}"`,
+    subtitle: `Woche ${week}: Konsolidierung und Vorbereitung`,
+    stormPhase: {
+      description: `Nach dem intensiven ${prevPhase.title} ist Zeit zur Verarbeitung. Dein Baby festigt das Gelernte und bereitet sich auf ${nextPhase.title} vor. Eine ruhige Phase der Entwicklung, in der das Gehirn neue neuronale Verbindungen festigt.`,
+      symptoms: [
+        "Kann nach dem vorherigen Sprung müde sein - mehr Schlaf nötig",
+        "Zeigt stolz neue Fähigkeiten - übt das Gelernte",
+        "Manchmal nachdenklich - verarbeitet Erfahrungen",
+        "Sucht vertraute Rituale - Sicherheit nach dem Wandel",
+        "Ist anhänglicher als sonst - braucht Bestätigung",
+        "Appetit kann schwanken - Wachstumsphasen bedingen Veränderungen",
+        "Manchmal frustrierter - wenn neue Fähigkeiten noch nicht perfekt sitzen",
+        "Reagiert empfindlicher auf Veränderungen - braucht Routine"
+      ]
+    },
+    sunnyPhase: {
+      description: `Die Fähigkeiten aus der ${prevPhase.title} werden immer sicherer. Dein Baby ist stolz auf seine Fortschritte und erkundet selbstbewusster die Welt. Gleichzeitig sammelt es Kraft für die nächste große Entwicklungsphase.`,
+      abilities: [
+        `Festigt Fähigkeiten aus der ${prevPhase.title} - wird sicherer im Alltag`,
+        "Zeigt zunehmendes Selbstvertrauen - wagt mehr",
+        "Entwickelt neue Interessen - Neugier wächst",
+        "Kommuniziert besser - ob durch Laute, Gesten oder Worte",
+        "Schläft wieder ruhiger - neue Fähigkeiten sind verarbeitet",
+        "Ist ausgeglichener - das 'Neue' ist jetzt 'Normal'",
+        "Spielt länger konzentriert - Aufmerksamkeit wächst",
+        "Freut sich über Routine - vertraute Abläufe geben Sicherheit"
+      ]
+    },
+    why: `Das Gehirn konsolidiert die neuen Verbindungen aus der ${prevPhase.title}. Myelinisierung schützt und beschleunigt die neuen Nervenbahnen. Gleichzeitig bereitet sich das Nervensystem auf die nächste große Umstrukturierung vor. Diese Ruhephasen sind essentiell für nachhaltiges Lernen.`,
+    actions: [
+      "💚 Diese ruhige Phase ist wichtig - das Gehirn verarbeitet und festigt.",
+      "🌟 Bald kommt der nächste Sprung - genieße die ruhige Zeit jetzt.",
+      "Neue Fähigkeiten feiern - zeige dich beeindruckt und stolz",
+      "Vertraute Rituale pflegen - Sicherheit nach den Veränderungen",
+      "Viel Spielzeit ermöglichen - Üben macht den Meister",
+      "Auf die Zeichen des nächsten Sprungs achten - Unruhe, Anhänglichkeit",
+      "Geduld haben bei Rückschritten - das ist normal und vorübergehend",
+      "Qualitätszeit verbringen - nutze die ruhigere Zeit für Bindung"
+    ]
+  };
+}
 
-// Kombinierte LEAPS (Jahr 1 + Jahr 2-3)
-const ALL_LEAPS = [...LEAPS, ...YEAR2_3_PHASES].sort((a, b) => a.week - b.week);
+// Generiere detaillierte Inhalte für jede Woche
+function generateWeekData(week) {
+  // Finde zugehörige Template-Phase
+  const template = TEMPLATES.find(t => week >= t.week && week <= t.weekEnd);
+  const leapPhase = LEAP_PHASES.find(p => week >= p.week && week <= p.weekEnd);
+  
+  // Wenn in einer Hauptphase (Template vorhanden)
+  if (template) {
+    const isFirstWeek = week === template.week;
+    const isLastWeek = week === template.weekEnd;
+    
+    return {
+      week,
+      type: 'leap',
+      title: template.title,
+      subtitle: template.subtitle || leapPhase?.subtitle,
+      phase: leapPhase?.phase || "Entwicklungsphase",
+      state: isFirstWeek ? 'storm-start' : isLastWeek ? 'sunny' : 'storm-peak',
+      stateLabel: isFirstWeek ? 'Sprung beginnt' : isLastWeek ? 'Sunny Phase' : 'Intensivphase',
+      stateDescription: isLastWeek 
+        ? template.sunnyPhase.description 
+        : template.stormPhase.description,
+      why: template.why,
+      learning: isLastWeek 
+        ? template.sunnyPhase.abilities 
+        : template.stormPhase.symptoms.map(s => s.replace(/^[💚🌟]\s*/, '').replace(/^[A-Z][a-z]+:\s*/, '')),
+      actions: template.actions,
+      symptoms: isLastWeek ? [] : template.stormPhase.symptoms,
+      abilities: isLastWeek ? template.sunnyPhase.abilities : [],
+      intensity: leapPhase?.intensity || 'high'
+    };
+  }
+  
+  // Ruhephase - interpoliere Inhalte
+  const calmContent = generateCalmPhaseContent(week);
+  return {
+    week,
+    type: 'calm',
+    title: calmContent.title,
+    subtitle: calmContent.subtitle,
+    phase: "Ruhige Phase",
+    state: 'calm',
+    stateLabel: 'Konsolidierung',
+    stateDescription: calmContent.sunnyPhase.description,
+    why: calmContent.why,
+    learning: calmContent.sunnyPhase.abilities,
+    actions: calmContent.actions,
+    symptoms: calmContent.stormPhase.symptoms,
+    abilities: calmContent.sunnyPhase.abilities,
+    intensity: 'low'
+  };
+}
+
+// Generiere alle 156 Wochen einmalig
+const ALL_WEEKS_DATA = Array.from({ length: 156 }, (_, i) => generateWeekData(i + 1));
 
 function getCurrentWeek(dueDate) {
   const now = new Date();
@@ -365,31 +237,27 @@ function getCurrentWeek(dueDate) {
   return Math.floor(diffTime / (1000 * 60 * 60 * 24 * 7));
 }
 
-function getWeekColor(week) {
-  const inPhase = ALL_LEAPS.some(l => week >= l.week && week <= l.weekEnd);
-  if (inPhase) {
-    const phase = ALL_LEAPS.find(l => week >= l.week && week <= l.weekEnd);
-    if (phase?.intensity === 'high') return 'intense';
-    if (phase?.intensity === 'medium') return 'transition';
-    if (phase?.intensity === 'low') return 'calm';
-    return 'intense';
+function getWeekColor(intensity) {
+  switch (intensity) {
+    case 'high': return 'intense';
+    case 'medium': return 'transition';
+    default: return 'calm';
   }
-  return 'calm';
 }
 
-// Wochenspezifische Beschreibung holen
-function getWeekDescription(week) {
-  return WEEK_DESCRIPTIONS[week] || { 
-    title: `Woche ${week}`, 
-    desc: "Eine ruhige Phase der Entwicklung.", 
-    details: "Dein Kind verarbeitet die bisherigen Erfahrungen und bereitet sich auf die nächsten Schritte vor." 
-  };
-}
+// Tabs für die Detailansicht
+const TABS = [
+  { id: 'state', label: 'Zustand', icon: Activity },
+  { id: 'why', label: 'Warum', icon: Brain },
+  { id: 'learn', label: 'Lernt', icon: Lightbulb },
+  { id: 'do', label: 'Tun', icon: Heart },
+];
 
 export default function LeapsOverviewPage() {
   const [currentWeek, setCurrentWeek] = useState(0);
   const [babyName, setBabyName] = useState('');
   const [selectedWeek, setSelectedWeek] = useState(null);
+  const [activeTab, setActiveTab] = useState('state');
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('flow-babies') || '[]');
@@ -399,24 +267,214 @@ export default function LeapsOverviewPage() {
       setCurrentWeek(week);
       setSelectedWeek(week);
       setBabyName(baby.name);
+    } else {
+      setSelectedWeek(1);
     }
   }, []);
 
-  const currentLeap = useMemo(() => {
-    return ALL_LEAPS.find(l => currentWeek >= l.week && currentWeek <= l.weekEnd);
-  }, [currentWeek]);
-
-  const currentStatus = getWeekColor(currentWeek);
-  const currentWeekDesc = getWeekDescription(currentWeek);
-  
-  const statusText = {
-    calm: { text: 'Ruhige Phase', desc: 'Zeit zum Durchatmen und Festigen.' },
-    transition: { text: 'Sanfte Veränderung', desc: 'Eine neue Phase zeichnet sich ab.' },
-    intense: { text: 'Intensive Phase', desc: 'Viele neue Eindrücke werden verarbeitet.' }
-  };
+  const selectedWeekData = useMemo(() => {
+    return ALL_WEEKS_DATA.find(w => w.week === selectedWeek) || ALL_WEEKS_DATA[0];
+  }, [selectedWeek]);
 
   const maxWeek = 156;
   const weeks = Array.from({ length: maxWeek }, (_, i) => i + 1);
+
+  const getStatusColor = (intensity) => {
+    switch (intensity) {
+      case 'high': return 'bg-red-400 hover:bg-red-500';
+      case 'medium': return 'bg-amber-300 hover:bg-amber-400';
+      default: return 'bg-green-400 hover:bg-green-500';
+    }
+  };
+
+  const getStateIcon = (state) => {
+    switch (state) {
+      case 'storm-start':
+      case 'storm-peak':
+        return <CloudRain className="h-5 w-5" />;
+      case 'sunny':
+        return <Sun className="h-5 w-5" />;
+      default:
+        return <Sparkles className="h-5 w-5" />;
+    }
+  };
+
+  const getStateColor = (type) => {
+    switch (type) {
+      case 'leap':
+        return selectedWeekData?.state === 'sunny' 
+          ? 'bg-amber-100 dark:bg-amber-900/30 border-amber-300' 
+          : 'bg-red-50 dark:bg-red-900/20 border-red-200';
+      default:
+        return 'bg-green-50 dark:bg-green-900/20 border-green-200';
+    }
+  };
+
+  const getTabContent = () => {
+    if (!selectedWeekData) return null;
+
+    switch (activeTab) {
+      case 'state':
+        return (
+          <div className="space-y-4">
+            <div className={`p-4 rounded-xl border ${getStateColor(selectedWeekData.type)}`}>
+              <div className="flex items-center gap-3 mb-3">
+                {selectedWeekData.type === 'leap' && selectedWeekData.state !== 'sunny' ? (
+                  <CloudRain className="h-6 w-6 text-red-500" />
+                ) : selectedWeekData.state === 'sunny' ? (
+                  <Sun className="h-6 w-6 text-amber-500" />
+                ) : (
+                  <Sparkles className="h-6 w-6 text-green-500" />
+                )}
+                <span className={`font-semibold ${
+                  selectedWeekData.type === 'leap' && selectedWeekData.state !== 'sunny'
+                    ? 'text-red-700 dark:text-red-300'
+                    : selectedWeekData.state === 'sunny'
+                    ? 'text-amber-700 dark:text-amber-300'
+                    : 'text-green-700 dark:text-green-300'
+                }`}>
+                  {selectedWeekData.stateLabel}
+                </span>
+              </div>
+              <p className="text-[hsl(25,22%,16%)] dark:text-white leading-relaxed">
+                {selectedWeekData.stateDescription}
+              </p>
+            </div>
+            
+            {selectedWeekData.type === 'leap' && selectedWeekData.state !== 'sunny' && selectedWeekData.symptoms?.length > 0 && (
+              <div className="space-y-2">
+                <h4 className="font-semibold text-[hsl(25,22%,16%)] dark:text-white flex items-center gap-2">
+                  <Activity className="h-4 w-4 text-red-500" />
+                  Mögliche Anzeichen
+                </h4>
+                <ul className="space-y-2">
+                  {selectedWeekData.symptoms.slice(0, 5).map((symptom, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
+                      <span className="text-red-400 mt-0.5">•</span>
+                      {symptom}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {selectedWeekData.type === 'leap' && selectedWeekData.state === 'sunny' && selectedWeekData.abilities?.length > 0 && (
+              <div className="space-y-2">
+                <h4 className="font-semibold text-[hsl(25,22%,16%)] dark:text-white flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-amber-500" />
+                  Neue Fähigkeiten
+                </h4>
+                <ul className="space-y-2">
+                  {selectedWeekData.abilities.slice(0, 5).map((ability, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
+                      <span className="text-amber-400 mt-0.5">✓</span>
+                      {ability}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        );
+        
+      case 'why':
+        return (
+          <div className="space-y-4">
+            <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
+              <div className="flex items-center gap-3 mb-3">
+                <Brain className="h-6 w-6 text-blue-500" />
+                <span className="font-semibold text-blue-700 dark:text-blue-300">
+                  Neurologische Erklärung
+                </span>
+              </div>
+              <p className="text-[hsl(25,22%,16%)] dark:text-white leading-relaxed">
+                {selectedWeekData.why}
+              </p>
+            </div>
+            
+            <div className="p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-800">
+              <h4 className="font-semibold text-purple-700 dark:text-purple-300 mb-2 flex items-center gap-2">
+                <Lightbulb className="h-4 w-4" />
+                Was passiert im Gehirn?
+              </h4>
+              <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] leading-relaxed">
+                {selectedWeekData.type === 'leap' 
+                  ? "Das Gehirn durchläuft eine Phase intensiver Neuordnung. Neue neuronale Verbindungen werden gebildet, bestehende werden verstärkt. Diese Umstrukturierung ermöglicht neue kognitive Fähigkeiten, führt aber vorübergehend zu Unruhe und verändertem Verhalten."
+                  : "In dieser Ruhephase werden die neuen Verbindungen aus dem vorherigen Sprung gefestigt. Myelinisierung schützt die Nervenbahnen und macht sie effizienter. Das Gehirn verarbeitet und speichert das Gelernte für langfristige Nutzung."
+                }
+              </p>
+            </div>
+          </div>
+        );
+        
+      case 'learn':
+        return (
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 gap-3">
+              {selectedWeekData.learning?.slice(0, 8).map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.05 }}
+                  className="flex items-start gap-3 p-3 rounded-lg bg-white dark:bg-[hsl(210,20%,15%)] border border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)]"
+                >
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    selectedWeekData.type === 'leap'
+                      ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-600'
+                      : 'bg-green-100 dark:bg-green-900/30 text-green-600'
+                  }`}>
+                    <span className="text-sm font-bold">{idx + 1}</span>
+                  </div>
+                  <p className="text-[hsl(25,22%,16%)] dark:text-white text-sm leading-relaxed pt-1">
+                    {item}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        );
+        
+      case 'do':
+        return (
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 gap-3">
+              {selectedWeekData.actions?.slice(0, 8).map((action, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.05 }}
+                  className={`flex items-start gap-3 p-3 rounded-lg border ${
+                    action.startsWith('💚') || action.startsWith('🌟') || action.startsWith('💙')
+                      ? 'bg-gradient-to-r from-pink-50 to-rose-50 dark:from-pink-900/20 dark:to-rose-900/20 border-pink-100 dark:border-pink-800'
+                      : 'bg-white dark:bg-[hsl(210,20%,15%)] border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)]'
+                  }`}
+                >
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                    action.startsWith('💚') || action.startsWith('🌟') || action.startsWith('💙')
+                      ? 'bg-pink-100 dark:bg-pink-900/30 text-pink-600'
+                      : 'bg-[hsl(17,75%,56%)]/10 text-[hsl(17,75%,56%)]'
+                  }`}>
+                    <span className="text-sm font-bold">{idx + 1}</span>
+                  </div>
+                  <p className={`text-sm leading-relaxed pt-1 ${
+                    action.startsWith('💚') || action.startsWith('🌟') || action.startsWith('💙')
+                      ? 'text-pink-800 dark:text-pink-200 font-medium'
+                      : 'text-[hsl(25,22%,16%)] dark:text-white'
+                  }`}>
+                    {action}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        );
+        
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="min-h-screen pb-8">
@@ -440,46 +498,51 @@ export default function LeapsOverviewPage() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="space-y-6"
         >
-          {/* Aktueller Status - MIT WOCHENSPEZIFISCHER BESCHREIBUNG */}
-          <Card className={`border-2 ${
-            currentStatus === 'intense' ? 'border-red-400/50 bg-red-500/5' :
-            currentStatus === 'transition' ? 'border-amber-400/50 bg-amber-500/5' :
-            'border-green-400/50 bg-green-500/5'
-          }`}>
-            <CardContent className="py-6">
-              <div className="flex items-start gap-4">
-                <div className={`w-16 h-16 rounded-2xl flex-shrink-0 flex items-center justify-center ${
-                  currentStatus === 'intense' ? 'bg-red-500 text-white shadow-[0_8px_24px_-8px_rgba(239,68,68,0.5)]' :
-                  currentStatus === 'transition' ? 'bg-amber-500 text-white shadow-[0_8px_24px_-8px_rgba(245,158,11,0.5)]' :
-                  'bg-green-500 text-white shadow-[0_8px_24px_-8px_rgba(34,197,94,0.5)]'
-                }`}>
-                  <span className="text-2xl font-bold">{currentWeek}</span>
+          {/* Aktueller Status */}
+          {currentWeek > 0 && (
+            <Card className={`border-2 ${
+              selectedWeekData?.intensity === 'high' ? 'border-red-400/50 bg-red-500/5' :
+              selectedWeekData?.intensity === 'medium' ? 'border-amber-400/50 bg-amber-500/5' :
+              'border-green-400/50 bg-green-500/5'
+            }`}>
+              <CardContent className="py-6">
+                <div className="flex items-start gap-4">
+                  <div className={`w-16 h-16 rounded-2xl flex-shrink-0 flex items-center justify-center ${
+                    selectedWeekData?.intensity === 'high' ? 'bg-red-500 text-white shadow-[0_8px_24px_-8px_rgba(239,68,68,0.5)]' :
+                    selectedWeekData?.intensity === 'medium' ? 'bg-amber-500 text-white shadow-[0_8px_24px_-8px_rgba(245,158,11,0.5)]' :
+                    'bg-green-500 text-white shadow-[0_8px_24px_-8px_rgba(34,197,94,0.5)]'
+                  }`}>
+                    <span className="text-2xl font-bold">{currentWeek}</span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">Aktuelle Woche</p>
+                    <h2 className="text-xl font-bold text-[hsl(25,22%,16%)] dark:text-white">
+                      {selectedWeekData?.title || `Woche ${currentWeek}`}
+                    </h2>
+                    {selectedWeekData?.subtitle && (
+                      <p className="text-[hsl(17,75%,56%)] font-medium text-sm">
+                        {selectedWeekData.subtitle}
+                      </p>
+                    )}
+                    <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mt-1">
+                      {selectedWeekData?.phase}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">Aktuelle Woche</p>
-                  <h2 className="text-xl font-bold text-[hsl(25,22%,16%)] dark:text-white">
-                    {currentWeekDesc.title}
-                  </h2>
-                  <p className="text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mt-1 leading-relaxed">
-                    {currentWeekDesc.desc}
-                  </p>
-                  <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mt-2">
-                    {currentLeap ? `${currentLeap.title} (${currentLeap.phase})` : statusText[currentStatus].text}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Wochen-Timeline */}
           <div>
-            <h3 className="text-lg font-bold text-[hsl(25,22%,16%)] dark:text-white mb-4">Wochenübersicht</h3>
+            <h3 className="text-lg font-bold text-[hsl(25,22%,16%)] dark:text-white mb-4">Alle 156 Wochen</h3>
             
             <div className="relative">
               <div className="overflow-x-auto pb-4 -mx-6 px-6 scrollbar-hide">
                 <div className="flex gap-1 min-w-max">
                   {weeks.map((week) => {
-                    const color = getWeekColor(week);
+                    const weekData = ALL_WEEKS_DATA.find(w => w.week === week);
+                    const color = getStatusColor(weekData?.intensity);
                     const isCurrent = week === currentWeek;
                     const isPast = week < currentWeek;
                     const isSelected = week === selectedWeek;
@@ -487,13 +550,14 @@ export default function LeapsOverviewPage() {
                     return (
                       <motion.button
                         key={week}
-                        onClick={() => setSelectedWeek(week)}
+                        onClick={() => {
+                          setSelectedWeek(week);
+                          setActiveTab('state');
+                        }}
                         whileTap={{ scale: 0.95 }}
                         className={`
                           w-8 h-12 rounded-lg flex flex-col items-center justify-center text-[10px] font-medium transition-all
-                          ${color === 'intense' ? 'bg-red-400 hover:bg-red-500' : 
-                            color === 'transition' ? 'bg-amber-300 hover:bg-amber-400' : 
-                            'bg-green-400 hover:bg-green-500'}
+                          ${color}
                           ${isPast ? 'opacity-60' : 'opacity-100'}
                           ${isCurrent ? 'ring-2 ring-white dark:ring-gray-800 ring-offset-2 ring-offset-[hsl(17,75%,56%)] scale-110 z-10' : ''}
                           ${isSelected && !isCurrent ? 'ring-2 ring-[hsl(17,75%,56%)]' : ''}
@@ -529,77 +593,164 @@ export default function LeapsOverviewPage() {
             </div>
           </div>
 
-          {/* AUSFÜHRLICHE Details zur ausgewählten Woche - WOCHENSPEZIFISCH */}
-          {selectedWeek && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              key={selectedWeek}
-            >
-              <Card className="border border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)]">
-                <CardContent className="py-5">
-                  {(() => {
-                    const weekDesc = getWeekDescription(selectedWeek);
-                    const leap = ALL_LEAPS.find(l => selectedWeek >= l.week && selectedWeek <= l.weekEnd);
-                    const status = getWeekColor(selectedWeek);
-                    
-                    return (
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between mb-2">
-                          <div>
-                            <h4 className="font-bold text-[hsl(25,22%,16%)] dark:text-white text-lg">
-                              Woche {selectedWeek}: {weekDesc.title}
-                            </h4>
-                            {leap && (
-                              <p className="text-[hsl(17,75%,56%)] font-medium text-sm">
-                                {leap.phase} {leap.age ? `· ${leap.age}` : ''}
-                              </p>
-                            )}
-                          </div>
+          {/* Detaillierte Wochenansicht mit Tabs */}
+          <AnimatePresence mode="wait">
+            {selectedWeekData && (
+              <motion.div
+                key={selectedWeek}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+              >
+                <Card className="border border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)] overflow-hidden">
+                  {/* Header der Detailansicht */}
+                  <div className={`p-5 border-b border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)] ${
+                    selectedWeekData.type === 'leap'
+                      ? selectedWeekData.state === 'sunny'
+                        ? 'bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/10'
+                        : 'bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/10'
+                      : 'bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/10'
+                  }`}>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="flex items-center gap-3 mb-1">
+                          <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                            selectedWeekData.type === 'leap'
+                              ? selectedWeekData.state === 'sunny'
+                                ? 'bg-amber-200 dark:bg-amber-800 text-amber-800 dark:text-amber-200'
+                                : 'bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-200'
+                              : 'bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200'
+                          }`}>
+                            Woche {selectedWeekData.week}
+                          </span>
                           {selectedWeek === currentWeek && (
-                            <span className="px-3 py-1.5 bg-[hsl(17,75%,56%)] text-white text-sm font-semibold rounded-full">
+                            <span className="px-3 py-1 bg-[hsl(17,75%,56%)] text-white text-xs font-semibold rounded-full">
                               Aktuell
                             </span>
                           )}
                         </div>
-                        
-                        <div className={`p-4 rounded-xl ${
-                          status === 'intense' ? 'bg-red-50 dark:bg-red-900/20' :
-                          status === 'transition' ? 'bg-amber-50 dark:bg-amber-900/20' :
-                          'bg-green-50 dark:bg-green-900/20'
-                        }`}>
-                          <p className="text-[hsl(25,22%,16%)] dark:text-white font-medium text-lg mb-2">
-                            {weekDesc.desc}
+                        <h3 className="text-xl font-bold text-[hsl(25,22%,16%)] dark:text-white">
+                          {selectedWeekData.title}
+                        </h3>
+                        {selectedWeekData.subtitle && (
+                          <p className="text-[hsl(17,75%,56%)] font-medium">
+                            {selectedWeekData.subtitle}
                           </p>
-                        </div>
-                        
-                        <p className="text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] leading-relaxed">
-                          {weekDesc.details}
+                        )}
+                        <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
+                          {selectedWeekData.phase}
                         </p>
-                        
-                        {leap?.subtitle && (
-                          <span className="inline-block px-3 py-1 bg-[hsl(17,75%,56%)]/10 text-[hsl(17,75%,56%)] text-sm font-medium rounded-full">
-                            {leap.subtitle}
-                          </span>
+                      </div>
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${
+                        selectedWeekData.type === 'leap'
+                          ? selectedWeekData.state === 'sunny'
+                            ? 'bg-amber-400 shadow-[0_8px_24px_-8px_rgba(251,191,36,0.5)]'
+                            : 'bg-red-400 shadow-[0_8px_24px_-8px_rgba(248,113,113,0.5)]'
+                          : 'bg-green-400 shadow-[0_8px_24px_-8px_rgba(74,222,128,0.5)]'
+                      }`}>
+                        {selectedWeekData.type === 'leap' && selectedWeekData.state !== 'sunny' ? (
+                          <CloudRain className="h-7 w-7 text-white" />
+                        ) : selectedWeekData.state === 'sunny' ? (
+                          <Sun className="h-7 w-7 text-white" />
+                        ) : (
+                          <Sparkles className="h-7 w-7 text-white" />
                         )}
                       </div>
-                    );
-                  })()}
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
+                    </div>
+                  </div>
+
+                  {/* Tabs Navigation */}
+                  <div className="border-b border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)]">
+                    <div className="flex">
+                      {TABS.map((tab) => {
+                        const Icon = tab.icon;
+                        const isActive = activeTab === tab.id;
+                        return (
+                          <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`flex-1 flex items-center justify-center gap-2 py-4 px-2 text-sm font-medium transition-colors relative ${
+                              isActive
+                                ? 'text-[hsl(17,75%,56%)]'
+                                : 'text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] hover:text-[hsl(25,22%,16%)] dark:hover:text-white'
+                            }`}
+                          >
+                            <Icon className="h-4 w-4" />
+                            <span className="hidden sm:inline">{tab.label}</span>
+                            {isActive && (
+                              <motion.div
+                                layoutId="activeTab"
+                                className="absolute bottom-0 left-0 right-0 h-0.5 bg-[hsl(17,75%,56%)]"
+                              />
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Tab Content */}
+                  <CardContent className="py-5">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activeTab}
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -10 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {getTabContent()}
+                      </motion.div>
+                    </AnimatePresence>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Navigation zu aktueller Woche */}
-          <button
-            onClick={() => setSelectedWeek(currentWeek)}
-            className="w-full flex items-center justify-center gap-2 py-4 bg-[hsl(17,75%,56%)]/10 hover:bg-[hsl(17,75%,56%)]/15 rounded-xl transition-colors border border-[hsl(17,75%,56%)]/20 text-[hsl(17,75%,56%)] font-semibold"
-          >
-            <Navigation className="h-4 w-4" />
-            Zur aktuellen Woche
-          </button>
+          {currentWeek > 0 && selectedWeek !== currentWeek && (
+            <button
+              onClick={() => {
+                setSelectedWeek(currentWeek);
+                setActiveTab('state');
+              }}
+              className="w-full flex items-center justify-center gap-2 py-4 bg-[hsl(17,75%,56%)]/10 hover:bg-[hsl(17,75%,56%)]/15 rounded-xl transition-colors border border-[hsl(17,75%,56%)]/20 text-[hsl(17,75%,56%)] font-semibold"
+            >
+              <Navigation className="h-4 w-4" />
+              Zur aktuellen Woche ({currentWeek})
+            </button>
+          )}
         </motion.div>
       </main>
     </div>
+  );
+}
+
+// Hilfskomponenten für Icons
+function CloudRain({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+      <path d="M16 14v6" />
+      <path d="M8 14v6" />
+      <path d="M12 16v6" />
+    </svg>
+  );
+}
+
+function Sun({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="5" />
+      <path d="M12 1v2" />
+      <path d="M12 21v2" />
+      <path d="M4.22 4.22l1.42 1.42" />
+      <path d="M18.36 18.36l1.42 1.42" />
+      <path d="M1 12h2" />
+      <path d="M21 12h2" />
+      <path d="M4.22 19.78l1.42-1.42" />
+      <path d="M18.36 5.64l1.42-1.42" />
+    </svg>
   );
 }

@@ -1,771 +1,345 @@
 export const TEMPLATES = [
-  // Phase 0: Die ersten Wochen (Geburt bis Woche 4) - Ruhephase vor erstem Sprung
+  // === WOCHEN 1-4: DIE ANKUNFT ===
+  // Jede Woche einzeln mit aufbauenden Inhalten
+  
+  // WOCHE 1: Die Geburt
   {
-    "week": 1, "weekEnd": 4, "title": "Die ersten Wochen",
-    "subtitle": "Ankunft in der Welt", "phase": "Neugeborenes", "age": "0-4 Wochen",
+    "week": 1, "weekEnd": 1, "title": "Die Geburt",
+    "subtitle": "Tag 1-7: Ankunft in der Welt", "phase": "Neugeborenes", "age": "0-7 Tage",
     "stormPhase": {
-      "description": "Die ersten Wochen sind eine Zeit der intensiven Anpassung. Dein Baby lernt zu essen, zu schlafen und sich an das Leben außerhalb des Mutterleibs zu gewöhnen. Die Welt ist neu, laut und überwältigend.",
+      "description": "Dein Baby ist angekommen! Nach dem Stress der Geburt muss es erstmal atmen, verdauen und die Körpertemperatur halten. Das ist anstrengend - deshalb schläft es viel und weint manchmal ohne erkennbaren Grund.",
       "symptoms": [
-        "Unregelmäßiger Schlaf-Wach-Rhythmus",
-        "Häufiges Wachen zum Füttern",
-        "Empfindlich auf Umweltreize",
-        "Braucht viel Körperkontakt und Nähe"
+        "Unregelmäßiger Atem - manchmal schnell, manchmal langsam",
+        "Viel Schlaf - bis zu 20 Stunden am Tag",
+        "Weinen als Reflex, nicht nur bei Hunger",
+        "Müde beim Trinken, oft einschlafend"
       ]
     },
     "sunnyPhase": {
-      "description": "In den ruhigen Momenten zeigt dein Baby erste Fortschritte. Es beginnt, die Welt zu erkennen und sich an sie zu gewöhnen. Die ersten sozialen Interaktionen entstehen.",
+      "description": "In den kurzen wachen Momenten zeigt dein Baby erste Lebenszeichen: Es sucht die Brust, reagiert auf deine Stimme und entspannt sich in deinen Armen.",
       "abilities": [
-        "Reagiert auf deine Stimme",
-        "Saugt an der Brust oder dem Fläschchen",
-        "Schläft nach dem Füttern ein",
-        "Zeigt erste Reflexe (Greifreflex, Suchreflex)",
-        "Beruhigt sich bei deiner Nähe"
+        "Suchreflex aktiv - dreht den Kopf zur Brust",
+        "Greifreflex - umschließt deinen Finger",
+        "Hört deine Stimme und beruhigt sich",
+        "Kann dich kurz fixieren (20-30 cm)"
       ]
     },
-    "why": "Die ersten Wochen sind geprägt von intensiver neurologischer Entwicklung. Millionen von Synapsen werden gebildet, während das Gehirn lernt, die Reize aus der neuen Umgebung zu verarbeiten.",
+    "why": "Nach der Geburt muss das Gehirn umschalten: Im Bauch war alles automatisch, jetzt muss das Baby selbst atmen, essen und die Temperatur regulieren. Das beansprucht enorme Energie.",
     "actions": [
-      "💚 Diese ersten Wochen sind intensiv, aber sie legen das Fundament für alles Kommende.",
-      "🌟 Bald wirst du die ersten bewussten Lächeln sehen - ein unbezahlbares Geschenk.",
-      "Halte dein Baby viel an deinem Körper",
-      "Füttere nach Bedarf, nicht nach Uhrzeit",
-      "Schaffe eine ruhige Umgebung",
-      "Vertraue deinem Instinkt",
-      "💙 Du bist genau die richtige Elternperson für dein Baby"
+      "💚 Du hast das geschafft - jetzt kommt die Zeit der Ruhe für euch beide",
+      "🌟 Jede Stunde Hautkontakt stärkt die Bindung",
+      "Halte dein Baby viel an deinem Körper (Haut an Haut)",
+      "Stillen oder Fläschchen nach Bedarf - noch kein Rhythmus nötig",
+      "Schlafe, wenn das Baby schläft - du brauchst die Energie",
+      "Akzeptiere Hilfe bei Haushalt und Mahlzeiten",
+      "💙 Dein Baby spürt deine Liebe - auch wenn es noch nicht lächelt"
     ]
   },
-  // Phase 1: Die ersten Sinneswellen (Woche 5-6)
+  
+  // WOCHE 2: Die ersten Anpassungen
+  {
+    "week": 2, "weekEnd": 2, "title": "Die ersten Anpassungen",
+    "subtitle": "Tag 8-14: Sicherheit finden", "phase": "Neugeborenes", "age": "1-2 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby beginnt zu verstehen: Diese neue Welt ist laut, hell und kalt. Es ist oft überfordert von den vielen Reizen und braucht deine Nähe, um sich sicher zu fühlen.",
+      "symptoms": [
+        "Schreckt häufig auf (Moro-Reflex)",
+        "Weint bei lauten Geräuschen",
+        "Will nur in den Armen schlafen",
+        "Unruhiges Trinken, oft abgelenkt"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Zarte Fortschritte zeigen sich: Dein Baby erkennt deine Stimme jetzt besser und entspannt sich schneller, wenn du es hältst. Die ersten Anzeichen von Vertrauen entstehen.",
+      "abilities": [
+        "Erkennt deine Stimme deutlicher",
+        "Entspannt sich bei deinem Herzschlag",
+        "Trinkt etwas konstanter",
+        "Schläft länger am Stück (2-3 Stunden)"
+      ]
+    },
+    "why": "Das Gehirn verarbeitet die neuen Sinnesreize. Das Gehör ist jetzt voll entwickelt, die Augen können kurz fokussieren. Das Baby lernt, zwischen 'sicher' (bei dir) und 'unsicher' (allein) zu unterscheiden.",
+    "actions": [
+      "💚 Die Anpassungsphase ist normal - jede Familie braucht Zeit",
+      "🌟 Bald kommen die ersten bewussten Blicke",
+      "Reduziere Besuche und Lärm - Ruhe ist wichtig",
+      "Trage dein Baby im Tragetuch - Nähe beruhigt",
+      "Sprich beruhigend, auch wenn es weint",
+      "Etabliere eine einfache Schlafens-Routine",
+      "💙 Vertraue deinem Instinkt - du kennst dein Baby am besten"
+    ]
+  },
+  
+  // WOCHE 3: Die Stabilisierung
+  {
+    "week": 3, "weekEnd": 3, "title": "Die Stabilisierung",
+    "subtitle": "Tag 15-21: Erste Routinen", "phase": "Neugeborenes", "age": "2-3 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby hat mehr Energie und zeigt deutlicher, was es will - aber seine Verdauung arbeitet noch nicht perfekt. Blähungen und Bauchschmerzen können es quälen.",
+      "symptoms": [
+        "Bauchschmerzen und Blähungen (3-Wochen-Koliken)",
+        "Weint abends besonders viel",
+        "Schläft tagsüber unruhig",
+        "Möchte oft an der Brust sein (Trost, nicht nur Hunger)"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Gute Nachrichten: Dein Baby gewinnt an Gewicht, bleibt länger wach und beginnt, die Welt bewusst wahrzunehmen. Die ersten 'echten' Blicke gibt es jetzt!",
+      "abilities": [
+        "Bleibt länger wach (45-60 Minuten)",
+        "Folgt Objekten mit den Augen",
+        "Macht erste Laute außer Schreien",
+        "Zeigt erste Anzeichen von Tag-Nacht-Rhythmus"
+      ]
+    },
+    "why": "Die Verdauungsorgane arbeiten jetzt eigenständig - das kann zu Blähungen führen. Gleichzeitig entwickelt sich das Sehen: Dein Baby kann jetzt 30-40 cm weit sehen und Gesichter erkennen.",
+    "actions": [
+      "💚 Die Koli-Phase ist hart, aber vorübergehend",
+      "🌟 Die ersten 'echten' Momente kommen jetzt",
+      "Bauchmassage bei Blähungen",
+      "Tragen im Tragetuch hilft bei Bauchschmerzen",
+      "Abends eine ruhige Routine etablieren",
+      "Tagsüber hell, abends gedämpftes Licht",
+      "💙 Du tust alles Richtig - auch wenn es schwer ist"
+    ]
+  },
+  
+  // WOCHE 4: Die Entdeckung
+  {
+    "week": 4, "weekEnd": 4, "title": "Die Entdeckung",
+    "subtitle": "Tag 22-28: Die Augen öffnen sich", "phase": "Neugeborenes", "age": "3-4 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby ist wacher und neugieriger - was bedeutet, es kann überfordert sein, wenn zu viel los ist. Die Welt wird größer, aber auch unübersichtlicher.",
+      "symptoms": [
+        "Wird schnell überreizt",
+        "Weint bei zu viel Input",
+        "Braucht mehr Pausen",
+        "Schwieriger zum Schlafen zu bringen"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Ein Meilenstein naht: Dein Baby bereitet sich auf den ersten großen Entwicklungsschritt vor. Du merkst, dass es dich jetzt 'sucht' und erkennt.",
+      "abilities": [
+        "Erkennt dein Gesicht deutlich",
+        "Antizipiert das Füttern (wird unruhig vorher)",
+        "Macht erste Lautspiele",
+        "Entspannt sich bei deiner Stimme sofort"
+      ]
+    },
+    "why": "Die Netzhaut reift weiter, das Gehirn verarbeitet visuelle Informationen besser. Gleichzeitig beginnt die emotionale Bindung: Dein Baby lernt, dich als vertraute Person zu erkennen.",
+    "actions": [
+      "💚 Die Neugier wächst - das ist ein gutes Zeichen!",
+      "🌟 Bereite dich vor: Nächste Woche kommt der erste Sprung",
+      "Viel Augenkontakt pflegen",
+      "Einfache Gesichtsspiele spielen",
+      "Ruhephasen bewusst einbauen",
+      "Auf erste Sprung-Anzeichen achten",
+      "💙 Eure Bindung wächst mit jedem Tag"
+    ]
+  },
+  
+  // === Wochen 5-6: Der erste Sprung ===
   {
     "week": 5, "weekEnd": 6, "title": "Die ersten Sinneswellen",
-    "stormPhase": { 
-      "description": "Dein Baby taucht in eine neue Realität ein. Plötzlich ist alles lauter, heller, intensiver. Die kleinen Sinne, die bisher sanft gearbeitet haben, schalten auf Hochleistung um. Dein Baby ist überfordert, quengelig und sucht unbedingt den Schutz deiner Nähe. Die Welt, die es bisher friedlich erlebt hat, wird plötzlich zu einem stürmischen Ozean aus Eindrücken, dem es noch nicht gewachsen ist.", 
-      "symptoms": [
-        "Alles ist plötzlich 'zu viel' - normalerweise angenehme Reize werden überwältigend",
-        "Will nur an deiner Brust oder im Arm - die Nähe gibt Orientierung in der Sinnesflut", 
-        "Schlafprobleme: Schläft unruhig, nur beim Tragen ein oder wacht häufiger auf",
-        "Essverhalten ändert sich: Trinkt unruhiger, manchmal in kurzen Abständen (Clustern)",
-        "Nächtliches Aufwachen: Wacht trotz vorheriger Routine häufiger auf und sucht Trost",
-        "Vermehrtes Weinen/Quengeln: Weint plötzlich mehr ohne erkennbaren Grund",
-        "Reagiert schreckhaft auf Geräusche, die bisher kein Problem waren",
-        "Zittert oder verkrampft sich bei plötzlichen Bewegungen"
-      ] 
-    },
-    "sunnyPhase": { 
-      "description": "Nach dem Sturm kommt die Ruhe. Dein Baby hat gelernt, mit dieser neuen Intensität umzugehen und beginnt, bewusst zu lächeln, tief in deine Augen zu schauen und die Welt mit wachen Sinnen zu erkunden. Das Gesicht zeigt nun echte Begeisterung, nicht nur Reflexe. Die ersten sozialen Interaktionen entstehen.", 
-      "abilities": [
-        "Erstes bewusstes Sozial-Lächeln (nicht mehr Reflex) - dein Baby lächelt dich gezielt an, besonders wenn du ihm ins Gesicht schaust",
-        "Fixiert dein Gesicht mit intensivem Blick und kann Minuten lang in deine Augen schauen - das ist echte Bindung",
-        "Reagiert mit Tränen auf echte Bedürfnisse (nicht mehr reflexartig weinen) - du lernst, die verschiedenen Schreie zu unterscheiden",
-        "Erkennt deine Stimme sofort und beruhigt sich - unterscheidet klar zwischen vertrauten und fremden Stimmen",
-        "Unterscheidet zwischen Tag und Nacht besser - beginnt, länger nachts zu schlafen, was allen hilft",
-        "Reagiert auf Berührungen mit sichtbarem Wohlbefinden - entspannt sich in deinen Armen und zeigt es",
-        "Beginnt, bewusst die Hände zu bewegen - greift zufällig nach Objekten und ist selbst überrascht",
-        "Dreht den Kopf zu dir, wenn du sprichst - sucht aktiv den Kontakt"
-      ] 
-    },
-    "why": "Im kleinen Köpfchen entstehen gerade Millionen neue neuronale Verbindungen. Die Sinnesorgane reifen sprunghaft - was vorher unscharf und gedämpft war, wird jetzt plötzlich scharf und intensiv erfahrbar. Die Netzhaut wird empfindlicher für Kontraste, das Gehör nimmt feinere Frequenzunterschiede wahr. Das ist überwältigend für ein so kleines Wesen, das vor wenigen Wochen noch im dunklen, gedämpften Mutterleib war.",
-    "actions": [
-      "💚 Zuerst: Diese Phase ist intensiv, aber sie geht vorbei. Du machst das gut.",
-      "🌟 Erinner dich: Es kommen wieder ruhigere Zeiten. Jede Phase ist vorübergehend.",
-      "Halte dein Baby ganz nah - Körperkontakt ist jetzt das Wichtigste, Tragetuch oder Baby-Trage sind ideal", 
-      "Reduziere äußere Reize: weniger Besuche, leise Umgebung, gedämpftes Licht, keine laute Musik", 
-      "Sprich beruhigend, sing leise Lieder, halte die Stimme sanft - deine Stimme ist der beste Trost", 
-      "Trage dein Baby viel, am besten in einem Tragetuch oder Tuch - Nahgebundenheit gibt Sicherheit", 
-      "Verzichte auf neue Erfahrungen - vertraute Routinen geben Halt in der überwältigenden Welt",
-      "🌈 Nicht alle Symptome müssen bei deinem Baby auftreten - jedes Kind ist anders",
-      "Achte auf deine eigenen Grenzen - ein gestresstes Baby spürt deine Anspannung",
-      "Biete Haut an Haut Kontakt an - das reguliert Herzschlag und Atmung deines Babys",
-      "💙 Du bist genau die richtige Mutter/der richtige Vater für dein Kind - vertraue darauf"
-    ]
-  },
-  // Ruhephase: Woche 7 (zwischen Sinneswellen und Mustern)
-  {
-    "week": 7, "weekEnd": 7, "title": "Ruhe nach der Sinnesflut",
-    "subtitle": "Verarbeitung & Festigung", "phase": "Ruhephase", "age": "7 Wochen",
+    "subtitle": "Woche 5-6: Alles wird intensiver", "phase": "1. Sprung", "age": "4-6 Wochen",
     "stormPhase": {
-      "description": "Dein Baby verarbeitet die intensive Sinnesflut. Es ist ruhiger, braucht aber immer noch viel Nähe und vertraute Rituale.",
+      "description": "Plötzlich wird alles lauter, heller, intensiver! Dein Baby erlebt die Welt mit 'neuen Augen' - was überwältigend ist. Es sucht verzweifelt deine Nähe, um sich in der Sinnesflut zu orientieren.",
       "symptoms": [
-        "Müde von der intensiven Phase",
-        "Sucht Sicherheit in vertrauten Abläufen",
-        "Braucht viel Schlaf zur Verarbeitung"
+        "Reagiert schreckhaft auf normale Geräusche",
+        "Will ständig getragen werden",
+        "Schläft nur im Tragetuch oder Arm ein",
+        "Weint häufiger ohne erkennbaren Grund",
+        "Ist tagsüber unruhiger als zuvor"
       ]
     },
     "sunnyPhase": {
-      "description": "Dein Baby zeigt erste Fortschritte! Es fixiert besser, reagiert auf Stimmen und beginnt, die Welt zu verstehen.",
+      "description": "Nach dem Sturm zeigt sich ein neues Baby: Bewusst lächelnd, dich ansehend, die Welt erkundend. Das erste echte Sozial-Lächeln ist ein unvergesslicher Moment!",
       "abilities": [
-        "Fixiert Gesichter intensiver",
-        "Reagiert auf vertraute Stimmen",
-        "Zeigt erstes bewusstes Lächeln",
-        "Hält den Kopf kurz selbst"
+        "Erstes bewusstes Lächeln",
+        "Fixiert dein Gesicht länger",
+        "Unterscheidet bekannte und fremde Stimmen",
+        "Reagiert auf deine Berührung gezielt"
       ]
     },
-    "why": "Das Gehirn verarbeitet die neuen Sinneserfahrungen und festigt die neuronalen Verbindungen. Die Myelinisierung beginnt.",
+    "why": "Die Sinnesorgane reifen sprunghaft. Die Netzhaut wird empfindlicher für Kontraste, das Gehör nimmt feinere Frequenzen wahr. Das Gehirn muss lernen, diese Informationsflut zu verarbeiten.",
     "actions": [
-      "💚 Genieße die ruhigere Zeit mit deinem Baby",
-      "🌟 Die Sinnesflut ist vorbei - jetzt kommt die Sonne",
-      "Viel Hautkontakt pflegen",
-      "Vertraute Rituale beibehalten",
-      "Auf die nächste Phase vorbereiten",
-      "💙 Du machst das großartig"
+      "💚 Diese Phase ist intensiv, aber temporär",
+      "🌟 Das erste Lächeln erwartet dich bald!",
+      "Reduziere äußere Reize drastisch",
+      "Trage viel - Körperkontakt beruhigt",
+      "Einfache, vertraute Routinen beibehalten",
+      "Geduldig bei Schreianfällen bleiben",
+      "💙 Deine Nähe ist das beste Medikament"
     ]
   },
-  // Phase 2: Muster im Chaos (Woche 8-9)
+  
+  // === WOCHE 7: Erste Ruhephase ===
+  {
+    "week": 7, "weekEnd": 7, "title": "Die Verschnaufpause",
+    "subtitle": "Woche 7: Verarbeitung & Festigung", "phase": "Ruhephase", "age": "7 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby verarbeitet die intensive Sinnesflut. Es ist oft müde und braucht viel Schlaf, um die neuen Erfahrungen zu speichern. Ein ruhiger Alltag hilft dabei.",
+      "symptoms": [
+        "Mehr Schlafbedürfnis als in Woche 6",
+        "Manchmal irritiert ohne Grund",
+        "Sucht vertraute Abläufe",
+        "Braucht Pausen von Reizen"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Die ersten Fortschritte der Sinnesflut zeigen sich: Dein Baby lächelt jetzt bewusst öfter, fixiert dich intensiver und beginnt, die Umgebung neugierig zu erkunden.",
+      "abilities": [
+        "Lächelt bewusst und häufiger",
+        "Folgt dir mit den Augen",
+        "Bleibt länger wach und interessiert",
+        "Reagiert auf vertraute Stimmen"
+      ]
+    },
+    "why": "Das Gehirn konsolidiert die neuen Sinnesverarbeitungen. Die Myelinisierung (Isolierung der Nervenbahnen) beginnt, was die Informationsverarbeitung effizienter macht.",
+    "actions": [
+      "💚 Ruhe ist produktiv - das Gehirn arbeitet im Schlaf",
+      "🌟 Genieße die ausgeglichene Zeit",
+      "Viel Hautkontakt weiter pflegen",
+      "Vertraute Rituale etablieren",
+      "Langsam auf den nächsten Sprung vorbereiten",
+      "Neue Erfahrungen noch zurückhalten",
+      "💙 Du bist auf dem richtigen Weg"
+    ]
+  },
+  
+  // === Wochen 8-9: Der zweite Sprung ===
   {
     "week": 8, "weekEnd": 9, "title": "Muster im Chaos",
-    "stormPhase": { 
-      "description": "Dein Baby hat plötzlich ein Radar für Wiederholungen entdeckt. Es ist fasziniert, aber auch verwirrt. Warum passiert das immer wieder? Es sucht deinen Blick, will deine Aufmerksamkeit, ist gleichzeitig neugierig und überfordert. Muster, die du als selbstverständlich empfindest, werden für dein Baby zu einem rätselhaften Puzzle, das es verzweifelt entschlüsseln will.", 
-      "symptoms": [
-        "Sucht intensiv Augenkontakt und reagiert empfindlich, wenn du wegschaust - 'Warum ist sie weg?'",
-        "Wird bei Unterbrechungen der Routine unruhig - muss das Muster vollendet werden",
-        "Will ständig getragen werden, besonders in Bewegung - der Rhythmus gibt Sicherheit",
-        "Schlafprobleme: Braucht jetzt oft die gleiche Einschlafroutine, sonst wird es quengelig",
-        "Essverhalten: Will plötzlich immer zur gleichen Zeit trinken oder weigert sich bei Abweichungen",
-        "Vermehrtes Weinen/Quengeln: Wird traurig, wenn erwartete Muster ausbleiben",
-        "Reagiert auf Rhythmen mit Weinen oder Faszination - kann nicht ignorieren",
-        "Irritiert, wenn bekannte Muster unterbrochen werden - etwa wenn du das Lied nicht zu Ende singst"
-      ] 
-    },
-    "sunnyPhase": { 
-      "description": "Dein Baby hat verstanden: Die Welt folgt Mustern! Es kann nun vorhersagen, was als Nächstes passiert, und fühlt sich dadurch sicherer. Das Gesicht leuchtet auf, wenn bekannte Abläufe beginnen. Dein Baby ist ein kleiner Muster-Detektiv geworden und freut sich über jede wiedererkannte Sequenz.", 
-      "abilities": [
-        "Erkennt bekannte Formen und wiederkehrende Elemente - freut sich über vertraute Muster und zeigt es mit einem Lächeln",
-        "Folgt Mustern mit den Augen (Linien, Gesichter) - kann visuelle Kontinuität wahrnehmen und verfolgt Bewegungen",
-        "Reagiert freudig auf bekannte Rhythmen (Schaukeln, Lieder) - beginnt zu 'tanzen' oder mitzuklopfen",
-        "Zeigt Erwartungshaltung vor bekannten Abläufen - spannt sich vor dem Höhepunkt an und schaut erwartungsvoll",
-        "Beruhigt sich bei vertrauten Geräuschen (Staubsauger, Auto) - weiß, was kommt und fühlt sich sicher",
-        "Lacht, wenn ein bekanntes Muster wiederkehrt - versteht den Witz der Wiederholung",
-        "Kann kurze Sequenzen voraussagen - weiß, was als Nächstes kommt und freut sich darauf",
-        "Unterscheidet bekannte von unbekannten Stimmen - reagiert unterschiedlich auf verschiedene Personen"
-      ] 
-    },
-    "why": "Das Gehirn beginnt zu erkennen, dass bestimmte Dinge zusammengehören und sich wiederholen. Diese Mustererkennung ist der Grundstein für das Verständnis von Ursache und Wirkung. Das Baby lernt: Wenn Mama lächelt, bedeutet das Zuwendung. Wenn der gleiche Ton ertönt, kommt das Essen. Das ist ein fundamentaler kognitiver Sprung.",
-    "actions": [
-      "💚 Atme durch: Diese Phase fordert Geduld, aber sie ist wichtig für die Entwicklung.",
-      "🌟 Die nächste sonnige Phase kommt bestimmt - sieh es als Investition in das Vertrauen deines Babys.",
-      "Etabliere tägliche Rituale: Gleiche Abfolge beim Schlafenlegen, Baden, Füttern - Reihung gibt Sicherheit", 
-      "Zeige deinem Baby bewusst einfache Muster: Kreise zeichnen, Klopf-Rhythmen, Licht an-aus", 
-      "Singe oft dieselben Lieder mit demselben Tonfall - Kinderlieder mit Wiederholungen sind ideal", 
-      "Wiederhole bekannte Spiele (Kuckuck, Pat-a-cake) immer und immer wieder - dein Baby liebt die Vorhersehbarkeit", 
-      "Gib deinem Baby Zeit, Muster selbst zu entdecken - unterbreche nicht zu schnell",
-      "🌈 Es ist okay, wenn mal eine Routine nicht klappt - niemand ist perfekt, auch nicht du",
-      "Nutze die Kraft der Wiederholung beim Einschlafen - immer die gleiche Abfolge",
-      "Freue dich mit deinem Baby über erkannte Muster - deine Bestätigung stärkt das Lernen",
-      "💙 Vertraue auf dich - dein Baby spürt, dass du dich um es kümmerst"
-    ]
-  },
-  // Ruhephase: Woche 10-11 (zwischen Mustern und Bewegung)
-  {
-    "week": 10, "weekEnd": 11, "title": "Ruhe nach dem Muster-Wahn",
-    "subtitle": "Sicherheit & Vorhersage", "phase": "Ruhephase", "age": "10-11 Wochen",
+    "subtitle": "Woche 8-9: Die Welt folgt Regeln", "phase": "2. Sprung", "age": "8-9 Wochen",
     "stormPhase": {
-      "description": "Dein Baby verarbeitet das neue Verständnis für Muster. Es ist ausgeglichener und freut sich über bekannte Abläufe.",
+      "description": "Dein Baby entdeckt plötzlich Muster und wird verunsichert, wenn diese unterbrochen werden. Es braucht jetzt feste Routinen, um sich sicher zu fühlen.",
       "symptoms": [
-        "Möchte vertraute Spiele wiederholen",
-        "Sucht Sicherheit in Rituale",
-        "Reagiert sensibel auf Veränderungen"
+        "Wird traurig, wenn ein Lied unterbrochen wird",
+        "Möchte immer dieselbe Einschlafroutine",
+        "Reagiert empfindlich auf Veränderungen",
+        "Sucht ständig deine Aufmerksamkeit"
       ]
     },
     "sunnyPhase": {
-      "description": "Dein Baby hat die Muster verinnerlicht! Es freut sich über Wiederholungen und zeigt echte Erwartungshaltung.",
+      "description": "Ein kleiner Forscher zeigt sich: Dein Baby erkennt Sequenzen, freut sich auf den Höhepunkt von Spielen und beginnt, die Welt vorhersehbar zu finden.",
       "abilities": [
-        "Erkennt vertraute Muster",
+        "Erkennt einfache Sequenzen",
+        "Zeigt Erwartung vor dem Spiel-Höhepunkt",
         "Freut sich über Wiederholungen",
-        "Zeigt Erwartung vor dem Höhepunkt",
         "Beruhigt sich bei vertrauten Ritualen"
       ]
     },
-    "why": "Das Gehirn festigt die Mustererkennung und baut auf dieser Grundlage weiter. Das Verständnis für Sequenzen wächst.",
+    "why": "Das Gehirn beginnt, Regelmäßigkeiten zu erkennen. Diese Mustererkennung ist die Grundlage für das spätere Verständnis von Ursache und Wirkung.",
     "actions": [
-      "💚 Genieße die ausgeglichene Zeit",
-      "🌟 Bald kommt die nächste Entdeckung",
-      "Bekannte Spiele wiederholen",
-      "Rituale etablieren",
-      "Auf die Bewegungsphase vorbereiten",
-      "💙 Du bist ein toller Begleiter"
+      "💚 Routinen geben Sicherheit - auch wenn sie langweilig wirken",
+      "🌟 Bald versteht dein Baby: Wenn ich das mache, passiert das",
+      "Gleiche Abfolgen beim Schlafenlegen",
+      "Immer dieselben Schlaflieder singen",
+      "Einfache Spiele wiederholen (Kuckuck)",
+      "Veränderungen langsam einführen",
+      "💙 Deine Stimme und Berührung sind verlässliche Konstanten"
     ]
   },
-  // Phase 3: Wenn Bewegung Sinn ergibt (Woche 12-13)
+  
+  // === Wochen 10-11: Zweite Ruhephase ===
+  {
+    "week": 10, "weekEnd": 11, "title": "Das Muster-Verstehen",
+    "subtitle": "Woche 10-11: Sicherheit durch Vorhersage", "phase": "Ruhephase", "age": "10-11 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby hat die Muster verinnerlicht und sucht sie aktiv. Es wird unruhig, wenn etwas anders läuft als erwartet - aber auch stolz, wenn es die Sequenz richtig vorhersagt.",
+      "symptoms": [
+        "Weint, wenn ein Spiel unterbrochen wird",
+        "Möchte Spiele immer wiederholen",
+        "Zeigt Unmut bei Veränderungen",
+        "Braucht vertraute Rituale zum Einschlafen"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Die Muster sind jetzt vertraut: Dein Baby lacht vor dem Höhepunkt, sucht die Wiederholung von Spielen und fühlt sich durch die Vorhersagbarkeit sicher.",
+      "abilities": [
+        "Lacht vor dem Höhepunkt eines Spiels",
+        "Sucht aktiv Wiederholungen",
+        "Erkennt vertraute Melodien sofort",
+        "Reagiert enttäuscht bei Abweichungen"
+      ]
+    },
+    "why": "Das Gehirn festigt die Mustererkennung. Die Erwartungshaltung zeigt, dass dein Baby nun aktiv die Welt erwartet und nicht nur passiv reagiert.",
+    "actions": [
+      "💚 Die Wiederholungswünsche sind ein Zeichen von Intelligenz",
+      "🌟 Bald kommt der nächste große Sprung - Bewegung!",
+      "Bekannte Spiele bereitwillig wiederholen",
+      "Rituale etablieren und beibehalten",
+      "Gleichzeitig langsam neue Elemente einstreuen",
+      "Viel Bauchlage ermöglichen",
+      "💙 Du bist ein verlässlicher Anker für dein Baby"
+    ]
+  },
+  
+  // === Wochen 12-13: Der dritte Sprung ===
   {
     "week": 12, "weekEnd": 13, "title": "Wenn Bewegung Sinn ergibt",
-    "stormPhase": { 
-      "description": "Plötzlich will dein Baby die Kontrolle über seinen Körper. Die Arme und Beine bewegen sich bewusster, aber noch nicht gezielt genug. Es ist frustriert, weil der Kopf noch wackelt, und gleichzeitig voller Bewegungsdrang. Dein Baby spürt plötzlich: 'Ich kann etwas tun!' - aber der Körper macht noch nicht alles mit, was es sich vorstellt.", 
-      "symptoms": [
-        "Unruhig, weil der Körper 'mit ihm spricht' - Bewegungsdrang ohne Ziel",
-        "Starker Bewegungsdrang: Will gedreht, geschaukelt, bewegt werden - ständig",
-        "Experimentiert wild mit Armen und Beinen - oft im Schlaf",
-        "Schlafprobleme: Mehr Bewegung im Schlaf, unruhiges Schlafen, häufigeres Aufwachen",
-        "Essverhalten: Trinkt unruhiger, wird schneller abgelenkt, will oft die Position wechseln",
-        "Frustriert, weil Kopf noch nicht stabil genug für das, was es will",
-        "Vermehrtes Weinen/Quengeln: Wut über den noch unkooperativen Körper",
-        "Dreht den Kopf oft hin und her - sucht Orientierung"
-      ] 
-    },
-    "sunnyPhase": { 
-      "description": "Dein Baby hat die Kontrolle über seinen Kopf gewonnen! Die Bewegungen werden flüssiger, gezielter. Es kann nun aktiv an Gesprächen teilnehmen, indem es den Kopf dreht, und genießt die neue körperliche Freiheit. Die Welt wird zum Entdeckungsraum.", 
-      "abilities": [
-        "Kopf kontrolliert halten und zielgerichtet drehen - folgt dir aktiv mit den Augen und dem Kopf",
-        "Entdeckt die eigene Stimme intensiv (Stimmtraining, Quietschen) - experimentiert mit Lauten und Tönen",
-        "Arme bewegen sich flüssiger und gezielter - schlägt mit Absicht nach Objekten und greift zu",
-        "Greift bewusst nach Gesichtern und Haaren - will Dinge fühlen und festhalten, alles erkunden",
-        "Richtet sich in Bauchlage auf den Unterarmen auf - stärkt die Rückenmuskulatur, bereitet das Krabbeln vor",
-        "Dreht sich von Rücken auf die Seite - erste Kontrolle über die Körperrotation",
-        "Spielt mit den Händen - entdeckt sie als eigene Werkzeuge, betrachtet sie fasziniert",
-        "Reagiert auf sein Spiegelbild - beginnt, sich selbst zu erkennen"
-      ] 
-    },
-    "why": "Die Muskulatur im Hals- und Schulterbereich hat an Kraft gewonnen. Die propriozeptive Wahrnehmung - das Körpergefühl - entwickelt sich. Die Koordination zwischen Kopf, Augen und Körper verbessert sich enorm. Dein Baby kann nun aktiv sein Umfeld erkunden, statt passiv zu liegen. Das ist der Beginn der motorischen Selbstständigkeit.",
-    "actions": [
-      "💚 Diese unruhige Phase zeigt: Dein Baby entwickelt sich genau wie es soll. Das ist ein gutes Zeichen!",
-      "🌟 Bald hast du ein Baby, das seinen Kopf stolz hochhält - der Moment kommt schneller als du denkst.",
-      "Mehr Bauchlage ermöglichen - das stärkt Nacken und Rücken und ist wichtig für die Entwicklung", 
-      "Reagiere auf die neuen Laute mit Nachahmen und Gesprächen - dein Baby 'plaudert' jetzt mit dir", 
-      "Unterstütze den Kopf beim Tragen weiterhin, aber weniger als vorher - gibt dem Baby Sicherheit", 
-      "Biete Greifmöglichkeiten: Haare, Ketten, weiche Spielzeuge - alles ist faszinierend", 
-      "Lass dein Baby viel auf dem Bauch spielen (Tummy Time) - mindestens 30 Minuten verteilt über den Tag",
-      "🌈 Nicht jedes Baby hat das gleiche Tempo - manche brauchen mehr Zeit, und das ist völlig okay",
-      "Spiegel dich mit deinem Baby - es erkennt sich jetzt und ist fasziniert",
-      "Unterstütze die ersten Rollversuche - aber nicht zwingen, jedes Baby hat sein eigenes Tempo",
-      "💙 Du begleitest dein Baby perfekt durch diese Entwicklungsschritte"
-    ]
-  },
-  {
-    "week": 19, "weekEnd": 20, "title": "Aha! Das hat Folgen",
-    "stormPhase": { 
-      "description": "Ein revolutionäres Erwachen: Dein Baby entdeckt, dass es etwas tun kann, und dann passiert etwas! Das ist gleichzeitig faszinierend und erschreckend. Es steckt alles in den Mund, greift nach allem, wird frustriert, wenn etwas nicht klappt. Die Welt ist plötzlich ein riesiges Experimentierfeld, das es systematisch erforschen muss.", 
-      "symptoms": [
-        "Alles wird in den Mund gesteckt - Ausprobieren durch Lutschen, Kauen, Schmecken",
-        "Greift wild nach allem, was greifbar ist - Haare, Ketten, Gläser, alles ist interessant",
-        "Wird frustriert, wenn etwas nicht sofort funktioniert - etwa wenn ein Spielzeug nicht 'klickt'",
-        "Wirft Dinge absichtlich runter, um zu sehen, was passiert - wieder und wieder",
-        "Schlafprobleme: Wacht auf, weil es neue Bewegungen ausprobieren will",
-        "Essverhalten: Clustern - trinkt häufiger in kurzen Abständen, will dabei oft die Position wechseln",
-        "Vermehrtes Weinen/Quengeln: Wut, wenn experimentelle Handlungen unterbrochen werden",
-        "Experimentiert mit Geräuschen beim Schreien - testet laut/leiser"
-      ] 
-    },
-    "sunnyPhase": { 
-      "description": "Dein Baby ist nun ein kleiner Forscher mit Methode. Es weiß: Wenn ich das mache, passiert das. Diese Erkenntnis öffnet eine neue Welt voller Möglichkeiten und Selbstwirksamkeit. Das Selbstvertrauen wächst mit jedem erfolgreichen Experiment.", 
-      "abilities": [
-        "Gezieltes Greifen mit Daumen und Zeigefinger (Pinzette) - kann kleine Objekte fassen und untersuchen",
-        "Versucht sich zu drehen und zu bewegen - erste Rollversuche in beide Richtungen",
-        "Mund wird zum Werkzeug: lutscht, kaut, schmatzt bewusst - entdeckt neue Texturen und Geschmäcker",
-        "Schüttelt bewusst Spielzeug, um Geräusche zu machen - hat Ursache-Wirkung verstanden",
-        "Erkennt, dass bestimmte Handlungen bestimmte Reaktionen auslösen - beginnt zu 'manipulieren'",
-        "Interagiert aktiv mit Spielzeug (drückt, schiebt, zieht) - nicht nur passiv betrachten",
-        "Entdeckt seine Spiegelung und erkennt sich selbst - faszinierend und verwirrend zugleich",
-        "Kann sich kurz allein beschäftigen - das Selbstvertrauen wächst"
-      ] 
-    },
-    "why": "Das Gehirn knüpft die ersten bewussten Verknüpfungen zwischen Handeln und Ergebnis im präfrontalen Cortex. 'Ich schüttle die Rassel - es macht Geräusche.' Das ist der Beginn von Ursache-Wirkung-Denken und der Grundlage für späteres Problemlösen. Das Baby erlebt sich als handelndes Wesen, nicht mehr als passiver Beobachter.",
-    "actions": [
-      "💚 Diese Experimentierfreude zeigt: Dein Baby ist neugierig und intelligent. Das sind wunderbare Eigenschaften!",
-      "🌟 Bald wird dein Baby verstehen, was Konsequenzen bedeuten - das ist ein riesiger Entwicklungsschritt.",
-      "Biete viel Greifbares an: weiche Bälle, Beißringe, Tücher - verschiedene Texturen sind ideal", 
-      "Erlaube die Mund-Exploration - das ist normale Forschung, aber achte auf Kleinteile", 
-      "Feiere kleine Erfolge: 'Schau, du hast die Rassel geschüttelt!' - deine Bestätigung ist wichtig", 
-      "Lass dein Baby experimentieren - auch wenn es Dinge wirft, es lernt Physik", 
-      "Reagiere auf die Ursache-Wirkung-Spiele deines Babys - zeige weitere Möglichkeiten",
-      "🌈 Es ist völlig normal, dass manche Experimente nerven - du bist kein schlechter Elternteil, wenn du mal genervt bist",
-      "Spiele Kuckuck und Versteckspiele - das stärkt das Verständnis von Objektpermanenz",
-      "Gib deinem Baby Zeit zum Selbstentdecken - nicht immer unterhalten, Beobachten ermöglichen",
-      "💙 Du ermöglichst deinem Baby, die Welt zu verstehen - das ist wertvoll und wichtig"
-    ]
-  },
-  // Ruhephase: Woche 14-18 (zwischen Bewegung und Folgen)
-  {
-    "week": 14, "weekEnd": 18, "title": "Ruhe nach dem Bewegungswahn",
-    "subtitle": "Festigung & Kontrolle", "phase": "Ruhephase", "age": "14-18 Wochen",
+    "subtitle": "Woche 12-13: Die Körperkontrolle", "phase": "3. Sprung", "age": "12-13 Wochen",
     "stormPhase": {
-      "description": "Dein Baby verarbeitet die neuen Bewegungsfähigkeiten. Es ist stolz auf seine Fortschritte, braucht aber auch viel Ruhe.",
+      "description": "Dein Baby spürt plötzlich seinen Körper intensiver - will greifen, rollen, sich bewegen. Aber die Kontrolle fehlt noch, was zu Frustration führt.",
       "symptoms": [
-        "Möchte neue Bewegungen üben",
-        "Frustriert wenn es nicht klappt",
-        "Braucht viel Schlaf zur Verarbeitung"
+        "Frustriertes Schreien beim Greifen",
+        "Will rollen, aber schafft es noch nicht",
+        "Unruhig wegen Bewegungsdrang",
+        "Experimentiert wild mit Armen und Beinen"
       ]
     },
     "sunnyPhase": {
-      "description": "Dein Baby beherrscht seinen Kopf! Es rollt, greift zielgerichtet und entdeckt die Welt aktiv.",
+      "description": "Erfolgserlebnisse zeigen sich: Der Kopf ist jetzt stabil, die ersten bewussten Greifversuche gelingen, und dein Baby entdeckt die Freude an der Bewegung.",
       "abilities": [
-        "Hält Kopf stabil",
-        "Rollt von Bauch auf Rücken",
+        "Hält den Kopf stabil",
         "Greift gezielt nach Objekten",
-        "Entdeckt die eigenen Hände"
+        "Rollt von Bauch auf Rücken",
+        "Entdeckt die eigenen Hände als Werkzeuge"
       ]
     },
-    "why": "Die motorischen Fähigkeiten werden gefestigt. Das Gehirn speichert die neuen Bewegungsmuster ein.",
+    "why": "Die Nacken- und Rückenmuskulatur stärkt sich. Das propriozeptive System (Körpergefühl) entwickelt sich. Das Gehirn lernt, Bewegungen zu planen und auszuführen.",
     "actions": [
-      "💚 Genieße die Fortschritte",
-      "🌟 Bald folgt Ursache-Wirkung",
+      "💚 Die Frustration zeigt: Dein Baby will lernen!",
+      "🌟 Bald krabbelt es durch die Wohnung",
       "Viel Bauchlage ermöglichen",
-      "Greifspiele anbieten",
-      "Neue Bewegungen feiern",
-      "💙 Du begleitest wunderbar"
+      "Greifspiele anbieten (weiche Bälle)",
+      "Bei Rollversuchen unterstützen",
+      "Bewegungsangebote machen (Schaukeln)",
+      "💙 Jeder Fortschritt ist ein kleines Wunder"
     ]
   },
-  // Phase 5: Die ersten Trennungen (Woche 26-27) - aber ich brauche noch Woche 19-25!
+  
+  // === Wochen 14-15: Dritte Ruhephase ===
   {
-    "week": 26, "weekEnd": 27, "title": "Die ersten Trennungen",
-    "stormPhase": { 
-      "description": "Ein dramatisches Erwachen: Dein Baby merkt plötzlich, dass du eine eigene Person bist und nicht nur eine Verlängerung von ihm. Es kann nun Distanz zwischen euch wahrnehmen - und das ist beängstigend. Das erste echte Fremdeln beginnt. Dein Baby fürchtet sich vor dem Verlust der Bezugsperson und protestiert lautstark gegen dein Fortgehen.", 
-      "symptoms": [
-        "Weint heftig, wenn du den Raum verlässt - manchmal schon beim Aufstehen",
-        "Fremdelt plötzlich vor anderen Personen - selbst vor Bekannten, die es vorher mochte",
-        "Klammern sich an dich wie ein Äffchen - will nicht losgelassen werden, umklammert dich",
-        "Wird nachts unruhiger - sucht ständige Bestätigung, dass du da bist",
-        "Schlafprobleme: Will nicht allein einschlafen, braucht ständige Nähe und Kontakt",
-        "Essverhalten: Trinkt nur bei dir, weigert sich bei Fremden oder in neuer Umgebung",
-        "Reagiert sensibel auf deine Stimmung - nimmt Stress sofort wahr und spiegelt ihn",
-        "Will nur von dir getröstet werden - andere werden abgewiesen, selbst der Partner"
-      ] 
-    },
-    "sunnyPhase": { 
-      "description": "Dein Baby hat die Distanz überwunden und lernt, dass du zurückkommst. Es weiß nun: Auch wenn Mama kurz weg ist, existiert sie weiter. Das ist der Beginn von Objektpermanenz und sicherer Bindung - ein Meilenstein der emotionalen Entwicklung. Das Vertrauen wächst.", 
-      "abilities": [
-        "Unterscheidet klar zwischen Bezugspersonen und Fremden - hat soziale Kategorien gebildet",
-        "Erkennt räumliche Distanz und reagiert darauf - versteht 'nah' und 'fern'",
-        "Zeigt deutliche Präferenzen (will nur bei Mama/Papa sein) - hat einen klaren Favoriten",
-        "Beruhigt sich schneller, wenn du zurückkommst - vertraut auf deine Rückkehr",
-        "Entwickelt erste Strategien, Nähe zu halten - streckt die Arme nach dir aus, krabbelt hinterher",
-        "Zeigt Freude bei Wiedersehen - strahlt, lacht, wackelt vor Glück, springt auf dich zu",
-        "Beginnt mit Fremdeln als normale Entwicklung - zeigt gesunde Bindung",
-        "Kann sich kurz mit bekannten Personen beschäftigen - Vertrauen zu anderen wächst"
-      ] 
-    },
-    "why": "Das Gehirn kategorisiert nun bewusst: 'Das ist meine Bezugsperson' vs. 'Das ist ein Fremder'. Gleichzeitig entwickelt sich das Konzept der Objektpermanenz - das Verständnis, dass Dinge und Personen weiterexistieren, auch wenn sie nicht sichtbar sind. Das ist ein kognitiver Quantensprung und die Grundlage für sichere Bindung.",
-    "actions": [
-      "💚 Dieses starke Anklammern zeigt eine gesunde Bindung zu dir - das ist ein Kompliment, auch wenn es anstrengend ist!",
-      "🌟 Es wird wieder entspannter. Das Fremdeln ist eine Phase, keine permanente Eigenschaft.",
-      "Verabschiede dich rituell, auch wenn es Weinen gibt - das gibt Sicherheit und Vertrauen", 
-      "Komm zurück mit Freude, nicht mit Schuldgefühlen - deine Zuversicht überträgt sich", 
-      "Respektiere das Fremdeln - zwinge dein Baby nicht zu Fremden, es ist ein Schutzmechanismus", 
-      "Spiele Kuckuck: Versteck dich kurz und zeig dich wieder - stärkt das Vertrauen in deine Rückkehr", 
-      "Bleibe in neuen Situationen nah - deine Nähe gibt Halt, erst dann erkunden",
-      "🌈 Es ist okay, wenn du manchmal frustriert bist über das ständige Anklammern - das ist normal",
-      "Beteilige dich nicht am Gekuscheltwerde von Fremden - du schützt damit dein Baby",
-      "Gewöhne langsam an neue Betreuungspersonen - vorher gemeinsam Zeit verbringen",
-      "💙 Deine Nähe ist das größte Geschenk für dein Baby - es vertraut dir bedingungslos"
-    ]
-  },
-  // Ruhephase: Woche 21-25 (zwischen Folgen und Trennungen)
-  {
-    "week": 21, "weekEnd": 25, "title": "Ruhe vor dem Fremdeln",
-    "subtitle": "Entdeckung & Experimentieren", "phase": "Ruhephase", "age": "21-25 Wochen",
+    "week": 14, "weekEnd": 15, "title": "Die Bewegungsfestigung",
+    "subtitle": "Woche 14-15: Sicherer werden", "phase": "Ruhephase", "age": "14-15 Wochen",
     "stormPhase": {
-      "description": "Dein Baby experimentiert intensiv mit Ursache und Wirkung. Es wirft, schüttelt, beobachtet und lernt.",
+      "description": "Dein Baby übt fleißig die neuen Bewegungen. Manchmal ist es frustriert, wenn etwas nicht klappt - aber die Fortschritte sind deutlich sichtbar.",
       "symptoms": [
-        "Wirft absichtlich Dinge zu Boden",
-        "Will immer wieder dasselbe Spiel",
-        "Testet Grenzen aus"
+        "Versucht immer wieder zu greifen",
+        "Wird wütend, wenn etwas nicht reicht",
+        "Will rollen, aber körperlich noch nicht bereit",
+        "Braucht Pausen von den Anstrengungen"
       ]
     },
     "sunnyPhase": {
-      "description": "Dein Baby hat verstanden: Es kann die Welt beeinflussen! Das Selbstvertrauen wächst mit jedem Experiment.",
+      "description": "Die Bewegungen werden flüssiger! Dein Baby greift selbstständig, rollt zielsicherer und fühlt sich in seinem Körper wohler.",
       "abilities": [
-        "Versteht Ursache-Wirkung",
-        "Greift mit Pinzette",
-        "Rollt beidseitig",
-        "Entdeckt eigene Stimme"
+        "Greift und hält Objekte fest",
+        "Rollt bewusster",
+        "Stützt sich auf den Unterarmen",
+        "Koordiniert Hand-Augen besser"
       ]
     },
-    "why": "Das präfrontale Cortex entwickelt sich. Das Baby lernt, dass Handlungen Konsequenzen haben.",
+    "why": "Die neuen motorischen Fähigkeiten werden durch Myelinisierung (Isolierung der Nervenbahnen) schneller und präziser. Das Gehirn speichert die Bewegungsmuster ein.",
     "actions": [
-      "💚 Genieße die Experimentierfreude",
-      "🌟 Bald kommt das Fremdeln",
-      "Geduld beim Aufräumen",
-      "Spiele mit versteckten Gegenständen",
-      "Grenzen freundlich setzen",
-      "💙 Du bist ein toller Guide"
-    ]
-  },
-  // Phase 6: Die ersten Trennungen (Woche 26-27)
-  {
-    "week": 26, "weekEnd": 27, "title": "Die ersten Trennungen",
-    "stormPhase": { 
-      "description": "Dein Baby will die Welt sortieren, verstehen, einordnen. Es ist frustriert, wenn etwas nicht in seine Kategorien passt. Alles wird untersucht, verglichen, auseinandergenommen. Eine Phase intensiver Neugier und manchmal auch Verwirrung, wenn die Realität nicht den Erwartungen entspricht. Der Perfektionismus wächst.", 
-      "symptoms": [
-        "Sortiert alles, was greifbar ist - nimmt Dinge aus Regalen, Kisten, Schubladen und sortiert",
-        "Empfindlich, wenn Erwartungen nicht erfüllt werden - protestiert gegen Abweichungen lautstark",
-        "Achte auf Details, die du übersehen würdest - entdeckt winzige Veränderungen sofort",
-        "Frustriert, wenn etwas anders ist als erwartet - braucht Konsistenz und Vorhersagbarkeit",
-        "Experimentiert mit Kategorien ('Hund' auf alle Tiere beziehen) - testet Grenzen aus",
-        "Will Dinge vergleichen und anordnen - stapelt, sortiert, gruppiert, ordnet",
-        "Schlafprobleme: Kann nicht abschalten, weil es noch so viel zu ordnen und zu verstehen gibt",
-        "Vermehrtes Weinen/Quengeln: Wut, wenn etwas nicht passt oder anders läuft als gedacht"
-      ] 
-    },
-    "sunnyPhase": { 
-      "description": "Dein Baby hat ein mentales Ordnungssystem entwickelt! Es weiß: Ein Hund ist ein Tier, aber nicht jedes Tier ist ein Hund. Das erste Verständnis für Ober- und Unterbegriffe entsteht - die Welt wird strukturierter und vorhersagbarer. Das Denken wird logischer.", 
-      "abilities": [
-        "Kann Dinge nach Kategorien einteilen (Tiere, Fahrzeuge) - sortiert bewusst und richtig",
-        "Erste echte Wortversuche mit Bedeutung - 'Hund' für alle Hunde, nicht nur den eigenen",
-        "Robbt oder krabbelt gezielt - hat Ziele und verfolgt sie konsequent",
-        "Versteht erste einfache Anweisungen - 'Gib mir den Ball', 'Komm her'",
-        "Zeigt Interesse an Büchern mit Kategorien - Bildwörterbücher faszinieren",
-        "Kann ähnliche Dinge zusammenlegen - Paare finden, Gruppen bilden, sortieren",
-        "Erkennt Unterschiede in Größe, Farbe, Form - beginnt zu vergleichen und zu unterscheiden",
-        "Entwickelt ein erstes Zahlgefühl - 'mehr' und 'weniger' verstehen"
-      ] 
-    },
-    "why": "Das Gehirn bildet abstrakte Konzepte und Kategorien. Es versteht, dass Dinge Eigenschaften haben, die sie zu einer Gruppe machen - auch wenn sie unterschiedlich aussehen. Ein Taxi und ein Feuerwehrauto sind beides Autos. Diese Kategorisierung ist fundamental für Sprache und Denken. Die Welt wird dadurch strukturierter und begreifbarer.",
-    "actions": [
-      "💚 Diese Sortierwut zeigt: Dein Baby wird zum kleinen Logiker - ein wunderbares Zeichen der Intelligenz!",
-      "�st Die Ordnung wird bald weniger wichtig - genieße, wie dein Baby die Welt begreift.",
-      "Biete Sortierspiele an: Formen, Farben, Größen - Steckboxen, Sortierbecher sind ideal", 
-      "Benenne Kategorien bewusst: 'Schau, das ist auch ein Hund! Ein kleiner Hund.'", 
-      "Schaffe Platz zum krabbeln und robben - sicheres Umfeld zum Entdecken", 
-      "Lies Bilderbücher mit klaren Kategorien - Tiere, Fahrzeuge, Alltagsgegenstände", 
-      "Spiele 'Was passt nicht?' - einfache Kategorisierungen, die das Denken anregen",
-      "🌈 Das Chaos in deiner Wohnung ist temporär - die Entwicklung deines Babys ist es wert",
-      "Ordne Spielzeug mit deinem Baby zusammen - 'Alle Autos hierher, alle Tiere dorthin'",
-      "Erkläre Unterschiede: 'Das ist groß, das ist klein' - erste Vergleiche",
-      "💙 Du hilfst deinem Baby, die Welt zu verstehen - das ist wertvolle Bildungsarbeit"
-    ]
-  },
-  {
-    "week": 46, "weekEnd": 47, "title": "Reihenfolgen verstehen",
-    "stormPhase": { 
-      "description": "Dein Baby versteht nun, dass Dinge in einer bestimmten Reihenfolge passieren müssen. Es will selbst machen, probiert aus, wird wütend, wenn es nicht klappt. Eine Phase des sturen Übens und Lernens durch Wiederholung, in der Perfektionismus und Frustration Hand in Hand gehen. Jeder Schritt muss sitzen.", 
-      "symptoms": [
-        "Will unbedingt selbst machen - auch wenn es nicht klappt - 'Ich allein!' ist das Motto",
-        "Wird frustriert, wenn die Reihenfolge unterbrochen wird - muss von vorne beginnen, kein Kompromiss",
-        "Experimentiert mit Abfolgen - probiert verschiedene Reihenfolgen aus, testet Systeme",
-        "Stur bei Ritualen - 'Erst das, dann das' - keine Abweichungen erlaubt, strikte Regeln",
-        "Wiederholt Handlungen bis sie sitzen - übt geduldig und hartnäckig",
-        "Testet Grenzen durch Beharrlichkeit - gibt nicht auf, versucht es immer wieder",
-        "Schlafprobleme: Muss die Abendroutine exakt einhalten, jede Abweichung stört",
-        "Vermehrtes Weinen/Quengeln: Wut, wenn etwas unterbrochen wird oder nicht klappt"
-      ] 
-    },
-    "sunnyPhase": { 
-      "description": "Dein Baby ist nun ein kleiner Experte für Abläufe! Es weiß: Zuerst kommt der Löffel in die Hand, dann zum Mund, dann kauen. Diese Sequenzen ermöglichen echte Selbstständigkeit und Teilhabe am Familienleben. Das Selbstvertrauen wächst mit jedem gemeisterten Schritt.", 
-      "abilities": [
-        "Kann einfache Türmchen bauen (3-4 Steine) - versteht die Reihenfolge von unten nach oben",
-        "Hilft bewusst bei Abläufen (zum Beispiel beim Anziehen) - streckt Arme und Beine zur richtigen Zeit",
-        "Versteht und nutzt einfache Sequenzen - weiß, was als Nächstes kommt und freut sich darauf",
-        "Kann Handlungen in Gedanken durchspielen - plant vor dem Tun, zeigt Verständnis",
-        "Zeigt Erwartungshaltung bei bekannten Abläufen - spannt sich vor dem Höhepunkt an",
-        "Erzählt durch Gesten kleine Geschichten - zeigt, was passiert ist, berichtet",
-        "Entwickelt Geduld beim Wiederholen - übt, bis es sitzt",
-        "Kann einfache Alltagsaufgaben unterstützen - fühlt sich als Teil der Familie"
-      ] 
-    },
-    "why": "Das Gehirn speichert Sequenzen als mentale Programme und Skripte. Es versteht nicht nur einzelne Schritte, sondern deren Zusammenhang und Reihenfolge. Das ist die Grundlage für planvolles Handeln, Selbstständigkeit und das Verständnis von Zeit. Das Baby wird vom chaotischen Tun zum zielgerichteten Handeln.",
-    "actions": [
-      "💚 Diese Sturheit zeigt Entschlossenheit - dein Baby will lernen und das ist bewundernswert!",
-      "🌟 Bald kann dein Kind selbstständig essen und sich anziehen - der Fortschritt ist enorm.",
-      "Lass dein Baby helfen - auch wenn es länger dauert, die Selbstständigkeit ist wichtiger", 
-      "Etabliere klare Ritualabfolgen - gleiche Reihenfolge beim Anziehen, Essen, Schlafengehen", 
-      "Biete Bauklötze und Stapelspiele an - verschiedene Größen und Formen zum Ausprobieren", 
-      "Spiele 'Was kommt als Nächstes?'-Rätsel - die Erwartungshaltung stärkt das Lernen", 
-      "Feier, wenn Sequenzen gelingen - 'Schau, du hast es geschafft!'",
-      "🌈 Es ist okay, wenn du manchmal ungeduldig wirst - das ist normal bei der 100. Wiederholung",
-      "Nimm Zeit für die selbst gewählte Reihenfolge - auch wenn sie ungewöhnlich ist",
-      "Erkläre was du tust: 'Zuerst ziehen wir den Pullover an, dann die Hose'",
-      "💙 Du föderst die Unabhängigkeit deines Babys - das ist langfristig wertvoll"
-    ]
-  },
-  {
-    "week": 55, "weekEnd": 56, "title": "Flexible Programme",
-    "stormPhase": { 
-      "description": "Dein Baby testet Grenzen, will selbst entscheiden, zeigt ersten Trotz. Es versteht, dass es Optionen hat - und nutzt sie. Eine herausfordernde Phase der Selbstbehauptung und Grenzerprobung, in der 'Nein' das Lieblingswort wird und jede Aufforderung zum Machtkampf werden kann.", 
-      "symptoms": [
-        "Sagt 'Nein' oder zeigt Ablehnung - auch wenn es eigentlich 'Ja' meint, testet Reaktionen",
-        "Will selbst entscheiden - bei allem, was geht, eigener Wille wird prioritär",
-        "Testet systematisch Grenzen aus - was darf ich, was passiert, wenn ich...?",
-        "Reagiert stark auf Regeln (positiv oder negativ) - merkt sich Verbotenes besonders, provoziert",
-        "Will Wahlmöglichkeiten - streitet um Details, will mitbestimmen",
-        "Wird wütend bei Zwang - 'Ich will selbst!' ist nicht nur Spruch, sondern Überzeugung",
-        "Schlafprobleme: Verweigert das Schlafengehen aus Prinzip - Schlafen wird zum Machtkampf",
-        "Vermehrtes Weinen/Quengeln: Wut, wenn es nicht seinen Willen durchsetzt"
-      ] 
-    },
-    "sunnyPhase": { 
-      "description": "Dein Baby versteht nun echte Flexibilität! Es weiß: Es gibt verschiedene Wege zum Ziel. Es kann wählen, entscheiden, anpassen. Das ist der Beginn von echter Autonomie und Selbstwirksamkeit. Das Selbstbewusstsein wächst und damit auch die Fähigkeit zu kompromissen.", 
-      "abilities": [
-        "Macht die ersten selbstständigen Schritte - läuft alleine, fällt, steht wieder auf",
-        "Hilft aktiv bei Aufgaben mit Verständnis - räumt auf, bringt Dinge zurück, fühlt sich nützlich",
-        "Kann nachahmen und variieren - kopiert und modifiziert, wird kreativ",
-        "Versteht einfache Regeln und ihre Ausnahmen - weiß, wann etwas erlaubt ist, zeigt Vernunft",
-        "Zeigt erste Planungshandlungen - holt sich Werkzeuge, bevor es anfängt, denkt voraus",
-        "Kann sich zwischen Optionen entscheiden - 'Apfel oder Banane?', trifft Wahlen",
-        "Entwickelt ersten Humor - lacht über Wortspiele und Überraschungen, versteht Scherze",
-        "Zeigt Stolz bei gelungenen Aktionen - freut sich über eigene Erfolge"
-      ] 
-    },
-    "why": "Das Gehirn versteht: Programme können variieren und haben trotzdem ein gemeinsames Ziel. 'Ich kann die Schuhe vor oder nach dem Mantel anziehen - beides führt zum Ziel.' Das ist abstraktes Denken und Flexibilität. Das Kind erkennt sich als handelndes Subjekt mit eigenen Vorlieben und Entscheidungsspielraum.",
-    "actions": [
-      "💚 Das viele 'Nein' bedeutet 'Ich bin' - dein Baby entwickelt eine eigene Identität. Das ist wichtig!",
-      "🌟 Diese Phase wird vorbeigehen. Bald hast du ein selbstbewusstes Kind, das Entscheidungen treffen kann.",
-      "Biete echte Wahlmöglichkeiten an: 'Apfel oder Banane?' - limitiere auf 2-3 Optionen", 
-      "Lass dein Baby helfen - Autonomie stärken, auch wenn es länger dauert", 
-      "Gemeinsam aufräumen: Ein Ritual mit Flexibilität - zeige verschiedene Wege", 
-      "Respektiere Entscheidungen, wo möglich - auch kleine Kinder haben Vorlieben", 
-      "Erkläre Regeln einfach und konsequent - liebevoll, aber klar",
-      "🌈 Manche Tage sind einfach nur anstrengend - das ist okay, es ist eine Phase",
-      "Vermeide Machtkämpfe durch rechtzeitige Wahlmöglichkeiten - vor dem Konflikt",
-      "Lobe Selbstständigkeit: 'Schön, dass du das allein gemacht hast!'",
-      "💙 Du hilfst deinem Baby, ein selbstständiger Mensch zu werden - das ist deine wichtigste Aufgabe"
-    ]
-  },
-  {
-    "week": 64, "weekEnd": 65, "title": "Regeln und Konsequenzen",
-    "stormPhase": { 
-      "description": "Dein Baby testet Regeln, wiederholt Verhaltensweisen, lernt durch Konsequenzen. Es ist ein kleiner Wissenschaftler, der Hypothesen über soziale Regeln aufstellt und testet. Eine Phase intensiver Beobachtung und Anpassung, in der jedes Verhalten eine Reaktion provoziert und getestet wird.", 
-      "symptoms": [
-        "Wiederholt Verhaltensweisen systematisch - 'Was passiert, wenn ich...?' - testet Grenzen",
-        "Variatives Verhalten: Probiert verschiedene Varianten - testet alle Möglichkeiten aus",
-        "Reagiert stark auf Konsequenzen - lernt aus Ergebnissen, merkt sich was funktioniert",
-        "Testet, was passiert, wenn... - experimentiert mit Verhalten, wissenschaftliche Neugier",
-        "Merkt sich Regeln und erwartet deren Einhaltung - auch von anderen, wird zum Moralpolizist",
-        "Frustriert bei unerwarteten Ausnahmen - braucht Konsistenz und Vorhersagbarkeit",
-        "Schlafprobleme: Verhandelt über Bettzeiten und Routinen - testet Grenzen",
-        "Vermehrtes Weinen/Quengeln: Wut, wenn Regeln nicht eingehalten werden oder ausgehebelt werden"
-      ] 
-    },
-    "sunnyPhase": { 
-      "description": "Dein Baby versteht nun strategisches Handeln! Es weiß: Wenn ich A tue, passiert B. Es kann Regeln anwenden, Konsequenzen vorhersagen und sein Verhalten danach ausrichten. Die soziale Kompetenz wächst.", 
-      "abilities": [
-        "Versteht und folgt einfachen Regeln - auch wenn niemand zuschaut, zeigt Selbstdisziplin",
-        "Bildet erste Zwei-Wort-Sätze - 'Mama kommt', 'Ball da', 'Nein da'",
-        "Erkennt Konsequenzen von Handlungen - 'Wenn ich das mache, dann...'",
-        "Kann Verhaltensalternativen abwägen - wählt bewusst zwischen Optionen",
-        "Zeigt erstes schuldiges Bewusstsein - weiß, wenn es etwas Verbotenes getan hat",
-        "Kann einfache Kompromisse eingehen - handelt verhandelnd, zeigt soziale Intelligenz",
-        "Entwickelt Empathie für andere - versteht, wenn jemand traurig ist",
-        "Kann sich kurzfristig beruhigen - beginnt mit Selbstregulation"
-      ] 
-    },
-    "why": "Das Gehirn formt Regelwerke und testet sie systematisch. 'Wenn ich weine, kommt Mama' - aber auch: 'Wenn ich weine und Mama sagt Nein, kommt sie trotzdem nicht.' Das ist soziales Lernen durch Erfahrung und Feedback. Das präfrontale Cortex entwickelt sich und ermöglicht erstes strategisches Denken.",
-    "actions": [
-      "💚 Dieses Testen ist wichtig - dein Baby lernt soziale Regeln zu verstehen. Sei geduldig!",
-      "🌟 Bald wird dein Kind verstehen, warum Regeln wichtig sind - nicht nur 'weil ich es sage'.",
-      "Sei konsequent - Regeln brauchen Beständigkeit, Ausnahmen verwirren", 
-      "Erkläre einfach: 'Wenn... dann...' - logische Zusammenhänge verständlich machen", 
-      "Verstärke positives Verhalten bewusst - 'Schön, wie du das gemacht hast!'", 
-      "Erlaube Fehler - daraus lernt man, Fehler sind Experimente", 
-      "Zeige emotionale Konsequenzen: 'Schau, das hat sie traurig gemacht'",
-      "🌈 Es ist normal, dass Grenzertestungen nerven - du bist kein schlechter Elternteil, wenn du mal streng bist",
-      "Bleibe ruhig bei Grenzertestungen - deine Ruhe gibt Orientierung",
-      "Lobe Selbstkontrolle: 'Toll, wie du gewartet hast!'",
-      "💙 Du baust die Grundlage für ein verantwortungsvolles Kind - das ist langfristig wertvoll"
-    ]
-  },
-  {
-    "week": 75, "weekEnd": 76, "title": "Verbundenheit spüren",
-    "stormPhase": { 
-      "description": "Dein Baby begreift sich als Teil eines größeren Ganzen. Es spürt die Stimmungen anderer, ist empfindsam für Beziehungsdynamiken, übernimmt Verantwortung. Eine Phase tiefer emotionaler Verwundbarkeit und wachsender Sozialkompetenz, in der Harmonie wichtig wird und Konflikte schmerzen.", 
-      "symptoms": [
-        "Reagiert stark auf die Emotionen anderer - weint, wenn andere weinen (echte Empathie)",
-        "Zeigt Gewissenhaftigkeit und Perfektionismus - will alles richtig machen, frustriert bei Fehlern",
-        "Ist sensibel für Stimmungen in der Familie - merkt Spannungen sofort, wird unruhig",
-        "Nimmt Konflikte intensiv wahr - ist verstört bei Streit, will Frieden",
-        "Will alles 'richtig' machen - hohe Erwartungen an sich selbst",
-        "Zeigt echte Sorge um andere - tröstet, pflegt, hilft, nimmt Anteil",
-        "Schlafprobleme: Kann nicht schlafen, wenn etwas nicht in Ordnung ist oder es Sorgen gibt",
-        "Vermehrtes Weinen/Quengeln: Empathisch überfordert, nimmt alles zu stark auf"
-      ] 
-    },
-    "sunnyPhase": { 
-      "description": "Dein Baby entwickelt echte Empathie! Es versteht: Andere haben Gefühle, Bedürfnisse, Perspektiven. Es kann sich in andere hineinversetzen und ist ein fürsorgliches, soziales Wesen geworden. Die zwischenmenschlichen Fähigkeiten sind beeindruckend.", 
-      "abilities": [
-        "Zeigt echte Empathie und Mitgefühl - tröstet andere, reagiert auf Gefühle",
-        "Entwickelt ein klares Ich-Bewusstsein - unterscheidet zwischen 'ich' und 'du'",
-        "Versteht Familiengefüge und Beziehungen - weiß, wer zu wem gehört, versteht Rollen",
-        "Kann sich in andere hineinversetzen - 'Wie fühlt er sich wohl?', nimmt Perspektiven ein",
-        "Nimmt soziale Verantwortung wahr - hilft, teilt, kümmert sich, ist fürsorglich",
-        "Kann kooperativ spielen und teilen - erste echte Freundschaften entstehen",
-        "Zeigt Hilfsbereitschaft - bringt Dinge, unterstützt, ist Teil der Gemeinschaft",
-        "Kann Konflikte einfach lösen - zeigt erste Verhandlungsfähigkeiten"
-      ] 
-    },
-    "why": "Das Gehirn sieht Zusammenhänge zwischen Menschen und versteht soziale Beziehungen. 'Wenn Mama traurig ist, bin ich auch betroffen.' Das ist der Beginn von sozialem Bewusstsein und echter zwischenmenschlicher Verbundenheit. Spiegelneuronen ermöglichen das Nachempfinden fremder Gefühle.",
-    "actions": [
-      "💚 Diese Empathie ist ein Geschenk - dein Baby entwickelt Herz und soziales Bewusstsein.",
-      "🌟 Du ziehst ein fürsorgliches, mitfühlendes Kind groß - das ist eine wunderbare Eigenschaft.",
-      "Benenne Gefühle bewusst: 'Du siehst traurig aus, was ist passiert?'", 
-      "Erkläre Familienbeziehungen einfach - 'Das ist Oma, Papas Mama'", 
-      "Ermögliche Rollenspiele (Puppen, Figuren) - soziales Verhalten üben", 
-      "Zeige eigene Gefühle authentisch - aber ruhig und erklärend", 
-      "Respektiere die wachsende Sensibilität - kein Sarkasmus, keine unklaren Botschaften",
-      "🌈 Es ist okay, wenn dein Kind manchmal 'zu viel' fühlt - das ist Empathie, keine Schwäche",
-      "Lobe Hilfsbereitschaft: 'Toll, wie du deiner Schwester geholfen hast!'",
-      "Schaffe harmonische Familienmomente - gemeinsame Rituale stärken das Wir-Gefühl",
-      "💙 Du ziehst ein Kind mit Herz groß - das ist das Wertvollste, was du geben kannst"
-    ]
-  },
-  {
-    "week": 76, "weekEnd": 90, "title": "Die Konsolidierung",
-    "subtitle": "Welt der Worte", "phase": "Jahr 2", "age": "18-21 Monate",
-    "stormPhase": {
-      "description": "Die Welt wird sprachlich. Dein Kleinkind erlebt eine rasante Entwicklung im Wortschatz, versteht plötzlich viel mehr als es sagen kann, und das führt zu Frustration. Die sogenannte 'Wortschatz-Explosion' beginnt - aber nicht alle Wörter kommen gleichzeitig. Die Kommunikationswünsche übersteigen die Fähigkeiten.",
-      "symptoms": [
-        "Frustriert, weil es mehr versteht als es ausdrücken kann - 'Ich weiß was ich will, aber kann es nicht sagen!'",
-        "Zeigt auf alles und will, dass du es benennst - ständiges 'Was ist das?'",
-        "Imitiert Laute und Wörter aus dem Umfeld - manchmal unpassend, aber lernend",
-        "Wird wütend, wenn es nicht verstanden wird - führt zu Wutanfällen aus Hilflosigkeit",
-        "Experimentiert mit Lautstärke und Betonung - testet die Macht der Stimme, schreit",
-        "Schlafprobleme: Kann nicht abschalten, weil der Kopf voller Wörter und Gedanken ist",
-        "Essverhalten: Spielt mit Worten statt zu essen - 'Nein!' wird zum Spiel und Test",
-        "Vermehrtes Weinen/Quengeln: Kommunikationsfrustration, Unverständnis führt zu Wut"
-      ]
-    },
-    "sunnyPhase": {
-      "description": "Das sprachliche Verständnis explodiert! Dein Kleinkind versteht plötzlich komplexe Zusammenhänge, folgt Anweisungen und beginnt, die Welt durch Worte zu ordnen. Die ersten richtigen Sätze entstehen und mit ihnen die Möglichkeit, sich mitzuteilen.",
-      "abilities": [
-        "Wortschatz von ca. 50 Wörtern - benennt Dinge gezielt und stolz",
-        "Versteht einfache Zweiwortsätze - 'Gib mir den Ball', 'Komm her'",
-        "Kann ersten Anweisungen folgen - 'Hol deine Schuhe', bringt sie auch",
-        "Erkennt Bilder in Büchern und benennt sie - interaktives Lesen beginnt",
-        "Beginnt, Farben und Formen zu unterscheiden - erste Kategorisierungen",
-        "Nutzt Gesten zur Unterstützung - zeigt, schüttelt, nickt, deutet",
-        "Kann sich in einfachen Sätzen mitteilen - 'Mama komm', 'Mehr Milch'",
-        "Reagiert auf sein eigenen Namen - und kennt Namen von Familienmitgliedern"
-      ]
-    },
-    "why": "Die Sprachzentren im Gehirn (Broca- und Wernicke-Areal) wachsen explosionsartig. Millionen neue Synapsen werden gebildet. Das Verständnis läuft dem Sprechen voraus - was zu einer typischen Frustrationsphase führt, bis das Sprechen nachzieht. Diese Phase ist der Sprung vom Baby zum sprechenden Kind.",
-    "actions": [
-      "💚 Die Kommunikationsfrustration ist hart, aber temporär - bald spricht dein Kind mit dir!",
-      "🌟 Bald hast du echte Gespräche mit deinem Kind - die Geduld lohnt sich jetzt schon.",
-      "Viel lesen und vorlesen - Sprache baden, Bilder benennen",
-      "Auf Augenhöhe sprechen, deutlich artikulieren - deine Stimme ist das Vorbild",
-      "Wiederholen, was dein Kind sagt und ergänzen - 'Ja, das ist ein großer roter Hund!'",
-      "Geduld haben bei Wutanfällen aus Sprachfrustration - es kann sich nicht mitteilen",
-      "Nicht korrigieren, sondern vormachen - 'Hund' statt 'Nein, das ist ein Hund'",
-      "🌈 Es ist okay, wenn du manchmal nicht verstehst - dein Kind ist auch frustriert",
-      "Gespräche führen, auch wenn es nur Einwortsätze sind - respektiere jeden Versuch",
-      "Lieder mit Gebärden singen - 'Itsy Bitsy Spider', 'Kopf, Schulter, Knie und Fuß'",
-      "💙 Du begleitest den Sprung vom Baby zum sprechenden Kind - das ist magisch"
-    ]
-  },
-  {
-    "week": 91, "weekEnd": 115, "title": "Die Autonomie-Explosion",
-    "subtitle": "Trotzphase", "phase": "Jahr 2", "age": "2 Jahre", "intensity": "high",
-    "stormPhase": {
-      "description": "Das berüchtigte 'Nein'-Alter bricht herein. Dein Kleinkind entdeckt den eigenen Willen mit voller Kraft. Es will selbst entscheiden, selbst tun, selbst sein - und lässt sich auf nichts ein, was nicht seiner eigenen Idee entspringt. Dies ist keine böse Absicht, sondern ein fundamentaler Entwicklungsschritt zur Autonomie.",
-      "symptoms": [
-        "Ständiges 'Nein!' - auch wenn es eigentlich 'Ja' meint, testet Grenzen und Reaktionen",
-        "Will alles selbst machen - auch wenn es nicht klappt - 'Ich allein!' ist das Credo",
-        "Wutanfälle bei kleinsten Enttäuschungen - die Welt ist nicht so, wie sie sein soll",
-        "Extremes Testen von Grenzen - was darf ich, was passiert, wenn ich...?",
-        "Eigensinn bei Routinen - Wechsel der Jacke kann zum Drama werden, keine Abweichungen",
-        "Schlafprobleme: Verweigert Schlafen aus Prinzip - 'Ich bin noch nicht müde!'",
-        "Essverhalten: Fressattacken oder Verweigerung - extremes Verhalten, keine Mitte",
-        "Vermehrtes Weinen/Quengeln: Emotionaler Rollcoaster, starke Gefühlsschwankungen"
-      ]
-    },
-    "sunnyPhase": {
-      "description": "Dein Kleinkind wird zum selbstständigen Individuum! Es hat einen eigenen Willen, eigene Vorlieben, eigene Ideen. Die Selbstständigkeit wächst - und damit auch das Selbstvertrauen. Die ersten Freundschaften entstehen und die Welt wird zum Abenteuerspielplatz.",
-      "abilities": [
-        "Sprachexplosion: 200-300 Wörter, erste Dreiwortsätze - kommuniziert immer besser",
-        "Selbstständiges Laufen, Klettern, Balancieren - volle Motorik, erkorcht die Welt",
-        "Kann allein spielen - kurze Aufmerksamkeitsspanne für eigene Projekte",
-        "Zeigt erste echte Freundschaften - spielt mit anderen Kindern, teilt manchmal",
-        "Versteht Regeln und kann sie befolgen - wenn es will, zeigt Selbstkontrolle",
-        "Kann sich an 2-3 Schritte-Anweisungen erinnern - 'Zieh dich an, dann essen wir'",
-        "Entwickelt Humor - lacht über Wortspiele und Überraschungen, versteht Scherze",
-        "Zeigt Stolz auf Errungenschaften - 'Schau mal, was ich kann!'"
-      ]
-    },
-    "why": "Das Präfrontalcortex entwickelt sich rasant. Das Selbstbewusstsein erwacht. Gleichzeitig ist die emotionale Regulation noch nicht entwickelt - daher die extremen Ausschläge. Diese Phase ist essentiell für die Persönlichkeitsentwicklung und die Ausbildung einer gesunden Autonomie. 'Nein' bedeutet 'Ich bin'.",
-    "actions": [
-      "💚 Das 'Nein' bedeutet 'Ich bin' - dein Kind entwickelt seine Identität. Das ist wichtig und normal!",
-      "🌟 Diese Phase ist intensiv, aber sie wird vorbeigehen. Bald hast du ein selbstbewusstes Kind.",
-      "Biete echte Wahlen an - limitiere Optionen auf 2-3: 'Apfel oder Banane?'",
-      "Gib Zeit für Selbstständigkeit - auch wenn es länger dauert, Geduld ist wichtig",
-      "Wutanfälle nicht persönlich nehmen - begleiten, nicht bestrafen, bleibe ruhig",
-      "Klare, konsequente Grenzen setzen - liebevoll, aber fest und vorhersehbar",
-      "Selbst Zeitouts nehmen wenn nötig - du bist kein Roboter, Pausen sind okay",
-      "🌈 Es ist okay, wenn manche Tage anstrengend sind - das ist die Trotzphase, keine Fehler von dir",
-      "Lobe Selbstständigkeit: 'Schön, dass du das allein gemacht hast!'",
-      "Vermeide Machtkämpfe durch Wahlmöglichkeiten - vor dem Konflikt lenken",
-      "💙 Du begleitest dein Kind durch einen wichtigen Entwicklungsschritt - das ist wertvoll"
-    ]
-  },
-  {
-    "week": 116, "weekEnd": 140, "title": "Die Welt der Symbole",
-    "subtitle": "Fantasie erwacht", "phase": "Jahr 2-3", "age": "ca. 2,5 Jahre",
-    "stormPhase": {
-      "description": "Die Fantasie explodiert. Dein Kleinkind lebt jetzt in einer Welt, in der Stöcke zu Schwertern werden und Kartons zu Raumschiffen. Aber diese neue Fähigkeit bringt auch Ängste mit sich - Monster unter dem Bett, Schatten an der Wand. Die Grenze zwischen Realität und Fantasie verschwimmt und wird beängstigend.",
-      "symptoms": [
-        "Spricht mit imaginären Freunden - ernsthaft und überzeugend, sie sind real für das Kind",
-        "Fürchtet sich plötzlich vor Dingen, die vorher harmlos waren - Staubsauger, Hunde, Dunkelheit",
-        "Verweigert das Schlafengehen - 'Die Monster kommen!' oder 'Der Schatten!'",
-        "Will immer wieder dieselben Geschichten hören - braucht die Sicherheit des Bekannten",
-        "Kann nicht unterscheiden zwischen Fantasie und Lüge - erzählt 'Geschichten', Fantasien",
-        "Extreme Empathie - traurig bei traurigen Büchern, glücklich bei glücklichen",
-        "Wutanfälle, wenn Fantasiespiele unterbrochen werden - 'Aber der Drache...!'",
-        "Vermehrte Angst vor Trennung - Fantasie von Verlust und Alleinsein"
-      ]
-    },
-    "sunnyPhase": {
-      "description": "Die symbolische Welt öffnet sich! Dein Kleinkind kann nun spielen, ohne echtes Spielzeug - eine Banane wird zum Telefon, ein Kissen zu einem Boot. Das ist der Beginn kreativen Denkens und abstrakter Vorstellungskraft. Die Fantasie ist grenzenlos.",
-      "abilities": [
-        "Symbolisches Spielen auf höchstem Niveau - alles wird zu etwas anderem, Fantasie",
-        "Erzählt eigene Geschichten - mit Anfang, Mitte und Ende, wird zum Geschichtenerzähler",
-        "Rolle spielen - ist Arzt, Mama, Feuerwehrmann, entwickelt soziales Verständnis",
-        "Versteht Bilder und Symbole - erkennt sein eigenes Bild im Buch, erste Lesevorstufe",
-        "Kann sich Dinge vorstellen, die nicht da sind - 'Wo ist der Ball?', abstraktes Denken",
-        "Entwickelt einen Sinn für Humor - versteht Witze und Wortspiele, Witzfiguren",
-        "Trockenwerden beginnt - körperliche Kontrolle, Selbstbeherrschung",
-        "Zeigt kreative Problemlösungen - 'Ich nehme das als...'"
-      ]
-    },
-    "why": "Die Fähigkeit zu symbolischem Denken ist ein Meilenstein der menschlichen Entwicklung. Sie ermöglicht Sprache, Kunst, Kultur und abstraktes Denken. Gleichzeitig ist das Unterscheiden zwischen echt und erfunden noch nicht vollständig entwickelt - daher die Ängste. Das Kind lebt in zwei Welten gleichzeitig.",
-    "actions": [
-      "💚 Die Fantasie ist ein Geschenk - dein Kind entwickelt Kreativität und abstraktes Denken.",
-      "🌟 Bald unterscheidet dein Kind zwischen Fantasie und Realität - die Ängste werden weniger.",
-      "Fantasiespiele ermutigen und mitspielen - 'Oh, ein Telefon! Für wen ist das?'",
-      "Ängste ernst nehmen und benennen - 'Das ist ein Schatten vom Baum draußen'",
-      "Nicht 'Das gibt es nicht' sagen - für das Kind ist es real, zeige Alternativen",
-      "Geschichten erfinden zusammen - 'Und was passiert dann?'",
-      "Rituale für die Nacht etablieren - gegen die Angst, Schutzmonster, Glücksbringer",
-      "🌈 Es ist okay, wenn die Fantasie manchmal überhand nimmt - das ist Entwicklung",
-      "Lobe Kreativität: 'Was für eine tolle Idee, aus dem Stock ein Zauberstab zu machen!'",
-      "Biete Material für Fantasy-Spiele an - Decken, Kartons, Verkleidungskiste",
-      "💙 Du begleitest den Beginn kreativen Denkens - das ist faszinierend und wertvoll"
-    ]
-  },
-  {
-    "week": 141, "weekEnd": 156, "title": "Warum? & Magisches Denken",
-    "subtitle": "Kindergarten-Ready", "phase": "Jahr 3", "age": "3 Jahre", "intensity": "high",
-    "stormPhase": {
-      "description": "Die 'Warum'-Phase bricht herein. Jedes Antwortwort führt zu einer neuen Frage. Dein Kind versucht verzweifelt, die Welt zu verstehen, und merkt gleichzeitig, wie wenig es noch weiß. Das magische Denken ist auf dem Höhepunkt - es glaubt fest an die Macht von Gedanken und Ritualen.",
-      "symptoms": [
-        "Endlose Warum-Fragen - manchmal einfach zum Fragenspiel, testet Grenzen",
-        "Magisches Denken: 'Wenn ich dreimal springe, kommt die Sonne wieder'",
-        "Entwickelt starke Ritualbedürfnisse - alles muss in einer bestimmten Reihenfolge passieren",
-        "Fürchtet sich vor eigenen Gedanken - 'Ich dachte böse, bin ich jetzt böse?'",
-        "Extreme Gerechtigkeitssensibilität - 'Das ist nicht fair!' empfindet Ungerechtigkeit intensiv",
-        "Vergleicht sich intensiv mit anderen - 'Warum kann der das schon?'",
-        "Schlafprobleme: Grübelt über die Welt - 'Woher kommen die Sterne?', 'Was ist Tod?'",
-        "Vermehrtes Weinen/Quengeln: Überfordert von so vielen Fragen und Gedanken"
-      ]
-    },
-    "sunnyPhase": {
-      "description": "Dein Kind ist bereit für den Kindergarten! Es hat einen Wortschatz von fast 1000 Wörtern, versteht komplexe Zusammenhänge, kann sich in andere hineinversetzen und ist sozial kompetent genug für die Gruppe. Die Welt wird logischer und doch voller Wunder.",
-      "abilities": [
-        "Wortschatz von 900-1000 Wörtern - spricht in kompletten Sätzen mit Nebensätzen",
-        "Versteht Zeitkonzepte - gestern, heute, morgen, später, bald",
-        "Kann sich an Regeln erinnern und befolgen - auch ohne Erinnerung, zeigt Selbstdisziplin",
-        "Spielt kooperativ mit anderen Kindern - teilt, verhandelt, kompromittiert, freundet sich an",
-        "Kann Geschichten nacherzählen - mit eigener Interpretation, wird zum Erzähler",
-        "Entwickelt einfache Strategien - 'Wenn ich nett frage, bekomme ich es', soziale Intelligenz",
-        "Selbstständig beim Trockenwerden - körperliche Souveränität",
-        "Konzept von Ursache und Wirkung - logisches Denken, naturwissenschaftliche Neugier"
-      ]
-    },
-    "why": "Das Gehirn ist auf 85% seiner Endgröße angelangt. Die Grundlagen für logisches Denken, Empathie, Sprache und soziale Kompetenz sind gelegt. Das Kind ist bereit für die nächste große Etappe: die Schule und das Leben in größeren Gruppen. Die 'Warum'-Phase zeigt das erwachende Verständnis für komplexe Zusammenhänge.",
-    "actions": [
-      "💚 Die endlosen Warum-Fragen zeigen ein erwachendes Verständnis für die Welt - das ist wunderbar!",
-      "🌟 Dein Kind ist bereit für den nächsten Schritt - Kindergarten, neue Freunde, neue Abenteuer.",
-      "Warum-Fragen ernst nehmen - auch wenn es mühsam wird, Geduld haben",
-      "Gemeinsam nach Antworten suchen - Bücher, Internet, Experimente, Entdecken",
-      "Rituale respektieren - sie geben Sicherheit in einer komplexen Welt",
-      "Kindergarten-Besuche planen - langsame Eingewöhnung, Besuche vorher",
-      "Die Entwicklung feiern - 'Schau, wie viel du schon kannst!'",
-      "🌈 Es ist okay, wenn du manchmal keine Antwort hast - gemeinsam Suchen ist auch wertvoll",
-      "Bei komplexen Fragen: 'Was denkst du?' - die eigenen Gedanken ernst nehmen",
-      "Lobe soziales Verhalten: 'Toll, wie du geteilt hast!'",
-      "💙 Du hast drei wunderbare Jahre begleitet - das ist eine Leistung, auf die du stolz sein kannst"
+      "💚 Üben macht den Meister - auch beim Baby",
+      "🌟 Bereite dich vor: Der nächste Sprung ist 'Folgen'",
+      "Greifspiele weiter fördern",
+      "Verschiedene Texturen anbieten",
+      "Bauchlage als Spielzeit etablieren",
+      "Erfolge feiern und bestätigen",
+      "💙 Du begleitest wunderbar die Entwicklung"
     ]
   }
 ];

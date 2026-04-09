@@ -39,12 +39,14 @@ function getWeekColor(week) {
 
 // Generiere detaillierte Inhalte für jede Woche
 function generateWeekData(week) {
-  const template = TEMPLATES.find(t => week >= t.week && week <= t.weekEnd);
+  // Prüfe erst, ob diese Woche ein ECHTER Sprung ist (muss in LEAPS_TIMELINE sein)
   const leap = LEAPS_TIMELINE.find(l => week >= l.week && week <= l.weekEnd);
+  const template = TEMPLATES.find(t => week >= t.week && week <= t.weekEnd);
   
-  if (template) {
-    const isFirstWeek = week === template.week;
-    const isLastWeek = week === template.weekEnd;
+  // Nur echte Sprünge behandeln (die in LEAPS_TIMELINE definiert sind)
+  if (leap && template) {
+    const isFirstWeek = week === leap.week;
+    const isLastWeek = week === leap.weekEnd;
     
     return {
       week,
@@ -62,7 +64,7 @@ function generateWeekData(week) {
     };
   }
   
-  // Ruhephase
+  // Ruhephase (auch wenn Template existiert, aber nicht in LEAPS_TIMELINE)
   let prevLeap = null;
   let nextLeap = null;
   for (const l of LEAPS_TIMELINE) {
@@ -73,39 +75,35 @@ function generateWeekData(week) {
   const prevTitle = prevLeap?.title || 'Geburt';
   const nextTitle = nextLeap?.title || 'Kindergarten';
   
+  // Verwende Template-Daten falls vorhanden (für Titel), sonst generische
+  const title = template?.title || `Ruhephase nach "${prevTitle}"`;
+  const subtitle = template?.subtitle || `Vorbereitung auf "${nextTitle}"`;
+  
   return {
     week,
     type: 'calm',
-    title: `Ruhephase nach "${prevTitle}"`,
-    subtitle: `Vorbereitung auf "${nextTitle}"`,
+    title: title,
+    subtitle: subtitle,
     phase: 'Ruhige Entwicklung',
     state: 'calm',
     stateLabel: 'Ruhige Phase',
-    stateDescription: `Nach dem intensiven ${prevTitle} ist Zeit zur Verarbeitung. Dein Baby festigt das Gelernte und bereitet sich auf ${nextTitle} vor. Das Gehirn konsolidiert neue neuronale Verbindungen.`,
-    symptoms: [
+    stateDescription: template?.sunnyPhase?.description || `Nach dem intensiven ${prevTitle} ist Zeit zur Verarbeitung. Dein Baby festigt das Gelernte und bereitet sich auf ${nextTitle} vor.`,
+    symptoms: template?.stormPhase?.symptoms || [
       "Kann nach dem vorherigen Sprung müde sein",
       "Zeigt stolz neue Fähigkeiten",
       "Sucht vertraute Rituale",
-      "Ist ausgeglichener und zufriedener",
-      "Schläft wieder ruhiger",
-      "Spielt länger konzentriert"
+      "Ist ausgeglichener und zufriedener"
     ],
-    abilities: [
+    abilities: template?.sunnyPhase?.abilities || [
       "Festigt neu erworbene Fähigkeiten",
       "Wird sicherer im Alltag",
-      "Entwickelt zunehmendes Selbstvertrauen",
-      "Kommuniziert besser",
-      "Freut sich über Routine",
-      "Ist neugierig und entdeckungsfreudig"
+      "Entwickelt zunehmendes Selbstvertrauen"
     ],
-    why: "Das Gehirn konsolidiert und festigt neue Verbindungen. Myelinisierung schützt die Nervenbahnen. Diese Ruhephasen sind essentiell für nachhaltiges Lernen.",
-    actions: [
+    why: template?.why || "Das Gehirn konsolidiert und festigt neue Verbindungen. Myelinisierung schützt die Nervenbahnen.",
+    actions: template?.actions || [
       "💚 Diese ruhige Phase ist wichtig - das Gehirn verarbeitet",
       "🌟 Genieße die ausgeglichene Zeit mit deinem Baby",
-      "Neue Fähigkeiten feiern und üben",
-      "Vertraute Rituale pflegen",
-      "Viel Spielzeit ermöglichen",
-      "Auf nächsten Sprung vorbereiten"
+      "Neue Fähigkeiten feiern und üben"
     ]
   };
 }

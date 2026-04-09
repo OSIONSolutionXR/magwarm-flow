@@ -625,5 +625,147 @@ export const TEMPLATES = [
       "Flexible Kategorien zeigen",
       "💙 Du förderst logisches Denken"
     ]
+  },
+  
+  // === WOCHEN 46-47: ACHTER SPRUNG ===
+  {
+    "week": 46, "weekEnd": 47, "title": "Reihenfolgen verstehen",
+    "subtitle": "Woche 46-47: Erst dies, dann das", "phase": "8. Sprung", "age": "46-47 Wochen",
+    "stormPhase": {
+      "description": "Ein neues Denken entsteht: Dein Baby erkennt, dass Dinge in einer bestimmten Reihenfolge passieren müssen! Es wird stur, wenn Abläufe unterbrochen werden. 'Erst anziehen, dann rausgehen' - diese Logik ist jetzt wichtig.",
+      "symptoms": [
+        "Wird wütend, wenn Reihenfolge unterbrochen",
+        "Besteht auf bestimmten Abläufen",
+        "Protestiert bei Abweichungen von Routinen",
+        "Möchte selbst die Reihenfolge bestimmen",
+        "Wiederholt Sequenzen immer wieder"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Ein kleiner Planer entsteht! Dein Baby versteht zeitliche Zusammenhänge, erwartet bestimmte Abläufe und fühlt sich durch Vorhersagbarkeit sicher. Das ist die Geburt des sequentiellen Denkens.",
+      "abilities": [
+        "Versteht einfache 'erst-dann' Beziehungen",
+        "Erwartet bestimmte Abläufe",
+        "Kann Sequenzen vorhersagen",
+        "Zeigt Verständnis für zeitliche Reihenfolgen",
+        "Folgt mehrstufigen Anweisungen"
+      ]
+    },
+    "why": "Das präfrontale Cortex entwickelt sequenzielle Verarbeitung. Das Gehirn versteht nun Ursache-Wirkung über Zeit. Das ist Grundlage für Planung und Problemlösung.",
+    "actions": [
+      "💚 Das Beharren auf Reihenfolge ist Entwicklung",
+      "🌟 Bald kommen flexible Programme",
+      "Konsequente Routinen beibehalten",
+      "Reihenfolgen laut aussprechen",
+      "Bei Änderungen vorwarnen",
+      "Einfache Sequenzspiele spielen",
+      "💙 Du gibst Sicherheit durch Struktur"
+    ]
+  },
+  
+  // === WOCHEN 48-54: RUHEPHASE ===
+  {
+    "week": 48, "weekEnd": 54, "title": "Die Sequenzfestigung",
+    "subtitle": "Woche 48-54: Abläufe meistern", "phase": "Ruhephase", "age": "48-54 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby übt die neuen sequenziellen Fähigkeiten. Es ist manchmal frustriert, wenn etwas nicht nach Plan läuft, aber die Abläufe werden vertrauter. Die Welt folgt jetzt erwartbaren Mustern.",
+      "symptoms": [
+        "Wird ungeduldig bei Unterbrechungen",
+        "Besteht auf vertrauten Abläufen",
+        "Testet Grenzen der Reihenfolgen",
+        "Möchte selbst entscheiden, was als Nächstes kommt"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Die Sequenzen werden selbstverständlich! Dein Baby versteht tägliche Abläufe, kann sie vorhersagen und fühlt sich durch die Vorhersagbarkeit wohl. Das gibt enorme Sicherheit.",
+      "abilities": [
+        "Beherrscht vertraute Abläufe sicher",
+        "Kann Sequenzen erklären",
+        "Zeigt Verständnis für Zeit",
+        "Folgt komplexen Routinen",
+        "Passt sich an neue Sequenzen an"
+      ]
+    },
+    "why": "Die sequenziellen Schemata werden automatisiert. Das Gehirn speichert erfolgreiche Abläufe und kann sie abrufen, ohne bewusst darüber nachzudenken.",
+    "actions": [
+      "💚 Die Routinen-Beharrlichkeit zeigt Verständnis",
+      "🌟 Bereite dich vor: Programme kommen!",
+      "Tägliche Abläufe konsistent halten",
+      "Neue Sequenzen langsam einführen",
+      "Bei Abweichungen erklären warum",
+      "Das Baby an Entscheidungen beteiligen",
+      "💙 Struktur gibt deinem Baby Halt"
+    ]
+  },
+  
+  // === WOCHEN 55-56: NEUNTER SPRUNG ===
+  {
+    "week": 55, "weekEnd": 56, "title": "Flexible Programme",
+    "subtitle": "Woche 55-56: Anpassen und Variieren", "phase": "9. Sprung", "age": "55-56 Wochen",
+    "stormPhase": {
+      "description": "Revolutionäre Erkenntnis: Dein Baby merkt, dass Programme verändert werden können! Das ist befreiend aber auch verunsichernd. Es testet Grenzen, will selbst entscheiden und wird trotzig, wenn es nicht klappt.",
+      "symptoms": [
+        "Will eigene Versionen von Abläufen",
+        "Wird wütend bei strikten Vorgaben",
+        "Testet alternative Wege",
+        "Möchte selbst entscheiden",
+        "Protestiert gegen starre Regeln"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Ein flexibler Denker entsteht! Dein Baby versteht, dass es verschiedene Wege gibt, ein Ziel zu erreichen. Das gibt Autonomie und Kreativität. Die erste echte Problemlösung beginnt.",
+      "abilities": [
+        "Findet alternative Lösungen",
+        "Passt Programme an Situation an",
+        "Versteht, dass es verschiedene Wege gibt",
+        "Zeigt erste Kreativität",
+        "Kann kompromissbereit sein"
+      ]
+    },
+    "why": "Die exekutiven Funktionen entwickeln sich. Das Gehirn kann nun flexibel denken, Pläne ändern und neue Strategien entwickeln. Das ist höhere kognitive Leistung.",
+    "actions": [
+      "💚 Das Trotzen zeigt wachsende Autonomie",
+      "🌟 Bald folgen Regeln und Konsequenzen",
+      "Wahlmöglichkeiten innerhalb von Grenzen",
+      "Alternative Lösungen zusammen finden",
+      "Flexibilität positiv rahmen",
+      "Bei Konflikten vermitteln",
+      "💙 Du förderst selbstständiges Denken"
+    ]
+  },
+  
+  // === WOCHEN 57-60: RUHEPHASE ===
+  {
+    "week": 57, "weekEnd": 60, "title": "Die Programmflexibilität",
+    "subtitle": "Woche 57-60: Meister der Abläufe", "phase": "Ruhephase", "age": "57-60 Wochen",
+    "stormPhase": {
+      "description": "Dein Baby übt die Programmflexibilität. Es ist manchmal überfordert von den vielen Möglichkeiten, aber auch stolz auf seine neuen Fähigkeiten. Die Balance zwischen Struktur und Freiheit ist eine Herausforderung.",
+      "symptoms": [
+        "Unsicherheit bei zu vielen Optionen",
+        "Manchmal rigide, manchmal flexibel",
+        "Testet, was geht",
+        "Braucht Orientierung bei Wahlmöglichkeiten"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Die Flexibilität wird beherrscht! Dein Baby kann nun souverän zwischen verschiedenen Abläufen wählen, versteht Kontexte und zeigt erstaunliche Anpassungsfähigkeit.",
+      "abilities": [
+        "Wählt situationsgerecht verschiedene Wege",
+        "Versteht, wann Flexibilität angebracht ist",
+        "Kann eigene Lösungen erklären",
+        "Zeigt Kreativität in Alltagssituationen",
+        "Akzeptiert vernünftige Grenzen"
+      ]
+    },
+    "why": "Die exekutiven Funktionen werden stabilisiert. Das Gehirn kann nun souverän zwischen verschiedenen Strategien wechseln und die passende auswählen.",
+    "actions": [
+      "💚 Die wachsende Flexibilität ist beeindruckend",
+      "🌟 Bereite dich vor: Regeln und Konsequenzen!",
+      "Entscheidungsmöglichkeiten anbieten",
+      "Flexibilität loben und fördern",
+      "Grenzen klar und liebevoll setzen",
+      "Bei Überforderung Struktur geben",
+      "💙 Du begleistst den Weg zur Selbstständigkeit"
+    ]
   }
 ];

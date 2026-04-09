@@ -158,7 +158,7 @@ export default function TimelineSection({ currentWeek }) {
               </p>
             </div>
             
-            {selectedWeekData.symptoms?.length > 0 && (
+            {selectedWeekData.type === 'leap' && selectedWeekData.symptoms?.length > 0 && (
               <div>
                 <p className="text-sm font-semibold text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-2">
                   Mögliche Anzeichen:
@@ -322,7 +322,7 @@ export default function TimelineSection({ currentWeek }) {
 
 
 
-      {/* Detaillierte 4-Tab-Ansicht */}
+      {/* Phase Info - nur Zustand, keine redundanten Tabs */}
       <AnimatePresence mode="wait">
         <motion.div
           key={selectedWeek}
@@ -355,42 +355,66 @@ export default function TimelineSection({ currentWeek }) {
               </div>
             </div>
 
-            {/* Tabs */}
-            <div className="border-b border-gray-200 dark:border-gray-700">
-              <div className="flex">
-                {TABS.map((tab) => {
-                  const Icon = tab.icon;
-                  const isActive = activeTab === tab.id;
-                  return (
-                    <button
-                      key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
-                      className={`flex-1 flex items-center justify-center gap-1 py-3 text-xs font-medium transition-colors relative ${
-                        isActive ? 'text-orange-500' : 'text-gray-500'
-                      }`}
-                    >
-                      <Icon className="h-3.5 w-3.5" />
-                      <span>{tab.label}</span>
-                      {isActive && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500" />}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Tab Content */}
+            {/* Phase Info Content - nur Zustand */}
             <CardContent className="py-4">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -10 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {getTabContent()}
-                </motion.div>
-              </AnimatePresence>
+              <div className="space-y-4">
+                <div className={`p-4 rounded-xl ${
+                  selectedWeekData.state === 'sunny' ? 'bg-amber-50 dark:bg-amber-900/20' :
+                  selectedWeekData.state === 'storm' ? 'bg-red-50 dark:bg-red-900/20' :
+                  'bg-green-50 dark:bg-green-900/20'
+                }`}>
+                  <div className="flex items-center gap-2 mb-3">
+                    {selectedWeekData.state === 'sunny' ? (
+                      <Sun className="h-5 w-5 text-amber-600" />
+                    ) : selectedWeekData.state === 'storm' ? (
+                      <CloudRain className="h-5 w-5 text-red-600" />
+                    ) : (
+                      <Sparkles className="h-5 w-5 text-green-600" />
+                    )}
+                    <span className={`font-semibold ${
+                      selectedWeekData.state === 'sunny' ? 'text-amber-700 dark:text-amber-300' :
+                      selectedWeekData.state === 'storm' ? 'text-red-700 dark:text-red-300' :
+                      'text-green-700 dark:text-green-300'
+                    }`}>
+                      {selectedWeekData.stateLabel}
+                    </span>
+                  </div>
+                  <p className="text-[hsl(25,22%,16%)] dark:text-white leading-relaxed">
+                    {selectedWeekData.stateDescription}
+                  </p>
+                </div>
+
+                {selectedWeekData.type === 'leap' && selectedWeekData.symptoms?.length > 0 && (
+                  <div>
+                    <p className="text-sm font-semibold text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-2">
+                      Mögliche Anzeichen:
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedWeekData.symptoms.map((s, i) => (
+                        <span key={i} className="px-3 py-1.5 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {selectedWeekData.abilities?.length > 0 && (
+                  <div>
+                    <p className="text-sm font-semibold text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-2">
+                      Neue Fähigkeiten:
+                    </p>
+                    <div className="space-y-2">
+                      {selectedWeekData.abilities.map((a, i) => (
+                        <div key={i} className="flex items-center gap-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                          <span className="text-green-500">✓</span>
+                          <span className="text-[hsl(25,22%,16%)] dark:text-white text-sm">{a}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </CardContent>
           </Card>
         </motion.div>

@@ -280,8 +280,9 @@ export default function TimelineSection({ currentWeek }) {
         <CardContent className="py-4">
           <div className="flex items-center gap-3">
             <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-              currentStatus === 'intense' ? 'bg-red-500 text-white' :
-              currentStatus === 'transition' ? 'bg-amber-500 text-white' :
+              currentStatus === 'intense' ? 'bg-rose-500 text-white' :
+              currentStatus === 'sunny' ? 'bg-amber-400 text-white' :
+              currentStatus === 'transition' ? 'bg-amber-300 text-white' :
               'bg-green-500 text-white'
             }`}>
               <span className="text-lg font-bold">{currentWeek}</span>
@@ -316,9 +317,9 @@ export default function TimelineSection({ currentWeek }) {
                   whileTap={{ scale: 0.9 }}
                   className={`
                     w-6 h-9 rounded flex flex-col items-center justify-center text-[8px] font-medium transition-all
-                    ${color === 'intense' ? 'bg-red-400' : 
-                      color === 'transition' ? 'bg-amber-300' : 
-                      color === 'sunny' ? 'bg-green-500' : 
+                    ${color === 'intense' ? 'bg-rose-500' :
+                      color === 'sunny' ? 'bg-amber-400' :
+                      color === 'transition' ? 'bg-amber-300' :
                       'bg-green-400'}
                     ${isCurrent ? 'ring-2 ring-orange-500 scale-110 z-10' : ''}
                     ${isSelected ? 'ring-2 ring-white' : ''}

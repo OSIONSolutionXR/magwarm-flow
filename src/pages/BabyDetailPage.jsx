@@ -218,12 +218,20 @@ export default function BabyDetailPage() {
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState(0);
   const [baby, setBaby] = useState(null);
+  const [displayWeekOverride, setDisplayWeekOverride] = useState(null);
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('flow-babies') || '[]');
     const found = stored.find(b => b.id === id);
     if (found) setBaby(found);
   }, [id]);
+
+  // Scroll zum Seitenanfang wenn displayWeekOverride sich ändert
+  useEffect(() => {
+    if (displayWeekOverride !== null) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [displayWeekOverride]);
 
   if (!baby) {
     return (
@@ -236,7 +244,8 @@ export default function BabyDetailPage() {
     );
   }
 
-  const week = getCurrentWeek(baby.dueDate);
+  const currentWeek = getCurrentWeek(baby.dueDate);
+  const week = displayWeekOverride !== null ? displayWeekOverride : currentWeek;
   const leap = getLeapForWeek(week);
   const isStorm = leap.isInLeap;
   const phaseData = isStorm ? leap.stormPhase : leap.sunnyPhase;
@@ -295,9 +304,22 @@ export default function BabyDetailPage() {
           className="space-y-6"
         >
           <div className="text-center py-4">
-            <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
-              {isToddler ? getExactAge() : `Woche ${week}`}
-            </p>
+            <div className="flex items-center justify-center gap-2">
+              <p className="text-sm text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)]">
+                {isToddler ? getExactAge() : `Woche ${week}`}
+                {displayWeekOverride !== null && displayWeekOverride !== currentWeek && (
+                  <span className="ml-2 text-xs text-[hsl(17,75%,56%)]">(Ansicht: Woche {week})</span>
+                )}
+              </p>
+              {displayWeekOverride !== null && (
+                <button
+                  onClick={() => setDisplayWeekOverride(null)}
+                  className="ml-2 px-2 py-1 bg-[hsl(17,75%,56%)]/10 text-[hsl(17,75%,56%)] text-xs rounded-full hover:bg-[hsl(17,75%,56%)]/20 transition-colors"
+                >
+                  Zurück zu Woche {currentWeek}
+                </button>
+              )}
+            </div>
             {isToddler && (
               <p className="text-xs text-[hsl(25,10%,55%)] dark:text-[hsl(30,10%,50%)] mt-1">
                 Alter abgeleitet vom errechneten Geburtstermin
@@ -323,7 +345,14 @@ export default function BabyDetailPage() {
             <CardContent>
               {activeTab === 0 && (
                 <div className="space-y-6">
-                  <TimelineSection currentWeek={week} />
+                  <TimelineSection 
+                    currentWeek={currentWeek} 
+                    onSelectWeek={(selectedWeek) => {
+                      setDisplayWeekOverride(selectedWeek);
+                      setActiveTab(0); // Setze Tab auf "Zustand"
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  />
                   
                   {/* Sicherheitshinweis bei Storm-Phasen - Klappbar - GANZ UNTEN */}
                   {isStorm && <SafetyNotice />}
@@ -388,6 +417,14 @@ export default function BabyDetailPage() {
                 <div className="space-y-6">
                   <NotesSection baby={baby} currentWeek={week} />
                   <CommunitySection currentWeek={week} />
+                  <TimelineSection 
+                    currentWeek={currentWeek} 
+                    onSelectWeek={(selectedWeek) => {
+                      setDisplayWeekOverride(selectedWeek);
+                      setActiveTab(0);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  />
                 </div>
               )}
             </CardContent>

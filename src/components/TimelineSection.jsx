@@ -130,12 +130,140 @@ function generateWeekData(week) {
     156: 'Kindergarten-Reife',
   };
   
+  // INDIVIDUELLE BESCHREIBUNGEN für jede grüne Woche (1-156)
+  const CALM_DESCRIPTIONS = {
+    // ========== WOCHEN 1-9 ==========
+    1: 'Willkommen in der Welt! Die ersten Tage nach der Geburt sind anstrengend für das Baby. Es muss sich an Atmen, Fressen und die Außenwelt gewöhnen. Viel Hautkontakt und Ruhe helfen jetzt.',
+    2: 'Das Baby gewöhnt sich an die neue Umgebung. Es schläft viel und verarbeitet die Eindrücke. Die ersten Reflexe wie das Greifen werden sichtbar. Noch 2 Wochen bis zum ersten Sprung.',
+    3: 'Die ersten Anzeichen von Wachheit zeigen sich. Das Baby verbringt kurze Momente wach und beobachtet die Umgebung. Die Augen können kurz fokussieren. Morgen beginnt der erste intensive Sprung!',
+    7: 'Nach dem ersten Durchbruch der Sensationen festigt sich die Wahrnehmung. Das Baby reagiert stärker auf Gesichter und Geräusche. Es entwickelt erste soziale Lächeln.',
+    8: 'Die Welt der Muster steht kurz bevor. Das Baby wird neugieriger und untersucht seine Umgebung genauer. Bereite dich vor: Bald beginnt ein neuer intensiver Entwicklungsschub.',
+    
+    // ========== WOCHEN 10-18 ==========
+    10: 'Nach dem Musterverstehen übt das Baby, wiederkehrende Abläufe zu erkennen. Es freut sich über vertraute Rituale und Stimmen.',
+    11: 'Das Baby wird aktiver und zeigt mehr Interesse an Spielzeug. Die Hand-Augen-Koordination verbessert sich. Morgen beginnt der Bewegungssprung!',
+    14: 'Erste Woche nach dem Bewegungsdurchbruch. Das Baby greift jetzt gezielt nach Objekten und bringt sie zum Mund. Die Motorik entwickelt sich rasant.',
+    15: 'Das übt das Greifen und Lösen immer wieder. Es liebt Spielzeug, das klappert oder rasselt. Die Handmuskulatur wird stärker.',
+    16: 'Das Baby beginnt, mit beiden Händen zu spielen. Es kann Objekte von einer Hand in die andere geben. Die Koordination verbessert sich täglich.',
+    17: 'Die Feinmotorik wird präziser. Das Baby kann kleinere Objekte greifen und untersucht sie ausgiebig. Noch 1 Woche bis zum nächsten Sprung.',
+    18: 'Letzte Woche vor dem Sprung. Das Baby ist sehr aktiv und entdeckt ständig neue Bewegungsmuster. Morgen beginnt die Phase von Ursache und Wirkung!',
+    
+    // ========== WOCHEN 21-36 ==========
+    21: 'Nach dem Verstehen von Ursache und Wirkung experimentiert das Baby systematisch. Es schüttelt, wirft und untersucht jedes Objekt. Die Neugierde ist grenzenlos.',
+    22: 'Das Baby testet Grenzen aus und wiederholt erfolgreiche Aktionen. Es lernt: Wenn ich etwas fallen lasse, kommt jemand und hebt es auf.',
+    23: 'Die Experimentierfreude steigt. Das Baby liebt Versteckspiele und entdeckt, dass Objekte auch weiter existieren, wenn sie nicht sichtbar sind.',
+    24: 'Das Baby wird kreativer im Spiel. Es findet neue Wege, Aufmerksamkeit zu bekommen. Noch 2 Wochen bis zur Trennungsangst-Phase.',
+    25: 'Letzte Woche vor dem intensiven Sprung. Das Baby spürt die Veränderung und sucht mehr Nähe. Morgen beginnt die Trennungsangst-Phase!',
+    28: 'Nach der Trennungsangst-Phase festigt sich die sichere Bindung. Das Baby weiß: Mama kommt immer wieder zurück. Dieses Vertrauen ist wichtig für die Entwicklung.',
+    29: 'Das Baby wird selbstständiger im Spielen. Es kann kurze Zeit alleine beschäftigt sein, solange Mama in Sichtweite bleibt.',
+    30: 'Die Kommunikation entwickelt sich. Das Baby macht mehr Laute und versucht zu imitieren. Die Interaktion wird lebendiger.',
+    31: 'Das Baby zeigt deutliche Vorlieben. Es kann mit Gesten zeigen, was es möchte. Die Persönlichkeit wird sichtbarer.',
+    32: 'Neue motorische Fähigkeiten werden geübt. Das Baby krabbelt oder robbert möglicherweise bereits. Die Mobilität nimmt zu.',
+    33: 'Das Entdecken der eigenen Stimme macht Spaß. Das Baby brabbelt, lacht und protestiert lautstark. Die Lautstärke steigt!',
+    34: 'Das Verstehen von einfachen Anweisungen beginnt. Das Baby reagiert auf seinen Namen und zeigt Interesse an Büchern.',
+    35: 'Die soziale Entwicklung schreitet voran. Das Baby erkennt vertraute Personen und Fremde unterscheiden. Noch 2 Wochen bis zum nächsten Sprung.',
+    36: 'Letzte Woche vor dem Kategorien-Sprung. Das Baby sortiert schon unbewusst: hier Spielzeug, dort Essen. Morgen beginnt eine intensive Phase!',
+    
+    // ========== WOCHEN 39-54 ==========
+    39: 'Nach dem Kategorien-Durchbruch sortiert das Baby die Welt aktiv. Hier sind die Tassen, da die Schuhe. Ordnung hilft ihm, sich zurechtzufinden.',
+    40: 'Das Unterscheiden von ähnlichen Objekten wird geübt. Das Baby erkennt Unterschiede in Form, Farbe und Größe.',
+    41: 'Die Sprachentwicklung macht Fortschritte. Das Baby versteht immer mehr Wörter im Kontext und reagiert entsprechend.',
+    42: 'Das Spiel wird zielgerichteter. Das Baby sucht spezifische Spielzeuge und kann sie sich selbst holen.',
+    43: 'Die Feinmotorik wird präziser. Kleine Objekte können gezielt gegriffen und untersucht werden.',
+    44: 'Das Gedächtnis wird besser. Das Baby erinnert sich an Verstecke von Spielzeug und wiederkehrende Abläufe.',
+    45: 'Letzte Woche vor dem Sequenzen-Sprung. Das Baby beobachtet genau, wie Dinge gemacht werden. Morgen beginnt ein neuer intensiver Abschnitt!',
+    48: 'Nach dem Verstehen von Reihenfolgen genießt das Baby Routinen. Erst waschen, dann anziehen, dann frühstücken – diese Vorhersehbarkeit gibt Sicherheit.',
+    49: 'Das Baby antizipiert bereits kommende Abläufe. Es weiß, was als Nächstes passiert und bereitet sich vor.',
+    50: 'Die erste Eigeninitiative zeigt sich. Das Baby versucht, selbstständig Dinge zu tun, die es oft beobachtet hat.',
+    51: 'Das Nachahmen wird präziser. Das Baby kopiert Gesten und Handlungen bewusst und lernt so neue Fähigkeiten.',
+    52: 'Die Sprache explodiert im Verständnis. Das Baby folgt komplexen Anweisungen und versteht viel mehr, als es zeigen kann.',
+    53: 'Das soziale Lernen schreitet voran. Das Baby beobachtet andere Kinder und Erwachsene genau und lernt durch Imitation.',
+    54: 'Letzte Woche vor dem Programm-Sprung. Das Baby liebt Wiederholungen und vertraute Abläufe. Morgen beginnt eine neue intensive Phase!',
+    
+    // ========== WOCHEN 57-74 ==========
+    57: 'Nach dem Verstehen von Programmen wird flexibel gespielt. Das Baby kann sich an neue Situationen anpassen und findet kreative Lösungen.',
+    58: 'Die Problemlösungsfähigkeit wächst. Das Baby versucht verschiedene Strategien, um ein Ziel zu erreichen.',
+    59: 'Das Spiel wird variabler. Das Baby erfindet neue Verwendungsweisen für bekannte Objekte und wird erfinderisch.',
+    60: 'Die Kommunikation wird ausdrucksstärker. Neben Lauten kommen Gesten und Mimik hinzu, um Wünsche zu zeigen.',
+    61: 'Das Verständnis von Verboten wächst. Das Baby testet Grenzen aus und lernt, was erlaubt ist und was nicht.',
+    62: 'Die emotionale Entwicklung schreitet voran. Das Baby zeigt deutlicher Freude, Frust, Neugier und Ängste.',
+    63: 'Letzte Woche vor dem Regeln-Sprung. Das Baby beobachtet, wie andere interagieren. Morgen beginnt eine intensive Lernphase!',
+    66: 'Nach dem Verstehen von Regeln übt das Baby soziale Interaktionen. Es lernt, dass andere eigene Bedürfnisse haben. Empathie entwickelt sich.',
+    67: 'Das Teilen und Mitmachen wird geübt. Das Baby beginnt, Spielzeug anzubieten und einfache Spiele zu verstehen.',
+    68: 'Die Kommunikation wird komplexer. Erste Wörter oder Wortähnliches können sich ankündigen. Das Baby drückt sich vielfältiger aus.',
+    69: 'Die Selbstständigkeit wächst. Das Baby möchte selbst füttern und bei Aktivitäten mitmachen.',
+    70: 'Das Verstehen von Emotionen wird präziser. Das Baby erkennt, wenn jemand traurig oder glücklich ist.',
+    71: 'Das Spiel wird interaktiver. Das Baby sucht den Austausch mit anderen und freut sich über gemeinsame Aktivitäten.',
+    72: 'Die Motorik wird kontrollierter. Das Baby balanciert, klettert und erkundet die Umgebung sicherer.',
+    73: 'Die Sprachentwicklung macht Sprünge. Mehr Silben werden geübt und die Kommunikation wird verständlicher.',
+    74: 'Letzte Woche vor dem letzten klassischen Sprung. Das Baby sammelt Energie für eine intensive Lernphase. Morgen beginnt der Sprung zu Systemen!',
+    
+    // Nach Sprung 10
+    76: 'Nach dem Verstehen von Systemen ist das Baby nun fast ein Jahr alt. Es kann vieles selbstständig und versteht immer mehr Zusammenhänge. Nutze diese ruhige Zeit.',
+    77: 'Das Baby wird immer selbstständiger. Es erkundet die Umgebung sicherer und kommuniziert deutlicher. Morgen beginnt die intensive Phase des Ich-Bewusstseins!',
+    
+    // ========== WOCHEN 84-156 (bestehend erweitert) ==========
+    84: 'Erste Woche nach dem Spiegel-Erkennungs-Durchbruch. Das Kind festigt sein neues Selbstverständnis und ist stolz auf sich selbst.',
+    85: 'Das Ich-Bewusstsein wächst. Das Kind zeigt deutlicher, was es will und was nicht. Die Persönlichkeit wird stärker.',
+    86: 'Die Kommunikation entwickelt sich zu echten Interaktionen. Das Kind versucht, sich verständlich zu machen und reagiert auf Feedback.',
+    87: 'Das Spiel wird komplexer. Das Kind kann länger alleine spielen und konzentriert sich auf Aufgaben.',
+    88: 'Die Motorik wird präziser. Laufen, Klettern und Balancieren werden sicherer und flüssiger.',
+    89: 'Das Verstehen von Anweisungen wächst. Das Kind kann mehrstufige Aufgaben ausführen und ist stolz auf seine Leistungen.',
+    90: 'Letzte Woche vor dem Super-Sprung. Das Kind spürt die bevorstehende Veränderung. Morgen beginnt die Wortschatz-Explosion!',
+    91: 'Die Vorbereitung auf den Sprung läuft. Das Gehirn ist aktiv und verarbeitet Sprache. Noch 1 Woche bis zum intensiven Super-Peak!',
+    
+    101: 'Erste Woche nach dem Zwei-Wort-Sätze-Durchbruch. Der Wortschatz explodiert regelrecht – jeden Tag kommen neue Wörter hinzu!',
+    102: 'Das Kind probiert ständig neue Wortkombinationen aus. Die Sprache wird zum wichtigsten Kommunikationsmittel.',
+    103: 'Zweiwort-Sätze werden sicherer und häufiger. Das Kind drückt komplexere Wünsche aus und verständigt sich besser.',
+    104: 'Die Sprachentwicklung schreitet rasant voran. Das Kind imitiert Wörter und versucht, Sätze zu bilden.',
+    105: 'Das Verständnis für abstrakte Begriffe wächst. Das Kind versteht Zeitbegriffe und Gefühlsbeschreibungen besser.',
+    106: 'Die Kommunikation wird konversationeller. Das Kind hält kleine "Gespräche" und reagiert auf Antworten.',
+    107: 'Das Spiel wird sprachbegleitet. Das Kind erzählt beim Spielen, was es tut und was die Figuren tun.',
+    108: 'Die Ausdrucksfähigkeit wächst. Das Kind kann immer mehr von seinen Bedürfnissen und Erlebnissen erzählen.',
+    109: 'Das Gedächtnis für Worte wird besser. Das Kind merkt sich neue Begriffe und verwendet sie im richtigen Kontext.',
+    110: 'Die Grammatik entwickelt sich unbewusst. Das Kind bildet richtige Satzstrukturen, ohne es zu lernen.',
+    111: 'Die Sprache wird emotionaler. Das Kind kann Gefühle benennen und ausdrücken, was ihm guttut oder nicht.',
+    112: 'Das Erzählen wird strukturierter. Das Kind kann kleine Geschichten in der richtigen Reihenfolge wiedergeben.',
+    113: 'Das Verstehen komplexer Anweisungen wächst. Das Kind kann mehrere Aufgaben nacheinander ausführen.',
+    114: 'Die Selbstständigkeit in der Kommunikation steigt. Das Kind fragt nach Worten, die es noch nicht kennt.',
+    115: 'Letzte Woche vor der Autonomiephase. Das Kind ist redselig und kommunikativ. Morgen beginnt die Trotzphase!',
+    116: 'Die Vorbereitung läuft. Das Kind spürt, dass es neue Fähigkeiten entwickelt. Noch 2 Wochen bis zum ersten strategischen Testen.',
+    117: 'Die Ruhe vor dem Sturm. Das Kind ist entspannt und ausgeglichen. Morgen beginnt die intensive Autonomiephase!',
+    
+    126: 'Erste Woche nach dem Symbolspiel-Durchbruch. Das Kind entwickelt echte Fantasie und beginnt, die Welt kreativer zu erkunden.',
+    127: 'Das Rollenspiel wird komplexer. Das Kind spielt Mama, Papa oder andere Figuren und imitiert deren Verhalten detailgetreu.',
+    128: 'Die Fantasiewelt expandiert. Das Kind erfindet eigene Geschichten und Szenarien beim Spielen.',
+    129: 'Das Parallelspiel wandelt sich in echtes Zusammenspiel. Das Kind interagiert mit anderen Kindern und teilt Spielideen.',
+    130: 'Die Kreativität blüht. Das Kind findet ungewöhnliche Lösungen und erfindet neue Spielvarianten.',
+    131: 'Erste Interesse am Trockenwerden zeigt sich. Das Kind bemerkt, wenn es nass wird und kann das signalisieren.',
+    132: 'Das Trockenwerden wird geübt. Das Kind lernt, sich rechtzeitig zu melden und nutzt die Toilette oder das Töpfchen.',
+    133: 'Die Selbstständigkeit beim An- und Ausziehen wächst. Das Kind versucht, einfache Kleidungsstücke selbst zu handhaben.',
+    134: 'Die Körperwahrnehmung wird präziser. Das Kind spürt früher, wenn es zur Toilette muss.',
+    135: 'Das Trockenwerden festigt sich. Erfolge werden gefeiert und Rückschläge akzeptiert.',
+    136: 'Die Selbstpflege wird selbstständiger. Das Kind möchte alleine essen, trinken und sich waschen.',
+    137: 'Die Motorik wird geschickter. Feinmotorische Aufgaben wie Knöpfe oder Reißverschlüsse werden geübt.',
+    138: 'Das Selbstvertrauen wächst. Das Kind ist stolz auf seine Erfolge und möchte alles alleine machen.',
+    139: 'Die Vorbereitung auf die nächste Phase läuft. Das Fantasiedenken entwickelt sich weiter.',
+    140: 'Letzte Woche vor der magischen Phase. Das Kind ist kreativ und selbstständig. Morgen beginnen möglicherweise Ängste vor Monstern!',
+    141: 'Die Ruhe vor dem letzten großen Sprung. Das Kind ist ausgeglichen und kommunikativ. Noch 1 Woche bis zu irrationalen Ängsten!',
+    
+    153: 'Erste Woche nach der Warum-Phase. Das logische Denken festigt sich. Das Kind versteht immer mehr Zusammenhänge und kausale Beziehungen.',
+    154: 'Die Komplexität der Sprache wächst. Mehrwort-Sätze, Nebensätze und logische Verknüpfungen werden verwendet.',
+    155: 'Die Kindergarten-Reife zeigt sich. Das Kind kann sich länger konzentrieren, folgt Anleitungen und spielt kooperativ.',
+    156: 'Abschluss der ersten drei Jahre! Das Kind ist ein kleiner Forscher mit eigener Persönlichkeit, starkem Willen und wunderbarer Neugierde.',
+  };
+  
+  // Hilfsfunktion für grüne Wochen
+  const getCalmDescription = (week) => {
+    return CALM_DESCRIPTIONS[week] || 'Das Gehirn verarbeitet die jüngsten Entwicklungssprünge und festigt neue Fähigkeiten. Zeit zum Entspannen, Spielen und Genießen der Fortschritte.';
+  };
+
   const descriptions_76_156 = {
     super: 'Maximaler Umbruch! Das Gehirn arbeitet auf Hochtouren. Das Kind versteht mehr als es ausdrücken kann - das ist frustrierend, aber unglaublich wichtig für die Entwicklung.',
     intense: 'Intensive Phase. Das Kind zeigt Regression, ist anhänglicher oder wütender als sonst. Das ist normal und zeigt, dass sich etwas Wichtiges im Gehirn verändert.',
     light: 'Unruhe beginnt. Das Kind spürt, dass etwas kommt und wird unruhiger, testet Grenzen. Die Intensität steigt noch an.',
     sunny: 'Durchbruch! Neue Fähigkeiten werden sichtbar. Das Kind ist stolz und entspannter. Genieße diese Erfolgsmomente.',
-    calm: 'Konsolidierungsphase. Das Gehirn verarbeitet und festigt das Gelernte. Zeit zum Entspannen und Spielen.',
+    calm: 'Konsolidierungsphase.',
   };
   
   const stateLabels = {
@@ -151,11 +279,17 @@ function generateWeekData(week) {
   const title = week >= 76 ? (titles_76_156[week] || template?.title || `Woche ${week}`) : (template?.title || `Woche ${week}`);
   
   // Beschreibung basierend auf Farbe
-  const description = week >= 76 ? descriptions_76_156[color] : (
-    color === 'sunny' ? template?.sunnyPhase?.description :
-    color === 'intense' || color === 'super' || color === 'light' ? template?.stormPhase?.description :
-    'Zeit zur Verarbeitung und Festigung.'
-  );
+  let description;
+  if (color === 'calm') {
+    description = getCalmDescription(week);
+  } else if (week >= 76) {
+    description = descriptions_76_156[color];
+  } else {
+    description = color === 'sunny' ? template?.sunnyPhase?.description :
+                  color === 'intense' ? template?.stormPhase?.description :
+                  color === 'transition' ? 'Die Vorbereitungsphase beginnt. Das Baby spürt, dass sich etwas verändert.' :
+                  'Zeit zur Verarbeitung und Festigung.';
+  }
   
   return {
     week,
@@ -243,7 +377,7 @@ function getStateColors(state) {
 // ============================================
 // HAUPTKOMPONENTE
 // ============================================
-export default function TimelineSection({ currentWeek }) {
+export default function TimelineSection({ currentWeek, onSelectWeek, babyName }) {
   const [selectedWeek, setSelectedWeek] = useState(currentWeek);
   const maxWeek = 156;
   
@@ -358,8 +492,8 @@ export default function TimelineSection({ currentWeek }) {
                   </p>
                 </div>
 
-                {/* Symptoms */}
-                {selectedWeekData.type === 'leap' && selectedWeekData.symptoms?.length > 0 && (
+                {/* Symptoms - nur in Storm/Super/Light Phasen */}
+                {(selectedWeekData.state === 'storm' || selectedWeekData.state === 'super' || selectedWeekData.state === 'light') && selectedWeekData.symptoms?.length > 0 && (
                   <div>
                     <p className="text-sm font-semibold text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-2">
                       Mögliche Anzeichen:
@@ -373,21 +507,18 @@ export default function TimelineSection({ currentWeek }) {
                     </div>
                   </div>
                 )}
-
-                {/* Abilities */}
-                {selectedWeekData.abilities?.length > 0 && (
-                  <div>
-                    <p className="text-sm font-semibold text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-2">
-                      Neue Fähigkeiten:
-                    </p>
-                    <div className="space-y-2">
-                      {selectedWeekData.abilities.slice(0, 3).map((a, i) => (
-                        <div key={i} className="flex items-center gap-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                          <span className="text-green-500">✓</span>
-                          <span className="text-[hsl(25,22%,16%)] dark:text-white text-sm">{a}</span>
-                        </div>
-                      ))}
-                    </div>
+                {/* Button zum Anzeigen der Details */}
+                {selectedWeek !== currentWeek && onSelectWeek && (
+                  <div className="pt-2">
+                    <button
+                      onClick={() => onSelectWeek(selectedWeek)}
+                      className="w-full py-3 px-4 bg-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,46%)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
+                    >
+                      <span>Hier im Detail anschauen</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
                   </div>
                 )}
               </div>

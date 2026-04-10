@@ -1,0 +1,64 @@
+{
+  "project": "magwarm-flow",
+  "total_files": 36,
+  "completed": 3,
+  "remaining": 33,
+  "files_order": [
+    "index.html",
+    "package.json",
+    "vite.config.js",
+    "tailwind.config.js",
+    "postcss.config.js",
+    "eslint.config.js",
+    "src/main.jsx",
+    "src/index.css",
+    "src/components/Header.jsx",
+    "src/components/Card.jsx",
+    "src/components/Card.tsx",
+    "src/components/CommunitySection.jsx",
+    "src/components/NotesSection.jsx",
+    "src/components/TimelineSection.jsx",
+    "src/components/PopEffect.jsx",
+    "src/data/communityStories.js",
+    "src/data/communityStories.json",
+    "src/data/signs.js",
+    "src/data/sleepData.js",
+    "src/data/weeklyAbilities.js",
+    "src/data/weeklyActions.js",
+    "src/data/weeklyBrain.js",
+    "src/data/weeklySigns.js",
+    "src/data/weeklySleep.js",
+    "src/hooks/useTheme.js",
+    "src/pages/HomePage.jsx",
+    "src/pages/AddBabyPage.jsx",
+    "src/pages/BabyDetailPage.jsx",
+    "src/pages/LeapsOverviewPage.jsx",
+    "src/pages/BabyDetailPage_TEMPLATES.js",
+    "src/pages/TEMPLATES_W1_52.js",
+    "src/pages/TEMPLATES_W53_104.js",
+    "src/pages/TEMPLATES_W105_156.js",
+    "src/utils/notesStorage.js",
+    "README.md",
+    "add-signs.js"
+  ],
+  "current_file": "tailwind.config.js",
+  "templates_extracted": [
+    {
+      "file": "index.html",
+      "template": "templates/extracted/index.html.template.md",
+      "timestamp": "2026-04-10T21:21:00Z"
+    },
+    {
+      "file": "package.json",
+      "template": "templates/extracted/package.json.template.md",
+      "timestamp": "2026-04-10T22:26:00Z"
+    },
+    {
+      "file": "vite.config.js",
+      "template": "templates/extracted/vite.config.js.template.md",
+      "timestamp": "2026-04-10T22:51:00Z"
+    }
+  ],
+  "output_dir": "templates/extracted",
+  "last_update": "2026-04-10T22:51:00Z"
+}

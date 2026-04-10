@@ -1,0 +1,291 @@
+// TEMPLATE: CommunitySection.jsx
+// COMPONENT: Community section with stories from other parents
+// DEPENDENCIES: React hooks, lucide-react icons, communityStories data
+
+import React, { useState, useMemo } from 'react';
+import { Users, Heart, MessageCircle, ChevronRight, X } from 'lucide-react';
+import { COMMUNITY_STORIES } from '../data/communityStories';
+
+// TEMPLATE SECTION: Main Component Export
+// - Accepts currentWeek prop for filtering
+// - Manages like state in localStorage
+// - Shows relevant stories based on current phase
+export default function CommunitySection({ currentWeek }) {
+  // TEMPLATE: Component State
+  // - Modal visibility state
+  // - Liked stories persistence via localStorage
+  const [showAll, setShowAll] = useState(false);
+  const [likedStories, setLikedStories] = useState(() => {
+    const saved = localStorage.getItem('magwarm_liked_stories');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // TEMPLATE: Data Filtering Logic
+  // - Filter stories based on current phase (±range)
+  // - Fallback to random stories if none relevant
+  // - Limit displayed stories count
+  const relevantStories = useMemo(() => {
+    return COMMUNITY_STORIES.filter(story => {
+      const weekDiff = Math.abs(story.phaseWeek - currentWeek);
+      return weekDiff <= 3; // CONFIG: Phase range tolerance
+    }).slice(0, 3); // CONFIG: Max stories to display
+  }, [currentWeek]);
+
+  // TEMPLATE: Data Fallback
+  const storiesToShow = relevantStories.length > 0 
+    ? relevantStories 
+    : COMMUNITY_STORIES.slice(0, 2);
+
+  // TEMPLATE: Event Handler
+  // - Toggle like state
+  // - Persist to localStorage
+  const handleLike = (storyId) => {
+    const newLiked = likedStories.includes(storyId)
+      ? likedStories.filter(id => id !== storyId)
+      : [...likedStories, storyId];
+    setLikedStories(newLiked);
+    localStorage.setItem('magwarm_liked_stories', JSON.stringify(newLiked));
+  };
+
+  // TEMPLATE: Conditional Rendering
+  // - Show modal when showAll is true
+  // - Otherwise show compact preview
+  if (showAll) {
+    return <CommunityModal onClose={() => setShowAll(false)} likedStories={likedStories} onLike={handleLike} />;
+  }
+
+  // TEMPLATE: Main Component UI (Compact View)
+  // - Gradient background card
+  // - Icon header with title
+  // - List of story cards
+  // - "Show All" button
+  return (
+    <div className="mt-8 bg-gradient-to-br from-rose-50 to-orange-50 dark:from-rose-900/20 dark:to-orange-900/20 rounded-2xl p-6 border border-rose-100 dark:border-rose-800">
+      {/* TEMPLATE: Section Header */}
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-800 flex items-center justify-center">
+          <Users className="w-5 h-5 text-rose-600 dark:text-rose-300" />
+        </div>
+        <div>
+          <h3 className="font-semibold text-gray-900 dark:text-white">Section Title</h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400">Subtitle</p>
+        </div>
+      </div>
+
+      {/* TEMPLATE: Story List */}
+      <div className="space-y-4">
+        {storiesToShow.map(story => (
+          <StoryCard 
+            key={story.id} 
+            story={story} 
+            isLiked={likedStories.includes(story.id)}
+            onLike={() => handleLike(story.id)}
+            compact
+          />
+        ))}
+      </div>
+
+      {/* TEMPLATE: Action Button */}
+      <button
+        onClick={() => setShowAll(true)}
+        className="mt-4 w-full py-3 px-4 bg-white dark:bg-gray-800 rounded-xl border border-rose-200 dark:border-rose-700 text-rose-600 dark:text-rose-300 font-medium hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-colors flex items-center justify-center gap-2"
+      >
+        View All
+        <ChevronRight className="w-4 h-4" />
+      </button>
+    </div>
+  );
+}
+
+// TEMPLATE SECTION: StoryCard Sub-Component
+// - Displays individual story preview
+// - Supports compact and full modes
+// - Expandable content with "read more"
+// - Like button and tag display
+function StoryCard({ story, isLiked, onLike, compact = false }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  // TEMPLATE: Content Truncation
+  const content = isExpanded || story.content.length < 150 
+    ? story.content 
+    : story.content.slice(0, 150) + '...';
+
+  return (
+    <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
+      {/* TEMPLATE: Author Header */}
+      <div className="flex items-start gap-3">
+        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-rose-400 to-orange-400 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+          {story.author.charAt(0)}
+        </div>
+        <div className="flex-1 min-w-0">
+          <h4 className="font-semibold text-gray-900 dark:text-white text-sm leading-tight">
+            {story.title}
+          </h4>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{story.author}</p>
+        </div>
+      </div>
+
+      {/* TEMPLATE: Content */}
+      <p className="text-gray-700 dark:text-gray-300 text-sm mt-3 leading-relaxed">
+        {content}
+      </p>
+      
+      {/* TEMPLATE: Expand/Collapse */}
+      {story.content.length > 150 && (
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="text-rose-600 dark:text-rose-400 text-xs font-medium mt-2 hover:underline"
+        >
+          {isExpanded ? 'Show Less' : 'Read More'}
+        </button>
+      )}
+
+      {/* TEMPLATE: Footer with Tags and Like */}
+      <div className="flex items-center justify-between mt-3">
+        <div className="flex flex-wrap gap-1">
+          {story.tags.slice(0, 2).map(tag => (
+            <span 
+              key={tag}
+              className="text-xs px-2 py-1 bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300 rounded-full"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        
+        <button
+          onClick={onLike}
+          className={`flex items-center gap-1 text-xs transition-colors ${
+            isLiked 
+              ? 'text-rose-600 dark:text-rose-400' 
+              : 'text-gray-400 hover:text-rose-500'
+          }`}
+        >
+          <Heart className={`w-4 h-4 ${isLiked ? 'fill-current' : ''}`} />
+          <span>{story.likes + (isLiked ? 1 : 0)}</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// TEMPLATE SECTION: CommunityModal Sub-Component
+// - Full-screen modal overlay
+// - Search and filter functionality
+// - Scrollable story list
+// - Category filter buttons
+function CommunityModal({ onClose, likedStories, onLike }) {
+  const [filter, setFilter] = useState('all');
+  const [search, setSearch] = useState('');
+
+  // TEMPLATE: Filtering Logic
+  // - Filter by phase range
+  // - Filter by search text
+  const filteredStories = useMemo(() => {
+    let stories = [...COMMUNITY_STORIES];
+    
+    if (filter !== 'all') {
+      stories = stories.filter(s => s.phaseWeek >= parseInt(filter) && s.phaseWeek < parseInt(filter) + 20);
+    }
+    
+    if (search) {
+      stories = stories.filter(s => 
+        s.title.toLowerCase().includes(search.toLowerCase()) ||
+        s.content.toLowerCase().includes(search.toLowerCase()) ||
+        s.tags.some(t => t.toLowerCase().includes(search.toLowerCase()))
+      );
+    }
+    
+    return stories;
+  }, [filter, search]);
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+      <div className="bg-white dark:bg-gray-900 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
+        {/* TEMPLATE: Modal Header */}
+        <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-rose-100 dark:bg-rose-800 flex items-center justify-center">
+                <Users className="w-5 h-5 text-rose-600 dark:text-rose-300" />
+              </div>
+              <div>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">Modal Title</h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Modal subtitle</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+            >
+              <X className="w-5 h-5 text-gray-500" />
+            </button>
+          </div>
+
+          {/* TEMPLATE: Search Input */}
+          <input
+            type="text"
+            placeholder="Search..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-500"
+          />
+
+          {/* TEMPLATE: Filter Buttons */}
+          <div className="flex flex-wrap gap-2 mt-4">
+            {[
+              { value: 'all', label: 'All' },
+              { value: '5', label: 'First Weeks' },
+              { value: '26', label: 'Stranger Anxiety' },
+              { value: '55', label: 'Autonomy' },
+              { value: '91', label: 'Toddler Phase' },
+              { value: '141', label: 'Why Phase' },
+            ].map(opt => (
+              <button
+                key={opt.value}
+                onClick={() => setFilter(opt.value)}
+                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                  filter === opt.value
+                    ? 'bg-rose-600 text-white'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200'
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* TEMPLATE: Scrollable Content */}
+        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+          {filteredStories.map(story => (
+            <StoryCard
+              key={story.id}
+              story={story}
+              isLiked={likedStories.includes(story.id)}
+              onLike={() => onLike(story.id)}
+            />
+          ))}
+          
+          {/* TEMPLATE: Empty State */}
+          {filteredStories.length === 0 && (
+            <div className="text-center py-8 text-gray-500">
+              <MessageCircle className="w-12 h-8 mx-auto mb-2 opacity-50" />
+              <p>No items found</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// TEMPLATE STRUCTURE SUMMARY:
+// 1. Main Component with localStorage persistence
+// 2. Data filtering with useMemo
+// 3. Sub-components: StoryCard (reusable), CommunityModal
+// 4. Search and filter functionality
+// 5. Dark mode support
+// 6. Expandable content
+// 7. Like/interaction system
+// 8. Responsive modal overlay

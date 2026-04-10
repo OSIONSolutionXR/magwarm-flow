@@ -2,10 +2,16 @@
   "processed": [
     ".gitignore",
     ".vercel/project.json",
-    "README.md"
+    "README.md",
+    "add-signs.js",
+    "eslint.config.js",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "postcss.config.js"
   ],
-  "remaining": 33,
-  "nextIndex": 3,
+  "remaining": 27,
+  "nextIndex": 9,
   "files": [
     {"path": ".gitignore", "category": "ROOT"},
     {"path": ".vercel/project.json", "category": "ROOT"},
@@ -47,7 +53,7 @@
     {"path": "vite.config.js", "category": "STYLES"},
     {"path": "src/main.jsx", "category": "STYLES"}
   ],
-  "lastUpdated": "2026-04-10T20:06:00Z",
+  "lastUpdated": "2026-04-10T21:31:00Z",
   "templates": [
     {
       "id": "magwarm-001",
@@ -66,7 +72,42 @@
       "sourceFile": "README.md",
       "templateFile": "README-md.template.md",
       "createdAt": "2026-04-10T20:21:00Z"
+    },
+    {
+      "id": "magwarm-004",
+      "sourceFile": "add-signs.js",
+      "templateFile": "add-signs-js.template.md",
+      "createdAt": "2026-04-10T20:26:00Z"
+    },
+    {
+      "id": "magwarm-005",
+      "sourceFile": "eslint.config.js",
+      "templateFile": "eslint-config-js.template.md",
+      "createdAt": "2026-04-10T20:31:00Z"
+    },
+    {
+      "id": "magwarm-006",
+      "sourceFile": "index.html",
+      "templateFile": "index-html.template.md",
+      "createdAt": "2026-04-10T20:56:00Z"
+    },
+    {
+      "id": "magwarm-007",
+      "sourceFile": "package-lock.json",
+      "templateFile": "package-lock-json.template.md",
+      "createdAt": "2026-04-10T21:01:00Z"
+    },
+    {
+      "id": "magwarm-008",
+      "sourceFile": "package.json",
+      "templateFile": "package-json.template.md",
+      "createdAt": "2026-04-10T21:31:00Z"
+    },
+    {
+      "id": "magwarm-009",
+      "sourceFile": "postcss.config.js",
+      "templateFile": "postcss-config-js.template.md",
+      "createdAt": "2026-04-10T21:46:00Z"
     }
-  ],
-  "lastUpdated": "2026-04-10T20:21:00Z"
+  ]
 }

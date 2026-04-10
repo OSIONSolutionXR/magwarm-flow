@@ -375,10 +375,12 @@ function getStateColors(state) {
 }
 
 // ============================================
+// ============================================
 // HAUPTKOMPONENTE
 // ============================================
 export default function TimelineSection({ currentWeek, onSelectWeek, babyName }) {
   const [selectedWeek, setSelectedWeek] = useState(currentWeek);
+  const [showDetails, setShowDetails] = useState(false);
   const maxWeek = 156;
   
   // Timeline scrollen
@@ -399,22 +401,39 @@ export default function TimelineSection({ currentWeek, onSelectWeek, babyName })
 
   return (
     <div className="space-y-4">
-      {/* Aktuelle Woche Info */}
-      <Card className={`border-2 ${currentColors.border}`}>
-        <CardContent className="py-4">
+      {/* Aktuelle Woche Info - als klickbarer Button */}
+      <motion.button
+        onClick={() => {
+          setSelectedWeek(currentWeek);
+          setShowDetails(false);
+        }}
+        whileTap={{ scale: 0.98 }}
+        whileHover={{ scale: 1.01 }}
+        className={`w-full border-2 ${selectedWeek !== currentWeek ? 'border-[hsl(17,75%,56%)] ring-2 ring-[hsl(17,75%,56%)]/30' : currentColors.border} rounded-xl bg-white dark:bg-[hsl(210,25%,10%)] overflow-hidden transition-shadow hover:shadow-xl`}
+      >
+        <div className={`py-4 px-4 ${selectedWeek !== currentWeek ? 'bg-[hsl(17,75%,56%)]/5' : ''}`}>
           <div className="flex items-center gap-3">
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${currentColors.marker} text-white`}>
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${currentColors.marker} text-white shadow-lg`}>
               <span className="text-lg font-bold">{currentWeek}</span>
             </div>
-            <div>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Aktuelle Woche</p>
+            <div className="flex-1 text-left">
+              <p className="text-xs text-[hsl(17,75%,56%)] font-semibold uppercase tracking-wide">
+                {selectedWeek !== currentWeek ? 'Aktuelle Woche' : 'Aktuelle Woche'}
+              </p>
               <h3 className="text-base font-bold text-gray-900 dark:text-white">
-                {selectedWeekData.title}
+                {selectedWeek !== currentWeek ? 'Zurück zur aktuellen Woche' : selectedWeekData.title}
               </h3>
             </div>
+            {selectedWeek !== currentWeek && (
+              <div className="w-8 h-8 rounded-full bg-[hsl(17,75%,56%)] flex items-center justify-center">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            )}
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </motion.button>
 
       {/* Timeline */}
       <div>
@@ -430,7 +449,10 @@ export default function TimelineSection({ currentWeek, onSelectWeek, babyName })
                 <motion.button
                   key={week}
                   id={`week-${week}`}
-                  onClick={() => setSelectedWeek(week)}
+                  onClick={() => {
+                    setSelectedWeek(week);
+                    setShowDetails(false);
+                  }}
                   whileTap={{ scale: 0.9 }}
                   className={`
                     w-6 h-9 rounded flex flex-col items-center justify-center text-[8px] font-medium transition-all
@@ -507,19 +529,114 @@ export default function TimelineSection({ currentWeek, onSelectWeek, babyName })
                     </div>
                   </div>
                 )}
-                {/* Button zum Anzeigen der Details */}
-                {selectedWeek !== currentWeek && onSelectWeek && (
+                {/* Button: Details ausklappen */}
+                {selectedWeek !== currentWeek && (
                   <div className="pt-2">
                     <button
-                      onClick={() => onSelectWeek(selectedWeek)}
+                      onClick={() => setShowDetails(!showDetails)}
                       className="w-full py-3 px-4 bg-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,46%)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
                     >
-                      <span>Hier im Detail anschauen</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span>{showDetails ? 'Details schließen' : 'Hier im Detail anschauen'}</span>
+                      <svg 
+                        className={`w-4 h-4 transition-transform ${showDetails ? 'rotate-180' : ''}`} 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </button>
                   </div>
+                )}
+                
+                {/* AUSKLAPPBARE DETAILANSICHT */}
+                {showDetails && selectedWeek !== currentWeek && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mt-4 space-y-4 border-t border-gray-200 dark:border-gray-700 pt-4"
+                  >
+                    {/* ZUSTAND - nur Mögliche Anzeichen, da Phase oben schon angezeigt wird */}
+                    {selectedWeekData.symptoms?.length > 0 && (
+                      <div className={`p-4 rounded-xl ${selectedColors.bg} ${selectedColors.border} border`}>
+                        <h4 className={`font-bold ${selectedColors.text} mb-2 flex items-center gap-2`}>
+                          <CloudRain className="w-5 h-5" />
+                          Mögliche Anzeichen
+                        </h4>
+                        <div className="flex flex-wrap gap-1">
+                          {selectedWeekData.symptoms.slice(0, 5).map((s, i) => (
+                            <span key={i} className="px-2 py-0.5 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded text-xs">
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* WARUM */}
+                    <div className="p-4 rounded-xl bg-gradient-to-br from-violet-50 to-violet-100 dark:from-violet-900/20 dark:to-violet-900/30 border border-violet-200 dark:border-violet-800">
+                      <h4 className="font-bold text-violet-700 dark:text-violet-300 mb-2 flex items-center gap-2">
+                        <Brain className="w-5 h-5" />
+                        Was im Gehirn passiert
+                      </h4>
+                      <p className="text-[hsl(25,22%,16%)] dark:text-white text-sm leading-relaxed">
+                        {selectedWeekData.why}
+                      </p>
+                    </div>
+
+                    {/* LERNT */}
+                    {selectedWeekData.abilities?.length > 0 && (
+                      <div className="p-4 rounded-xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-900/30 border border-green-200 dark:border-green-800">
+                        <h4 className="font-bold text-green-700 dark:text-green-300 mb-2 flex items-center gap-2">
+                          <Lightbulb className="w-5 h-5" />
+                          Neue Fähigkeiten
+                        </h4>
+                        <div className="space-y-1">
+                          {selectedWeekData.abilities.slice(0, 4).map((a, i) => (
+                            <div key={i} className="flex items-center gap-2">
+                              <span className="text-green-500">✓</span>
+                              <span className="text-[hsl(25,22%,16%)] dark:text-white text-sm">{a}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* TUN */}
+                    {selectedWeekData.actions?.length > 0 && (
+                      <div className="p-4 rounded-xl bg-gradient-to-br from-rose-50 to-rose-100 dark:from-rose-900/20 dark:to-rose-900/30 border border-rose-200 dark:border-rose-800">
+                        <h4 className="font-bold text-rose-700 dark:text-rose-300 mb-2 flex items-center gap-2">
+                          <Heart className="w-5 h-5" />
+                          Das hilft jetzt
+                        </h4>
+                        <div className="space-y-2">
+                          {selectedWeekData.actions.slice(0, 3).map((a, i) => (
+                            <div key={i} className="flex items-start gap-2">
+                              <span className="flex-shrink-0 w-5 h-5 bg-[hsl(17,75%,56%)] text-white rounded-full flex items-center justify-center text-xs font-bold">
+                                {i + 1}
+                              </span>
+                              <span className="text-[hsl(25,22%,16%)] dark:text-white text-sm">{a}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* ZURÜCK ZUR AKTUELLEN WOCHE */}
+                    <button
+                      onClick={() => {
+                        setSelectedWeek(currentWeek);
+                        setShowDetails(false);
+                      }}
+                      className="w-full py-3 px-4 bg-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,46%)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
+                    >
+                      <span>Zurück zur aktuellen Woche</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </motion.div>
                 )}
               </div>
             </CardContent>

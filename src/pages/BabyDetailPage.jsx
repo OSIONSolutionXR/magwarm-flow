@@ -246,6 +246,10 @@ export default function BabyDetailPage() {
 
   const currentWeek = getCurrentWeek(baby.dueDate);
   const week = displayWeekOverride !== null ? displayWeekOverride : currentWeek;
+  
+  // Detail-Modus: User betrachtet eine andere Woche
+  const isDetailView = displayWeekOverride !== null && displayWeekOverride !== currentWeek;
+  
   const leap = getLeapForWeek(week);
   const isStorm = leap.isInLeap;
   const phaseData = isStorm ? leap.stormPhase : leap.sunnyPhase;
@@ -290,7 +294,12 @@ export default function BabyDetailPage() {
               <ArrowLeft className="h-5 w-5" />
               <span className="font-medium">Zurück</span>
             </Link>
-            <h1 className="font-semibold text-[hsl(25,22%,16%)] dark:text-white">{baby.name}</h1>
+            <div className="flex flex-col items-center">
+              <h1 className="font-semibold text-[hsl(25,22%,16%)] dark:text-white">{baby.name}</h1>
+              {isDetailView && (
+                <span className="text-[10px] text-[hsl(17,75%,56%)]">Woche {week}</span>
+              )}
+            </div>
             <div className="w-16"></div>
           </div>
         </div>
@@ -417,14 +426,6 @@ export default function BabyDetailPage() {
                 <div className="space-y-6">
                   <NotesSection baby={baby} currentWeek={week} />
                   <CommunitySection currentWeek={week} />
-                  <TimelineSection 
-                    currentWeek={currentWeek} 
-                    onSelectWeek={(selectedWeek) => {
-                      setDisplayWeekOverride(selectedWeek);
-                      setActiveTab(0);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                  />
                 </div>
               )}
             </CardContent>
@@ -432,8 +433,9 @@ export default function BabyDetailPage() {
         </motion.div>
       </main>
 
-      {/* App-like Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-[hsl(210,25%,8%)]/95 backdrop-blur-xl border-t border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)] pb-[env(safe-area-inset-bottom,0px)]">
+      {/* App-like Bottom Navigation - wird im Detail-View ausgeblendet */}
+      {!isDetailView && (
+        <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-[hsl(210,25%,8%)]/95 backdrop-blur-xl border-t border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)] pb-[env(safe-area-inset-bottom,0px)]">
         <div className="flex items-center justify-around max-w-3xl mx-auto px-2">
           {TABS.map((tab) => {
             const Icon = tab.icon;
@@ -469,6 +471,7 @@ export default function BabyDetailPage() {
           })}
         </div>
       </nav>
+      )}
     </div>
   );
 }

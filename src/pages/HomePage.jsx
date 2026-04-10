@@ -59,6 +59,7 @@ export default function HomePage() {
   const [babies, setBabies] = useState([]);
 
   useEffect(() => {
+    // Babies laden für die Übersicht, aber NICHT automatisch weiterleiten
     const stored = localStorage.getItem('flow-babies');
     if (stored) {
       setBabies(JSON.parse(stored));

@@ -1,131 +1,254 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useMemo, useEffect } from 'react';
-import { CloudRain, Sun, Brain, Lightbulb, Activity, Heart, Sparkles, Navigation } from 'lucide-react';
+import { CloudRain, Sun, Brain, Lightbulb, Activity, Heart, Sparkles, Navigation, Zap, AlertTriangle } from 'lucide-react';
 import { Card, CardContent } from './Card';
 import { TEMPLATES } from '../pages/BabyDetailPage_TEMPLATES';
 
-// Hauptphasen (Sprünge)
-const LEAPS_TIMELINE = [
-  { week: 5, weekEnd: 6, title: "Die ersten Sinneswellen", intensity: 'high' },
-  { week: 8, weekEnd: 9, title: "Muster im Chaos", intensity: 'high' },
-  { week: 12, weekEnd: 13, title: "Wenn Bewegung Sinn ergibt", intensity: 'high' },
-  { week: 19, weekEnd: 20, title: "Aha! Das hat Folgen", intensity: 'high' },
-  { week: 26, weekEnd: 27, title: "Die ersten Trennungen", intensity: 'high' },
-  { week: 37, weekEnd: 38, title: "Kategorien und Ordnung", intensity: 'high' },
-  { week: 46, weekEnd: 47, title: "Reihenfolgen verstehen", intensity: 'high' },
-  { week: 55, weekEnd: 56, title: "Flexible Programme", intensity: 'high' },
-  { week: 64, weekEnd: 65, title: "Regeln und Konsequenzen", intensity: 'high' },
-  { week: 75, weekEnd: 76, title: "Verbundenheit spüren", intensity: 'high' },
-  { week: 91, weekEnd: 115, title: "Die Autonomie-Explosion", intensity: 'high' },
-  { week: 116, weekEnd: 140, title: "Die Welt der Symbole", intensity: 'high' },
-  { week: 141, weekEnd: 156, title: "Warum? & Magisches Denken", intensity: 'high' },
-];
+// ============================================
+// FARBSYSTEM - NEU AB WOCHEN 76
+// ============================================
+// 
+// 🟦 Blau (super) - Maximaler Umbruch (Super-Peak)
+// 🟥 Rot (intense) - Kern-Storm-Phase
+// 🟧 Orange/Light (light) - Phase-In, Frust steigt
+// 🟨 Gelb (sunny) - Durchbruch, letzte Woche
+// 🟩 Grün (calm) - Konsolidierung & Ruhe
 
-// Explizite Ruhephasen
-const CALM_PHASES = [
-  { week: 77, weekEnd: 90, title: "Die Konsolidierung", subtitle: "18-21 Monate / Welt der Worte" }
-];
+// EXPLIZITE WOCHEN-ZUORDNUNG AB 76
+// Format: { week: Farb-Key }
+const WEEK_COLORS_76_156 = {
+  // === SPRUNG 11: Die Entdeckung des „Ego" ===
+  76: 'calm', 77: 'calm',                    // Erholung
+  78: 'light', 79: 'light',                   // Phase-In
+  80: 'intense', 81: 'intense', 82: 'intense', // Kern-Storm
+  83: 'sunny',                                // Durchbruch
+  84: 'calm', 85: 'calm', 86: 'calm', 87: 'calm', 88: 'calm', 89: 'calm', 90: 'calm', 91: 'calm', // Lange Konsolidierung
+  
+  // === SPRUNG 12: Wortschatz-Explosion (Super-Sprung) ===
+  92: 'super', 93: 'super', 94: 'super',       // Extrem-Peak (22-Monats-Schub)
+  95: 'intense', 96: 'intense', 97: 'intense', // Schlafregression
+  98: 'light', 99: 'light',                    // Abklingen
+  100: 'sunny',                               // Durchbruch
+  101: 'calm', 102: 'calm', 103: 'calm', 104: 'calm', 105: 'calm',
+  106: 'calm', 107: 'calm', 108: 'calm', 109: 'calm', 110: 'calm',
+  111: 'calm', 112: 'calm', 113: 'calm', 114: 'calm', 115: 'calm',
+  116: 'calm', 117: 'calm',                    // Sonnenschein-Phase
+  
+  // === SPRUNG 13: Die Autonomie-Ebene ===
+  118: 'light', 119: 'light',                 // Strategische Tests
+  120: 'intense', 121: 'intense', 122: 'intense', 123: 'intense', 124: 'intense', // Kern-Trotzphase
+  125: 'sunny',                               // Symbolspiel-Durchbruch
+  126: 'calm', 127: 'calm', 128: 'calm', 129: 'calm', 130: 'calm',
+  131: 'calm', 132: 'calm', 133: 'calm', 134: 'calm', 135: 'calm',
+  136: 'calm', 137: 'calm', 138: 'calm', 139: 'calm', 140: 'calm',
+  141: 'calm',                                // Trockenwerden-Phase
+  
+  // === SPRUNG 14: Super-Sprung „Magische Welt" ===
+  142: 'super', 143: 'super', 144: 'super', 145: 'super', // Irrationale Ängste
+  146: 'intense', 147: 'intense', 148: 'intense',         // Einschlafprobleme
+  149: 'light', 150: 'light', 151: 'light',               // Suche nach Erklärungen
+  152: 'sunny',                                           // Warum-Phase
+  153: 'calm', 154: 'calm', 155: 'calm', 156: 'calm',    // Kindergarten-Reife
+};
 
-const TABS = [
-  { id: 'state', label: 'Zustand', icon: CloudRain },
-  { id: 'why', label: 'Warum', icon: Brain },
-  { id: 'learn', label: 'Lernt', icon: Activity },
-  { id: 'do', label: 'Tun', icon: Lightbulb },
-];
-
-function getWeekColor(week) {
-  // Finde das TEMPLATE für diese Woche
-  const template = TEMPLATES.find(t => week >= t.week && week <= t.weekEnd);
-  
-  if (template) {
-    // Ruhephasen sind grün
-    if (template.phase === 'Ruhephase') return 'calm';
-    
-    // Sprünge: Letzte Woche = Sunny (Gelb), alle anderen = Storm (Rot)
-    const isLastWeek = week === template.weekEnd;
-    
-    if (isLastWeek) return 'sunny';
-    return 'intense';
-  }
-  
-  // Fallback: Vor Sprüngen = Transition
-  const preLeapWeeks = [4, 7, 11, 18, 25, 36, 45, 54, 63, 74, 90, 115];
-  if (preLeapWeeks.includes(week)) return 'transition';
-  
-  return 'calm';
+// Fallback: Wochen ohne Eintrag sind "calm"
+function getColorForWeek76Plus(week) {
+  return WEEK_COLORS_76_156[week] || 'calm';
 }
 
-// Generiere detaillierte Inhalte für jede Woche
+// ============================================
+// HAUPT-FARBLOGIK
+// ============================================
+function getWeekColor(week) {
+  // WOCHEN 1-75: Unangetastete klassische Logik
+  if (week <= 75) {
+    const template = TEMPLATES.find(t => week >= t.week && week <= t.weekEnd);
+    
+    if (template) {
+      if (template.phase === 'Ruhephase') return 'calm';
+      const isLastWeek = week === template.weekEnd;
+      if (isLastWeek) return 'sunny';
+      return 'intense';
+    }
+    
+    const preLeapWeeks = [4, 7, 11, 18, 25, 36, 45, 54, 63, 74];
+    if (preLeapWeeks.includes(week)) return 'transition';
+    
+    return 'calm';
+  }
+  
+  // WOCHEN 76+: Neue Präzisions-Logik
+  return getColorForWeek76Plus(week);
+}
+
+// ============================================
+// WOCHEN-DATEN GENERIEREN
+// ============================================
 function generateWeekData(week) {
+  const color = getWeekColor(week);
   const template = TEMPLATES.find(t => week >= t.week && week <= t.weekEnd);
   
-  if (!template) {
-    // Fallback für Wochen ohne Template
-    return {
-      week,
-      type: 'calm',
-      title: `Woche ${week}`,
-      subtitle: 'Entwicklungsphase',
-      phase: 'Ruhige Entwicklung',
-      state: 'calm',
-      stateLabel: 'Ruhige Phase',
-      stateDescription: 'Dein Baby entwickelt sich weiter. Jede Woche bringt neue Fortschritte.',
-      symptoms: [],
-      abilities: [],
-      why: 'Das Gehirn verarbeitet neue Erfahrungen und festigt gelernte Fähigkeiten.',
-      actions: ['Genieße die Zeit mit deinem Baby', 'Beobachte die kleinen Fortschritte']
-    };
-  }
+  // Spezifische Titel & Beschreibungen für 76+
+  const titles_76_156 = {
+    // Sprung 11
+    76: 'Erholungsphase', 77: 'Erholungsphase',
+    78: 'Erster bewusster Widerstand', 79: 'Erster bewusster Widerstand',
+    80: 'Heftiges Klammern', 81: 'Trennungsangst', 82: 'Trennungsangst-Peak',
+    83: 'Spiegel-Erkennung',
+    84: 'Haushalt-Helfer', 85: 'Haushalt-Helfer', 86: 'Haushalt-Helfer', 87: 'Haushalt-Helfer',
+    88: 'Haushalt-Helfer', 89: 'Haushalt-Helfer', 90: 'Haushalt-Helfer', 91: 'Haushalt-Helfer',
+    
+    // Sprung 12
+    92: '22-Monats-Schub', 93: '22-Monats-Schub', 94: '22-Monats-Schub',
+    95: 'Neuronale Vernetzung', 96: 'Schlafregression', 97: 'Schlafregression',
+    98: 'Erste Wortkombinationen', 99: 'Erste Wortkombinationen',
+    100: 'Zwei-Wort-Sätze',
+    101: 'Redseligkeit', 102: 'Redseligkeit', 103: 'Redseligkeit', 104: 'Redseligkeit',
+    105: 'Spielfreude', 106: 'Spielfreude', 107: 'Spielfreude', 108: 'Spielfreude',
+    109: 'Spielfreude', 110: 'Spielfreude', 111: 'Spielfreude', 112: 'Spielfreude',
+    113: 'Spielfreude', 114: 'Spielfreude', 115: 'Spielfreude', 116: 'Spielfreude', 117: 'Spielfreude',
+    
+    // Sprung 13
+    118: 'Strategische Tests', 119: 'Strategische Tests',
+    120: 'Trotzphase-Kern', 121: 'Trotzphase-Kern', 122: 'Trotzphase-Kern',
+    123: 'Trotzphase-Kern', 124: 'Trotzphase-Kern',
+    125: 'Symbolspiel-Durchbruch',
+    126: 'Trockenwerden-Interesse', 127: 'Parallelspiel', 128: 'Parallelspiel',
+    129: 'Parallelspiel', 130: 'Parallelspiel', 131: 'Trockenwerden-Versuche',
+    132: 'Trockenwerden-Versuche', 133: 'Trockenwerden-Versuche',
+    134: 'Selbstständigkeit', 135: 'Selbstständigkeit', 136: 'Selbstständigkeit',
+    137: 'Selbstständigkeit', 138: 'Selbstständigkeit', 139: 'Selbstständigkeit',
+    140: 'Selbstständigkeit', 141: 'Selbstständigkeit',
+    
+    // Sprung 14
+    142: 'Irrationale Ängste', 143: 'Monster-Angst', 144: 'Schatten-Angst',
+    145: 'Fantasie-Explosion',
+    146: 'Einschlafprobleme', 147: 'Einschlafprobleme', 148: 'Einschlafprobleme',
+    149: 'Warum-Suche', 150: 'Warum-Suche', 151: 'Warum-Suche',
+    152: 'Warum-Phase',
+    153: 'Komplexe Sätze', 154: 'Komplexe Sätze', 155: 'Kindergarten-Reife',
+    156: 'Kindergarten-Reife',
+  };
   
-  // Bestimme Zustand basierend auf Template
-  const isRuhephase = template.phase === 'Ruhephase';
-  const isFirstWeek = week === template.week;
-  const isLastWeek = week === template.weekEnd;
+  const descriptions_76_156 = {
+    super: 'Maximaler Umbruch! Das Gehirn arbeitet auf Hochtouren. Das Kind versteht mehr als es ausdrücken kann - das ist frustrierend, aber unglaublich wichtig für die Entwicklung.',
+    intense: 'Intensive Phase. Das Kind zeigt Regression, ist anhänglicher oder wütender als sonst. Das ist normal und zeigt, dass sich etwas Wichtiges im Gehirn verändert.',
+    light: 'Unruhe beginnt. Das Kind spürt, dass etwas kommt und wird unruhiger, testet Grenzen. Die Intensität steigt noch an.',
+    sunny: 'Durchbruch! Neue Fähigkeiten werden sichtbar. Das Kind ist stolz und entspannter. Genieße diese Erfolgsmomente.',
+    calm: 'Konsolidierungsphase. Das Gehirn verarbeitet und festigt das Gelernte. Zeit zum Entspannen und Spielen.',
+  };
   
-  if (isRuhephase) {
-    return {
-      week,
-      type: 'calm',
-      title: template.title,
-      subtitle: template.subtitle,
-      phase: template.phase,
-      state: 'calm',
-      stateLabel: 'Ruhige Phase',
-      stateDescription: template.sunnyPhase?.description || template.stormPhase?.description || 'Zeit zur Verarbeitung.',
-      symptoms: template.stormPhase?.symptoms || [],
-      abilities: template.sunnyPhase?.abilities || [],
-      why: template.why,
-      actions: template.actions
-    };
-  }
+  const stateLabels = {
+    super: 'Super-Peak',
+    intense: 'Storm-Phase',
+    light: 'Phase-In',
+    sunny: 'Sunny-Phase',
+    calm: 'Ruhephase',
+    transition: 'Vorbereitung',
+  };
   
-  // Sprungphase: Letzte Woche = Sunny, alle anderen = Storm
-  const isStorm = !isLastWeek;
+  // Spezieller Titel für 76+
+  const title = week >= 76 ? (titles_76_156[week] || template?.title || `Woche ${week}`) : (template?.title || `Woche ${week}`);
+  
+  // Beschreibung basierend auf Farbe
+  const description = week >= 76 ? descriptions_76_156[color] : (
+    color === 'sunny' ? template?.sunnyPhase?.description :
+    color === 'intense' || color === 'super' || color === 'light' ? template?.stormPhase?.description :
+    'Zeit zur Verarbeitung und Festigung.'
+  );
   
   return {
     week,
-    type: 'leap',
-    title: template.title,
-    subtitle: isLastWeek ? 'Sunny Phase' : 'Storm Phase',
-    phase: isLastWeek ? 'Sunny Phase' : 'Storm Phase',
-    state: isLastWeek ? 'sunny' : 'storm',
-    stateLabel: isLastWeek ? 'Sunny Phase' : isFirstWeek ? 'Sprung beginnt' : 'Intensivphase',
-    stateDescription: isLastWeek ? template.sunnyPhase?.description : template.stormPhase?.description,
-    symptoms: isLastWeek ? [] : template.stormPhase?.symptoms || [],
-    abilities: isLastWeek ? template.sunnyPhase?.abilities || [] : [],
-    why: template.why,
-    actions: template.actions
+    type: color === 'calm' ? 'calm' : 'leap',
+    title,
+    subtitle: stateLabels[color] || 'Entwicklungsphase',
+    phase: stateLabels[color] || 'Ruhephase',
+    state: color,
+    stateLabel: stateLabels[color] || 'Ruhephase',
+    stateDescription: description,
+    symptoms: template?.stormPhase?.symptoms || [],
+    abilities: template?.sunnyPhase?.abilities || [],
+    why: template?.why || 'Das Gehirn entwickelt sich stetig weiter.',
+    actions: template?.actions || ['Genieße die Zeit mit deinem Kind.', 'Beobachte die kleinen Fortschritte.'],
   };
 }
 
+// ============================================
+// ICON & STYLE HELPER
+// ============================================
+function getStateIcon(state) {
+  switch (state) {
+    case 'super': return Zap;
+    case 'intense': return CloudRain;
+    case 'light': return AlertTriangle;
+    case 'sunny': return Sun;
+    case 'transition': return Navigation;
+    default: return Sparkles;
+  }
+}
+
+function getStateColors(state) {
+  switch (state) {
+    case 'super':
+      return {
+        bg: 'bg-blue-50 dark:bg-blue-900/20',
+        text: 'text-blue-700 dark:text-blue-300',
+        border: 'border-blue-200 dark:border-blue-800',
+        badge: 'bg-blue-200 text-blue-800',
+        marker: 'bg-blue-600',
+      };
+    case 'intense':
+      return {
+        bg: 'bg-red-50 dark:bg-red-900/20',
+        text: 'text-red-700 dark:text-red-300',
+        border: 'border-red-200 dark:border-red-800',
+        badge: 'bg-red-200 text-red-800',
+        marker: 'bg-rose-500',
+      };
+    case 'light':
+      return {
+        bg: 'bg-orange-50 dark:bg-orange-900/20',
+        text: 'text-orange-700 dark:text-orange-300',
+        border: 'border-orange-200 dark:border-orange-800',
+        badge: 'bg-orange-200 text-orange-800',
+        marker: 'bg-orange-400',
+      };
+    case 'sunny':
+      return {
+        bg: 'bg-amber-50 dark:bg-amber-900/20',
+        text: 'text-amber-700 dark:text-amber-300',
+        border: 'border-amber-200 dark:border-amber-800',
+        badge: 'bg-amber-200 text-amber-800',
+        marker: 'bg-amber-400',
+      };
+    case 'transition':
+      return {
+        bg: 'bg-yellow-50 dark:bg-yellow-900/20',
+        text: 'text-yellow-700 dark:text-yellow-300',
+        border: 'border-yellow-200 dark:border-yellow-800',
+        badge: 'bg-yellow-200 text-yellow-800',
+        marker: 'bg-amber-300',
+      };
+    default:
+      return {
+        bg: 'bg-green-50 dark:bg-green-900/20',
+        text: 'text-green-700 dark:text-green-300',
+        border: 'border-green-200 dark:border-green-800',
+        badge: 'bg-green-200 text-green-800',
+        marker: 'bg-green-400',
+      };
+  }
+}
+
+// ============================================
+// HAUPTKOMPONENTE
+// ============================================
 export default function TimelineSection({ currentWeek }) {
   const [selectedWeek, setSelectedWeek] = useState(currentWeek);
-  const [activeTab, setActiveTab] = useState('state');
   const maxWeek = 156;
   
-  // Timeline automatisch auf currentWeek positionieren beim ersten Rendern
+  // Timeline scrollen
   useEffect(() => {
-    // Scrolle zur aktuellen Woche
     const currentWeekElement = document.getElementById(`week-${currentWeek}`);
     if (currentWeekElement) {
       currentWeekElement.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
@@ -136,155 +259,17 @@ export default function TimelineSection({ currentWeek }) {
   const selectedWeekData = useMemo(() => generateWeekData(selectedWeek), [selectedWeek]);
   const currentStatus = getWeekColor(currentWeek);
   const selectedStatus = getWeekColor(selectedWeek);
-
-  const getTabContent = () => {
-    switch (activeTab) {
-      case 'state':
-        return (
-          <div className="space-y-4">
-            <div className={`p-4 rounded-xl ${
-              selectedWeekData.state === 'sunny' ? 'bg-amber-50 dark:bg-amber-900/20' :
-              selectedWeekData.state === 'storm' ? 'bg-red-50 dark:bg-red-900/20' :
-              'bg-green-50 dark:bg-green-900/20'
-            }`}>
-              <div className="flex items-center gap-2 mb-3">
-                {selectedWeekData.state === 'sunny' ? (
-                  <Sun className="h-5 w-5 text-amber-600" />
-                ) : selectedWeekData.state === 'storm' ? (
-                  <CloudRain className="h-5 w-5 text-red-600" />
-                ) : (
-                  <Sparkles className="h-5 w-5 text-green-600" />
-                )}
-                <span className={`font-semibold ${
-                  selectedWeekData.state === 'sunny' ? 'text-amber-700 dark:text-amber-300' :
-                  selectedWeekData.state === 'storm' ? 'text-red-700 dark:text-red-300' :
-                  'text-green-700 dark:text-green-300'
-                }`}>
-                  {selectedWeekData.stateLabel}
-                </span>
-              </div>
-              <p className="text-[hsl(25,22%,16%)] dark:text-white leading-relaxed">
-                {selectedWeekData.stateDescription}
-              </p>
-            </div>
-            
-            {selectedWeekData.type === 'leap' && selectedWeekData.symptoms?.length > 0 && (
-              <div>
-                <p className="text-sm font-semibold text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-2">
-                  Mögliche Anzeichen:
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {selectedWeekData.symptoms.map((s, i) => (
-                    <span key={i} className="px-3 py-1.5 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm">
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            {selectedWeekData.abilities?.length > 0 && (
-              <div>
-                <p className="text-sm font-semibold text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-2">
-                  Neue Fähigkeiten:
-                </p>
-                <div className="space-y-2">
-                  {selectedWeekData.abilities.map((a, i) => (
-                    <div key={i} className="flex items-center gap-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                      <span className="text-green-500">✓</span>
-                      <span className="text-[hsl(25,22%,16%)] dark:text-white text-sm">{a}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        );
-      case 'why':
-        return (
-          <div className="space-y-4">
-            <div className="flex items-start gap-3">
-              <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex-shrink-0">
-                <Brain className="h-5 w-5 text-purple-600" />
-              </div>
-              <div>
-                <p className="font-semibold text-[hsl(25,22%,16%)] dark:text-white mb-2">
-                  Was im Gehirn passiert
-                </p>
-                <p className="text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] leading-relaxed">
-                  {selectedWeekData.why}
-                </p>
-              </div>
-            </div>
-          </div>
-        );
-      case 'learn':
-        return (
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
-                <Activity className="h-5 w-5 text-green-600" />
-              </div>
-              <p className="font-semibold text-[hsl(25,22%,16%)] dark:text-white">
-                Neue Fähigkeiten diese Woche
-              </p>
-            </div>
-            <div className="grid gap-2">
-              {(selectedWeekData.abilities?.length > 0 ? selectedWeekData.abilities : selectedWeekData.symptoms)?.map((item, i) => (
-                <div key={i} className="flex items-start gap-3 p-3 bg-[hsl(25,50%,97%)] dark:bg-[hsl(210,20%,12%)] rounded-xl">
-                  <span className="flex-shrink-0 w-6 h-6 bg-[hsl(17,75%,56%)] text-white rounded-full flex items-center justify-center text-xs font-bold">
-                    {i + 1}
-                  </span>
-                  <p className="text-[hsl(25,22%,16%)] dark:text-white text-sm leading-relaxed">{item}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-      case 'do':
-        return (
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-rose-100 dark:bg-rose-900/30 rounded-lg">
-                <Lightbulb className="h-5 w-5 text-rose-600" />
-              </div>
-              <p className="font-semibold text-[hsl(25,22%,16%)] dark:text-white">
-                Das hilft jetzt
-              </p>
-            </div>
-            <div className="space-y-3">
-              {selectedWeekData.actions?.map((action, i) => (
-                <div key={i} className="flex items-start gap-3 p-4 bg-rose-50 dark:bg-rose-900/20 rounded-xl">
-                  <span className="flex-shrink-0 w-8 h-8 bg-[hsl(17,75%,56%)] text-white rounded-full flex items-center justify-center font-bold text-sm">
-                    {i + 1}
-                  </span>
-                  <p className="text-[hsl(25,22%,16%)] dark:text-white pt-1 leading-relaxed">{action}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
+  
+  const currentColors = getStateColors(currentStatus);
+  const selectedColors = getStateColors(selectedStatus);
 
   return (
     <div className="space-y-4">
       {/* Aktuelle Woche Info */}
-      <Card className={`border-2 ${
-        currentStatus === 'intense' ? 'border-red-400/50 bg-red-500/5' :
-        currentStatus === 'transition' ? 'border-amber-400/50 bg-amber-500/5' :
-        'border-green-400/50 bg-green-500/5'
-      }`}>
+      <Card className={`border-2 ${currentColors.border}`}>
         <CardContent className="py-4">
           <div className="flex items-center gap-3">
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-              currentStatus === 'intense' ? 'bg-rose-500 text-white' :
-              currentStatus === 'sunny' ? 'bg-amber-400 text-white' :
-              currentStatus === 'transition' ? 'bg-amber-300 text-white' :
-              'bg-green-500 text-white'
-            }`}>
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${currentColors.marker} text-white`}>
               <span className="text-lg font-bold">{currentWeek}</span>
             </div>
             <div>
@@ -305,22 +290,17 @@ export default function TimelineSection({ currentWeek }) {
               const color = getWeekColor(week);
               const isCurrent = week === currentWeek;
               const isSelected = week === selectedWeek;
+              const colors = getStateColors(color);
               
               return (
                 <motion.button
                   key={week}
                   id={`week-${week}`}
-                  onClick={() => {
-                    setSelectedWeek(week);
-                    setActiveTab('state');
-                  }}
+                  onClick={() => setSelectedWeek(week)}
                   whileTap={{ scale: 0.9 }}
                   className={`
                     w-6 h-9 rounded flex flex-col items-center justify-center text-[8px] font-medium transition-all
-                    ${color === 'intense' ? 'bg-rose-500' :
-                      color === 'sunny' ? 'bg-amber-400' :
-                      color === 'transition' ? 'bg-amber-300' :
-                      'bg-green-400'}
+                    ${colors.marker}
                     ${isCurrent ? 'ring-2 ring-orange-500 scale-110 z-10' : ''}
                     ${isSelected ? 'ring-2 ring-white' : ''}
                   `}
@@ -334,30 +314,20 @@ export default function TimelineSection({ currentWeek }) {
         </div>
       </div>
 
-
-
-      {/* Phase Info - nur Zustand, keine redundanten Tabs */}
+      {/* Phase Info */}
       <AnimatePresence mode="wait">
         <motion.div
           key={selectedWeek}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <Card className="border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <Card className={`border ${selectedColors.border} overflow-hidden`}>
             {/* Header */}
-            <div className={`p-4 border-b border-gray-200 dark:border-gray-700 ${
-              selectedWeekData.state === 'sunny' ? 'bg-amber-50 dark:bg-amber-900/20' :
-              selectedWeekData.state === 'storm' ? 'bg-red-50 dark:bg-red-900/20' :
-              'bg-green-50 dark:bg-green-900/20'
-            }`}>
+            <div className={`p-4 border-b ${selectedColors.border} ${selectedColors.bg}`}>
               <div className="flex items-center justify-between">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${
-                      selectedWeekData.state === 'sunny' ? 'bg-amber-200 text-amber-800' :
-                      selectedWeekData.state === 'storm' ? 'bg-red-200 text-red-800' :
-                      'bg-green-200 text-green-800'
-                    }`}>
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${selectedColors.badge}`}>
                       Woche {selectedWeekData.week}
                     </span>
                     {selectedWeek === currentWeek && (
@@ -369,27 +339,17 @@ export default function TimelineSection({ currentWeek }) {
               </div>
             </div>
 
-            {/* Phase Info Content - nur Zustand */}
+            {/* Content */}
             <CardContent className="py-4">
               <div className="space-y-4">
-                <div className={`p-4 rounded-xl ${
-                  selectedWeekData.state === 'sunny' ? 'bg-amber-50 dark:bg-amber-900/20' :
-                  selectedWeekData.state === 'storm' ? 'bg-red-50 dark:bg-red-900/20' :
-                  'bg-green-50 dark:bg-green-900/20'
-                }`}>
+                {/* Status Box */}
+                <div className={`p-4 rounded-xl ${selectedColors.bg} ${selectedColors.border} border`}>
                   <div className="flex items-center gap-2 mb-3">
-                    {selectedWeekData.state === 'sunny' ? (
-                      <Sun className="h-5 w-5 text-amber-600" />
-                    ) : selectedWeekData.state === 'storm' ? (
-                      <CloudRain className="h-5 w-5 text-red-600" />
-                    ) : (
-                      <Sparkles className="h-5 w-5 text-green-600" />
-                    )}
-                    <span className={`font-semibold ${
-                      selectedWeekData.state === 'sunny' ? 'text-amber-700 dark:text-amber-300' :
-                      selectedWeekData.state === 'storm' ? 'text-red-700 dark:text-red-300' :
-                      'text-green-700 dark:text-green-300'
-                    }`}>
+                    {(() => {
+                      const Icon = getStateIcon(selectedWeekData.state);
+                      return <Icon className={`h-5 w-5 ${selectedColors.text}`} />;
+                    })()}
+                    <span className={`font-semibold ${selectedColors.text}`}>
                       {selectedWeekData.stateLabel}
                     </span>
                   </div>
@@ -398,13 +358,14 @@ export default function TimelineSection({ currentWeek }) {
                   </p>
                 </div>
 
+                {/* Symptoms */}
                 {selectedWeekData.type === 'leap' && selectedWeekData.symptoms?.length > 0 && (
                   <div>
                     <p className="text-sm font-semibold text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-2">
                       Mögliche Anzeichen:
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      {selectedWeekData.symptoms.map((s, i) => (
+                      {selectedWeekData.symptoms.slice(0, 4).map((s, i) => (
                         <span key={i} className="px-3 py-1.5 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded-full text-sm">
                           {s}
                         </span>
@@ -413,13 +374,14 @@ export default function TimelineSection({ currentWeek }) {
                   </div>
                 )}
 
+                {/* Abilities */}
                 {selectedWeekData.abilities?.length > 0 && (
                   <div>
                     <p className="text-sm font-semibold text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] mb-2">
                       Neue Fähigkeiten:
                     </p>
                     <div className="space-y-2">
-                      {selectedWeekData.abilities.map((a, i) => (
+                      {selectedWeekData.abilities.slice(0, 3).map((a, i) => (
                         <div key={i} className="flex items-center gap-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg">
                           <span className="text-green-500">✓</span>
                           <span className="text-[hsl(25,22%,16%)] dark:text-white text-sm">{a}</span>

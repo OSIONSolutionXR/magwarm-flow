@@ -843,10 +843,10 @@ export const TEMPLATES = [
     ]
   },
 
-  // === WOCHEN 91-115: DIE AUTONOMIE-EXPLOSION (GROSSER SPRUNG) ===
+  // === WOCHEN 91-115: DIE AUTONOMIE-EXPLOSION ===
   {
     "week": 91, "weekEnd": 115, "title": "Die Autonomie-Explosion",
-    "subtitle": "Woche 91-115: 2 Jahre / Die Trotzphase", "phase": "Großer Sprung", "age": "91-115 Wochen (~2 Jahre)",
+    "subtitle": "Woche 91-115: 2 Jahre / Die Trotzphase", "phase": "Ruhephase", "age": "91-115 Wochen (~2 Jahre)",
     "stormPhase": {
       "description": "Der berühmte Trotz beginnt! Dein Kind erkennt sich als eigenständiges Individuum und will selbst entscheiden. 'Nein!' ist das Lieblingswort. Es ist frustrierend, aufregend und anstrengend - für alle. Aber das ist gesunde Entwicklung!",
       "symptoms": [
@@ -884,10 +884,10 @@ export const TEMPLATES = [
     ]
   },
 
-  // === WOCHEN 116-140: DIE WELT DER SYMBOLE (GROSSER SPRUNG) ===
+  // === WOCHEN 116-140: DIE WELT DER SYMBOLE ===
   {
     "week": 116, "weekEnd": 140, "title": "Die Welt der Symbole",
-    "subtitle": "Woche 116-140: 2,5 Jahre / Symbolisches Spiel", "phase": "Großer Sprung", "age": "116-140 Wochen (~2,5 Jahre)",
+    "subtitle": "Woche 116-140: 2,5 Jahre / Symbolisches Spiel", "phase": "Ruhephase", "age": "116-140 Wochen (~2,5 Jahre)",
     "stormPhase": {
       "description": "Die Fantasie explodiert! Dein Kind lebt in einer Welt voller Symbole, Vorstellungen und Magie. Es kann real und imaginiert unterscheiden - aber die Grenzen sind fließend. Das ist kreative, aber auch verwirrende Zeit.",
       "symptoms": [
@@ -925,10 +925,10 @@ export const TEMPLATES = [
     ]
   },
 
-  // === WOCHEN 141-156: WARUM? & MAGISCHES DENKEN (GROSSER SPRUNG) ===
+  // === WOCHEN 141-156: WARUM? & MAGISCHES DENKEN ===
   {
     "week": 141, "weekEnd": 156, "title": "Warum? & Magisches Denken",
-    "subtitle": "Woche 141-156: 3 Jahre / Die 'Warum'-Phase", "phase": "Großer Sprung", "age": "141-156 Wochen (~3 Jahre)",
+    "subtitle": "Woche 141-156: 3 Jahre / Die 'Warum'-Phase", "phase": "Ruhephase", "age": "141-156 Wochen (~3 Jahre)",
     "stormPhase": {
       "description": "Die legendäre 'Warum?'-Phase! Dein Kind will alles verstehen, stellt endlos Fragen und akzeptiert keine einfachen Antworten. Es denkt magisch - kausale Zusammenhänge werden falsch interpretiert. Anstrengend für Eltern, aber unglaublich wichtig für die Entwicklung.",
       "symptoms": [

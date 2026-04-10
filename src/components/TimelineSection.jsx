@@ -529,28 +529,26 @@ export default function TimelineSection({ currentWeek, onSelectWeek, babyName })
                     </div>
                   </div>
                 )}
-                {/* Button: Details ausklappen */}
-                {selectedWeek !== currentWeek && (
-                  <div className="pt-2">
-                    <button
-                      onClick={() => setShowDetails(!showDetails)}
-                      className="w-full py-3 px-4 bg-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,46%)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
+                {/* Button: Details ausklappen - für ALLE Wochen */}
+                <div className="pt-2">
+                  <button
+                    onClick={() => setShowDetails(!showDetails)}
+                    className="w-full py-3 px-4 bg-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,46%)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
+                  >
+                    <span>{showDetails ? 'Details schließen' : 'Hier im Detail anschauen'}</span>
+                    <svg 
+                      className={`w-4 h-4 transition-transform ${showDetails ? 'rotate-180' : ''}`} 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
                     >
-                      <span>{showDetails ? 'Details schließen' : 'Hier im Detail anschauen'}</span>
-                      <svg 
-                        className={`w-4 h-4 transition-transform ${showDetails ? 'rotate-180' : ''}`} 
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                  </div>
-                )}
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                </div>
                 
-                {/* AUSKLAPPBARE DETAILANSICHT */}
-                {showDetails && selectedWeek !== currentWeek && (
+                {/* AUSKLAPPBARE DETAILANSICHT - für ALLE Wochen */}
+                {showDetails && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
@@ -623,19 +621,21 @@ export default function TimelineSection({ currentWeek, onSelectWeek, babyName })
                       </div>
                     )}
 
-                    {/* ZURÜCK ZUR AKTUELLEN WOCHE */}
-                    <button
-                      onClick={() => {
-                        setSelectedWeek(currentWeek);
-                        setShowDetails(false);
-                      }}
-                      className="w-full py-3 px-4 bg-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,46%)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
-                    >
-                      <span>Zurück zur aktuellen Woche</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                    </button>
+                    {/* ZURÜCK ZUR AKTUELLEN WOCHE - nur wenn NICHT aktuelle Woche */}
+                    {selectedWeek !== currentWeek && (
+                      <button
+                        onClick={() => {
+                          setSelectedWeek(currentWeek);
+                          setShowDetails(false);
+                        }}
+                        className="w-full py-3 px-4 bg-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,46%)] text-white font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
+                      >
+                        <span>Zurück zur aktuellen Woche</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    )}
                   </motion.div>
                 )}
               </div>

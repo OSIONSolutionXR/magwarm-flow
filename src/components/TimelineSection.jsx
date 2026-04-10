@@ -41,12 +41,10 @@ function getWeekColor(week) {
     // Ruhephasen sind grün
     if (template.phase === 'Ruhephase') return 'calm';
     
-    // Sprünge: Erste Woche = Transition, letzte = Sunny, dazwischen = Storm
-    const isFirstWeek = week === template.week;
+    // Sprünge: Letzte Woche = Sunny (Gelb), alle anderen = Storm (Rot)
     const isLastWeek = week === template.weekEnd;
     
     if (isLastWeek) return 'sunny';
-    if (isFirstWeek) return 'transition';
     return 'intense';
   }
   
@@ -101,14 +99,14 @@ function generateWeekData(week) {
     };
   }
   
-  // Sprungphase
+  // Sprungphase: Letzte Woche = Sunny, alle anderen = Storm
   const isStorm = !isLastWeek;
   
   return {
     week,
     type: 'leap',
     title: template.title,
-    subtitle: isLastWeek ? 'Sunny Phase' : isFirstWeek ? 'Sprung beginnt' : 'Intensivphase',
+    subtitle: isLastWeek ? 'Sunny Phase' : 'Storm Phase',
     phase: isLastWeek ? 'Sunny Phase' : 'Storm Phase',
     state: isLastWeek ? 'sunny' : 'storm',
     stateLabel: isLastWeek ? 'Sunny Phase' : isFirstWeek ? 'Sprung beginnt' : 'Intensivphase',

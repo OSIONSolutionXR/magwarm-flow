@@ -216,7 +216,7 @@ function SafetyNotice() {
 
 export default function BabyDetailPage() {
   const { id } = useParams();
-  const [activeTab, setActiveTab] = useState(0);
+  const [showErfahrungen, setShowErfahrungen] = useState(false);
   const [baby, setBaby] = useState(null);
   const [displayWeekOverride, setDisplayWeekOverride] = useState(null);
 
@@ -352,126 +352,67 @@ export default function BabyDetailPage() {
 
           <Card>
             <CardContent>
-              {activeTab === 0 && (
-                <div className="space-y-6">
-                  <TimelineSection 
-                    currentWeek={currentWeek} 
-                    onSelectWeek={(selectedWeek) => {
-                      setDisplayWeekOverride(selectedWeek);
-                      setActiveTab(0); // Setze Tab auf "Zustand"
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                  />
-                  
-                  {/* Sicherheitshinweis bei Storm-Phasen - Klappbar - GANZ UNTEN */}
-                  {isStorm && <SafetyNotice />}
-                </div>
-              )}
-
-              {activeTab === 1 && (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#FFE8DC] to-[#FFD2BE] text-[hsl(17,75%,56%)]">
-                      <Brain className="h-6 w-6" />
-                    </div>
-                    <h3 className="text-[1.35rem] font-bold text-[hsl(25,22%,16%)] dark:text-white">Was im Kopf passiert</h3>
-                  </div>
-                  <p className="text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,60%)] leading-relaxed pl-[3.75rem]">
-                    {leap.why}
-                  </p>
-                </div>
-              )}
-
-              {activeTab === 2 && (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-100 to-green-200 text-green-600">
-                      <Sprout className="h-6 w-6" />
-                    </div>
-                    <h3 className="text-[1.35rem] font-bold text-[hsl(25,22%,16%)] dark:text-white">Neue Fähigkeiten</h3>
-                  </div>
-                  <div className="space-y-2 pl-[3.75rem]">
-                    {leap.sunnyPhase.abilities.map((a, i) => (
-                      <div key={i} className="flex items-center gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-xl">
-                        <span className="text-green-500 text-lg">✓</span>
-                        <span className="text-[hsl(25,22%,16%)] dark:text-white">{a}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 3 && (
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-rose-100 to-rose-200 text-rose-500">
-                      <Lightbulb className="h-6 w-6" />
-                    </div>
-                    <h3 className="text-[1.35rem] font-bold text-[hsl(25,22%,16%)] dark:text-white">Das hilft jetzt</h3>
-                  </div>
-                  <div className="space-y-3">
-                    {leap.actions.map((a, i) => (
-                      <div key={i} className="flex items-start gap-3 p-4 bg-rose-50 dark:bg-rose-900/20 rounded-xl">
-                        <span className="flex-shrink-0 w-8 h-8 bg-[hsl(17,75%,56%)] text-white rounded-full flex items-center justify-center font-bold text-sm">
-                          {i + 1}
-                        </span>
-                        <p className="text-[hsl(25,22%,16%)] dark:text-white pt-1 leading-relaxed">{a}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 4 && (
-                <div className="space-y-6">
-                  <NotesSection baby={baby} currentWeek={week} />
-                  <CommunitySection currentWeek={week} />
-                </div>
-              )}
+              <TimelineSection 
+                currentWeek={currentWeek} 
+                onSelectWeek={(selectedWeek) => {
+                  setDisplayWeekOverride(selectedWeek);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
+              
+              {/* Sicherheitshinweis bei Storm-Phasen - Klappbar - GANZ UNTEN */}
+              {isStorm && <SafetyNotice />}
             </CardContent>
           </Card>
         </motion.div>
       </main>
 
-      {/* App-like Bottom Navigation - wird im Detail-View ausgeblendet */}
-      {!isDetailView && (
-        <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-[hsl(210,25%,8%)]/95 backdrop-blur-xl border-t border-[hsl(25,20%,90%)] dark:border-[hsl(210,20%,20%)] pb-[env(safe-area-inset-bottom,0px)]">
-        <div className="flex items-center justify-around max-w-3xl mx-auto px-2">
-          {TABS.map((tab) => {
-            const Icon = tab.icon;
-            const isActive = activeTab === tab.id;
-            return (
-              <PopButton
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex flex-col items-center justify-center py-2 px-3 min-w-[64px] transition-all duration-200 ${
-                  isActive ? 'scale-105' : 'opacity-70 hover:opacity-100'
-                }`}
-              >
-                <div className={`p-2 rounded-xl transition-all duration-200 ${
-                  isActive 
-                    ? 'bg-[hsl(17,75%,56%)]/10 shadow-[0_4px_12px_-4px_rgba(233,110,75,0.4)]' 
-                    : ''
-                }`}>
-                  <Icon 
-                    className={`h-5 w-5 sm:h-6 sm:w-6 transition-colors duration-200 ${
-                      isActive ? 'text-[hsl(17,75%,56%)]' : 'text-[hsl(25,10%,50%)] dark:text-[hsl(30,10%,55%)]'
-                    }`} 
-                  />
-                </div>
-                <span className={`text-[10px] sm:text-xs font-semibold mt-1 transition-colors duration-200 ${
-                  isActive 
-                    ? 'text-[hsl(17,75%,56%)]' 
-                    : 'text-[hsl(25,10%,45%)] dark:text-[hsl(30,10%,55%)]'
-                }`}>
-                  {tab.label}
-                </span>
-              </PopButton>
-            );
-          })}
-        </div>
-      </nav>
-      )}
+      {/* Erfahrungen FAB - immer sichtbar */}
+      <button
+        onClick={() => setShowErfahrungen(true)}
+        className="fixed bottom-6 right-6 z-50 p-4 bg-[hsl(17,75%,56%)] hover:bg-[hsl(17,75%,46%)] text-white rounded-full shadow-lg transition-all hover:scale-110"
+        title="Erfahrungen"
+      >
+        <Users className="h-6 w-6" />
+      </button>
+
+      {/* Erfahrungen Modal */}
+      <AnimatePresence>
+        {showErfahrungen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/50 flex items-end sm:items-center justify-center"
+            onClick={() => setShowErfahrungen(false)}
+          >
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="w-full max-w-3xl bg-white dark:bg-[hsl(210,25%,10%)] rounded-t-2xl sm:rounded-2xl max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="sticky top-0 bg-white dark:bg-[hsl(210,25%,10%)] border-b border-gray-200 dark:border-gray-700 p-4 flex items-center justify-between">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">Erfahrungen</h2>
+                <button
+                  onClick={() => setShowErfahrungen(false)}
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+                >
+                  <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div className="p-4 space-y-6">
+                <NotesSection baby={baby} currentWeek={week} />
+                <CommunitySection currentWeek={week} />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

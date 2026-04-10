@@ -1,8 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useMemo, useEffect } from 'react';
-import { CloudRain, Sun, Brain, Lightbulb, Activity, Heart, Sparkles, Navigation, Zap, AlertTriangle } from 'lucide-react';
+import { CloudRain, Sun, Brain, Lightbulb, Activity, Heart, Sparkles, Navigation, Zap, AlertTriangle, Moon } from 'lucide-react';
 import { Card, CardContent } from './Card';
 import { TEMPLATES } from '../pages/BabyDetailPage_TEMPLATES';
+import { SLEEP_DATA } from '../data/sleepData';
 
 // ============================================
 // FARBSYSTEM - NEU AB WOCHEN 76
@@ -600,6 +601,17 @@ export default function TimelineSection({ currentWeek, onSelectWeek, babyName })
                         </div>
                       </div>
                     )}
+
+                    {/* SCHLAF */}
+                    <div className="p-4 rounded-xl bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-900/30 border border-indigo-200 dark:border-indigo-800">
+                      <h4 className="font-bold text-indigo-700 dark:text-indigo-300 mb-2 flex items-center gap-2">
+                        <Moon className="w-5 h-5" />
+                        Schlaf
+                      </h4>
+                      <p className="text-[hsl(25,22%,16%)] dark:text-white text-sm leading-relaxed">
+                        {SLEEP_DATA[selectedWeekData.week] || `Hier erscheint bald der Schlaf-Content für Woche ${selectedWeekData.week}...`}
+                      </p>
+                    </div>
 
                     {/* TUN */}
                     {selectedWeekData.actions?.length > 0 && (

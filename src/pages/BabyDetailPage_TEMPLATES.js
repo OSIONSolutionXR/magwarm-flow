@@ -923,5 +923,48 @@ export const TEMPLATES = [
       "Bei Ängsten unterscheiden: echt vs. erfunden",
       "💙 Du öffnest die Tür zur Kreativität"
     ]
+  },
+
+  // === WOCHEN 141-156: WARUM? & MAGISCHES DENKEN (GROSSER SPRUNG) ===
+  {
+    "week": 141, "weekEnd": 156, "title": "Warum? & Magisches Denken",
+    "subtitle": "Woche 141-156: 3 Jahre / Die 'Warum'-Phase", "phase": "Großer Sprung", "age": "141-156 Wochen (~3 Jahre)",
+    "stormPhase": {
+      "description": "Die legendäre 'Warum?'-Phase! Dein Kind will alles verstehen, stellt endlos Fragen und akzeptiert keine einfachen Antworten. Es denkt magisch - kausale Zusammenhänge werden falsch interpretiert. Anstrengend für Eltern, aber unglaublich wichtig für die Entwicklung.",
+      "symptoms": [
+        "Fragt ständig 'Warum?'",
+        "Akzeptiert keine einfachen Antworten",
+        "Will alles bis ins Detail erklärt haben",
+        "Denkt magisch und irrational",
+        "Verbindet unzusammenhängende Dinge kausal",
+        "Hat Angst vor Dunkelheit/Unbekanntem",
+        "Glaubt an Monster, Hexen, Zauber",
+        "Reagiert frustriert bei Unverständnis"
+      ]
+    },
+    "sunnyPhase": {
+      "description": "Ein kleiner Forscher entsteht! Dein Kind versteht jetzt Ursache-Wirkung, kann logisch denken und entwickelt ein tiefes Weltverständnis. Die Sprache ist explodiert - 900-1000 Wörter und komplexe Sätze sind normal.",
+      "abilities": [
+        "Wortschatz ~900-1000 Wörter",
+        "Bildet komplexe Sätze",
+        "Versteht Ursache-Wirkung-Zusammenhänge",
+        "Kann logisch schlussfolgern",
+        "Stellt gezielte Fragen",
+        "Entwickelt echtes Gedächtnis für Ereignisse",
+        "Kann sich in andere hineinversetzen",
+        "Zeigt echtes Interesse an der Welt"
+      ]
+    },
+    "why": "Das Gehirn entwickelt kausales Denken und logische Schlussfolgerungen. Das präfrontale Cortex reift, was komplexes Denken ermöglicht. Die Sprachzentren sind jetzt weitgehend entwickelt. Das Kind wird vom 'Magischen Denker' zum 'logischen Denker' - ein kognitiver Quantensprung!",
+    "actions": [
+      "💚 Das ewige 'Warum?' ist ein Zeichen von Intelligenz",
+      "🌟 Du hast einen kleinen Forscher erzogen!",
+      "Geduldig auf Fragen eingehen",
+      "Auch komplexe Zusammenhänge erklären",
+      "Bei Ängsten unterscheiden: real vs. imaginiert",
+      "Gemeinsam experimentieren und entdecken",
+      "Wunder über das Alltägliche zeigen",
+      "💙 Du begleitest den Übergang zum Denker"
+    ]
   }
 ];

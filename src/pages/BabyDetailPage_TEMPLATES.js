@@ -5,6 +5,7 @@ export const TEMPLATES = [
   // WOCHE 1: Die Geburt
   {
     "week": 1, "weekEnd": 1, "title": "Die Geburt",
+    "signs": "Dein kleiner Schatz ist gerade erst angekommen und wirkt oft noch wie in einer anderen Welt versunken. Du bemerkst vielleicht, dass dein Baby fast den ganzen Tag schläft und nur leise Seufzer oder reflexartige Bewegungen von sich gibt, während es sich an das Gefühl von Luft auf der Haut und die neue Freiheit der Gliedmaßen gewöhnt.",
     "subtitle": "Tag 1-7: Ankunft in der Welt", "phase": "Neugeborenes", "age": "0-7 Tage",
     "stormPhase": {
       "description": "Dein Baby ist angekommen! Nach dem Stress der Geburt muss es erstmal atmen, verdauen und die Körpertemperatur halten. Das ist anstrengend - deshalb schläft es viel und weint manchmal ohne erkennbaren Grund.",
@@ -39,6 +40,7 @@ export const TEMPLATES = [
   // WOCHE 2: Die ersten Anpassungen
   {
     "week": 2, "weekEnd": 2, "title": "Die ersten Anpassungen",
+    "signs": "Langsam scheint dein Baby \"aufzuwachen\" und die Momente, in denen es dich mit großen Augen ansieht, werden etwas länger. Du spürst vielleicht, dass es deine Nähe nun schon aktiver sucht und sich in deinen Armen merklich entspannt, während es beginnt, die ersten schemenhaften Schatten in seiner Umgebung wahrzunehmen.",
     "subtitle": "Tag 8-14: Sicherheit finden", "phase": "Neugeborenes", "age": "1-2 Wochen",
     "stormPhase": {
       "description": "Dein Baby beginnt zu verstehen: Diese neue Welt ist laut, hell und kalt. Es ist oft überfordert von den vielen Reizen und braucht deine Nähe, um sich sicher zu fühlen.",
@@ -73,6 +75,7 @@ export const TEMPLATES = [
   // WOCHE 3: Die Stabilisierung
   {
     "week": 3, "weekEnd": 3, "title": "Die Stabilisierung",
+    "signs": "Du bemerkst vielleicht, dass dein Baby am späten Nachmittag unruhiger wird und die ersten \"echten\" Tränen fließen können. Es zieht die Beinchen fest an den Bauch und lässt sich manchmal nur schwer beruhigen, was dir zeigt, dass sein kleiner Körper und seine Sinne nun beginnen, die Außenwelt intensiver zu verarbeiten.",
     "subtitle": "Tag 15-21: Erste Routinen", "phase": "Neugeborenes", "age": "2-3 Wochen",
     "stormPhase": {
       "description": "Dein Baby hat mehr Energie und zeigt deutlicher, was es will - aber seine Verdauung arbeitet noch nicht perfekt. Blähungen und Bauchschmerzen können es quälen.",
@@ -107,6 +110,7 @@ export const TEMPLATES = [
   // WOCHE 4: Die Entdeckung
   {
     "week": 4, "weekEnd": 4, "title": "Die Entdeckung",
+    "signs": "Dein Kind wirkt in dieser Woche spürbar reizempfindlicher und scheint auf Geräusche oder plötzliches Licht schneller mit Erschrecken zu reagieren. Die Vorboten des ersten großen Sprungs zeigen sich in einer aufkommenden Quengeligkeit und dem Wunsch, fast ununterbrochen an deiner Brust oder in deinem Arm zu sein.",
     "subtitle": "Tag 22-28: Die Augen öffnen sich", "phase": "Neugeborenes", "age": "3-4 Wochen",
     "stormPhase": {
       "description": "Dein Baby ist wacher und neugieriger - was bedeutet, es kann überfordert sein, wenn zu viel los ist. Die Welt wird größer, aber auch unübersichtlicher.",
@@ -141,6 +145,7 @@ export const TEMPLATES = [
   // === Wochen 5-6: Der erste Sprung ===
   {
     "week": 5, "weekEnd": 6, "title": "Die ersten Sinneswellen",
+    "signs": "Dein Baby wird von einer Welle neuer Sinneseindrücke überrollt und sucht verzweifelt Schutz bei dir. Es klammert sich fest, weint häufiger und wirkt oft überfordert von der Welt, die plötzlich so viel bunter und lauter scheint – es ist die Zeit, in der dein kleiner Schatz deine bedingungslose Nähe am allermeisten braucht.",
     "subtitle": "Woche 5-6: Alles wird intensiver", "phase": "1. Sprung", "age": "4-6 Wochen",
     "stormPhase": {
       "description": "Plötzlich wird alles lauter, heller, intensiver! Dein Baby erlebt die Welt mit 'neuen Augen' - was überwältigend ist. Es sucht verzweifelt deine Nähe, um sich in der Sinnesflut zu orientieren.",
@@ -176,6 +181,7 @@ export const TEMPLATES = [
   // === WOCHE 7: Erste Ruhephase ===
   {
     "week": 7, "weekEnd": 7, "title": "Die Verschnaufpause",
+    "signs": "Dein Kind wirkt in diesen Tagen sehr zufrieden und ausgeglichen; es scheint seine neue Sehfähigkeit zu genießen und betrachtet fasziniert das Lichtspiel an der Decke oder deine Mimik, während es in den Wachphasen immer aufmerksamer wird.",
     "subtitle": "Woche 7: Verarbeitung & Festigung", "phase": "Ruhephase", "age": "7 Wochen",
     "stormPhase": {
       "description": "Dein Baby verarbeitet die intensive Sinnesflut. Es ist oft müde und braucht viel Schlaf, um die neuen Erfahrungen zu speichern. Ein ruhiger Alltag hilft dabei.",
@@ -210,6 +216,7 @@ export const TEMPLATES = [
   // === Wochen 8-9: Der zweite Sprung ===
   {
     "week": 8, "weekEnd": 9, "title": "Muster im Chaos",
+    "signs": "Eine neue Unruhe zieht ein, da dein Baby nun beginnt, Muster und Formen zu erkennen, was seine gewohnte Welt erneut auf den Kopf stellt. Es fremdelt vielleicht zum ersten Mal ein wenig und wirkt nachts oft verloren, während es mit weit aufgerissenen Augen die Dunkelheit des Zimmers fixiert.",
     "subtitle": "Woche 8-9: Die Welt folgt Regeln", "phase": "2. Sprung", "age": "8-9 Wochen",
     "stormPhase": {
       "description": "Dein Baby entdeckt plötzlich Muster und wird verunsichert, wenn diese unterbrochen werden. Es braucht jetzt feste Routinen, um sich sicher zu fühlen.",
@@ -244,6 +251,7 @@ export const TEMPLATES = [
   // === Wochen 10-11: Zweite Ruhephase ===
   {
     "week": 10, "weekEnd": 11, "title": "Das Muster-Verstehen",
+    "signs": "Du spürst eine kleine körperliche Ungeduld bei deinem Kind; es rudert viel mit den Armen und wirkt manchmal frustriert, wenn seine Bewegungen noch nicht so flüssig gelingen, wie es das möchte. Es ist eine Phase des Ausprobierens und der ersten gezielten Kraftanstrengungen.",
     "subtitle": "Woche 10-11: Sicherheit durch Vorhersage", "phase": "Ruhephase", "age": "10-11 Wochen",
     "stormPhase": {
       "description": "Dein Baby hat die Muster verinnerlicht und sucht sie aktiv. Es wird unruhig, wenn etwas anders läuft als erwartet - aber auch stolz, wenn es die Sequenz richtig vorhersagt.",
@@ -278,6 +286,7 @@ export const TEMPLATES = [
   // === Wochen 12-13: Der dritte Sprung ===
   {
     "week": 12, "weekEnd": 13, "title": "Wenn Bewegung Sinn ergibt",
+    "signs": "Dein Baby experimentiert lautstark mit seiner Stimme und überrascht dich mit schrillen Freudenschreien oder glucksenden Lauten. Gleichzeitig wirkt es unruhig und fast ein wenig \"überdreht\", da es nun beginnt, fließende Übergänge in seiner Umwelt wahrzunehmen, was unheimlich spannend, aber auch anstrengend ist.",
     "subtitle": "Woche 12-13: Die Körperkontrolle", "phase": "3. Sprung", "age": "12-13 Wochen",
     "stormPhase": {
       "description": "Dein Baby spürt plötzlich seinen Körper intensiver - will greifen, rollen, sich bewegen. Aber die Kontrolle fehlt noch, was zu Frustration führt.",
@@ -312,6 +321,7 @@ export const TEMPLATES = [
   // === Wochen 14-15: Dritte Ruhephase ===
   {
     "week": 14, "weekEnd": 15, "title": "Die Bewegungsfestigung",
+    "signs": "Du bemerkst, dass dein kleiner Schatz beim Trinken immer öfter innehält, um zu schauen, was im Raum passiert. Seine Neugier ist in dieser Woche so groß, dass er kaum stillsitzen kann und jede Bewegung um ihn herum mit größter Aufmerksamkeit verfolgt.",
     "subtitle": "Woche 14-15: Sicherer werden", "phase": "Ruhephase", "age": "14-15 Wochen",
     "stormPhase": {
       "description": "Dein Baby übt fleißig die neuen Bewegungen. Manchmal ist es frustriert, wenn etwas nicht klappt - aber die Fortschritte sind deutlich sichtbar.",
@@ -346,6 +356,7 @@ export const TEMPLATES = [
   // === WOCHEN 16-18: RUHEPHASE VOR "FOLGEN" ===
   {
     "week": 16, "weekEnd": 18, "title": "Die Bewegungskonsolidierung",
+    "signs": "Dein Kind zeigt erste Anzeichen von Langeweile, wenn es zu lange allein gelassen wird, und fordert dich lautstark zum Mitspielen auf. Es liebt es nun, Dinge zu schütteln und wartet gespannt auf das Geräusch, was zeigt, wie sehr es die Welt der Ereignisse fasziniert.",
     "subtitle": "Woche 16-18: Meister des Körpers", "phase": "Ruhephase", "age": "16-18 Wochen",
     "stormPhase": {
       "description": "Dein Baby perfektioniert seine Bewegungen. Es ist oft frustriert, wenn etwas noch nicht klappt, aber die Fortschritte sind enorm. Die Ungeduld wächst - das Baby will mehr, als es kann.",
@@ -380,6 +391,7 @@ export const TEMPLATES = [
   // === WOCHEN 19-20: VIERTER SPRUNG ===
   {
     "week": 19, "weekEnd": 20, "title": "Aha! Das hat Folgen",
+    "signs": "Dein Kind ist in dieser Woche extrem launisch und scheint seine Gefühle kaum kontrollieren zu können. Es steckt sich alles in den Mund, was es greifen kann, und ist motorisch so aktiv, dass es kaum eine Minute stillliegen möchte – ein echter kleiner Wirbelwind voller Tatendrang.",
     "subtitle": "Woche 19-20: Ursache und Wirkung", "phase": "4. Sprung", "age": "19-20 Wochen",
     "stormPhase": {
       "description": "Ein revolutionäres Erwachen: Dein Baby merkt plötzlich, dass seine Handlungen Konsequenzen haben! Es experimentiert wild - wirft, schüttelt, schlägt. Jede Aktion wird zum Testobjekt. Das kann anstrengend sein, denn das Baby will die Welt verstehen.",
@@ -417,6 +429,7 @@ export const TEMPLATES = [
   // === WOCHEN 21-25: VIERTE RUHEPHASE ===
   {
     "week": 21, "weekEnd": 25, "title": "Das Experimentieren",
+    "signs": "Dein kleiner Entdecker wirkt motorisch sehr ehrgeizig und verbringt viel Zeit damit, sich in der Bauchlage abzustützen. Er zeigt eine gewisse Tagesunruhe, da er nun unbedingt die Welt aus einer neuen Perspektive erkunden möchte.",
     "subtitle": "Woche 21-25: Kleiner Forscher", "phase": "Ruhephase", "age": "21-25 Wochen",
     "stormPhase": {
       "description": "Dein Baby übt intensiv Ursache-Wirkung. Es ist fasziniert, aber auch frustriert, wenn etwas nicht klappt. Die Neugier ist unermüdlich - und manchmal anstrengend für die Eltern.",
@@ -452,6 +465,7 @@ export const TEMPLATES = [
   // === WOCHEN 26-27: FÜNFTER SPRUNG ===
   {
     "week": 26, "weekEnd": 27, "title": "Die ersten Trennungen",
+    "signs": "Die Trennungsangst erreicht einen ersten Höhepunkt und dein Baby weint oft schon verzweifelt, wenn du nur aufstehst. Es begreift nun die Welt der Beziehungen und versteht, dass du eine eigene Person bist, die weggehen kann – das macht ihm große Angst und es sucht ständig deine schützende Nähe.",
     "subtitle": "Woche 26-27: Mama bleibt", "phase": "5. Sprung", "age": "26-27 Wochen",
     "stormPhase": {
       "description": "Ein emotionaler Tsunami: Dein Baby erkennt plötzlich, dass du eine eigene Person bist und fortgehen kannst! Angst vor Trennung überflutet es. Fremde werden abgelehnt, die Bezugsperson umklammert. Das ist hart, aber gesund - es zeigt eine sichere Bindung.",
@@ -489,6 +503,7 @@ export const TEMPLATES = [
   // === WOCHEN 28-30: FÜNFTE RUHEPHASE ===
   {
     "week": 28, "weekEnd": 30, "title": "Die Bindungsfestigung",
+    "signs": "Die Stimmung wird wieder deutlich sonniger und dein Baby zeigt dir stolz, wie es winken kann oder die Arme nach dir ausstreckt. Es genießt den sozialen Austausch und wirkt sichtlich glücklich über jede Form von gemeinsamer Aufmerksamkeit.",
     "subtitle": "Woche 28-30: Sicheres Zuhause", "phase": "Ruhephase", "age": "28-30 Wochen",
     "stormPhase": {
       "description": "Dein Baby verarbeitet die intensive Trennungsangst. Es braucht immer noch viel Nähe, ist aber etwas entspannter geworden. Die Welt wird langsam wieder vertrauter.",
@@ -524,6 +539,7 @@ export const TEMPLATES = [
   // === WOCHEN 31-36: RUHEPHASE VOR KATEGORIEN ===
   {
     "week": 31, "weekEnd": 36, "title": "Die Kommunikationsblüte",
+    "signs": "Du bemerkst eine faszinierte Ausdauer, wenn dein Baby kleinste Details wie Knöpfe an deiner Bluse oder Krümel auf dem Teppich untersucht. Es wirkt dabei fast wie ein kleiner Wissenschaftler, der jedes Detail genauestens unter die Lupe nehmen muss.",
     "subtitle": "Woche 31-36: Sprechen lernen", "phase": "Ruhephase", "age": "31-36 Wochen",
     "stormPhase": {
       "description": "Dein Baby ist kommunikativ wie nie! Es brabbelt, zeigt, deutet - aber die Welt versteht noch nicht alles. Das kann frustrierend sein, wenn Bedürfnisse nicht sofort erkannt werden.",
@@ -559,6 +575,7 @@ export const TEMPLATES = [
   // === WOCHEN 37-38: SECHSTER SPRUNG ===
   {
     "week": 37, "weekEnd": 38, "title": "Kategorien und Ordnung",
+    "signs": "Dein Kind zeigt plötzlich einen sehr starken eigenen Willen und wehrt sich massiv beim Wickeln oder Anziehen, da es seine neu entdeckte Welt der Kategorien viel lieber aktiv erforschen möchte als stillzuliegen. Es ist eine Phase des lauten Protests und der großen Entdeckerlust.",
     "subtitle": "Woche 37-38: Die Welt sortieren", "phase": "6. Sprung", "age": "37-38 Wochen",
     "stormPhase": {
       "description": "Chaos in kleinem Kopf: Dein Baby erkennt plötzlich, dass Dinge unterschieden werden können! Es sortiert obsessiv, stapelt, ordnet. Was dazugehört, muss zusammen sein - sonst gibt es Protest!",
@@ -595,6 +612,7 @@ export const TEMPLATES = [
   // === WOCHEN 39-45: SIEBTE RUHEPHASE ===
   {
     "week": 39, "weekEnd": 45, "title": "Die Kategorisierung",
+    "signs": "Dein kleiner Schatz wirkt unmutig, wenn er in den Kinderwagen gesetzt wird, und zeigt nun ganz deutlich mit dem Finger auf Dinge, die er unbedingt haben oder untersuchen möchte.",
     "subtitle": "Woche 39-45: Alles an seinen Platz", "phase": "Ruhephase", "age": "39-45 Wochen",
     "stormPhase": {
       "description": "Dein Baby übt fleißig das Sortieren. Es ist manchmal frustriert, wenn etwas nicht passt, aber die Fortschritte sind enorm. Die Welt wird strukturierter verstanden.",
@@ -630,6 +648,7 @@ export const TEMPLATES = [
   // === WOCHEN 46-47: ACHTER SPRUNG ===
   {
     "week": 46, "weekEnd": 47, "title": "Reihenfolgen verstehen",
+    "signs": "Heftige Wutanfälle prägen in dieser Woche den Alltag, wenn eine geplante Handlung nicht sofort gelingt oder du dem Kind etwas wegnimmst – es begreift nun Reihenfolgen und leidet sehr darunter, wenn diese unterbrochen werden.",
     "subtitle": "Woche 46-47: Erst dies, dann das", "phase": "8. Sprung", "age": "46-47 Wochen",
     "stormPhase": {
       "description": "Ein neues Denken entsteht: Dein Baby erkennt, dass Dinge in einer bestimmten Reihenfolge passieren müssen! Es wird stur, wenn Abläufe unterbrochen werden. 'Erst anziehen, dann rausgehen' - diese Logik ist jetzt wichtig.",
@@ -666,6 +685,7 @@ export const TEMPLATES = [
   // === WOCHEN 48-54: RUHEPHASE ===
   {
     "week": 48, "weekEnd": 54, "title": "Die Sequenzfestigung",
+    "signs": "Ein unbändiger Drang zum Laufen an der Hand macht dein Kind in dieser Woche sehr unruhig; es möchte ständig in Bewegung sein und protestiert lautstark, wenn es sitzen bleiben soll.",
     "subtitle": "Woche 48-54: Abläufe meistern", "phase": "Ruhephase", "age": "48-54 Wochen",
     "stormPhase": {
       "description": "Dein Baby übt die neuen sequenziellen Fähigkeiten. Es ist manchmal frustriert, wenn etwas nicht nach Plan läuft, aber die Abläufe werden vertrauter. Die Welt folgt jetzt erwartbaren Mustern.",
@@ -701,6 +721,7 @@ export const TEMPLATES = [
   // === WOCHEN 55-56: NEUNTER SPRUNG ===
   {
     "week": 55, "weekEnd": 56, "title": "Flexible Programme",
+    "signs": "Ein massiver Dickkopf wird sichtbar; dein Kind testet seine Macht über Situationen lautstark aus und reagiert auf ein elterliches \"Nein\" oft mit einem heftigen Gefühlssturm, der es selbst zu erschrecken scheint.",
     "subtitle": "Woche 55-56: Anpassen und Variieren", "phase": "9. Sprung", "age": "55-56 Wochen",
     "stormPhase": {
       "description": "Revolutionäre Erkenntnis: Dein Baby merkt, dass Programme verändert werden können! Das ist befreiend aber auch verunsichernd. Es testet Grenzen, will selbst entscheiden und wird trotzig, wenn es nicht klappt.",
@@ -737,6 +758,7 @@ export const TEMPLATES = [
   // === WOCHEN 57-60: RUHEPHASE ===
   {
     "week": 57, "weekEnd": 60, "title": "Die Programmflexibilität",
+    "signs": "Dein kleiner Abenteurer zeigt eine enorme Begeisterung für das Klettern und wirkt oft unruhig und fast getrieben, wenn er nicht ständig neue Höhen in der Wohnung erklimmen darf.",
     "subtitle": "Woche 57-60: Meister der Abläufe", "phase": "Ruhephase", "age": "57-60 Wochen",
     "stormPhase": {
       "description": "Dein Baby übt die Programmflexibilität. Es ist manchmal überfordert von den vielen Möglichkeiten, aber auch stolz auf seine neuen Fähigkeiten. Die Balance zwischen Struktur und Freiheit ist eine Herausforderung.",
@@ -772,6 +794,7 @@ export const TEMPLATES = [
   // === WOCHEN 61-75: ACHTE RUHEPHASE (KURZ VOR GROSSEM SPRUNG) ===
   {
     "week": 61, "weekEnd": 75, "title": "Die Verbundenheit festigen",
+    "signs": "Sichtbare Unruhe bei kleinsten Veränderungen im gewohnten Tagesablauf zeigen dir, dass dein Kind beginnt, Prinzipien und feste Regeln der Welt zu hinterfragen und zu prüfen.",
     "subtitle": "Woche 61-75: Wir-Gefühl", "phase": "Ruhephase", "age": "61-75 Wochen (~14-17 Monate)",
     "stormPhase": {
       "description": "Ein ruhiger Abschnitt vor dem Sturm: Dein Kind festigt seine emotionale Bindung und bereitet sich auf die große Autonomie-Explosion vor. Es zeigt mehr Wir-Gefühl, versteht sich als Teil der Familie und entwickelt erste soziale Regeln.",
@@ -809,6 +832,7 @@ export const TEMPLATES = [
   // === WOCHEN 76-90: DIE GROSSE RUHEPHASE (KONSOLIDIERUNG) ===
   {
     "week": 76, "weekEnd": 90, "title": "Die Konsolidierung",
+    "signs": "Nach dem großen Sturm der letzten Woche kehrt eine wunderbare Ruhe ein. Dein Kind wirkt plötzlich viel reifer, fast schon wie ein \"kleiner Mensch\", der sehr zufrieden mit seinen neuen Fähigkeiten ist.",
     "subtitle": "Woche 76-90: 18-21 Monate / Welt der Worte", "phase": "Ruhephase", "age": "76-90 Wochen (~18-21 Monate)",
     "stormPhase": {
       "description": "Ein ruhiger, wichtiger Abschnitt: Dein Kind festigt alles Gelernte. Es gibt wenige akute Sprünge, aber die Entwicklung schreitet stetig voran. Die Sprachexplosion beginnt, und mit ihr kommen neue Herausforderungen.",
@@ -846,6 +870,7 @@ export const TEMPLATES = [
   // === WOCHEN 91-115: DIE AUTONOMIE-EXPLOSION ===
   {
     "week": 91, "weekEnd": 115, "title": "Die Autonomie-Explosion",
+    "signs": "Eine spürbare kognitive Unruhe macht sich breit. Dein Kind wirkt geistig oft überanstrengt, ist schneller reizbar als sonst und scheint sich innerlich auf den gewaltigen Umbruch vorzubereiten.",
     "subtitle": "Woche 91-115: 2 Jahre / Die Trotzphase", "phase": "Ruhephase", "age": "91-115 Wochen (~2 Jahre)",
     "stormPhase": {
       "description": "Der berühmte Trotz beginnt! Dein Kind erkennt sich als eigenständiges Individuum und will selbst entscheiden. 'Nein!' ist das Lieblingswort. Es ist frustrierend, aufregend und anstrengend - für alle. Aber das ist gesunde Entwicklung!",
@@ -887,6 +912,7 @@ export const TEMPLATES = [
   // === WOCHEN 116-140: DIE WELT DER SYMBOLE ===
   {
     "week": 116, "weekEnd": 140, "title": "Die Welt der Symbole",
+    "signs": "Ein ständiges \"Nein\" wird zum neuen Lieblingswort deines Kindes. Er genießt die Macht, die dieses kleine Wort über Situationen hat.",
     "subtitle": "Woche 116-140: 2,5 Jahre / Symbolisches Spiel", "phase": "Ruhephase", "age": "116-140 Wochen (~2,5 Jahre)",
     "stormPhase": {
       "description": "Die Fantasie explodiert! Dein Kind lebt in einer Welt voller Symbole, Vorstellungen und Magie. Es kann real und imaginiert unterscheiden - aber die Grenzen sind fließend. Das ist kreative, aber auch verwirrende Zeit.",
@@ -928,6 +954,7 @@ export const TEMPLATES = [
   // === WOCHEN 141-156: WARUM? & MAGISCHES DENKEN ===
   {
     "week": 141, "weekEnd": 156, "title": "Warum? & Magisches Denken",
+    "signs": "Einschlafschwierigkeiten treten massiv auf. Dein Kind möchte die Tür offen lassen oder braucht unbedingt ein Nachtlicht.",
     "subtitle": "Woche 141-156: 3 Jahre / Die 'Warum'-Phase", "phase": "Ruhephase", "age": "141-156 Wochen (~3 Jahre)",
     "stormPhase": {
       "description": "Die legendäre 'Warum?'-Phase! Dein Kind will alles verstehen, stellt endlos Fragen und akzeptiert keine einfachen Antworten. Es denkt magisch - kausale Zusammenhänge werden falsch interpretiert. Anstrengend für Eltern, aber unglaublich wichtig für die Entwicklung.",

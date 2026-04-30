@@ -4,6 +4,8 @@ import { CloudRain, Sun, Brain, Lightbulb, Activity, Heart, Sparkles, Navigation
 import { Card, CardContent } from './Card';
 import { TEMPLATES } from '../pages/BabyDetailPage_TEMPLATES';
 import { SLEEP_DATA } from '../data/sleepData';
+import { SYMPTOMS_DATA } from '../data/symptomsData';
+import { BRAIN_DATA } from '../data/brainData';
 
 // ============================================
 // FARBSYSTEM - NEU AB WOCHEN 76
@@ -557,21 +559,15 @@ export default function TimelineSection({ currentWeek, onSelectWeek, babyName })
                     className="mt-4 space-y-4 border-t border-gray-200 dark:border-gray-700 pt-4"
                   >
                     {/* ZUSTAND - nur Mögliche Anzeichen, da Phase oben schon angezeigt wird */}
-                    {selectedWeekData.symptoms?.length > 0 && (
-                      <div className={`p-4 rounded-xl ${selectedColors.bg} ${selectedColors.border} border`}>
-                        <h4 className={`font-bold ${selectedColors.text} mb-2 flex items-center gap-2`}>
-                          <CloudRain className="w-5 h-5" />
-                          Mögliche Anzeichen
-                        </h4>
-                        <div className="flex flex-wrap gap-1">
-                          {selectedWeekData.symptoms.slice(0, 5).map((s, i) => (
-                            <span key={i} className="px-2 py-0.5 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 rounded text-xs">
-                              {s}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                    <div className={`p-4 rounded-xl ${selectedColors.bg} ${selectedColors.border} border`}>
+                      <h4 className={`font-bold ${selectedColors.text} mb-2 flex items-center gap-2`}>
+                        <CloudRain className="w-5 h-5" />
+                        Mögliche Anzeichen
+                      </h4>
+                      <p className="text-[hsl(25,22%,16%)] dark:text-white text-sm leading-relaxed">
+                        {SYMPTOMS_DATA[selectedWeekData.week] || `Hier erscheint bald der Content für mögliche Anzeichen in Woche ${selectedWeekData.week}...`}
+                      </p>
+                    </div>
 
                     {/* WARUM */}
                     <div className="p-4 rounded-xl bg-gradient-to-br from-violet-50 to-violet-100 dark:from-violet-900/20 dark:to-violet-900/30 border border-violet-200 dark:border-violet-800">
@@ -580,7 +576,7 @@ export default function TimelineSection({ currentWeek, onSelectWeek, babyName })
                         Was im Gehirn passiert
                       </h4>
                       <p className="text-[hsl(25,22%,16%)] dark:text-white text-sm leading-relaxed">
-                        {selectedWeekData.why}
+                        {BRAIN_DATA[selectedWeekData.week] || selectedWeekData.why}
                       </p>
                     </div>
 

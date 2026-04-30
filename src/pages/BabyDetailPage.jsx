@@ -5,6 +5,10 @@ import { ArrowLeft, Brain, Sprout, Lightbulb, Users, Cloud, ChevronDown, Heart, 
 import { Card, CardContent } from '../components/Card';
 import { PopCard, PopButton } from '../components/PopEffect';
 import { TEMPLATES } from './BabyDetailPage_TEMPLATES.js';
+import { getSignsForWeek } from '../data/weeklySigns';
+import { getBrainForWeek } from '../data/weeklyBrain';
+import { getAbilityForWeek } from '../data/weeklyAbilities';
+import { getActionForWeek } from '../data/weeklyActions';
 import NotesSection from '../components/NotesSection';
 import CommunitySection from '../components/CommunitySection';
 import TimelineSection from '../components/TimelineSection';
@@ -61,7 +65,8 @@ function getLeapForWeek(week) {
         "Füttere nach Bedarf, nicht nach Uhrzeit",
         "Schaffe eine ruhige Umgebung",
         "Vertraue deinem Instinkt"
-      ]
+      ],
+      signs: getSignsForWeek(week)
     };
   }
   
@@ -73,12 +78,17 @@ function getLeapForWeek(week) {
   for (const calm of calmPhases) {
     if (week >= calm.week && week <= calm.weekEnd) {
       const template = TEMPLATES.find(t => week >= t.week && week <= t.weekEnd);
+      const weeklyAbility = getAbilityForWeek(week);
       return {
         ...calm,
         stormPhase: { description: "", symptoms: [] },
-        sunnyPhase: template?.sunnyPhase || { description: "", abilities: [] },
-        why: template?.why || "",
-        actions: template?.actions || []
+        sunnyPhase: {
+          description: "",
+          abilities: weeklyAbility ? [weeklyAbility] : (template?.sunnyPhase?.abilities || [])
+        },
+        why: getBrainForWeek(week) || template?.why || "",
+        actions: template?.actions || [],
+        signs: getSignsForWeek(week)
       };
     }
   }
@@ -86,17 +96,48 @@ function getLeapForWeek(week) {
   for (const leap of TEMPLATES) {
     if (week >= leap.week && week <= leap.weekEnd) {
       // Prüfe ob es ein echter Sprung ist (in LEAPS_TIMELINE)
+      const weeklyAbility = getAbilityForWeek(week);
       const isRealLeap = [5, 8, 12, 19, 26, 37, 46, 55, 64, 75, 91, 116, 141].includes(leap.week);
-      return { ...leap, isInLeap: isRealLeap };
+      return { 
+        ...leap, 
+        isInLeap: isRealLeap, 
+        signs: getSignsForWeek(week), 
+        why: getBrainForWeek(week) || leap.why,
+        sunnyPhase: {
+          description: leap.sunnyPhase?.description || "",
+          abilities: weeklyAbility ? [weeklyAbility] : (leap.sunnyPhase?.abilities || [])
+        }
+      };
     }
     // Wenn nach diesem Sprung aber vor dem nächsten
     const nextLeap = TEMPLATES[TEMPLATES.indexOf(leap) + 1];
     if (week > leap.weekEnd && (!nextLeap || week < nextLeap.week)) {
-      return { ...leap, isInLeap: false };
+      const weeklyAbility = getAbilityForWeek(week);
+      return { 
+        ...leap, 
+        isInLeap: false, 
+        signs: getSignsForWeek(week), 
+        why: getBrainForWeek(week) || leap.why,
+        sunnyPhase: {
+          description: leap.sunnyPhase?.description || "",
+          abilities: weeklyAbility ? [weeklyAbility] : (leap.sunnyPhase?.abilities || [])
+        }
+      };
     }
   }
   // Nach dem letzten Sprung
-  return { ...TEMPLATES[TEMPLATES.length - 1], isInLeap: week <= TEMPLATES[TEMPLATES.length - 1].weekEnd };
+  const lastLeap = TEMPLATES[TEMPLATES.length - 1];
+  const weeklyAbility = getAbilityForWeek(week);
+  return { 
+    ...lastLeap, 
+    isInLeap: week <= lastLeap.weekEnd, 
+    signs: getSignsForWeek(week), 
+    why: getBrainForWeek(week) || lastLeap.why,
+    sunnyPhase: {
+      description: lastLeap.sunnyPhase?.description || "",
+      abilities: weeklyAbility ? [weeklyAbility] : (lastLeap.sunnyPhase?.abilities || [])
+    }
+  };
 }
 
 // Sicherheitshinweis Komponente - klappbar und ohne Gender
@@ -350,6 +391,7 @@ export default function BabyDetailPage() {
             </div>
           </div>
 
+          {/* Timeline Section - Enthält alle Tabs inkl. Zustand */}
           <Card>
             <CardContent>
               <TimelineSection 

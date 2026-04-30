@@ -3,9 +3,11 @@ import { useState, useMemo, useEffect } from 'react';
 import { CloudRain, Sun, Brain, Lightbulb, Activity, Heart, Sparkles, Navigation, Zap, AlertTriangle, Moon } from 'lucide-react';
 import { Card, CardContent } from './Card';
 import { TEMPLATES } from '../pages/BabyDetailPage_TEMPLATES';
-import { SLEEP_DATA } from '../data/sleepData';
-import { SYMPTOMS_DATA } from '../data/symptomsData';
-import { BRAIN_DATA } from '../data/brainData';
+import { getSignsForWeek } from '../data/weeklySigns';
+import { getBrainForWeek } from '../data/weeklyBrain';
+import { getAbilityForWeek } from '../data/weeklyAbilities';
+import { getActionForWeek } from '../data/weeklyActions';
+import { getSleepForWeek } from '../data/weeklySleep';
 
 // ============================================
 // FARBSYSTEM - NEU AB WOCHEN 76
@@ -303,10 +305,11 @@ function generateWeekData(week) {
     state: color,
     stateLabel: stateLabels[color] || 'Ruhephase',
     stateDescription: description,
-    symptoms: template?.stormPhase?.symptoms || [],
-    abilities: template?.sunnyPhase?.abilities || [],
-    why: template?.why || 'Das Gehirn entwickelt sich stetig weiter.',
-    actions: template?.actions || ['Genieße die Zeit mit deinem Kind.', 'Beobachte die kleinen Fortschritte.'],
+    symptoms: [], // Alte Storm-Phase Symptoms entfernt
+    signs: getSignsForWeek(week), // NEU: Signs für jede Woche
+    abilities: getAbilityForWeek(week) ? [getAbilityForWeek(week)] : (template?.sunnyPhase?.abilities || []),
+    why: getBrainForWeek(week) || template?.why || 'Das Gehirn entwickelt sich stetig weiter.',
+    actions: getActionForWeek(week) ? [getActionForWeek(week)] : (template?.actions || ['Genieße die Zeit mit deinem Kind.', 'Beobachte die kleinen Fortschritte.']),
   };
 }
 
@@ -558,16 +561,18 @@ export default function TimelineSection({ currentWeek, onSelectWeek, babyName })
                     exit={{ opacity: 0, height: 0 }}
                     className="mt-4 space-y-4 border-t border-gray-200 dark:border-gray-700 pt-4"
                   >
-                    {/* ZUSTAND - nur Mögliche Anzeichen, da Phase oben schon angezeigt wird */}
-                    <div className={`p-4 rounded-xl ${selectedColors.bg} ${selectedColors.border} border`}>
-                      <h4 className={`font-bold ${selectedColors.text} mb-2 flex items-center gap-2`}>
-                        <CloudRain className="w-5 h-5" />
-                        Mögliche Anzeichen
-                      </h4>
-                      <p className="text-[hsl(25,22%,16%)] dark:text-white text-sm leading-relaxed">
-                        {SYMPTOMS_DATA[selectedWeekData.week] || `Hier erscheint bald der Content für mögliche Anzeichen in Woche ${selectedWeekData.week}...`}
-                      </p>
-                    </div>
+                    {/* ZUSTAND - Mögliche Anzeichen als Prosatext */}
+                    {selectedWeekData.signs && (
+                      <div className={`p-4 rounded-xl ${selectedColors.bg} ${selectedColors.border} border`}>
+                        <h4 className={`font-bold ${selectedColors.text} mb-2 flex items-center gap-2`}>
+                          <CloudRain className="w-5 h-5" />
+                          Mögliche Anzeichen
+                        </h4>
+                        <p className="text-[hsl(25,22%,16%)] dark:text-white text-sm leading-relaxed">
+                          {selectedWeekData.signs}
+                        </p>
+                      </div>
+                    )}
 
                     {/* WARUM */}
                     <div className="p-4 rounded-xl bg-gradient-to-br from-violet-50 to-violet-100 dark:from-violet-900/20 dark:to-violet-900/30 border border-violet-200 dark:border-violet-800">
@@ -576,7 +581,7 @@ export default function TimelineSection({ currentWeek, onSelectWeek, babyName })
                         Was im Gehirn passiert
                       </h4>
                       <p className="text-[hsl(25,22%,16%)] dark:text-white text-sm leading-relaxed">
-                        {BRAIN_DATA[selectedWeekData.week] || selectedWeekData.why}
+                        {getBrainForWeek(selectedWeekData.week) || selectedWeekData.why}
                       </p>
                     </div>
 
@@ -587,14 +592,9 @@ export default function TimelineSection({ currentWeek, onSelectWeek, babyName })
                           <Lightbulb className="w-5 h-5" />
                           Neue Fähigkeiten
                         </h4>
-                        <div className="space-y-1">
-                          {selectedWeekData.abilities.slice(0, 4).map((a, i) => (
-                            <div key={i} className="flex items-center gap-2">
-                              <span className="text-green-500">✓</span>
-                              <span className="text-[hsl(25,22%,16%)] dark:text-white text-sm">{a}</span>
-                            </div>
-                          ))}
-                        </div>
+                        <p className="text-[hsl(25,22%,16%)] dark:text-white text-sm leading-relaxed">
+                          {selectedWeekData.abilities[0]}
+                        </p>
                       </div>
                     )}
 
@@ -605,7 +605,7 @@ export default function TimelineSection({ currentWeek, onSelectWeek, babyName })
                         Schlaf
                       </h4>
                       <p className="text-[hsl(25,22%,16%)] dark:text-white text-sm leading-relaxed">
-                        {SLEEP_DATA[selectedWeekData.week] || `Hier erscheint bald der Schlaf-Content für Woche ${selectedWeekData.week}...`}
+                        {getSleepForWeek(selectedWeekData.week) || `Hier erscheint bald der Schlaf-Content fuer Woche ${selectedWeekData.week}...`}
                       </p>
                     </div>
 
@@ -616,16 +616,9 @@ export default function TimelineSection({ currentWeek, onSelectWeek, babyName })
                           <Heart className="w-5 h-5" />
                           Das hilft jetzt
                         </h4>
-                        <div className="space-y-2">
-                          {selectedWeekData.actions.slice(0, 3).map((a, i) => (
-                            <div key={i} className="flex items-start gap-2">
-                              <span className="flex-shrink-0 w-5 h-5 bg-[hsl(17,75%,56%)] text-white rounded-full flex items-center justify-center text-xs font-bold">
-                                {i + 1}
-                              </span>
-                              <span className="text-[hsl(25,22%,16%)] dark:text-white text-sm">{a}</span>
-                            </div>
-                          ))}
-                        </div>
+                        <p className="text-[hsl(25,22%,16%)] dark:text-white text-sm leading-relaxed">
+                          {selectedWeekData.actions[0]}
+                        </p>
                       </div>
                     )}
 

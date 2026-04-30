@@ -1,0 +1,113 @@
+{
+  "processed": [
+    ".gitignore",
+    ".vercel/project.json",
+    "README.md",
+    "add-signs.js",
+    "eslint.config.js",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "postcss.config.js"
+  ],
+  "remaining": 27,
+  "nextIndex": 9,
+  "files": [
+    {"path": ".gitignore", "category": "ROOT"},
+    {"path": ".vercel/project.json", "category": "ROOT"},
+    {"path": "README.md", "category": "ROOT"},
+    {"path": "add-signs.js", "category": "ROOT"},
+    {"path": "eslint.config.js", "category": "ROOT"},
+    {"path": "index.html", "category": "ROOT"},
+    {"path": "package-lock.json", "category": "ROOT"},
+    {"path": "package.json", "category": "ROOT"},
+    {"path": "postcss.config.js", "category": "ROOT"},
+    {"path": "src/components/Card.jsx", "category": "COMPONENTS"},
+    {"path": "src/components/Card.tsx", "category": "COMPONENTS"},
+    {"path": "src/components/CommunitySection.jsx", "category": "COMPONENTS"},
+    {"path": "src/components/Header.jsx", "category": "COMPONENTS"},
+    {"path": "src/components/NotesSection.jsx", "category": "COMPONENTS"},
+    {"path": "src/components/PopEffect.jsx", "category": "COMPONENTS"},
+    {"path": "src/components/TimelineSection.jsx", "category": "COMPONENTS"},
+    {"path": "src/data/communityStories.js", "category": "DATA"},
+    {"path": "src/data/communityStories.json", "category": "DATA"},
+    {"path": "src/data/signs.js", "category": "DATA"},
+    {"path": "src/data/sleepData.js", "category": "DATA"},
+    {"path": "src/data/weeklyAbilities.js", "category": "DATA"},
+    {"path": "src/data/weeklyActions.js", "category": "DATA"},
+    {"path": "src/data/weeklyBrain.js", "category": "DATA"},
+    {"path": "src/data/weeklySigns.js", "category": "DATA"},
+    {"path": "src/data/weeklySleep.js", "category": "DATA"},
+    {"path": "src/hooks/useTheme.js", "category": "HOOKS"},
+    {"path": "src/pages/AddBabyPage.jsx", "category": "PAGES"},
+    {"path": "src/pages/BabyDetailPage.jsx", "category": "PAGES"},
+    {"path": "src/pages/BabyDetailPage_TEMPLATES.js", "category": "PAGES"},
+    {"path": "src/pages/HomePage.jsx", "category": "PAGES"},
+    {"path": "src/pages/LeapsOverviewPage.jsx", "category": "PAGES"},
+    {"path": "src/pages/TEMPLATES_W105_156.js", "category": "PAGES"},
+    {"path": "src/pages/TEMPLATES_W1_52.js", "category": "PAGES"},
+    {"path": "src/pages/TEMPLATES_W53_104.js", "category": "PAGES"},
+    {"path": "src/utils/notesStorage.js", "category": "UTILS"},
+    {"path": "src/index.css", "category": "STYLES"},
+    {"path": "tailwind.config.js", "category": "STYLES"},
+    {"path": "vite.config.js", "category": "STYLES"},
+    {"path": "src/main.jsx", "category": "STYLES"}
+  ],
+  "lastUpdated": "2026-04-10T21:31:00Z",
+  "templates": [
+    {
+      "id": "magwarm-001",
+      "sourceFile": ".gitignore",
+      "templateFile": "gitignore.template.md",
+      "createdAt": "2026-04-10T20:06:00Z"
+    },
+    {
+      "id": "magwarm-002",
+      "sourceFile": ".vercel/project.json",
+      "templateFile": "vercel-project.template.md",
+      "createdAt": "2026-04-10T20:16:00Z"
+    },
+    {
+      "id": "magwarm-003",
+      "sourceFile": "README.md",
+      "templateFile": "README-md.template.md",
+      "createdAt": "2026-04-10T20:21:00Z"
+    },
+    {
+      "id": "magwarm-004",
+      "sourceFile": "add-signs.js",
+      "templateFile": "add-signs-js.template.md",
+      "createdAt": "2026-04-10T20:26:00Z"
+    },
+    {
+      "id": "magwarm-005",
+      "sourceFile": "eslint.config.js",
+      "templateFile": "eslint-config-js.template.md",
+      "createdAt": "2026-04-10T20:31:00Z"
+    },
+    {
+      "id": "magwarm-006",
+      "sourceFile": "index.html",
+      "templateFile": "index-html.template.md",
+      "createdAt": "2026-04-10T20:56:00Z"
+    },
+    {
+      "id": "magwarm-007",
+      "sourceFile": "package-lock.json",
+      "templateFile": "package-lock-json.template.md",
+      "createdAt": "2026-04-10T21:01:00Z"
+    },
+    {
+      "id": "magwarm-008",
+      "sourceFile": "package.json",
+      "templateFile": "package-json.template.md",
+      "createdAt": "2026-04-10T21:31:00Z"
+    },
+    {
+      "id": "magwarm-009",
+      "sourceFile": "postcss.config.js",
+      "templateFile": "postcss-config-js.template.md",
+      "createdAt": "2026-04-10T21:46:00Z"
+    }
+  ]
+}

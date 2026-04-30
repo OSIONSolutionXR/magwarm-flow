@@ -1,0 +1,20 @@
+{
+  "processedFiles": [".gitignore"],
+  "pendingFiles": [
+    ".vercel/project.json", "README.md", "add-signs.js", "eslint.config.js",
+    "index.html", "package-lock.json", "package.json", "postcss.config.js",
+    "src/components/Card.jsx", "src/components/Card.tsx", "src/components/CommunitySection.jsx",
+    "src/components/Header.jsx", "src/components/NotesSection.jsx", "src/components/PopEffect.jsx",
+    "src/components/TimelineSection.jsx", "src/data/communityStories.js", "src/data/communityStories.json",
+    "src/data/signs.js", "src/data/sleepData.js", "src/data/weeklyAbilities.js", "src/data/weeklyActions.js",
+    "src/data/weeklyBrain.js", "src/data/weeklySigns.js", "src/data/weeklySleep.js",
+    "src/hooks/useTheme.js", "src/pages/AddBabyPage.jsx", "src/pages/BabyDetailPage.jsx",
+    "src/pages/BabyDetailPage_TEMPLATES.js", "src/pages/HomePage.jsx", "src/pages/LeapsOverviewPage.jsx",
+    "src/pages/TEMPLATES_W105_156.js", "src/pages/TEMPLATES_W1_52.js", "src/pages/TEMPLATES_W53_104.js",
+    "src/utils/notesStorage.js", "src/index.css", "tailwind.config.js", "vite.config.js", "src/main.jsx"
+  ],
+  "lastProcessed": "2026-04-10T20:11:00Z",
+  "lastFile": ".gitignore",
+  "totalFiles": 35,
+  "processedCount": 1
+}
